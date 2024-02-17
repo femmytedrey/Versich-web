@@ -2,10 +2,10 @@ import React from 'react';
 import logo from '../../assets/Footer-logo.svg'
 import SocialIcons from './SocialIcons';
 import SocialIconsData from '../../assets/SocialIconsData';
+import { MdCopyright } from "react-icons/md";
 import FooterServices from './FooterServices';
 import CompanyInfo from './CompanyInfo';
 import ContactUs from './ContactUs';
-import { MdCopyright } from "react-icons/md";
 
 
 
