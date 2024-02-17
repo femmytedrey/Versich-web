@@ -16,7 +16,7 @@ const Login = () => {
             <button className='flex items-center'>
               <input type="checkbox" className="mr-2" id='remember' />
               <label htmlFor="remember" className='text-sm text-versich-label' >
-                Remember m
+                Remember me
               </label>
             </button>
           </div>
