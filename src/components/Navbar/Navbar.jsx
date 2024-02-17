@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from '../../assets/navbar-logo.svg'
-import darkLogo from '../../assets/dark-icon.svg'
 import { Link, useLocation } from 'react-router-dom';
+import darkLogo from '../../assets/dark-icon.svg';
+import logo from '../../assets/navbar-logo.svg';
 import ExploreDropDown from './ExploreDropDown';
 // import {PiListBold} from 'react-icons/pi'
 
@@ -56,23 +56,21 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${
-        isHome ? "bg-transparent" : "bg-white"
-      } `}
+      className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${isHome ? "bg-transparent" : "bg-white"
+        } `}
     >
       <div>
         <Link to="/">
-          <img src={`${isHome ? logo : darkLogo }`} alt="logo" className="w-20" />
+          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-20" />
         </Link>
       </div>
       <div>
         <div
           className={`md:flex md:gap-x-7 flex-col md:flex-row absolute md:relative bg-white bg-opacity-80 backdrop-filter backdrop-blur-md md:bg-transparent md:mt-0 w-full left-0 px-10 md:px-0 py-4 md:py-0  md:visible
-          ${
-            mobileMenu
+          ${mobileMenu
               ? "top-[100%] visible  duration-500 transition-all ease-in"
               : "hidden  top-[-100%] duration-500 transition-all ease-in"
-          }`}
+            }`}
         >
           <div
             className="relative inline-block text-left w-full md:w-auto"
@@ -81,13 +79,13 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className={`flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold  md:hover:opacity-90 ${isHome?'text-white md:text-white md:hover:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
+                className={`flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold  md:hover:opacity-90 ${isHome ? 'text-white md:text-white md:hover:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
                 id="menu-button"
                 onClick={toggleMenu}
               >
                 Explore
                 <svg
-                  className={`-mr-1 h-5 w-5 ${isHome?'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
+                  className={`-mr-1 h-5 w-5 ${isHome ? 'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -100,7 +98,7 @@ const Navbar = () => {
               </button>
             </div>
 
-            <ExploreDropDown isMenuOpen={isMenuOpen} menuOptions={menuOptions}  />
+            <ExploreDropDown isMenuOpen={isMenuOpen} menuOptions={menuOptions} />
 
           </div>
 
@@ -109,7 +107,7 @@ const Navbar = () => {
               to="/login"
               type="button"
               onClick={handleClick}
-              className={`px-4 md:px-0 py-3 md:py-2 text-black text-lg md:text-white ${isHome?'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
+              className={`px-4 md:px-0 py-3 md:py-2  text-lg  ${isHome ? 'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
             >
               Login
             </Link>
@@ -123,6 +121,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+
       {/* {mobileMenu ? 'open' : 'close'} */}
       {mobileMenu ? (
         <div className={` cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
