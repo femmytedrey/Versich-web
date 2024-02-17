@@ -79,13 +79,13 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className={`flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold  md:hover:opacity-90 ${isHome ? 'text-white md:text-white md:hover:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
+                className={`flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold  md:hover:opacity-90 ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
                 id="menu-button"
                 onClick={toggleMenu}
               >
                 Explore
                 <svg
-                  className={`-mr-1 h-5 w-5 ${isHome ? 'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
+                  className={`-mr-1 h-5 w-5 ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -107,7 +107,7 @@ const Navbar = () => {
               to="/login"
               type="button"
               onClick={handleClick}
-              className={`px-4 md:px-0 py-3 md:py-2  text-lg  ${isHome ? 'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
+              className={`px-4 md:px-0 py-3 md:py-2  text-lg  ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
             >
               Login
             </Link>
