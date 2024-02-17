@@ -26,7 +26,7 @@ const Testimony = ({ testifiers }) => {
         {testifiers.map((testifier) => (
           <div key={testifier.id} className="w-full flex-shrink-0 relative px-9">
             <div className="mb-7 relative">
-              <img src={quoteIcon} alt="quote" className='absolute top-7 w-15 left-[-28px] bg-versich-dark-blue bg-opacity-30 p-5 rounded-full' />
+              <img src={quoteIcon} alt="quote" className='absolute top-10 w-14 left-[-28px] bg-versich-dark-blue bg-opacity-30 p-3 rounded-full' />
               <p className="text-versich-light-blue font-semibold text-lg">
                 {testifier.name}
               </p>
