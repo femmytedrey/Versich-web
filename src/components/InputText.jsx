@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 /**
  * Custom input component that toggles between password visibility.
- *
+ * 
  * Uses the useState hook to manage password visibility state.
  * Renders an input with type "password" or "text" based on visibility state.
  * Shows eye icon to toggle visibility on click.
