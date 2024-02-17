@@ -3,15 +3,15 @@ import React from 'react';
 const ContactUs = () => {
   return (
     <div className='flex flex-col flex-1'>
-      <p className='pb-4 font-bold text-xl'>Contact us</p>
-      <ul className='flex flex-col gap-y-3 text-[#BDBDBD] font-bold'>
-        <li>
+      <p className='pb-4 font-bold text-lg'>Contact us</p>
+      <ul className='flex flex-col gap-y-3 text-md text-[#BDBDBD] font-bold'>
+        <li className='hover:text-[#ECECEC]'>
             <a href="#">(+44) 7782350419</a>
         </li>
-        <li>
+        <li className='hover:text-[#ECECEC]'>
             <a href="#">info@versich.com</a>
         </li>
-        <li>
+        <li className='hover:text-[#ECECEC]'>
             <a href="#">Broad House, Imperial Drive HA2 7BL London, United Kingdom</a>
         </li>
       </ul>
