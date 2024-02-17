@@ -26,7 +26,7 @@ const Footer = () => {
         <FooterServices />
         <CompanyInfo />
         <ContactUs />
-      </div>0
+      </div>
       <div className='px-8 md:px-16 lg:px-28 text-white text-start py-4 flex items-center gap-x-3 text-md'>
         <MdCopyright />
         <p> 2024 VersiMarket, All rights reserved.</p>
