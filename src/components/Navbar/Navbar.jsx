@@ -61,7 +61,7 @@ const Navbar = () => {
     >
       <div>
         <Link to="/">
-          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-20" />
+          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-32" />
         </Link>
       </div>
       <div>
