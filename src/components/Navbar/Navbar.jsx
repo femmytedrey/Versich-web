@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logo from '../../assets/navbar-logo.svg'
+import darkLogo from '../../assets/dark-icon.svg'
 import { Link, useLocation } from 'react-router-dom';
 import ExploreDropDown from './ExploreDropDown';
 // import {PiListBold} from 'react-icons/pi'
@@ -61,7 +62,7 @@ const Navbar = () => {
     >
       <div>
         <Link to="/">
-          <img src={logo} alt="logo" className="w-20" />
+          <img src={`${isHome ? logo : darkLogo }`} alt="logo" className="w-20" />
         </Link>
       </div>
       <div>
