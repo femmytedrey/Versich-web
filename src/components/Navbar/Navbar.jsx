@@ -57,7 +57,7 @@ const Navbar = () => {
   return (
     <nav
       className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${
-        isHome ? "bg-transparent" : "bg-black"
+        isHome ? "bg-transparent" : "bg-white"
       } `}
     >
       <div>
@@ -81,13 +81,13 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className="flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold text-black md:text-white md:hover:text-white md:hover:opacity-90"
+                className={`flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold  md:hover:opacity-90 ${isHome?'text-white md:text-white md:hover:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
                 id="menu-button"
                 onClick={toggleMenu}
               >
                 Explore
                 <svg
-                  className="-mr-1 h-5 w-5 text-black md:text-white"
+                  className={`-mr-1 h-5 w-5 ${isHome?'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -109,7 +109,7 @@ const Navbar = () => {
               to="/login"
               type="button"
               onClick={handleClick}
-              className="px-4 md:px-0 py-3 md:py-2 text-black text-lg md:text-white"
+              className={`px-4 md:px-0 py-3 md:py-2 text-black text-lg md:text-white ${isHome?'text-white md:text-white' : 'text-black md:text-black'}`}
             >
               Login
             </Link>

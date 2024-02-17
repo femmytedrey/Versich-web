@@ -3,7 +3,7 @@ import { BsFillEyeSlashFill } from "react-icons/bs";
 
 const InputText = () => {
   return (
-    <div className="w-[400px]">
+    <div className="w-full">
       <div className="flex items-center justify-between">
         <label htmlFor="">Label</label>
         <button className="flex items-center space-x-2">
