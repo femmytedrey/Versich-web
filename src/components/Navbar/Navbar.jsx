@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import logo from '../../assets/navbar-logo.svg'
 import { Link, useLocation } from 'react-router-dom';
+import ExploreDropDown from './ExploreDropDown';
 // import {PiListBold} from 'react-icons/pi'
 
 /**
@@ -98,23 +99,8 @@ const Navbar = () => {
               </button>
             </div>
 
-            {isMenuOpen && (
-              <div className="absolute right-0 z-10 mt-2 w-80 m-auto md:m-0 md:w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-1">
-                  {menuOptions.map((option) => (
-                    <a
-                      key={option.id}
-                      href={option.href}
-                      className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
-                      role="menuitem"
-                      tabIndex="-1"
-                    >
-                      {option.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
+            <ExploreDropDown isMenuOpen={isMenuOpen} menuOptions={menuOptions}  />
+
           </div>
 
           <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white font-semibold">
