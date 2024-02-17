@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/navbar-logo.svg'
 import { Link, useLocation } from 'react-router-dom';
 // import {PiListBold} from 'react-icons/pi'
 
@@ -25,7 +25,6 @@ const Navbar = () => {
 
   const menu = () => {
     setMobileMenu(!mobileMenu);
-    console.log(mobileMenu);
   };
 
   const closeMenu = (event) => {
@@ -55,13 +54,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between items-center py-4 px-10 md:px-16 lg:px-28 md:px-25 relative ${
+      className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${
         isHome ? "bg-transparent" : "bg-yellow-500"
       } `}
     >
       <div>
         <Link to="/">
-          <img src={logo} alt="logo" className="w-16" />
+          <img src={logo} alt="logo" className="w-20" />
         </Link>
       </div>
       <div>
