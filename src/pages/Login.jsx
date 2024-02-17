@@ -33,10 +33,10 @@ const Login = () => {
               <div className='bg-gray-500 h-[2px] w-full' />
             </div>
 
-            <div className='flex items-center gap-5 w-full  md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border  '>
+            <button className='flex items-center gap-5 w-full  md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border  '>
               <FcGoogle />
               Continue with Google
-            </div>
+            </button>
           </div>
         </div>
       </div>
