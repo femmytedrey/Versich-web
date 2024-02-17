@@ -80,7 +80,7 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className="flex md:inline-flex w-full justify-center gap-x-2.5 px-3 py-3 md:py-2 text-sm font-semibold text-black md:text-white md:hover:text-white md:hover:opacity-90"
+                className="flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold text-black md:text-white md:hover:text-white md:hover:opacity-90"
                 id="menu-button"
                 onClick={toggleMenu}
               >
@@ -108,14 +108,14 @@ const Navbar = () => {
               to="/login"
               type="button"
               onClick={handleClick}
-              className="px-4 md:px-0 py-3 md:py-2 text-black md:text-white"
+              className="px-4 md:px-0 py-3 md:py-2 text-black text-lg md:text-white"
             >
               Login
             </Link>
             <button
               type="button"
               onClick={handleClick}
-              className="bg-versich-blue hover:bg-opacity-80 text-white px-4 py-3 md:py-2 rounded-lg"
+              className="bg-versich-blue hover:bg-opacity-80 text-white text-lg px-4 py-3 md:py-2 rounded-lg"
             >
               Sign up
             </button>
