@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   return (
-    <div className='py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center'>
+    <div className='py-10 md:py-14 mb-12 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center'>
       <div className='w-full bg-white shadow-md py-5 md:py-10 px-5 md:px-12 max-w-lg rounded-md'>
         <h2 className=' text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium '>Log in</h2>
         <div className='w-full' >
