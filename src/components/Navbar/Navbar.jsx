@@ -56,7 +56,7 @@ const Navbar = () => {
   return (
     <nav
       className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${
-        isHome ? "bg-transparent" : "bg-yellow-500"
+        isHome ? "bg-transparent" : "bg-black"
       } `}
     >
       <div>
@@ -66,7 +66,7 @@ const Navbar = () => {
       </div>
       <div>
         <div
-          className={`md:flex md:gap-x-7 flex-col md:flex-row absolute md:relative bg-white bg-opacity-80 backdrop-filter backdrop-blur-md md:bg-transparent md:mt-0 w-full left-0 px-10 md:px-0 py-4 md:py-0  md:visible 
+          className={`md:flex md:gap-x-7 flex-col md:flex-row absolute md:relative bg-white bg-opacity-80 backdrop-filter backdrop-blur-md md:bg-transparent md:mt-0 w-full left-0 px-10 md:px-0 py-4 md:py-0  md:visible
           ${
             mobileMenu
               ? "top-[100%] visible  duration-500 transition-all ease-in"

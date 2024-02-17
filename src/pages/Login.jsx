@@ -1,9 +1,11 @@
 import React from 'react';
+import InputText from '../components/InputText';
 
 const Login = () => {
   return (
-    <div>
-      login page
+    <div className='py-5'>
+     
+      <InputText />
     </div>
   );
 }
