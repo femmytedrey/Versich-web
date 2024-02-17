@@ -1,7 +1,7 @@
 const InputText = () => {
   return (
     <div>
-      input text 😍
+      input text 😍 😁
     </div>
   );
 }
