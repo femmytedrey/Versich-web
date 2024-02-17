@@ -125,7 +125,7 @@ const Navbar = () => {
       </div>
       {/* {mobileMenu ? 'open' : 'close'} */}
       {mobileMenu ? (
-        <div className={` cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
+        <div className={`text-white cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
