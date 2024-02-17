@@ -109,7 +109,7 @@ const Navbar = () => {
               to="/login"
               type="button"
               onClick={handleClick}
-              className={`px-4 md:px-0 py-3 md:py-2 text-black text-lg md:text-white ${isHome?'text-white md:text-white' : 'text-black md:text-black'}`}
+              className={`px-4 md:px-0 py-3 md:py-2 text-black text-lg md:text-white ${isHome?'text-white md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
             >
               Login
             </Link>
@@ -125,7 +125,7 @@ const Navbar = () => {
       </div>
       {/* {mobileMenu ? 'open' : 'close'} */}
       {mobileMenu ? (
-        <div className="text-white cursor-pointer md:hidden" onClick={menu}>
+        <div className={` cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -142,7 +142,7 @@ const Navbar = () => {
           </svg>
         </div>
       ) : (
-        <div className="text-white cursor-pointer md:hidden " onClick={menu}>
+        <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
