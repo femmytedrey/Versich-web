@@ -111,13 +111,14 @@ const Navbar = () => {
             >
               Login
             </Link>
-            <button
+            <Link
+              to="/signup"
               type="button"
               onClick={handleClick}
               className="bg-versich-blue hover:bg-opacity-80 text-white text-lg px-4 py-3 md:py-2 rounded-lg"
             >
               Sign up
-            </button>
+            </Link>
           </div>
         </div>
       </div>
