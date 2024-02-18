@@ -13,13 +13,18 @@ const Login = () => {
 
           {/* form */}
           <div className='space-y-4 md:space-y-5 '>
-
-          
-
-            <button className='flex items-center gap-5 w-[95%] hover:w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-versich-blue hover:text-white hover:border-none'>
-              <FcGoogle />
-              Continue with Google
+            <InputText label='Email address or username' inputType='text' />
+            <InputText label='Password' inputType='password' />
+            <button className='flex items-center'>
+              <input type="checkbox" className="mr-2" id='remember' />
+              <label htmlFor="remember" className='text-sm text-versich-label hover:text-versich-blue-hover' >
+                Remember me
+              </label>
             </button>
+            <p className='text-sm text-left'>By continuing, you agree to the <a href="#" className='text-versich-blue underline hover:no-underline hover:text-versich-blue-hover'>Terms of use</a> and <a href="#" className='text-versich-blue underline hover:no-underline hover:text-versich-blue-hover' >Privacy Policy</a>. </p>
+            <ConfirmButton text='Log in' />
+            <Link to='#' className='underline block text-sm hover:text-versich-blue-hover' href='#'>Forget Password</Link>
+            <p className='text-sm '>Don't have an account? <Link to='/signup' className='text-versich-blue hover:text-versich-blue-hover hover:underline' href='#'>Sign up</Link></p>
 
             {/* divider */}
             <div className='flex items-center gap-5 justify-between'>
@@ -28,20 +33,10 @@ const Login = () => {
               <div className='bg-gray-500 h-[2px] w-full' />
             </div>
 
-            <InputText label='Email address or username' inputType='text' />
-            <InputText label='Password' inputType='password' />
-            <button className='flex items-center'>
-              <input type="checkbox" className="mr-2" id='remember' />
-              <label htmlFor="remember" className='text-sm text-versich-label hover:font-bold' >
-                Remember me
-              </label>
+            <button className='flex items-center gap-5 w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-gray-100'>
+              <FcGoogle />
+              Continue with Google
             </button>
-            <p className='text-sm text-left'>By continuing, you agree to the <a href="#" className='text-versich-blue underline hover:text-versich-blue-hover hover:font-bold'>Terms of use</a> and <a href="#" className='text-versich-blue underline hover:text-versich-blue-hover hover:font-bold' >Privacy Policy</a>. </p>
-            <ConfirmButton text='Log in' />
-            <Link to='#' className='underline block text-sm hover:font-bold' href='#'>Forget Password</Link>
-            <p className='text-sm '>Don't have an account? <Link to='/signup' className='text-versich-blue hover:text-versich-blue-hover hover:font-bold' href='#'>Sign up</Link></p>
-
-            
           </div>
         </div>
       </div>

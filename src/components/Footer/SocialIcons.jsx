@@ -4,9 +4,9 @@ const SocialIcons = ({ SocialIconsData }) => {
   return (
     <div className='flex gap-5 py-3 flex-wrap lg:flex-nowrap justify-center md:justify-end h-full items-center flex-1'>
       {SocialIconsData.map((data) => {
-        return(
+        return (
           <div key={data.id} className='bg-white p-2.5 rounded-full shadow-md hover:bg-[#E8E8E8] cursor-pointer relative overflow-hidden group'>
-            <a href={data.url} target="_blank" rel="noreferrer"><img src={data.icon} alt="icons" className='transition-transform transform-gpu scale-90 group-hover:scale-110 cursor-pointer' /></a>
+            <a href={data.url} target="_blank" rel="noreferrer"><img src={data.icon} alt="icons" className='w-6 h-6 transition-transform transform-gpu scale-90 cursor-pointer' /></a>
           </div>
         )
       })}
