@@ -1,27 +1,27 @@
 import React from 'react';
-import logo from '../../assets/light-logo.svg'
+import { Link } from 'react-router-dom';
+import { MdCopyright } from "react-icons/md";
+
+import logo from '../../assets/logo.png'
 import SocialIcons from './SocialIcons';
 import SocialIconsData from '../../assets/SocialIconsData';
-import { MdCopyright } from "react-icons/md";
 import FooterServices from './FooterServices';
 import CompanyInfo from './CompanyInfo';
 import ContactUs from './ContactUs';
-
-
 
 const Footer = () => {
   return (
     <div className='bg-versich-dark-blue py-4'>
       <div className='flex flex-col md:flex-row border-b-2 border-white border-solid px-8 md:px-16 lg:px-28 py-7 justify-between'>
         <div className='flex flex-col text-start gap-y-4 pb-3 w-full lg:w-[350px]'>
-            <div className='flex items-center gap-x-3 text-white font-bold text-xl md:text-3xl'>
-              <img src={logo} alt="logo" className="w-8 md:w-12" />
-              <p>VersiMarket</p>
-            </div>
-            <p className='text-white text-sm'>To elevate digital presence, enhance data analytics, reporting and drive business growth.</p>
+          <Link to="/" className="inline-flex items-center">
+            <img src={logo} alt="logo" className="w-[48px] md:w-[52px] brightness-0 invert" />&nbsp;
+            <span className="font-semibold text-xl text-white">VersiMarket</span>
+          </Link>
+          <p className='text-white text-sm'>To elevate digital presence, enhance data analytics, reporting and drive business growth.</p>
         </div>
         <div>
-            <SocialIcons SocialIconsData = {SocialIconsData} />
+          <SocialIcons SocialIconsData={SocialIconsData} />
         </div>
       </div>
 
@@ -32,7 +32,7 @@ const Footer = () => {
       </div>
       <div className='px-8 md:px-16 lg:px-28 text-white text-start py-4 flex items-center gap-x-3 text-sm'>
         <MdCopyright />
-        <p> 2024 VersiMarket, All rights reserved.</p>
+        <p> 2024 <a className="hover:text-versich-blue underline underline-offset-2 decoration-2 decoration-versich-blue/80" href="https://versich.com" target="_blank" rel="noreferrer">Versich</a>, All rights reserved.</p>
       </div>
     </div>
   );

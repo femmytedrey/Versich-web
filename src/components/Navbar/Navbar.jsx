@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import darkLogo from '../../assets/dark-logo.svg';
-import logo from '../../assets/light-logo.svg';
+import logo from "../../assets/logo.png";
 import ExploreDropDown from './ExploreDropDown';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdClose } from "react-icons/md";
+
 
 // import {PiListBold} from 'react-icons/pi'
 
@@ -63,9 +63,9 @@ const Navbar = () => {
         } `}
     >
       <div>
-        <Link to="/" className={`flex items-center gap-x-4 font-bold text-3xl ${isHome ? 'text-white' : 'text-versich-dark-blue'}`} >
-          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-[170px] md:w-12" />
-          <p>VersiMarket</p>
+        <Link to="/" className="flex items-center justify-center">
+          <img src={logo} alt="logo" className="w-[48px] md:w-[52px]" />&nbsp;
+          <span className={`font-semibold text-xl  ${isHome ? "text-white" : "text-black"}`}>VersiMarket</span>
         </Link>
       </div>
       <div>
@@ -83,7 +83,7 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className={`flex md:inline-flex w-full bg-transparent justify-center items-center gap-x-2.5 hover:gap-x-4 transition-all duration-3000 ease-in px-3 py-3 md:py-2 text-lg font-regular hover:font-semibold ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
+                className={`flex md:inline-flex w-full bg-transparent justify-center items-center gap-x-2.5 transition-all duration-3000 ease-in px-3 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
                 id="menu-button"
                 onClick={toggleMenu}
               >
@@ -111,7 +111,7 @@ const Navbar = () => {
               to="/login"
               type="button"
               onClick={handleClick}
-              className={`px-4 md:px-0 py-3 md:py-2  text-lg font-regular hover:font-semibold ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
+              className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
             >
               Login
             </Link>
@@ -132,7 +132,7 @@ const Navbar = () => {
       {mobileMenu ? (
         <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
           <MdClose className='text-3xl' />
-          
+
         </div>
       ) : (
         <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
