@@ -63,8 +63,9 @@ const Navbar = () => {
         } `}
     >
       <div>
-        <Link to="/">
-          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-[170px] md:w-[220px]" />
+        <Link to="/" className={`flex items-center gap-x-4 font-bold text-3xl ${isHome ? 'text-white' : 'text-versich-dark-blue'}`} >
+          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-[170px] md:w-12" />
+          <p>VersiMarket</p>
         </Link>
       </div>
       <div>
