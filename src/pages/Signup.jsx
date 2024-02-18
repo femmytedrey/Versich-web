@@ -23,10 +23,10 @@ const Signup = () => {
             <InputText label='Password' inputType='password' />
             <InputText label='Confirm Password' inputType='password' />
             
-            <p className='text-sm text-left'>By continuing, you agree to the <a href="#" className='text-versich-blue underline'>Terms of use</a> and <a href="#" className='text-versich-blue underline' >Privacy Policy</a>. </p>
+            <p className='text-sm text-left'>By continuing, you agree to the <a href="#" className='text-versich-blue hover:text-versich-blue-hover hover:font-bold underline'>Terms of use</a> and <a href="#" className='text-versich-blue hover:text-versich-blue-hover hover:font-bold underline' >Privacy Policy</a>. </p>
             <ConfirmButton text='Create an account' />
-            <Link to='#' className='underline block text-sm' href='#'>Forget Password</Link>
-            <p className='text-sm '>Don't have an account? <Link to='#' className='text-versich-blue' href='#'>Sign up</Link></p>
+            <Link to='#' className='underline block text-sm hover:font-bold' href='#'>Forget Password</Link>
+            <p className='text-sm '>Already have an account? <Link to='/login' className='text-versich-blue hover:text-versich-blue-hover hover:font-bold' href= '#'>Log in</Link></p>
 
             {/* divider */}
             <div className='flex items-center gap-5 justify-between'>
@@ -34,7 +34,7 @@ const Signup = () => {
               <p>Or</p>
               <div className='bg-gray-500 h-[2px] w-full' />
             </div>
-            <button className='flex items-center gap-5 w-full  md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border  '>
+            <button className='flex items-center gap-5 w-[95%] hover:w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-versich-blue hover:text-white hover:border-none'>
               <FcGoogle />
               Continue with Google
             </button>

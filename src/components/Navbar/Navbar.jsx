@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import darkLogo from '../../assets/dark-icon.svg';
-import logo from '../../assets/navbar-logo.svg';
+import logo from '../../assets/Footer-logo.svg';
 import ExploreDropDown from './ExploreDropDown';
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdClose } from "react-icons/md";
+
 // import {PiListBold} from 'react-icons/pi'
 
 /**
@@ -61,12 +64,12 @@ const Navbar = () => {
     >
       <div>
         <Link to="/">
-          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-32" />
+          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-[150px]" />
         </Link>
       </div>
       <div>
         <div
-          className={`md:flex md:gap-x-7 flex-col md:flex-row absolute md:relative bg-white bg-opacity-80 backdrop-filter backdrop-blur-md md:bg-transparent md:mt-0 w-full left-0 px-10 md:px-0 py-4 md:py-0  md:visible
+          className={`md:flex md:gap-x-7 flex-col md:flex-row shadow-lg md:shadow-none absolute md:relative bg-white bg-opacity-80 backdrop-filter backdrop-blur-md md:bg-transparent md:mt-0 w-full left-0 px-10 md:px-0 py-4 md:py-0  md:visible
           ${mobileMenu
               ? "top-[100%] visible  duration-500 transition-all ease-in"
               : "hidden  top-[-100%] duration-500 transition-all ease-in"
@@ -79,7 +82,7 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className={`flex md:inline-flex w-full justify-center items-center gap-x-2.5 px-3 py-3 md:py-2 text-lg font-semibold  md:hover:opacity-90 ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
+                className={`flex md:inline-flex w-full bg-transparent justify-center items-center gap-x-2.5 hover:gap-x-4 transition-all duration-3000 ease-in px-3 py-3 md:py-2 text-lg font-regular hover:font-semibold ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color md:hover:text-versich-darktext-color'}`}
                 id="menu-button"
                 onClick={toggleMenu}
               >
@@ -102,12 +105,12 @@ const Navbar = () => {
 
           </div>
 
-          <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white font-semibold">
+          <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
             <Link
               to="/login"
               type="button"
               onClick={handleClick}
-              className={`px-4 md:px-0 py-3 md:py-2  text-lg  ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
+              className={`px-4 md:px-0 py-3 md:py-2  text-lg font-regular hover:font-semibold ${isHome ? 'text-versich-darktext-color md:text-white' : 'text-versich-darktext-color md:text-versich-darktext-color'}`}
             >
               Login
             </Link>
@@ -115,7 +118,7 @@ const Navbar = () => {
               to="/signup"
               type="button"
               onClick={handleClick}
-              className="bg-versich-blue hover:bg-opacity-80 text-white text-lg px-4 py-3 md:py-2 rounded-lg"
+              className="bg-versich-blue hover:bg-[#0A6ECD] text-white text-lg px-4 py-3 md:py-2 rounded-lg font-regular"
             >
               Sign up
             </Link>
@@ -126,38 +129,13 @@ const Navbar = () => {
 
       {/* {mobileMenu ? 'open' : 'close'} */}
       {mobileMenu ? (
-        <div className={`text-white cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-9 h-9"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            />
-          </svg>
+        <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
+          <MdClose className='text-5xl' />
+          
         </div>
       ) : (
         <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-9 h-9"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
+          <RxHamburgerMenu className='text-4xl' />
         </div>
       )}
     </nav>

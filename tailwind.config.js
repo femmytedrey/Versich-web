@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         'versich-blue': '#1D88ED',
+        'versich-blue-hover': '#0A6ECD',
         'versich-primary-bg': '#FCFCFC',
         'versich-dark-blue': '#00204A',
         'versich-darktext-color': '#252B42',

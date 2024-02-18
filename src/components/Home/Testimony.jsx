@@ -38,9 +38,9 @@ const Testimony = ({ testifiers }) => {
       </div>
 
       <div className="flex gap-x-5 text-3xl justify-center  bottom-0 w-full p-5 ">
-  <PiArrowLeftThin className="cursor-pointer" onClick={prevTestimony} />
-  <PiArrowRightThin className="cursor-pointer" onClick={nextTestimony} />
-</div>
+        <PiArrowLeftThin className="cursor-pointer" onClick={prevTestimony} />
+        <PiArrowRightThin className="cursor-pointer" onClick={nextTestimony} />
+      </div>
 
     </div>
   );
