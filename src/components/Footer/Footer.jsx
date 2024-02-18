@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/Footer-logo.svg'
+import logo from '../../assets/light-logo.svg'
 import SocialIcons from './SocialIcons';
 import SocialIconsData from '../../assets/SocialIconsData';
 import { MdCopyright } from "react-icons/md";
@@ -14,7 +14,7 @@ const Footer = () => {
     <div className='bg-versich-dark-blue py-4'>
       <div className='flex flex-col md:flex-row border-b-2 border-white border-solid px-8 md:px-16 lg:px-28 py-7 justify-between'>
         <div className='flex flex-col text-start gap-y-4 pb-3 w-full lg:w-[350px]'>
-            <img src={logo} alt="logo" className="w-32" />
+            <img src={logo} alt="logo" className="w-[220px]" />
             <p className='text-white text-sm'>To elevate digital presence, enhance data analytics, reporting and drive business growth.</p>
         </div>
         <div>

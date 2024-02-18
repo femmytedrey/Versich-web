@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import darkLogo from '../../assets/dark-icon.svg';
-import logo from '../../assets/Footer-logo.svg';
+import darkLogo from '../../assets/dark-logo.svg';
+import logo from '../../assets/light-logo.svg';
 import ExploreDropDown from './ExploreDropDown';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdClose } from "react-icons/md";
@@ -64,7 +64,7 @@ const Navbar = () => {
     >
       <div>
         <Link to="/">
-          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-[150px]" />
+          <img src={`${isHome ? logo : darkLogo}`} alt="logo" className="w-[170px] md:w-[220px]" />
         </Link>
       </div>
       <div>
@@ -130,12 +130,12 @@ const Navbar = () => {
       {/* {mobileMenu ? 'open' : 'close'} */}
       {mobileMenu ? (
         <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
-          <MdClose className='text-5xl' />
+          <MdClose className='text-3xl' />
           
         </div>
       ) : (
         <div className={`cursor-pointer md:hidden ${isHome ? 'text-white' : 'text-versich-darktext-color'}`} onClick={menu}>
-          <RxHamburgerMenu className='text-4xl' />
+          <RxHamburgerMenu className='text-3xl' />
         </div>
       )}
     </nav>
