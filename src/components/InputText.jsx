@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { useForm } from "react-hook-form";
+
 /**
  * Custom input component that toggles between password visibility.
  * 
@@ -8,7 +10,7 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
  * Shows eye icon to toggle visibility on click.
  */
 
-const InputText = ({ label, inputType }) => {
+const InputText = ({ label, inputType, placeholder }) => {
   const [showPassword, setShowPassword] = useState(false);
 
 
@@ -39,6 +41,7 @@ const InputText = ({ label, inputType }) => {
       <input
         type={showPassword ? 'text' : inputType}
         className="w-full h-10 rounded-md border-[1px] border-versich-border px-3"
+        placeholder={placeholder}
       />
     </div>
   );
