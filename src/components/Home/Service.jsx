@@ -68,11 +68,11 @@ const Service = ({ servicesImages }) => {
     >
       {servicesImages.map((service) => (
         <div key={service.id} className='mx-4 my-3 w-[320px] shadow-md rounded-2xl text-center group'>
-          <div className='h-[170px] w-[320px] relative overflow-hidden'>
+          <div className='h-[170px] w-[320px] relative overflow-hidden rounded-tr-2xl rounded-tl-2xl'>
             <img
               src={service.img}
               alt={service.name}
-              className='rounded-tr-2xl rounded-tl-2xl object-cover w-full h-full transition-transform duration-400 transform-gpu scale-100 group-hover:scale-110 cursor-pointer'
+              className='object-cover w-full h-full transition-transform duration-400 transform-gpu scale-100 group-hover:scale-110 cursor-pointer'
             />
           </div>
           <div className='h-auto text-start p-4'>
