@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { PiArrowRightThin } from "react-icons/pi";
+import { PiArrowRightThin } from 'react-icons/pi';
 import './Service.css';
 
 const Service = ({ servicesImages }) => {
@@ -24,7 +24,7 @@ const Service = ({ servicesImages }) => {
       scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
       scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isHovered]);
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
@@ -39,20 +39,31 @@ const Service = ({ servicesImages }) => {
         const lastChild = container.lastElementChild;
 
         if (lastChild) {
-          if (container.scrollLeft >= lastChild.offsetLeft - container.clientWidth) {
-            container.scrollLeft = 0;
-          } else {
-            container.scrollLeft += scrollStep;
+          if (
+            container.scrollLeft >=
+            lastChild.offsetLeft - container.clientWidth
+          ) {
+            const firstImages = container.querySelectorAll('.scroll-item');
+            firstImages.forEach((image) => {
+              const clone = image.cloneNode(true);
+              container.appendChild(clone);
+            });
           }
+          container.scrollLeft += scrollStep;
         }
       }
     };
 
     const screenWidth = window.innerWidth;
-
     const isMobileView = screenWidth <= 768;
 
     if (!isMobileView) {
+      // Clone the first set of images initially
+      const firstImages = scrollContainer.querySelectorAll('.scroll-item');
+      firstImages.forEach((image) => {
+        const clone = image.cloneNode(true);
+        scrollContainer.appendChild(clone);
+      });
       intervalId = setInterval(scroll, scrollSpeed);
     }
 
@@ -63,26 +74,31 @@ const Service = ({ servicesImages }) => {
 
   return (
     <div
-      className={`flex ${isHovered ? 'paused' : ''} scroll-container overflow-x-auto`}
+      className={`flex scroll-container overflow-x-auto scoll md:overflow-x-hidden snap-x-mandatory`}
       ref={scrollContainerRef}
     >
       {servicesImages.map((service) => (
-        <div key={service.id} className='mx-4 my-3 w-[320px] shadow-md rounded-2xl text-center group'>
-          <div className='h-[170px] w-[320px] relative overflow-hidden rounded-tr-2xl rounded-tl-2xl'>
+        <div
+          key={service.id}
+          className='mx-4 my-3 w-[250px] md:w-[320px] shadow-md rounded-2xl text-center group scroll-snap-align-start scroll-item'
+        >
+          <div className='h-[100px] md:h-[170px] w-[220px] md:w-[320px] relative overflow-hidden rounded-tr-2xl rounded-tl-2xl'>
             <img
               src={service.img}
               alt={service.name}
               className='object-cover w-full h-full transition-transform duration-400 transform-gpu scale-100 group-hover:scale-110 cursor-pointer'
             />
           </div>
-          <div className='h-auto text-start p-4'>
-            <p className='font-bold text-lg text-versich-darktext-color'>{service.name}</p>
+          <div className='h-auto text-start px-4 py-2 md:py-4'>
+            <p className='font-bold text-sm md:text-lg text-versich-darktext-color'>
+              {service.name}
+            </p>
             <a
               href={service.link}
-              className='flex cursor-pointer items-center gap-x-2 text-[#114B8A] font-medium hover:text-versich-blue hover:gap-x-4 transition-all duration-300 ease-in-out'
+              className='flex text-sm md:text-lg cursor-pointer items-center gap-x-2 text-[#114B8A] font-medium hover:text-versich-blue hover:gap-x-4 transition-all duration-300 ease-in-out'
             >
               Find a professional
-              <PiArrowRightThin className='my-3' />
+              <PiArrowRightThin className='my-' />
             </a>
           </div>
         </div>
