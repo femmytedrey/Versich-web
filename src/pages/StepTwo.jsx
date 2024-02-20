@@ -1,20 +1,11 @@
-// Import necessary components and icons
 import React, { useState } from 'react';
-import { IoIosAlert } from "react-icons/io";
 import StepButton from '../components/Buttons/StepButton';
 import InputText from '../components/InputText';
 import ChoiceButton from '../components/Buttons/ChoiceButton';
 import DropdownField from '../components/DropdownField';
-// import ChoiceButton from '../components/Buttons/ChoiceButton';
 
 const StepTwo = () => {
-//   const [yesSelected, setYesSelected] = useState(false);
-//   const [noSelected, setNoSelected] = useState(false);
 
-//   const handleToggle = (option) => {
-//     setYesSelected(option === 'yes');
-//     setNoSelected(option === 'no');
-//   };
 
     const [ choiceButton, setChoiceButton ] = useState([
         { text: 'Yes', isSelect: false },
@@ -79,7 +70,7 @@ const StepTwo = () => {
           <h2 className='text-start text-xl text-versich-dark-blue font-semibold'>Where would you like to see leads from?</h2>
           <p className='text-start'>Tell us the area you cover so we can show you leads for your location</p>
         </div>
-        <InputText label='First Name' inputType='text' />
+        <InputText label='Your Name' inputType='text' />
         <InputText label='Company Name' inputType='text' />
         <InputText label='Address' inputType='text' />
         <InputText label='Phone Number' inputType='text' />
@@ -92,7 +83,7 @@ const StepTwo = () => {
             </div>
         </div>
         <InputText label='Your Website' placeholder= 'Website address (optional)' inputType='text' />
-        <DropdownField label='Company size, employees' options={employeeNumbers} placeholder='Select numbeer of Employee'/>
+        <DropdownField label='Company size, employees' options={employeeNumbers} placeholder='Select number of Employee'/>
         <div className='text-start flex flex-col'>
             <p className = 'mb-2 text-versich-label text-sm'>Does your company have a sales team?</p>
             <div className='flex gap-4'>
