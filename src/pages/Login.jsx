@@ -25,7 +25,7 @@ const Login = () => {
               </label>
             </button>
             <p className='text-sm text-left'>By continuing, you agree to the <a href="#" className='text-versich-blue underline hover:no-underline hover:text-versich-blue-hover'>Terms of use</a> and <a href="#" className='text-versich-blue underline hover:no-underline hover:text-versich-blue-hover' >Privacy Policy</a>. </p>
-            <ConfirmButton text='Log in' />
+            <ConfirmButton type='submit' text='Log in' />
             <Link to='#' className='underline block text-sm hover:text-versich-blue-hover' href='#'>Forget Password</Link>
             <p className='text-sm '>Don't have an account? <Link to='/signup' className='text-versich-blue hover:text-versich-blue-hover hover:underline' href='#'>Sign up</Link></p>
 
