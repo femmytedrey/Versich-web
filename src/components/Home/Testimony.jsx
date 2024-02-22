@@ -1,57 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import quoteIcon from '../../assets/quote.svg';
+import React, { useState } from 'react';
+import { PiArrowRightThin, PiArrowLeftThin } from 'react-icons/pi';
+import quoteIcon from '../../assets/quote.svg'
 
 const Testimony = ({ testifiers }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const containerRef = useRef(null);
-  const touchStartX = useRef(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    let intervalId;
-
-    if (!isMobile) {
-      intervalId = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % testifiers.length);
-      }, 5000); // Adjust the interval duration as needed
-    }
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [isMobile, testifiers.length]);
-
-  const handleSwipeStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleSwipeMove = (e) => {
-    if (touchStartX.current !== null) {
-      const deltaX = e.touches[0].clientX - touchStartX.current;
-
-      if (deltaX > 50) {
-        prevTestimony();
-        touchStartX.current = null;
-      } else if (deltaX < -50) {
-        nextTestimony();
-        touchStartX.current = null;
-      }
-    }
-  };
 
   const nextTestimony = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testifiers.length);
@@ -64,12 +16,7 @@ const Testimony = ({ testifiers }) => {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="relative overflow-hidden mx-8 md:mx-16 lg:mx-28 mt-10"
-      onTouchStart={handleSwipeStart}
-      onTouchMove={handleSwipeMove}
-    >
+    <div className="relative overflow-hidden mx-8 md:mx-16 lg:mx-28 mt-10">
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{
@@ -77,9 +24,9 @@ const Testimony = ({ testifiers }) => {
         }}
       >
         {testifiers.map((testifier) => (
-          <div key={testifier.id} className="w-full flex-shrink-0 relative px-9">
+          <div key={testifier.id} className="w-full flex-shrink-0 relative">
             <div className="mb-7 relative">
-              <img src={quoteIcon} alt="quote" className='absolute top-10 w-14 left-[-28px] bg-versich-dark-blue bg-opacity-30 p-3 rounded-full' />
+              <img src={quoteIcon} alt="quote" className='absolute top-9 bg-versich-dark-blue bg-opacity-30 p-6 rounded-full' />
               <p className="text-versich-light-blue font-semibold text-lg">
                 {testifier.name}
               </p>
@@ -89,6 +36,12 @@ const Testimony = ({ testifiers }) => {
           </div>
         ))}
       </div>
+
+      <div className="flex gap-x-5 text-3xl justify-center  bottom-0 w-full p-5 ">
+  <PiArrowLeftThin className="cursor-pointer" onClick={prevTestimony} />
+  <PiArrowRightThin className="cursor-pointer" onClick={nextTestimony} />
+</div>
+
     </div>
   );
 };
