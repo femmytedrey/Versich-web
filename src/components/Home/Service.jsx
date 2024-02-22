@@ -108,7 +108,7 @@ const Service = ({ servicesImages }) => {
             <img
               src={service.img}
               alt={service.name}
-              className="object-cover w-full h-full transition-transform duration-400 transform-gpu scale-100 group-hover:scale-110 cursor-pointer"
+              className="object-cover w-full h-full transition-transform duration-400 cursor-pointer hover:scale-110"
             />
           </div>
           <div className="h-auto text-start px-4 py-2 md:py-4">
