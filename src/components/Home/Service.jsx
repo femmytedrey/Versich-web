@@ -4,17 +4,56 @@ import "./Service.css";
 
 const Service = ({ servicesImages }) => {
   const scrollContainerRef = useRef(null);
+  const intervalIdRef = useRef(null);
+
+  const startScrolling = () => {
+    if (!intervalIdRef.current) {
+      intervalIdRef.current = setInterval(() => {
+        const scrollContainer = scrollContainerRef.current;
+
+        if (!isMobileView && !isHovered) {
+          const container = scrollContainer;
+          const lastChild = container.lastElementChild;
+
+          if (lastChild) {
+            if (
+              container.scrollLeft >=
+              lastChild.offsetLeft - container.clientWidth
+            ) {
+              const firstImages = container.querySelectorAll(".scroll-item");
+              firstImages.forEach((image) => {
+                const clone = image.cloneNode(true);
+                container.appendChild(clone);
+              });
+            }
+            container.scrollLeft += 1;
+          }
+        }
+      }, 20);
+    }
+  };
+
+  const stopScrolling = () => {
+    clearInterval(intervalIdRef.current);
+    intervalIdRef.current = null;
+  };
+
   const [isHovered, setIsHovered] = useState(false);
+
+  const screenWidth = window.innerWidth;
+  const isMobileView = screenWidth <= 768;
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
 
     const handleMouseEnter = () => {
       setIsHovered(true);
+      stopScrolling();
     };
 
     const handleMouseLeave = () => {
       setIsHovered(false);
+      startScrolling();
     };
 
     scrollContainer.addEventListener("mouseenter", handleMouseEnter);
@@ -24,58 +63,41 @@ const Service = ({ servicesImages }) => {
       scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
       scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [isHovered]);
+  }, []);
 
   useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    let intervalId;
-
-    const scrollStep = 1;
-    const scrollSpeed = 20;
-
-    const scroll = () => {
-      if (!isHovered) {
-        const container = scrollContainer;
-        const lastChild = container.lastElementChild;
-
-        if (lastChild) {
-          if (
-            container.scrollLeft >=
-            lastChild.offsetLeft - container.clientWidth
-          ) {
-            const firstImages = container.querySelectorAll(".scroll-item");
-            firstImages.forEach((image) => {
-              const clone = image.cloneNode(true);
-              container.appendChild(clone);
-            });
-          }
-          container.scrollLeft += scrollStep;
-        }
-      }
-    };
-
-    const screenWidth = window.innerWidth;
-    const isMobileView = screenWidth <= 768;
-
     if (!isMobileView) {
+      const scrollContainer = scrollContainerRef.current;
+
       // Clone the first set of images initially
       const firstImages = scrollContainer.querySelectorAll(".scroll-item");
       firstImages.forEach((image) => {
         const clone = image.cloneNode(true);
         scrollContainer.appendChild(clone);
       });
-      intervalId = setInterval(scroll, scrollSpeed);
+
+      startScrolling();
+    } else {
+      stopScrolling(); // Stop scrolling on mobile
     }
 
     return () => {
-      clearInterval(intervalId);
+      stopScrolling();
     };
-  }, [isHovered]);
+  }, [isMobileView]);
+
+  const handleMobileScroll = (e) => {
+    if (isMobileView) {
+      // Implement your custom mobile scroll logic here
+      // e.g., scrollContainerRef.current.scrollLeft += e.deltaY;
+    }
+  };
 
   return (
     <div
       className={`flex scroll-container overflow-x-auto scoll md:overflow-x-hidden snap-x-mandatory`}
       ref={scrollContainerRef}
+      onWheel={handleMobileScroll}
     >
       {servicesImages.map((service) => (
         <div

@@ -29,7 +29,7 @@ const Testimony = ({ testifiers }) => {
               <img
                 src={quoteIcon}
                 alt="quote"
-                className="absolute top-9 bg-versich-dark-blue bg-opacity-30 p-6 rounded-full"
+                className="absolute top-9 bg-versich-dark-blue bg-opacity-30 p-4 rounded-full"
               />
               <p className="text-versich-light-blue font-semibold text-lg">
                 {testifier.name}
