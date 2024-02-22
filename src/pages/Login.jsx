@@ -38,12 +38,12 @@ const Login = () => {
                     {
                         required: 'Password is required',
                         minLength: {
-                          value: 6,
-                          message: 'Password must be at least 6 characters'
+                          value: 8,
+                          message: 'Password must be at least 8 characters'
                         },
                         pattern: {
                           value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/,
-                          message: 'Password requires at least one uppercase, one lowercase, one number, and one special character.'
+                          message: 'Password must have Uppercase, Lowercase, Number, and Special Character.'
                         }
                       }
                     }
