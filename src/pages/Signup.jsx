@@ -40,8 +40,8 @@ const Signup = () => {
                   <InputText label='Last Name' inputType='text' name='lastName' rules={{ required: 'Last name is required'}} />
                 </div>
                 <InputText label='Email Address' inputType='email' name='email' rules={{ required: 'Email is required', pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Email is invalid' } }} />
-                <InputText label='Password' inputType='password' name='password' rules={{ required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters'}, pattern: { value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/, message: 'Password must have Uppercase, Lowercase, Number, and Special Character.' } }} />
-                <InputText label='Confirm Password' inputType='password' name='confirmPassword' onChange={handleConfirmPasswordChange} rules={{ required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters'}, pattern: { value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/, message: 'Password must have Uppercase, Lowercase, Number, and Special Character.' } }} />
+                <InputText label='Password' inputType='password' name='password' rules={{ required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters'}, pattern: { value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/, message: 'Password must have Uppercase, Number, and Special Character.' } }} />
+                <InputText label='Confirm Password' inputType='password' name='confirmPassword' onChange={handleConfirmPasswordChange} rules={{ required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters'}, pattern: { value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/, message: 'Password must have Uppercase,  Number, and Special Character.' } }} />
 
                 {equal && (
                   <span className="text-sm text-red-500">

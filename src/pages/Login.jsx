@@ -15,6 +15,7 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data)
+    methods.reset()
   }
 
   
@@ -43,7 +44,7 @@ const Login = () => {
                         },
                         pattern: {
                           value: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/,
-                          message: 'Password must have Uppercase, Lowercase, Number, and Special Character.'
+                          message: 'Password must have Uppercase, Number, and Special Character.'
                         }
                       }
                     }
