@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
-import InputText from '../components/InputText';
+import React, { useState } from "react";
+import InputText from "../components/InputText";
 import { MdClose } from "react-icons/md";
 
-
 const StepThree = () => {
-
-
   return (
-    <div className='py-10 md:py-14 px-3 mb-12 overflow-hidden bg-versich-primary-bg flex items center justify-center'>
-      <div className='w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md space-y-6'>
-        <div className='space-y-5 text-start'>
-          <h2 className='text-xl text-versich-dark-blue font-semibold'>Where would you like to see leads from?</h2>
+    <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden bg-versich-primary-bg flex items center justify-center">
+      <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md space-y-6">
+        <div className="space-y-5 text-start">
+          <h2 className="text-xl text-versich-dark-blue font-semibold">
+            Where would you like to see leads from?
+          </h2>
           <p>Add other services you can provide</p>
         </div>
-        <div className='text-start'>
+        <div className="text-start">
           <p>You’ve signed up for</p>
-          <button className='mt-2 flex gap-x-4 rounded-2xl cursor-default bg-gray-300 py-2 px-4 text-black items-center'>Graphics Design</button>
+          <button className="mt-2 flex gap-x-4 rounded-2xl cursor-default bg-gray-300 py-2 px-4 text-black items-center">
+            Graphics Design
+          </button>
         </div>
-        <div className='text-start'>
+        <div className="text-start">
           <p>We will also show you leads from</p>
-          <button className='flex gap-x-4 rounded-2xl cursor-default bg-versich-blue py-2 px-4 text-white items-center'>
+          <button className="flex gap-x-4 rounded-2xl cursor-default bg-versich-blue py-2 px-4 text-white items-center">
             Logo Design
-            <MdClose className='cursor-pointer' />  
-          </button>          
+            <MdClose className="cursor-pointer" />
+          </button>
         </div>
-        <div className='text-start'>
-          <InputText type='text' placeholder='Search for more services...' />
+        <div className="text-start">
+          <InputText type="text" placeholder="Search for more services..." />
         </div>
-        <div className='flex bg-[#D9EBFC] py-8 px-4 items-center justify-between rounded-xl'>
-          <div className='text-start'>
-            <p className='text-versich-light-blue text-5xl font-medium'>799</p>
-            <p className='text-xl text-versich-light-blue'>Current available leads</p>
+        <div className="flex bg-[#D9EBFC] py-8 px-4 items-center justify-between rounded-xl">
+          <div className="text-start">
+            <p className="text-versich-light-blue text-5xl font-medium">799</p>
+            <p className="text-xl text-versich-light-blue">
+              Current available leads
+            </p>
           </div>
           <div>
-            <button className='bg-versich-blue py-3 px-6 text-white text-xl rounded-xl'>See Leads</button>
+            <button className="bg-versich-blue py-3 px-6 text-white text-xl rounded-xl">
+              See Leads
+            </button>
           </div>
         </div>
-        
       </div>
     </div>
   );
-}
+};
 
 export default StepThree;

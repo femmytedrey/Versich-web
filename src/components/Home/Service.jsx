@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { PiArrowRightThin } from 'react-icons/pi';
-import './Service.css';
+import React, { useRef, useState, useEffect } from "react";
+import { PiArrowRightThin } from "react-icons/pi";
+import "./Service.css";
 
 const Service = ({ servicesImages }) => {
   const scrollContainerRef = useRef(null);
@@ -17,12 +17,12 @@ const Service = ({ servicesImages }) => {
       setIsHovered(false);
     };
 
-    scrollContainer.addEventListener('mouseenter', handleMouseEnter);
-    scrollContainer.addEventListener('mouseleave', handleMouseLeave);
+    scrollContainer.addEventListener("mouseenter", handleMouseEnter);
+    scrollContainer.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      scrollContainer.removeEventListener('mouseenter', handleMouseEnter);
-      scrollContainer.removeEventListener('mouseleave', handleMouseLeave);
+      scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
+      scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [isHovered]);
 
@@ -43,7 +43,7 @@ const Service = ({ servicesImages }) => {
             container.scrollLeft >=
             lastChild.offsetLeft - container.clientWidth
           ) {
-            const firstImages = container.querySelectorAll('.scroll-item');
+            const firstImages = container.querySelectorAll(".scroll-item");
             firstImages.forEach((image) => {
               const clone = image.cloneNode(true);
               container.appendChild(clone);
@@ -59,7 +59,7 @@ const Service = ({ servicesImages }) => {
 
     if (!isMobileView) {
       // Clone the first set of images initially
-      const firstImages = scrollContainer.querySelectorAll('.scroll-item');
+      const firstImages = scrollContainer.querySelectorAll(".scroll-item");
       firstImages.forEach((image) => {
         const clone = image.cloneNode(true);
         scrollContainer.appendChild(clone);
@@ -80,25 +80,25 @@ const Service = ({ servicesImages }) => {
       {servicesImages.map((service) => (
         <div
           key={service.id}
-          className='mx-4 my-3 w-[250px] md:w-[320px] shadow-md rounded-2xl text-center group scroll-snap-align-start scroll-item'
+          className="mx-4 my-3 w-[250px] md:w-[320px] shadow-md rounded-2xl text-center group scroll-snap-align-start scroll-item"
         >
-          <div className='h-[100px] md:h-[170px] w-[220px] md:w-[320px] relative overflow-hidden rounded-tr-2xl rounded-tl-2xl'>
+          <div className="h-[100px] md:h-[170px] w-[220px] md:w-[320px] relative overflow-hidden rounded-tr-2xl rounded-tl-2xl">
             <img
               src={service.img}
               alt={service.name}
-              className='object-cover w-full h-full transition-transform duration-400 transform-gpu scale-100 group-hover:scale-110 cursor-pointer'
+              className="object-cover w-full h-full transition-transform duration-400 transform-gpu scale-100 group-hover:scale-110 cursor-pointer"
             />
           </div>
-          <div className='h-auto text-start px-4 py-2 md:py-4'>
-            <p className='font-bold text-sm md:text-lg text-versich-darktext-color'>
+          <div className="h-auto text-start px-4 py-2 md:py-4">
+            <p className="font-bold text-sm md:text-lg text-versich-darktext-color">
               {service.name}
             </p>
             <a
               href={service.link}
-              className='flex text-sm md:text-lg cursor-pointer items-center gap-x-2 text-[#114B8A] font-medium hover:text-versich-blue hover:gap-x-4 transition-all duration-300 ease-in-out'
+              className="flex text-sm md:text-lg cursor-pointer items-center gap-x-2 text-[#114B8A] font-medium hover:text-versich-blue hover:gap-x-4 transition-all duration-300 ease-in-out"
             >
               Find a professional
-              <PiArrowRightThin className='my-' />
+              <PiArrowRightThin className="my-" />
             </a>
           </div>
         </div>

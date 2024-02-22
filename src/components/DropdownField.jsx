@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
-import { useFormContext } from 'react-hook-form';
+import React, { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
+import { useFormContext } from "react-hook-form";
 
 const DropdownField = ({ label, options, placeholder, name, rules }) => {
   const { register, formState } = useFormContext();
@@ -9,8 +9,8 @@ const DropdownField = ({ label, options, placeholder, name, rules }) => {
 
   const handleSelectChange = (e) => {
     const value = e.target.value;
-    if (value !== '') {
-      register(name); 
+    if (value !== "") {
+      register(name);
     }
     setSelectedOption(value);
   };
@@ -28,7 +28,7 @@ const DropdownField = ({ label, options, placeholder, name, rules }) => {
           name={name}
           {...register(name, rules)}
           onChange={handleSelectChange}
-          value={selectedOption || ''}
+          value={selectedOption || ""}
           className="w-full h-10 rounded-md border-[1px] border-versich-border px-3 pr-8 appearance-none focus:outline-none cursor-pointer hover:border-versich-blue"
         >
           <option value="" disabled>

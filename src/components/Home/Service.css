@@ -1,10 +1,8 @@
 .scroll-container::-webkit-scrollbar {
-    width: 0 !important; 
-  }
-  
-  .scroll-container {
-    scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
-  }
-  
-  
+  width: 0 !important;
+}
+
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
