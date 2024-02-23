@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 
-const RadioSelection = ({ label, options }) => {
+const RadioSelection = ({ label, options, onChange }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleOptionChange = (event) => {
     const value = event.target.value;
     setSelectedOption(value);
+    onChange(value);
   };
 
   return (

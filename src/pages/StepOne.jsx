@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import RadioSelection from "../components/RadioSelection";
-import DropdownField from "../components/DropdownField";
 import { IoIosAlert } from "react-icons/io";
 import StepButton from "../components/Buttons/StepButton";
 import { useForm, FormProvider } from "react-hook-form";
+import LocationSelection from "./SteponeComponents/LocationSelection";
+import { useNavigate } from "react-router-dom";
+
+// ... (existing imports)
 
 const StepOne = () => {
   const methods = useForm();
   const { formState, handleSubmit } = methods;
+  const navigate = useNavigate()
+
+  const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true);
 
   const regionCoverage = [
     { value: "value1", label: "I serve customers worldwide" },
@@ -24,15 +30,71 @@ const StepOne = () => {
     { value: "value2", label: "option 2" },
   ];
 
-  const handleButtonClick = () => {
-    handleSubmit((data) => {
-      if (formState.errors["milesCoverage"] || formState.errors["postcodes"]) {
-        console.log("Please select options for both dropdowns");
-      } else {
-        console.log("Form submitted successfully:", data);
-      }
-    })();
+  const Country = [
+    { value: "value1", label: "Nigeria" },
+    { value: "value2", label: "Ghana" },
+  ];
+
+  const State = [
+    { value: "value1", label: "Abuja" },
+    { value: "value2", label: "Accra" },
+  ];
+
+  const handleRadioChange = (value) => {
+    setIsFirstOptionSelected(value === "value1");
+    // console.log(
+    //   "Is first option selected?",
+    //   value === "value2",
+    //   isFirstOptionSelected
+    // );
   };
+
+  const handleButtonClick = async () => {
+    try {
+      const isValid = await methods.trigger();
+  
+      if (!isValid) {
+        console.log("Form validation failed");
+        return;
+      } 
+  
+      handleSubmit((data) => {
+        if (isFirstOptionSelected) {
+          const selectedCountryLabel = Country.find(
+            (option) => option.value === data.selectedCountry
+          )?.label;
+  
+          const selectedStateLabel = State.find(
+            (option) => option.value === data.selectedState
+          )?.label;
+  
+          console.log("Form submitted successfully:");
+          console.log("Selected Country:", selectedCountryLabel);
+          console.log("Selected State:", selectedStateLabel);
+  
+          console.log("Navigating to StepTwo");
+          navigate("/steptwo");
+        } else {
+          const selectedMilesCoverageLabel = milesCoverage.find(
+            (option) => option.value === data.milesCoverage
+          )?.label;
+  
+          const selectedPostcodesLabel = postcodes.find(
+            (option) => option.value === data.postcodes
+          )?.label;
+  
+          console.log("Form submitted successfully:");
+          console.log("Selected Miles Coverage:", selectedMilesCoverageLabel);
+          console.log("Selected Postcodes:", selectedPostcodesLabel);
+        }
+      })();
+    } catch (error) {
+      // Handle any error during form submission
+      // Log the error and check if it's reaching this point
+      console.error("Form submission error:", error);
+    }
+  };
+  
 
   return (
     <FormProvider {...methods}>
@@ -47,21 +109,20 @@ const StepOne = () => {
               location
             </p>
           </div>
-          <RadioSelection options={regionCoverage} />
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <DropdownField
-              options={milesCoverage}
-              placeholder="<-- Select -->"
-              name="milesCoverage"
-              rules={{ required: "Please select an option" }}
-            />
-            <DropdownField
-              options={postcodes}
-              placeholder="<-- Select -->"
-              name="postcodes"
-              rules={{ required: "Please select an option" }}
-            />
-          </div>
+          <RadioSelection
+            options={regionCoverage}
+            onChange={handleRadioChange}
+          />
+
+          {/* Dropdown rendered dynamically */}
+          <LocationSelection
+            isFirstOptionSelected={isFirstOptionSelected}
+            Country={Country}
+            State={State}
+            milesCoverage={milesCoverage}
+            postcodes={postcodes}
+          />
+
           <div className="flex gap-x-3 items-start text-start">
             <IoIosAlert className="text-gray-500 text-2xl" />
             <p>You can change your location at any time</p>

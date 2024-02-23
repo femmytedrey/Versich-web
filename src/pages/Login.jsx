@@ -4,13 +4,10 @@ import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
 import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
-import DropdownField from "../components/DropdownField";
-import RadioSelection from "../components/RadioSelection";
 
 const Login = () => {
   const methods = useForm();
 
-  const { formState } = methods;
 
   const onSubmit = (data) => {
     console.log(data);

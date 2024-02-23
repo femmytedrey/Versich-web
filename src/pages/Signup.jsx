@@ -8,7 +8,6 @@ import { useForm, FormProvider } from "react-hook-form";
 const Signup = () => {
   const [equal, setEqual] = useState(false);
   const methods = useForm();
-  const { formState } = methods;
 
   const onSubmit = (data) => {
     if (data.password !== data.confirmPassword) {

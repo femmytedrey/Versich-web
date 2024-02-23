@@ -1,7 +1,8 @@
-const StepButton = ({ text, handleButtonClick }) => {
+const StepButton = ({ text, handleButtonClick, type }) => {
   let btn_text = String(text).toLowerCase();
   return (
     <button
+      type={type}
       onClick={handleButtonClick}
       className={`${
         btn_text === "next"

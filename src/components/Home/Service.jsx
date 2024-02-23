@@ -88,8 +88,7 @@ const Service = ({ servicesImages }) => {
 
   const handleMobileScroll = (e) => {
     if (isMobileView) {
-      // Implement your custom mobile scroll logic here
-      // e.g., scrollContainerRef.current.scrollLeft += e.deltaY;
+      //
     }
   };
 

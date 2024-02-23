@@ -1,10 +1,10 @@
-// ChoiceButton.js
 import React from "react";
 
 const ChoiceButton = ({ text, isSelected, onToggle }) => {
   return (
     <div className="text-start">
       <button
+        type="button"
         onClick={onToggle}
         className={`px-6 py-2 ${
           isSelected
