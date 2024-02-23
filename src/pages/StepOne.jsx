@@ -56,7 +56,9 @@ const StepOne = () => {
       if (!isValid) {
         console.log("Form validation failed");
         return;
-      } 
+      } else {
+        navigate('/steptwo')
+      }
   
       handleSubmit((data) => {
         if (isFirstOptionSelected) {
