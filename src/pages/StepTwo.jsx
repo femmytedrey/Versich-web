@@ -5,10 +5,14 @@ import ChoiceButton from "../components/Buttons/ChoiceButton";
 import DropdownField from "../components/DropdownField";
 import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import PhoneNumber from "./SteptwoComponents/PhoneNumber";
 
 const StepTwo = () => {
   const methods = useForm();
   const navigate = useNavigate();
+
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumberValid, setPhoneNumberValid] = useState(true);
 
   const [choiceButton, setChoiceButton] = useState([
     { text: "Yes", isSelected: true },
@@ -56,6 +60,20 @@ const StepTwo = () => {
     { value: "value4", label: "51-200" },
   ];
 
+  const handlePhoneNumberChange = (value) => {
+    setPhoneNumber(value);
+    setPhoneNumberValid(validateNumber(value));
+  };
+
+  const validateNumber = (phoneNumber) => {
+    if (!phoneNumber.trim()) {
+      return false;
+    }
+
+    const phoneNumberPattern = /^\+?\d{1,}$/;
+    return phoneNumberPattern.test(phoneNumber);
+  };
+
   const handleButtonClickBack = () => {
     navigate("/stepone");
   };
@@ -64,7 +82,7 @@ const StepTwo = () => {
     try {
       const isValid = await methods.trigger();
 
-      if (!isValid) {
+      if (!isValid || !phoneNumberValid) {
         console.log("Form validation failed");
         return;
       }
@@ -92,17 +110,16 @@ const StepTwo = () => {
       (button) => button.isSelected
     )?.text;
 
-    // console.log("Form submitted successfully:");
-    // console.log("Your Name:", data.yourName);
-    // console.log("Company Name:", data.companyName);
-    // console.log("Address:", data.address);
-    // console.log("Phone Number:", data.phoneNumber);
-    // console.log('Website ?', WebOption)
-    // console.log("Your Website:", data.website);
-    // console.log("Company Size:", selectedCompanySizeLabel);
-    // console.log("Sales Team:", selectedSalesTeamLabel);
-    // console.log("Social Media:", selectedSocialMediaLabel);
-
+    console.log("Form submitted successfully:");
+    console.log("Your Name:", data.yourName);
+    console.log("Company Name:", data.companyName);
+    console.log("Address:", data.address);
+    console.log("Phone Number:", phoneNumber);
+    console.log("Website ?", WebOption);
+    console.log("Your Website:", data.website);
+    console.log("Company Size:", selectedCompanySizeLabel);
+    console.log("Sales Team:", selectedSalesTeamLabel);
+    console.log("Social Media:", selectedSocialMediaLabel);
     methods.reset();
   };
 
@@ -143,12 +160,9 @@ const StepTwo = () => {
               name="address"
               rules={{ required: "Field is required" }}
             />
-            <InputText
-              label="Phone Number"
-              inputType="number"
-              name="phoneNumber"
-              rules={{ required: "Field is required" }}
-            />
+
+            {/* let's access the phone number here and let's handle witht the submit button if the field is empty the form should not submit */}
+            <PhoneNumber onChange={handlePhoneNumberChange} />
 
             {/* ChoiceButton component */}
             <div className="text-start flex flex-col">

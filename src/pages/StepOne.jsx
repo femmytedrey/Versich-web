@@ -6,8 +6,6 @@ import { useForm, FormProvider } from "react-hook-form";
 import LocationSelection from "./SteponeComponents/LocationSelection";
 import { useNavigate } from "react-router-dom";
 
-// ... (existing imports)
-
 const StepOne = () => {
   const methods = useForm();
   const { formState, handleSubmit } = methods;
@@ -91,8 +89,6 @@ const StepOne = () => {
         }
       })();
     } catch (error) {
-      // Handle any error during form submission
-      // Log the error and check if it's reaching this point
       console.error("Form submission error:", error);
     }
   };
