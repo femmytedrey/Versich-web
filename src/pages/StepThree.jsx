@@ -1,6 +1,7 @@
 import React from "react";
 import InputText from "../components/InputText";
 import { MdClose } from "react-icons/md";
+import ComboInput from "./StepthreeComponents/ComboInput";
 
 const StepThree = () => {
   return (
@@ -20,14 +21,9 @@ const StepThree = () => {
         </div>
         <div className="text-start">
           <p>We will also show you leads from</p>
-          <button className="flex gap-x-4 rounded-2xl cursor-default bg-versich-blue py-2 px-4 text-white items-center">
-            Logo Design
-            <MdClose className="cursor-pointer" />
-          </button>
+          <ComboInput />
         </div>
-        <div className="text-start">
-          <InputText type="text" placeholder="Search for more services..." />
-        </div>
+        
         <div className="flex bg-[#D9EBFC] py-8 px-4 items-center justify-between rounded-xl">
           <div className="text-start">
             <p className="text-versich-light-blue text-5xl font-medium">799</p>
