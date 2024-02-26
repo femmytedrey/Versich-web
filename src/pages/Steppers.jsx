@@ -1,0 +1,127 @@
+// Steppers.jsx
+
+import React, { useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import StepButton from "../components/Buttons/StepButton";
+import StepTwo from "./StepTwo";
+import StepThree from "./StepThree";
+import StepOne from "./StepOne";
+import { useNavigate } from "react-router-dom";
+
+const Steppers = () => {
+  const [activeStep, setActiveStep] = useState(0);
+  const methods = useForm();
+  const navigate = useNavigate();
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [regionError, setRegionError] = useState(false)
+
+  const prevStep = () => {
+    setActiveStep((prevStep) => Math.max(prevStep - 1, 0));
+  };
+
+  const nextStep = async (event) => {
+    try {
+      event.preventDefault();
+  
+      const isValid = await methods.trigger();
+  
+      if (!isValid) {
+        return;
+      }
+  
+      // Validate selectedCountry and selectedState for the first step
+      if (activeStep === 0 && (!selectedCountry || !selectedState)) {
+        setRegionError(true)
+        return;
+      }
+  
+      // Validate other conditions based on your form requirements
+  
+      if (activeStep < 2) {
+        setActiveStep((prevStep) => prevStep + 1);
+      } else {
+        // Additional validation logic if needed for the final step
+  
+        const formData = {
+          ...methods.getValues(),
+          selectedService: selectedServices,
+          selectedCountry,
+          selectedState,
+        };
+        console.log("Form Data:", formData);
+        navigate("/login");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } catch (error) {
+      console.error("Error during form validation:", error);
+    }
+  };
+  
+
+  const [selectedServices, setSelectedServices] = useState([]);
+
+  const handleSelectedServices = (services) => {
+    setSelectedServices(services);
+  };
+
+  const handleLocationChange = (country, state) => {
+    setSelectedCountry(country);
+    setSelectedState(state);
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden bg-versich-primary-bg flex items center justify-center">
+        <div className="w-full my-10 bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md space-y-6">
+          <form>
+            {activeStep === 0 && (
+              <StepOne
+                methods={methods}
+                selectedCountry={selectedCountry}
+                selectedState={selectedState}
+                onLocationChange={handleLocationChange}
+                regionError={regionError}
+              />
+            )}
+
+            {activeStep === 1 && (
+              <section>
+                <div>
+                  {/* InputText component for Section 2 */}
+                  <StepTwo methods={methods} />
+                </div>
+              </section>
+            )}
+
+            {activeStep === 2 && (
+              <section>
+                <div>
+                  {/* InputText component for Section 3 */}
+                  <StepThree handleSelectedServices={handleSelectedServices} />
+                </div>
+              </section>
+            )}
+
+            <div className="flex justify-center gap-x-12">
+              {activeStep > 0 && (
+                <StepButton
+                  type="button"
+                  text="Back"
+                  handleButtonClick={prevStep}
+                />
+              )}
+              <StepButton
+                text={activeStep === 2 ? "Submit" : "Next"}
+                handleButtonClick={nextStep}
+                style={{ scrollBehavior: "smooth" }}
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </FormProvider>
+  );
+};
+
+export default Steppers;

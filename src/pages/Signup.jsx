@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import InputText from "../components/InputText";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
   const methods = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     if (data.password !== data.confirmPassword) {
@@ -15,6 +16,7 @@ const Signup = () => {
       return;
     }
     console.log(data);
+    navigate("/steppers");
     methods.reset();
   };
 
@@ -32,7 +34,7 @@ const Signup = () => {
           <div className="w-full">
             {/* form */}
             <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
-              <div className="space-y-4 md:space-y-5 ">
+              <div className="space-y-4 md:space-y-5 text-start ">
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   <InputText
                     label="First Name"
@@ -63,6 +65,7 @@ const Signup = () => {
                   label="Password"
                   inputType="password"
                   name="password"
+                  placeholder="*************"
                   rules={{
                     required: "Password is required",
                     minLength: {
@@ -82,6 +85,7 @@ const Signup = () => {
                   inputType="password"
                   name="confirmPassword"
                   onChange={handleConfirmPasswordChange}
+                  placeholder="*************"
                   rules={{
                     required: "Password is required",
                     minLength: {
@@ -138,7 +142,10 @@ const Signup = () => {
                   <p>Or</p>
                   <div className="bg-gray-500 h-[2px] w-full" />
                 </div>
-                <button type="button" className="flex items-center gap-5 w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-gray-100">
+                <button
+                  type="button"
+                  className="flex items-center gap-5 w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-gray-100"
+                >
                   <FcGoogle />
                   Continue with Google
                 </button>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MdClose } from "react-icons/md";
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
-const ComboInput = ({ options }) => {
+const ComboInput = ({ onSelect }) => {
   const [search, setSearch] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +39,12 @@ const ComboInput = ({ options }) => {
     setFilteredOptions((prevFilteredOptions) =>
       prevFilteredOptions.filter((o) => o !== option)
     );
-    setIsOpen(false); // Close the list after selecting an option
+    setIsOpen(false); 
   };
+
+  useEffect(() => {
+    onSelect(selectedOptions);
+  }, [selectedOptions, onSelect]);
 
   const removeSelection = (optionToRemove) => {
     setSelectedOptions((prevSelectedOptions) =>
@@ -67,10 +71,6 @@ const ComboInput = ({ options }) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
-  useEffect(() => {
-    console.log("Selected Options:", selectedOptions);
-  }, [selectedOptions]);
 
   const handleIconClick = () => {
     setIsOpen(!isOpen);
@@ -99,6 +99,7 @@ const ComboInput = ({ options }) => {
           placeholder="Search Services..."
           onClick={() => setIsOpen(true)}
           className="relative w-full h-10 rounded-md border-[1px] border-versich-border px-3"
+          name="selectedServices"
         />
         <button
           onClick={handleIconClick}
@@ -110,7 +111,7 @@ const ComboInput = ({ options }) => {
         </button>
 
         {isOpen && (
-          <div className="absolute bg-white mt-2 overflow-y-auto max-h-40 w-full rounded-md border-[1px] border-versich-border">
+          <div className="absolute bg-white mt-2 overflow-y-auto max-h-48 w-full rounded-md border-[1px] border-versich-border">
             {filteredOptions.map((option) => (
               <ul key={option}>
                 <li

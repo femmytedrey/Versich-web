@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import StepOne from "./pages/StepOne";
 import StepTwo from "./pages/StepTwo";
 import StepThree from "./pages/StepThree";
+import Steppers from "./pages/Steppers";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/stepone" element={<StepOne />} />
           <Route path="/steptwo" element={<StepTwo />} />
           <Route path="/stepthree" element={<StepThree />} />
+          <Route path="/steppers" element={<Steppers />} />
         </Routes>
         <Footer />
       </BrowserRouter>

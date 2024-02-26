@@ -1,10 +1,8 @@
-// PhoneNumber.jsx
-
 import React from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-const PhoneNumber = ({ onChange }) => {
+const PhoneNumber = ({ onChange, methods }) => {
   const handleChange = (value) => {
     onChange(value);
   };
@@ -24,6 +22,8 @@ const PhoneNumber = ({ onChange }) => {
             }}
             containerClass={`relative`}
             buttonClass={`absolute inset-y-4 left-0 w-12 text-center px-4 py-2`}
+            rules={{ required: "This field is required" }}
+            methods={methods}
           />
         </div>
       </div>

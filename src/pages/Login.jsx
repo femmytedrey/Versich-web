@@ -33,7 +33,7 @@ const Login = () => {
                 <InputText
                   label="Password"
                   inputType="password"
-                  placeholder="Enter your password"
+                  placeholder="************"
                   name="password"
                   rules={{
                     required: "Password is required",
