@@ -30,19 +30,10 @@ const Steppers = () => {
         return;
       }
   
-      // Validate selectedCountry and selectedState for the first step
-      if (activeStep === 0 && (!selectedCountry || !selectedState)) {
-        setRegionError(true)
-        return;
-      }
+      setActiveStep((prevStep) => prevStep + 1);
   
-      // Validate other conditions based on your form requirements
-  
-      if (activeStep < 2) {
-        setActiveStep((prevStep) => prevStep + 1);
-      } else {
-        // Additional validation logic if needed for the final step
-  
+      if (activeStep === 2) {
+
         const formData = {
           ...methods.getValues(),
           selectedService: selectedServices,
@@ -50,14 +41,14 @@ const Steppers = () => {
           selectedState,
         };
         console.log("Form Data:", formData);
-        navigate("/login");
+  
+        navigate("/login", { replace: true });
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch (error) {
       console.error("Error during form validation:", error);
     }
   };
-  
 
   const [selectedServices, setSelectedServices] = useState([]);
 

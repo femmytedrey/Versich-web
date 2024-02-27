@@ -4,9 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Footer from "./components/Footer/Footer";
 import Signup from "./pages/Signup";
-import StepOne from "./pages/StepOne";
-import StepTwo from "./pages/StepTwo";
-import StepThree from "./pages/StepThree";
 import Steppers from "./pages/Steppers";
 
 function App() {
@@ -18,9 +15,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/stepone" element={<StepOne />} />
-          <Route path="/steptwo" element={<StepTwo />} />
-          <Route path="/stepthree" element={<StepThree />} />
           <Route path="/steppers" element={<Steppers />} />
         </Routes>
         <Footer />

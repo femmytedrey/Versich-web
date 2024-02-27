@@ -10,7 +10,7 @@ const Signup = () => {
   const methods = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setEqual(true);
       return;
@@ -18,10 +18,15 @@ const Signup = () => {
     console.log(data);
     navigate("/steppers");
     methods.reset();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleConfirmPasswordChange = () => {
     setEqual(false);
+  };
+
+  const myClickHandler = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -124,7 +129,11 @@ const Signup = () => {
                   </a>
                   .{" "}
                 </p>
-                <ConfirmButton type="submit" text="Create an account" />
+                <ConfirmButton
+                  type="submit"
+                  text="Create an account"
+                  clickHandler={myClickHandler}
+                />
                 <p className="text-sm ">
                   Already have an account?{" "}
                   <Link
