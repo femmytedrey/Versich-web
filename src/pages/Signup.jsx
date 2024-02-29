@@ -11,15 +11,40 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    if (data.password !== data.confirmPassword) {
-      setEqual(true);
-      return;
+    try {
+      if (data.password !== data.confirmPassword) {
+        setEqual(true);
+        return;
+      }
+
+      const response = await fetch('http://localhost:3001/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          firstName: data.firstName,
+          lastName: data.lastName,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Signup successful, navigate to the desired page (e.g., "/steppers")
+        navigate('/steppers')
+        methods.reset();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        console.error('Signup failed:', result.message);
+      }
+    } catch (error) {
+      console.error('Error during signup:', error);
     }
-    console.log(data);
-    navigate("/steppers");
-    methods.reset();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+};
+
 
   const handleConfirmPasswordChange = () => {
     setEqual(false);

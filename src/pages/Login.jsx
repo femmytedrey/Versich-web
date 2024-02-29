@@ -8,10 +8,40 @@ import { useForm, FormProvider } from "react-hook-form";
 const Login = () => {
   const methods = useForm();
 
+  const onSubmit = async (data) => {
+  try {
+    console.log('Data sent to server:', data);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    methods.reset();
+    // Make a POST request to your login endpoint with user data
+    const response = await fetch('http://localhost:3001/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: data.emailOrUsername,
+        password: data.password,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      // Login successful, you can handle success as needed
+      console.log('Login successful');
+      methods.reset();
+    } else {
+      // Login failed, handle error (e.g., display error message)
+      console.error('Login failed:', result.message);
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+  }
+};
+
+
+  const myClickHandler = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -25,7 +55,7 @@ const Login = () => {
               <div className="space-y-4 text-start md:space-y-5  ">
                 <InputText
                   label="Email address or username"
-                  name="combinedInputs"
+                  name="EmailOrUsername"
                   inputType="text"
                   placeholder="Enter your email or username"
                   rules={{ required: "Field is required" }}
@@ -75,7 +105,11 @@ const Login = () => {
                   </a>
                   .{" "}
                 </p>
-                <ConfirmButton type="submit" text="Log in" />
+                <ConfirmButton
+                  clickHandler={myClickHandler}
+                  type="submit"
+                  text="Log in"
+                />
                 <Link
                   to="#"
                   className="underline block text-sm hover:text-versich-blue-hover text-center"

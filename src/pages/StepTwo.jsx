@@ -10,6 +10,7 @@ import PhoneNumber from "./SteptwoComponents/PhoneNumber";
 const StepTwo = ({ methods }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberValid, setPhoneNumberValid] = useState(true);
+  const [ isWebsite, setIWebsite ] = useState(false)
 
   const [choiceButton, setChoiceButton] = useState([
     { text: "Yes", isSelected: true },
