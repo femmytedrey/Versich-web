@@ -1,11 +1,11 @@
-import Home from "./pages/Home";
-import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
 import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Steppers from "./pages/Steppers";
-import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -14,8 +14,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route basename="/auth" path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/signup" element={<Signup />} />
           <Route path="/steppers" element={<Steppers />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
