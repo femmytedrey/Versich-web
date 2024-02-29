@@ -11,38 +11,14 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    try {
-      if (data.password !== data.confirmPassword) {
-        setEqual(true);
-        return;
-      }
-
-      const response = await fetch("https://server.market.versich.com/api/auth/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          firstName: data.firstName,
-          lastName: data.lastName,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Signup successful, navigate to the desired page (e.g., "/dashboard")
-        navigate("/dashboard");
-        methods.reset();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        console.error("Signup failed:", result.message);
-      }
-    } catch (error) {
-      console.error("Error during signup:", error);
+    if (data.password !== data.confirmPassword) {
+      setEqual(true);
+      return;
     }
+    console.log(data);
+    navigate("/dashboard");
+    methods.reset();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleConfirmPasswordChange = () => {

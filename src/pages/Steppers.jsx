@@ -1,12 +1,12 @@
 // Steppers.jsx
 
 import React, { useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import StepButton from "../components/Buttons/StepButton";
-import StepTwo from "./StepTwo";
-import StepThree from "./StepThree";
-import StepOne from "./StepOne";
+import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import StepButton from "../components/Buttons/StepButton";
+import StepOne from "./StepOne";
+import StepThree from "./StepThree";
+import StepTwo from "./StepTwo";
 
 const Steppers = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -16,7 +16,7 @@ const Steppers = () => {
   const [selectedState, setSelectedState] = useState("");
   const [regionError, setRegionError] = useState(false);
   const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true);
-  
+
 
   const prevStep = () => {
     setActiveStep((prevStep) => Math.max(prevStep - 1, 0));
@@ -56,7 +56,7 @@ const Steppers = () => {
         };
         console.log("Form Data:", formData);
 
-        navigate("/login");
+        navigate("/auth/login");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch (error) {
