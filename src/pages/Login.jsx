@@ -1,44 +1,19 @@
 import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
-import { FcGoogle } from "react-icons/fc";
-import { useForm, FormProvider } from "react-hook-form";
 
 const Login = () => {
   const methods = useForm();
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-  
-    try {
-      console.log('Data sent to server:', data);
-  
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          emailOrUsername: data.emailOrUsername,
-          password: data.password,
-        }),
-      });
-  
-      const result = await response.json();
-  
-      if (response.ok) {
-        console.log('Login successful');
-        
-      } else {
-        console.error('Login failed:', result.message);
-        
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-    }
+
+    console.log(data)
   };
-  
+
 
   const myClickHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -120,7 +95,7 @@ const Login = () => {
                 <p className="text-sm text-center">
                   Don't have an account?{" "}
                   <Link
-                    to="/signup"
+                    to="/auth/signup"
                     className="text-versich-blue hover:text-versich-blue-hover hover:underline"
                     href="#"
                   >

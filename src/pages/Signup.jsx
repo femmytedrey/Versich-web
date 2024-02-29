@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import InputText from "../components/InputText";
-import ConfirmButton from "../components/Buttons/ConfirmButton";
-import { Link, useNavigate } from "react-router-dom";
+import { FormProvider, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { useForm, FormProvider } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import ConfirmButton from "../components/Buttons/ConfirmButton";
+import InputText from "../components/InputText";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -161,7 +161,7 @@ const Signup = () => {
                 <p className="text-sm ">
                   Already have an account?{" "}
                   <Link
-                    to="/login"
+                    to="/auth/login"
                     className="text-versich-blue hover:text-versich-blue-hover hover:underline"
                     href="#"
                   >
