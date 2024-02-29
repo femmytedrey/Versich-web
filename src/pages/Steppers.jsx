@@ -14,7 +14,9 @@ const Steppers = () => {
   const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
-  const [regionError, setRegionError] = useState(false)
+  const [regionError, setRegionError] = useState(false);
+  const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true);
+  
 
   const prevStep = () => {
     setActiveStep((prevStep) => Math.max(prevStep - 1, 0));
@@ -23,17 +25,29 @@ const Steppers = () => {
   const nextStep = async (event) => {
     try {
       event.preventDefault();
-  
+
       const isValid = await methods.trigger();
-  
+
       if (!isValid) {
         return;
       }
-  
-      setActiveStep((prevStep) => prevStep + 1);
-  
-      if (activeStep === 2) {
 
+      // Check if the first radio button is selected
+      if (isFirstOptionSelected) {
+        setActiveStep((prevStep) => prevStep + 1);
+        setIsFirstOptionSelected(false);
+      } else {
+        // Check if the second radio button is selected and if country/state are selected
+        if (!selectedCountry || !selectedState) {
+          setIsFirstOptionSelected(true);
+          setRegionError(true);
+          return;
+        }
+
+        setActiveStep((prevStep) => prevStep + 1);
+      }
+
+      if (activeStep === 2) {
         const formData = {
           ...methods.getValues(),
           selectedService: selectedServices,
@@ -41,8 +55,8 @@ const Steppers = () => {
           selectedState,
         };
         console.log("Form Data:", formData);
-  
-        navigate("/login", { replace: true });
+
+        navigate("/login");
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     } catch (error) {
@@ -73,6 +87,7 @@ const Steppers = () => {
                 selectedState={selectedState}
                 onLocationChange={handleLocationChange}
                 regionError={regionError}
+                isFirstOptionSelected={isFirstOptionSelected}
               />
             )}
 

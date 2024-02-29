@@ -3,18 +3,18 @@ import StepButton from "../components/Buttons/StepButton";
 import InputText from "../components/InputText";
 import ChoiceButton from "../components/Buttons/ChoiceButton";
 import DropdownField from "../components/DropdownField";
-import { useForm, FormProvider } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+// import { useForm, FormProvider } from "react-hook-form";
+// import { useNavigate } from "react-router-dom";
 import PhoneNumber from "./SteptwoComponents/PhoneNumber";
 
 const StepTwo = ({ methods }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberValid, setPhoneNumberValid] = useState(true);
-  const [ isWebsite, setIWebsite ] = useState(false)
+  const [isWebsite, setIsWebsite] = useState(false);
 
   const [choiceButton, setChoiceButton] = useState([
-    { text: "Yes", isSelected: true },
-    { text: "No", isSelected: false },
+    { text: "Yes", isSelected: false },
+    { text: "No", isSelected: true },
   ]);
 
   const [choiceButton1, setChoiceButton1] = useState([
@@ -33,6 +33,7 @@ const StepTwo = ({ methods }) => {
       isSelected: i === index,
     }));
     setChoiceButton(updatedButtons);
+    setIsWebsite(index === 0);
   };
 
   const handleToggle1 = (index) => {
@@ -125,12 +126,14 @@ const StepTwo = ({ methods }) => {
         </div>
       </div>
 
-      <InputText
-        label="Your Website"
-        placeholder="Website address (optional)"
-        inputType="text"
-        name="website"
-      />
+      {isWebsite && (
+        <InputText
+          label="Your Website"
+          placeholder="Website address (optional)"
+          inputType="text"
+          name="website"
+        />
+      )}
 
       <DropdownField
         label="Company size, employees"

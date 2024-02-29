@@ -72,7 +72,8 @@ const ComboInput = ({ onSelect }) => {
     };
   }, []);
 
-  const handleIconClick = () => {
+  const handleIconClick = (e) => {
+    e.preventDefault()
     setIsOpen(!isOpen);
   };
 

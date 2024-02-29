@@ -17,18 +17,10 @@ const StepOne = ({
     { value: "value1", label: "I serve customers worldwide" },
     { value: "value2", label: "I serve customers within" },
   ];
-
-  const milesCoverage = [
-    { value: "value1", label: "3 miles" },
-    { value: "value2", label: "20 miles" },
-  ];
-
-  const postcodes = [
-    { value: "value1", label: "option 1" },
-    { value: "value2", label: "option 2" },
-  ];
+  
 
   const handleRadioChange = (value) => {
+    console.log("Radio button selected:", value);
     setIsFirstOptionSelected(value === "value1");
   };
 
@@ -53,8 +45,6 @@ const StepOne = ({
       {/* Dropdown rendered dynamically */}
       <LocationSelection
         isFirstOptionSelected={isFirstOptionSelected}
-        milesCoverage={milesCoverage}
-        postcodes={postcodes}
         onLocationChange={handleLocationChange}
         selectedCountry={propSelectedCountry}
         selectedState={propSelectedState}

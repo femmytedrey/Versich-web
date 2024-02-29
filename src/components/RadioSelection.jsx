@@ -3,7 +3,7 @@ import { MdRadioButtonChecked } from "react-icons/md";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 
 const RadioSelection = ({ label, options, onChange }) => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(options[0].value);
 
   const handleOptionChange = (event) => {
     const value = event.target.value;
@@ -19,7 +19,7 @@ const RadioSelection = ({ label, options, onChange }) => {
         {options.map((option) => (
           <label
             key={option.value}
-            className="flex items-center gap-x-3 cursor-pointer hover:font-semibold"
+            className="flex items-center gap-x-3 cursor-pointer hover:text-versich-blue-hover"
           >
             <input
               type="radio"

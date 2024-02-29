@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import DropdownField from "../../components/DropdownField";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { IoIosArrowDown } from "react-icons/io";
 
 const LocationSelection = ({
-  isFirstOptionSelected,
-  milesCoverage,
-  postcodes,
+  isFirstOptionSelected: InitializeIsFIrstOptionSelected,
   onLocationChange,
   regionError,
 }) => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
+  const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true)
 
   const handleCountryChange = (value) => {
     setSelectedCountry(value);
@@ -25,11 +23,11 @@ const LocationSelection = ({
 
   useEffect(() => {
     onLocationChange(selectedCountry, selectedState);
-  }, [selectedCountry, selectedState, onLocationChange]);
+  }, [selectedCountry, selectedState, onLocationChange, regionError]);
 
   return (
     <div>
-      {isFirstOptionSelected ? (
+      {InitializeIsFIrstOptionSelected ? null : (
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 text-start">
           <div>
             <div className="relative">
@@ -67,21 +65,6 @@ const LocationSelection = ({
               )}
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          <DropdownField
-            options={milesCoverage}
-            placeholder="<-- Select -->"
-            name="milesCoverage"
-            rules={{ required: "Please select an option" }}
-          />
-          <DropdownField
-            options={postcodes}
-            placeholder="<-- Select -->"
-            name="postcodes"
-            rules={{ required: "Please select an option" }}
-          />
         </div>
       )}
     </div>
