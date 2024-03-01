@@ -58,7 +58,7 @@ const Signup = () => {
                   label="Email Address"
                   inputType="email"
                   name="email"
-                  rules={{
+                  rules={{ 
                     required: "Email is required",
                     pattern: {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
