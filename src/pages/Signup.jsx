@@ -12,7 +12,7 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
-      setEqual(true);
+      setEqual(true); 
       return;
     }
     console.log(data);
