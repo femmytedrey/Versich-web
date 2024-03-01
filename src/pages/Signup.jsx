@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,43 +8,32 @@ import InputText from "../components/InputText";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
+
+
   const methods = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    try {
-      if (data.password !== data.confirmPassword) {
-        setEqual(true);
-        return;
-      }
+    console.log(data);
+  }
+  // try {
+  //   const response = await fetch('https://server.market.versich.com/api/auth/register', {
+  //     method: 'POST',
+  //     mode: "cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data)
+  //   })
+  //   console.log(response);
+  //   return response;
+  // } catch (error) {
+  //   console.log(error, 'error');
+  // }
 
-      const response = await fetch("https://server.market.versich.com/api/auth/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          firstName: data.firstName,
-          lastName: data.lastName,
-        }),
-      });
 
-      const result = await response.json();
 
-      if (response.ok) {
-        // Signup successful, navigate to the desired page (e.g., "/dashboard")
-        navigate("/dashboard");
-        methods.reset();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        console.error("Signup failed:", result.message);
-      }
-    } catch (error) {
-      console.error("Error during signup:", error);
-    }
-  };
+
 
   const handleConfirmPasswordChange = () => {
     setEqual(false);
@@ -62,19 +52,19 @@ const Signup = () => {
           </h2>
           <div className="w-full">
             {/* form */}
-            <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
               <div className="space-y-4 md:space-y-5 text-start ">
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   <InputText
                     label="First Name"
                     inputType="text"
-                    name="firstName"
+                    name="firstname"
                     rules={{ required: "First name is required" }}
                   />
                   <InputText
                     label="Last Name"
                     inputType="text"
-                    name="lastName"
+                    name="lastname"
                     rules={{ required: "Last name is required" }}
                   />
                 </div>
@@ -189,6 +179,5 @@ const Signup = () => {
       </div>
     </FormProvider>
   );
-};
-
+}
 export default Signup;
