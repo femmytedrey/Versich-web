@@ -6,7 +6,6 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
-import ConfirmButton from "../components/Buttons/ConfirmButton";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
