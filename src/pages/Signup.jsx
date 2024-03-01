@@ -1,13 +1,11 @@
 
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
-import { FcGoogle } from "react-icons/fc";
-import { useForm, FormProvider } from "react-hook-form";
+
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -20,24 +18,6 @@ const Signup = () => {
 
     console.log(data);
   }
-  // try {
-  //   const response = await fetch('https://server.market.versich.com/api/auth/register', {
-  //     method: 'POST',
-  //     mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  //   console.log(response);
-  //   return response;
-  // } catch (error) {
-  //   console.log(error, 'error');
-  // }
-
-
-
-
 
 
   const handleConfirmPasswordChange = () => {
