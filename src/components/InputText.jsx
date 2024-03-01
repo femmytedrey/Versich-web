@@ -60,7 +60,6 @@ const InputText = ({
           </button>
         )}
       </div>
-      {/* <input type={inputType} className="w-full h-10 rounded-md border-[1px] border-versich-border" /> */}
       <input
         type={determineInputType()}
         className={`w-full h-10 rounded-md border-[1px] border-versich-border px-3 ${

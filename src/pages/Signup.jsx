@@ -1,25 +1,45 @@
-import React, { useState } from "react";
-import InputText from "../components/InputText";
+
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
+import InputText from "../components/InputText";
 import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
+
+
   const methods = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    if (data.password !== data.confirmPassword) {
-      setEqual(true);
-      return;
-    }
+
     console.log(data);
-    navigate("/dashboard");
-    methods.reset();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }
+  // try {
+  //   const response = await fetch('https://server.market.versich.com/api/auth/register', {
+  //     method: 'POST',
+  //     mode: "cors",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data)
+  //   })
+  //   console.log(response);
+  //   return response;
+  // } catch (error) {
+  //   console.log(error, 'error');
+  // }
+
+
+
+
+
 
   const handleConfirmPasswordChange = () => {
     setEqual(false);
@@ -38,7 +58,7 @@ const Signup = () => {
           </h2>
           <div className="w-full">
             {/* form */}
-            <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
               <div className="space-y-4 md:space-y-5 text-start ">
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   <InputText
@@ -165,6 +185,5 @@ const Signup = () => {
       </div>
     </FormProvider>
   );
-};
-
+}
 export default Signup;
