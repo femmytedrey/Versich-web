@@ -16,20 +16,6 @@ const Signup = () => {
   const onSubmit = async (data) => {
     console.log(data);
   }
-  // try {
-  //   const response = await fetch('https://server.market.versich.com/api/auth/register', {
-  //     method: 'POST',
-  //     mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  //   console.log(response);
-  //   return response;
-  // } catch (error) {
-  //   console.log(error, 'error');
-  // }
 
 
 
