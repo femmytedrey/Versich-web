@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -5,6 +6,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
+import ConfirmButton from "../components/Buttons/ConfirmButton";
+import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { useForm, FormProvider } from "react-hook-form";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -14,6 +19,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
+
     console.log(data);
   }
   // try {
@@ -30,6 +36,7 @@ const Signup = () => {
   // } catch (error) {
   //   console.log(error, 'error');
   // }
+
 
 
 
@@ -151,7 +158,7 @@ const Signup = () => {
                 <p className="text-sm ">
                   Already have an account?{" "}
                   <Link
-                    to="/auth/login"
+                    to="/login"
                     className="text-versich-blue hover:text-versich-blue-hover hover:underline"
                     href="#"
                   >

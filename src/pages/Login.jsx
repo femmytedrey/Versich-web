@@ -1,19 +1,17 @@
 import React from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
+import { FcGoogle } from "react-icons/fc";
+import { useForm, FormProvider } from "react-hook-form";
 
 const Login = () => {
   const methods = useForm();
 
-  const onSubmit = async (data, event) => {
-    event.preventDefault();
-
-    console.log(data)
+  const onSubmit = (data) => {
+    console.log(data);
+    methods.reset();
   };
-
 
   const myClickHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -30,7 +28,7 @@ const Login = () => {
               <div className="space-y-4 text-start md:space-y-5  ">
                 <InputText
                   label="Email address or username"
-                  name="EmailOrUsername"
+                  name="Email or Username"
                   inputType="text"
                   placeholder="Enter your email or username"
                   rules={{ required: "Field is required" }}
@@ -95,7 +93,7 @@ const Login = () => {
                 <p className="text-sm text-center">
                   Don't have an account?{" "}
                   <Link
-                    to="/auth/signup"
+                    to="/signup"
                     className="text-versich-blue hover:text-versich-blue-hover hover:underline"
                     href="#"
                   >
