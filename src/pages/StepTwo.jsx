@@ -129,9 +129,11 @@ const StepTwo = ({ methods }) => {
       {isWebsite && (
         <InputText
           label="Your Website"
-          placeholder="Website address (optional)"
+          placeholder="Website address"
           inputType="text"
           name="website"
+          rules={{required: "Field is required"}}
+          methods={methods}
         />
       )}
 

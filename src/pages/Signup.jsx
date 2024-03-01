@@ -44,13 +44,13 @@ const Signup = () => {
                   <InputText
                     label="First Name"
                     inputType="text"
-                    name="firstName"
+                    name="firstname"
                     rules={{ required: "First name is required" }}
                   />
                   <InputText
                     label="Last Name"
                     inputType="text"
-                    name="lastName"
+                    name="lastname"
                     rules={{ required: "Last name is required" }}
                   />
                 </div>
