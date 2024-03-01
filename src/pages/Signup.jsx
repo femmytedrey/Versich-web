@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import InputText from "../components/InputText";
 
+
 const Signup = () => {
   const [equal, setEqual] = useState(false);
 
@@ -17,10 +18,6 @@ const Signup = () => {
 
     console.log(data);
   }
-
-
-
-
 
 
   const handleConfirmPasswordChange = () => {
