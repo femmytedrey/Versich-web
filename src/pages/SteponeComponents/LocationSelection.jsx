@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import { IoIosArrowDown } from "react-icons/io";
 

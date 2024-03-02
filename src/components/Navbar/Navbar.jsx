@@ -1,9 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useLocation } from "react-router-dom";
+
 import logo from "../../assets/logo.png";
+import {
+  homePath, loginPath, signupPath,
+  dashboardPath
+} from "../../assets/constants";
 import ExploreDropDown from "./ExploreDropDown";
+import { logoutUser } from "../../actions/auth";
 
 // import {PiListBold} from 'react-icons/pi'
 
@@ -17,12 +24,19 @@ import ExploreDropDown from "./ExploreDropDown";
  * Includes navigation links, dropdown menu, and auth buttons.
  */
 const Navbar = () => {
+  const { isAuthenticated, user } = useSelector(state => state.auth)
+
+  const dispatch = useDispatch()
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  } // To logout user
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const dropdownRef = useRef(null);
   const location = useLocation();
 
-  const isHome = location.pathname === "/" ? true : false;
+  const isHome = location.pathname === homePath ? true : false;
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -62,7 +76,7 @@ const Navbar = () => {
         } `}
     >
       <div>
-        <Link to="/" className="flex items-center justify-center">
+        <Link to={homePath} className="flex items-center justify-center">
           <img src={logo} alt="logo" className="w-[48px] md:w-[52px]" />
           &nbsp;
           <span
@@ -119,27 +133,49 @@ const Navbar = () => {
             />
           </div>
 
-          <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
-            <Link
-              to="/auth/login"
-              type="button"
-              onClick={handleClick}
-              className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome
-                ? "text-versich-darktext-color md:text-white"
-                : "text-versich-darktext-color md:text-versich-darktext-color"
-                }`}
-            >
-              Login
-            </Link>
-            <Link
-              to="/auth/signup"
-              type="button"
-              onClick={handleClick}
-              className="bg-versich-blue hover:bg-[#0A6ECD] text-white text-lg px-4 py-3 md:py-2 rounded-lg font-regular"
-            >
-              Sign up
-            </Link>
-          </div>
+          {isAuthenticated && user != null
+            ? <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
+              <Link
+                to={dashboardPath}
+                type="button"
+                onClick={handleClick}
+                className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome
+                  ? "text-versich-darktext-color md:text-white"
+                  : "text-versich-darktext-color md:text-versich-darktext-color"
+                  }`}
+              >
+                Dashboard
+              </Link>
+              <button
+                type="button"
+                onClick={e => { handleClick(); handleLogout() }}
+                className="bg-versich-blue hover:bg-[#0A6ECD] text-white text-lg px-4 py-3 md:py-2 rounded-lg font-regular"
+              >
+                Logout
+              </button>
+            </div>
+            : <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
+              <Link
+                to={loginPath}
+                type="button"
+                onClick={handleClick}
+                className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome
+                  ? "text-versich-darktext-color md:text-white"
+                  : "text-versich-darktext-color md:text-versich-darktext-color"
+                  }`}
+              >
+                Login
+              </Link>
+              <Link
+                to={signupPath}
+                type="button"
+                onClick={handleClick}
+                className="bg-versich-blue hover:bg-[#0A6ECD] text-white text-lg px-4 py-3 md:py-2 rounded-lg font-regular"
+              >
+                Sign up
+              </Link>
+            </div>
+          }
         </div>
       </div>
 

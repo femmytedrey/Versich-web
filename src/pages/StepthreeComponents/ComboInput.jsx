@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -39,7 +39,7 @@ const ComboInput = ({ onSelect }) => {
     setFilteredOptions((prevFilteredOptions) =>
       prevFilteredOptions.filter((o) => o !== option)
     );
-    setIsOpen(false); 
+    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -104,9 +104,8 @@ const ComboInput = ({ onSelect }) => {
         />
         <button
           onClick={handleIconClick}
-          className={`absolute top-3 right-4 text-xl transition-transform ease-in duration-600 transform ${
-            isOpen ? "rotate-180" : "rotate-0"
-          }`}
+          className={`absolute top-3 right-4 text-xl transition-transform ease-in duration-600 transform ${isOpen ? "rotate-180" : "rotate-0"
+            }`}
         >
           {isOpen ? <IoIosArrowDown /> : <IoIosArrowDown />}
         </button>

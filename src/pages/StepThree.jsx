@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ComboInput from "./StepthreeComponents/ComboInput";
 
-const StepThree = ({handleSelectedServices}) => {
+const StepThree = ({ handleSelectedServices }) => {
   const [selectedService, setSelectedService] = useState("");
 
   const handleOptionSelect = (option) => {

@@ -1,6 +1,6 @@
 // Steppers.jsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import StepButton from "../components/Buttons/StepButton";
 import StepTwo from "./StepTwo";

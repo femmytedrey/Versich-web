@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import RadioSelection from "../components/RadioSelection";
 import { IoIosAlert } from "react-icons/io";
 import LocationSelection from "./SteponeComponents/LocationSelection";
@@ -17,7 +17,7 @@ const StepOne = ({
     { value: "value1", label: "I serve customers worldwide" },
     { value: "value2", label: "I serve customers within" },
   ];
-  
+
 
   const handleRadioChange = (value) => {
     console.log("Radio button selected:", value);

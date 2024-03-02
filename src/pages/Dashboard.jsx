@@ -1,5 +1,5 @@
-import React from "react";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
+import CircularProgressBar from "../components/CircularProgressBar";
 
 const Dashboard = () => {
   const editBtn = () => {
@@ -20,9 +20,9 @@ const Dashboard = () => {
               <p>John Jai</p>
             </div>
           </div>
-          <div>
+          <div className="flex flex-col items-center gap-y-3 py-4 bg-[#D9EBFC] my-4 rounded-lg">
             <div>
-              <p>73%</p>
+              <CircularProgressBar />
             </div>
             <div>
               <p>Your profile is complete. Please complete your profile.</p>
