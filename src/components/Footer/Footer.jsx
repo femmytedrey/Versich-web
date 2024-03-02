@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { MdCopyright } from "react-icons/md";
 
+import { homePath } from '../../assets/constants';
 import logo from '../../assets/logo.png'
 import SocialIcons from './SocialIcons';
 import SocialIconsData from '../../assets/SocialIconsData';
@@ -14,7 +14,7 @@ const Footer = () => {
     <div className='bg-versich-dark-blue py-4'>
       <div className='flex flex-col md:flex-row border-b-2 border-white border-solid px-8 md:px-16 lg:px-28 py-7 justify-between'>
         <div className='flex flex-col text-start gap-y-4 pb-3 w-full lg:w-[350px]'>
-          <Link to="/" className="inline-flex items-center">
+          <Link to={homePath} className="inline-flex items-center">
             <img src={logo} alt="logo" className="w-[48px] md:w-[52px] brightness-0 invert" />&nbsp;
             <span className="font-semibold text-xl text-white">VersiMarket</span>
           </Link>

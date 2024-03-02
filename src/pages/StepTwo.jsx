@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import StepButton from "../components/Buttons/StepButton";
 import InputText from "../components/InputText";
 import ChoiceButton from "../components/Buttons/ChoiceButton";
@@ -132,7 +132,7 @@ const StepTwo = ({ methods }) => {
           placeholder="Website address"
           inputType="text"
           name="website"
-          rules={{required: "Field is required"}}
+          rules={{ required: "Field is required" }}
           methods={methods}
         />
       )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useFormContext } from "react-hook-form";
 
@@ -30,10 +30,10 @@ const InputText = ({
     return inputType === "email"
       ? "email"
       : inputType === "text"
-      ? "text"
-      : showPassword
-      ? "text"
-      : inputType;
+        ? "text"
+        : showPassword
+          ? "text"
+          : inputType;
   };
 
   return (
@@ -62,9 +62,8 @@ const InputText = ({
       </div>
       <input
         type={determineInputType()}
-        className={`w-full h-10 rounded-md border-[1px] border-versich-border px-3 ${
-          errors[name] ? "border-red-500" : ""
-        }`}
+        className={`w-full h-10 rounded-md border-[1px] border-versich-border px-3 ${errors[name] ? "border-red-500" : ""
+          }`}
         placeholder={placeholder}
         name={name}
         {...register(name, rules)}

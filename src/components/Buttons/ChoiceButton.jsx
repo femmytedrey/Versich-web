@@ -1,4 +1,3 @@
-import React from "react";
 
 const ChoiceButton = ({ text, isSelected, onToggle }) => {
   return (
@@ -6,11 +5,10 @@ const ChoiceButton = ({ text, isSelected, onToggle }) => {
       <button
         type="button"
         onClick={onToggle}
-        className={`px-6 py-2 ${
-          isSelected
+        className={`px-6 py-2 ${isSelected
             ? "bg-versich-blue text-white"
             : "bg-gray-200 text-gray-800"
-        } rounded-md`}
+          } rounded-md`}
       >
         {text}
       </button>

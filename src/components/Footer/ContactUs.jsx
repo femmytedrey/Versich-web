@@ -1,4 +1,3 @@
-import React from 'react';
 
 const ContactUs = () => {
   return (
@@ -6,13 +5,13 @@ const ContactUs = () => {
       <p className='pb-4 font-bold text-md'>Contact us</p>
       <ul className='flex flex-col gap-y-3 text-sm text-[#BDBDBD]'>
         <li className='hover:text-[#ECECEC]'>
-            <a href="#">(+44) 7782350419</a>
+          <a href="tel:+447782350419">(+44) 7782350419</a>
         </li>
         <li className='hover:text-[#ECECEC]'>
-            <a href="#">info@versich.com</a>
+          <a href="mailto:info@versich.com">info@versich.com</a>
         </li>
         <li className='hover:text-[#ECECEC]'>
-            <a href="#">Broad House, Imperial Drive HA2 7BL London, United Kingdom</a>
+          <span>Broad House, Imperial Drive HA2 7BL London, United Kingdom</span>
         </li>
       </ul>
     </div>

@@ -1,0 +1,47 @@
+import { Routes, Route, Navigate } from "react-router-dom"
+
+import Home from "../../pages/home/Home"
+import Signup from "../../pages/auth/Signup"
+import Login from "../../pages/auth/Login"
+// import AccountSelection from "../../pages/auth/setup/AccountSelection"
+import Dashboard from "../../pages/dashboard/Dashboard"
+import NotAuthRoutes from "./NotAuthRoutes"
+import AuthRoutes from "./AuthRoutes"
+import { loginPath } from "../../assets/constants"
+
+const AllRoutes = () => {
+    return (
+        <Routes>
+            <Route path="/">
+                <Route path="" element={<Home />} />
+            </Route>
+            <Route path="/auth/">
+                <Route element={<NotAuthRoutes />}>
+                    <Route path="" element={<Navigate to={loginPath} replace />} />
+                    <Route path="login/" element={<Login />} />
+                    <Route path="signup/" element={<Signup />} />
+                </Route>
+                <Route element={<AuthRoutes />}>
+                    {/*
+                    <Route path="verification/:token/email/" element={<EmailVerification />} />
+                    <Route path="su/">
+                        <Route path="" element={<AccountSelection />} />
+                        <Route path="sp/" >
+                            <Route path="" element={<ServiceProvider />} />
+                            <Route path="leads/" element={<LeadsForm />} />
+                            <Route path="profile/" element={<ProfileForm />} />
+                            <Route path="more-leads/" element={<MoreLeadsForm />} />
+                        </Route>
+                    </Route>
+                    */}
+                </Route>
+            </Route>
+            <Route path="dashboard/" element={<AuthRoutes />}>
+                <Route path="" element={<Dashboard />} />
+            </Route>
+            {/* Render a errorpage */}
+            {/* <Route path="*" element={<ErrorPage />} /> */}
+        </Routes>
+    )
+}
+export default AllRoutes
