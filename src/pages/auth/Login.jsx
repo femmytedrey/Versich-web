@@ -5,9 +5,12 @@ import { useForm, FormProvider } from "react-hook-form";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import InputText from "../../components/InputText";
 import { signupPath } from "../../assets/constants";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../actions/auth";
 
 const Login = () => {
   const methods = useForm();
+  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     try {
