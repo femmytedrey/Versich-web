@@ -1,25 +1,25 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
 
-import CSRFTokenField from "../../components/CSRFTokenField"
+import CSRFTokenField from "../../components/CSRFTokenField";
 import InputText from "../../components/InputText";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { loginPath } from "../../assets/constants";
-import { signupUser } from "../../actions/auth"
+import { signupUser } from "../../actions/auth";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
   const methods = useForm();
 
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [csrfToken, setCsrfToken] = useState("")
-  const dispatch = useDispatch()
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [csrfToken, setCsrfToken] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
@@ -27,15 +27,15 @@ const Signup = () => {
       return;
     }
     dispatch(signupUser(firstName, lastName, email, password, csrfToken))
-      .then(data => {
+      .then((data) => {
         if (data.status !== "success") {
           // Render error to user
-          return
+          return;
         }
         methods.reset();
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
-      .catch(error => {
+      .catch((error) => {
         /**
          * Handle error
          * const data = JSON.parse(error?.message)
@@ -45,12 +45,12 @@ const Signup = () => {
       .finally(() => {
         // methods.reset();
         window.scrollTo({ top: 0, behavior: "smooth" });
-      })
+      });
   };
 
   const handleConfirmPasswordChange = (e) => {
     setEqual(false);
-    setPassword(e.target.value)
+    setPassword(e.target.value);
   };
 
   const myClickHandler = () => {
@@ -75,14 +75,14 @@ const Signup = () => {
                     inputType="text"
                     name="firstname"
                     rules={{ required: "First name is required" }}
-                    onChange={e => setFirstName(e.target.value)}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                   <InputText
                     label="Last Name"
                     inputType="text"
                     name="lastname"
                     rules={{ required: "Last name is required" }}
-                    onChange={e => setLastName(e.target.value)}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
                 <InputText
@@ -96,7 +96,7 @@ const Signup = () => {
                       message: "Email is invalid",
                     },
                   }}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <InputText
                   label="Password"

@@ -9,9 +9,20 @@ import { signupPath } from "../../assets/constants";
 const Login = () => {
   const methods = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    methods.reset();
+  const onSubmit = async (data) => {
+    try {
+      // Call the loginUser action to handle the authentication logic
+      await dispatch(loginUser(data.email, data.password));
+
+      // If the login is successful, reset the form
+      methods.reset();
+
+      // Scroll to the top of the page
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      // Handle any errors, e.g., display an error message to the user
+      console.error("Login failed:", error);
+    }
   };
 
   const myClickHandler = () => {
