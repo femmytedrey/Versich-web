@@ -14,19 +14,29 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
+      // Add any additional validation logic if needed
+      if (!data.email || !data.password) {
+        // Handle invalid form data
+        return;
+      }
+  
       // Call the loginUser action to handle the authentication logic
-      await dispatch(loginUser(data.email, data.password));
-
+      dispatch(loginUser(data.email, data.password));
+  
       // If the login is successful, reset the form
       methods.reset();
-
+  
       // Scroll to the top of the page
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       // Handle any errors, e.g., display an error message to the user
       console.error("Login failed:", error);
+  
+      // You may choose to set an error state for rendering an error message
+      // setErrorState("Login failed. Please try again.");
     }
   };
+  
 
   const myClickHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
