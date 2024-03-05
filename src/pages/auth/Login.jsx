@@ -34,10 +34,10 @@ const Login = () => {
         // Log the entire error object
         console.error("Login error:", result);
   
-        // Check for specific error message
-        if (result.message === "Incorrect password") {
-          // Display a specific error message for incorrect password
-          console.error("Incorrect password, please try again.");
+        // Check for specific HTTP status codes
+        if (result.response?.status === 401) {
+          // Display a specific error message for unauthorized access
+          console.error("Invalid credentials, please check your email and password.");
         } else {
           // Handle other unsuccessful login scenarios
           console.error("Login failed, please try again.");
@@ -48,12 +48,13 @@ const Login = () => {
       // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
-      // Handle errors
+      // Handle other errors
       console.error(error);
     } finally {
       // Reset the form or perform other actions regardless of success or failure
     }
   };
+  
   
   
   
