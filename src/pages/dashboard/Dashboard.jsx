@@ -1,9 +1,11 @@
+// Dashboard.jsx
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const { user } = useSelector(state => state.auth);
+  const { user, isLoading } = useSelector(state => state.auth);
 
-  if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
+  if (isLoading) {
+    // Loading state, you can render a loading spinner or something similar
     return (
       <div className="flex flex-col items-center justify-center my-10 min-h-80">
         <h2 className="font-bold">Loading...</h2>
@@ -11,6 +13,15 @@ const Dashboard = () => {
     );
   }
 
+  if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
+    return (
+      <div className="flex flex-col items-center justify-center my-10 min-h-80">
+        <h2 className="font-bold">User data not available</h2>
+      </div>
+    );
+  }
+
+  // Render the dashboard
   return (
     <div className="flex flex-col items-center justify-center my-10 min-h-80">
       <h2 className="font-bold">Welcome to your dashboard</h2>
@@ -19,6 +30,6 @@ const Dashboard = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Dashboard;
