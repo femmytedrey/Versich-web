@@ -36,13 +36,12 @@ const Login = () => {
       }
   
       // If the login is successful, reset the form
-      
+      methods.reset();
     } catch (error) {
       // Handle errors
       console.error(error);
     } finally {
       // Reset the form or perform other actions regardless of success or failure
-      methods.reset();
     }
   };
   

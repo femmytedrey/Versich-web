@@ -32,6 +32,7 @@ const Signup = () => {
           // Render error to user
           return;
         }
+        methods.reset();
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
@@ -42,7 +43,7 @@ const Signup = () => {
          */
       })
       .finally(() => {
-        methods.reset();
+        // methods.reset();
       });
   };
 
