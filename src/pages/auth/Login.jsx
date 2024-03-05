@@ -18,11 +18,18 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    try {
-      // Call the loginUser action to handle the authentication logic
-      const result = dispatch(loginUser(email, password, csrfToken));
+    // Loading start action
+    const loadingStart = () => dispatch({ type: actionType.LOADING_START });
+    // Loading stop action
+    const loadingStop = () => dispatch({ type: actionType.LOADING_STOP });
   
-      if (result.status !== "success") {
+    try {
+      loadingStart(); // Dispatch loading start action
+  
+      // Call the loginUser action to handle the authentication logic
+      const result = await dispatch(loginUser(email, password, csrfToken));
+  
+      if (result.status !== 'success') {
         // Handle unsuccessful login
         return;
       }
@@ -34,9 +41,11 @@ const Login = () => {
       console.error(error);
     } finally {
       // Reset the form or perform other actions regardless of success or failure
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      loadingStop(); // Dispatch loading stop action
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
+  
   
 
   const myClickHandler = () => {

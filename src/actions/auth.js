@@ -28,31 +28,38 @@ export const signupUser =
     }
   };
 
-export const loginUser = (email, password, token) => async (dispatch) => {
-  try {
-    const { data } = await api.login({
-      email,
-      password,
-      csrfmiddlewaretoken: token,
-    });
-    if (data.status !== "success") {
-      throw Error(JSON.stringify(data));
+  export const loginUser = (email, password, token) => async (dispatch) => {
+    // Loading start action
+    const loadingStart = () => dispatch({ type: actionType.LOADING_START });
+    // Loading stop action
+    const loadingStop = () => dispatch({ type: actionType.LOADING_STOP });
+  
+    try {
+      loadingStart(); // Dispatch loading start action
+  
+      const { data } = await api.login({
+        email,
+        password,
+        csrfmiddlewaretoken: token,
+      });
+  
+      dispatch({
+        type: actionType.AUTH,
+        data: { user: data.user, token: data.token },
+      });
+  
+      localStorage.setItem('token', data.token);
+  
+      await dispatch(getUser());
+  
+      loadingStop(); // Dispatch loading stop action
+  
+      return data;
+    } catch (error) {
+      console.error('Unexpected error during login:', error);
+      loadingStop(); // Make sure loading is stopped on error
+      throw Error();
     }
-
-    dispatch({
-      type: actionType.AUTH,
-      data: { user: data.user, token: data.token },
-    });
-
-    localStorage.setItem("token", data.token);
-
-    await dispatch(getUser());
-
-    return data;
-  } catch (error) {
-    console.error("Unexpected error during login:", error);
-    throw Error();
-  }
 };
 
 export const getUser = () => async (dispatch) => {
