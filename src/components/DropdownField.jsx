@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useFormContext } from "react-hook-form";
 
 const DropdownField = ({ label, options, placeholder, name, rules }) => {
-  const { register, formState } = useFormContext();
+  const { register, formState, setValue, getValues } = useFormContext();
   const { errors } = formState;
   const [selectedOption, setSelectedOption] = useState(null);
 

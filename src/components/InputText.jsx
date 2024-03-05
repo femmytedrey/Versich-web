@@ -1,14 +1,6 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useFormContext } from "react-hook-form";
-
-/**
- * Custom input component that toggles between password visibility.
- *
- * Uses the useState hook to manage password visibility state.
- * Renders an input with type "password" or "text" based on visibility state.
- * Shows eye icon to toggle visibility on click.
- */
 
 const InputText = ({
   label,
@@ -19,8 +11,14 @@ const InputText = ({
   onChange,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const { register, formState } = useFormContext();
+  const { register, formState, setValue, getValues } = useFormContext();
   const { errors } = formState;
+
+  useEffect(() => {
+    if (getValues(name)) {
+      setShowPassword(true);
+    }
+  }, [getValues, name]);
 
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
@@ -34,6 +32,13 @@ const InputText = ({
         : showPassword
           ? "text"
           : inputType;
+  };
+
+  const handleChange = (e) => {
+    setValue(name, e.target.value);
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (
@@ -67,7 +72,7 @@ const InputText = ({
         placeholder={placeholder}
         name={name}
         {...register(name, rules)}
-        onChange={onChange}
+        onChange={handleChange}
       />
       {errors[name] && (
         <div className="text-sm text-red-500 text-left">
