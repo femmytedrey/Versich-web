@@ -43,7 +43,7 @@ const Login = () => {
       console.error("This is the error message", error);
       return setErrorMsg("Invalid credentials");
     } finally {
-      setErrorMsg("");
+      // setErrorMsg("");
       console.log('finally block executed')
       // Reset the form or perform other actions regardless of success or failure
     }
