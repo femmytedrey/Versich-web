@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useFormContext } from "react-hook-form";
 
@@ -7,12 +7,20 @@ const DropdownField = ({ label, options, placeholder, name, rules }) => {
   const { errors } = formState;
   const [selectedOption, setSelectedOption] = useState(null);
 
+  useEffect(() => {
+    if (getValues(name)) {
+      setSelectedOption(getValues(name));
+    }
+  }, [getValues, name]);
+
   const handleSelectChange = (e) => {
     const value = e.target.value;
     if (value !== "") {
       register(name);
     }
     setSelectedOption(value);
+
+    setValue(name, value);
   };
 
   return (
