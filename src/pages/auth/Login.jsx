@@ -19,19 +19,23 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      // Manually check form validity
       const isValid = await methods.trigger();
   
       if (!isValid) {
-        // Handle validation errors, if any
         return;
       }
   
-      // Call the loginUser action to handle the authentication logic
       const result = await dispatch(loginUser(email, password, csrfToken));
   
       if (result.status !== "success") {
         // Handle unsuccessful login
+        if (result.status === "incorrectPassword") {
+          // Handle incorrect password scenario, show a message, etc.
+          console.log("Incorrect password, please try again.");
+        } else {
+          // Handle other unsuccessful login scenarios
+          console.log("Login failed, please try again.");
+        }
         return;
       }
   
@@ -44,6 +48,7 @@ const Login = () => {
       // Reset the form or perform other actions regardless of success or failure
     }
   };
+  
   
   
 
