@@ -1,29 +1,30 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import Home from "../../pages/home/Home"
-import Signup from "../../pages/auth/Signup"
-import Login from "../../pages/auth/Login"
+import Home from "../../pages/home/Home";
+import Signup from "../../pages/auth/Signup";
+import Login from "../../pages/auth/Login";
 // import AccountSelection from "../../pages/auth/setup/AccountSelection"
-import Dashboard from "../../pages/dashboard/Dashboard"
-import NotAuthRoutes from "./NotAuthRoutes"
-import AuthRoutes from "./AuthRoutes"
-import { loginPath } from "../../assets/constants"
-import Steppers from "../../pages/Steppers"
+import Dashboard from "../../pages/dashboard/Dashboard";
+import NotAuthRoutes from "./NotAuthRoutes";
+import AuthRoutes from "./AuthRoutes";
+import { loginPath } from "../../assets/constants";
+import Steppers from "../../pages/Steppers";
 
 const AllRoutes = () => {
-    return (
-        <Routes>
-            <Route path="/">
-                <Route path="" element={<Home />} />
-            </Route>
-            <Route path="/auth/">
-                <Route element={<NotAuthRoutes />}>
-                    <Route path="" element={<Navigate to={loginPath} replace />} />
-                    <Route path="login/" element={<Login />} />
-                    <Route path="signup/" element={<Signup />} />
-                </Route>
-                <Route element={<AuthRoutes />}>
-                    {/*
+  return (
+    <Routes>
+      <Route path="/">
+        <Route path="" element={<Home />} />
+      </Route>
+      <Route path="/auth/">
+        <Route element={<NotAuthRoutes />}>
+          <Route path="" element={<Navigate to={loginPath} replace />} />
+          <Route path="login/" element={<Login />} />
+          <Route path="signup/" element={<Signup />} />
+        </Route>
+        <Route element={<AuthRoutes />}>
+          <Route path="steppers/" element={<Steppers />} />
+          {/*
                     <Route path="verification/:token/email/" element={<EmailVerification />} />
                     <Route path="su/">
                         <Route path="" element={<AccountSelection />} />
@@ -35,21 +36,14 @@ const AllRoutes = () => {
                         </Route>
                     </Route>
                     */}
-                </Route>
-            </Route>
-            <Route element={<AuthRoutes />}>
-          <Route index element={<Navigate to="dashboard" />} />
-          <Route path="dashboard/*" element={<Dashboard />}>
-            <Route index element={<Navigate to="steppers" />} />
-            <Route path="steppers" element={<Steppers />} />
-          </Route>
         </Route>
-            {/* <Route path="dashboard/" element={<AuthRoutes />}>
-                <Route path="" element={<Dashboard />} />
-            </Route> */}
-            {/* Render a errorpage */}
-            {/* <Route path="*" element={<ErrorPage />} /> */}
-        </Routes>
-    )
-}
-export default AllRoutes
+      </Route>
+      <Route path="dashboard/" element={<AuthRoutes />}>
+        <Route path="" element={<Dashboard />} />
+      </Route>
+      {/* Render a errorpage */}
+      {/* <Route path="*" element={<ErrorPage />} /> */}
+    </Routes>
+  );
+};
+export default AllRoutes;
