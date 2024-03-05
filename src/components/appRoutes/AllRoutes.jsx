@@ -23,7 +23,6 @@ const AllRoutes = () => {
           <Route path="signup/" element={<Signup />} />
         </Route>
         <Route element={<AuthRoutes />}>
-          <Route path="steppers/" element={<Steppers />} />
           {/*
                     <Route path="verification/:token/email/" element={<EmailVerification />} />
                     <Route path="su/">
@@ -40,6 +39,7 @@ const AllRoutes = () => {
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
+        <Route path="steppers/" element={<Steppers />} />
       </Route>
       {/* Render a errorpage */}
       {/* <Route path="*" element={<ErrorPage />} /> */}
