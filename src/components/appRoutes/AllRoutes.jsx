@@ -21,6 +21,7 @@ const AllRoutes = () => {
           <Route path="" element={<Navigate to={loginPath} replace />} />
           <Route path="login/" element={<Login />} />
           <Route path="signup/" element={<Signup />} />
+          <Route path="steppers/" element={<Steppers />} />
         </Route>
         <Route element={<AuthRoutes />}>
           {/*
@@ -39,7 +40,6 @@ const AllRoutes = () => {
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
-        <Route path="steppers/" element={<Steppers />} />
       </Route>
       {/* Render a errorpage */}
       {/* <Route path="*" element={<ErrorPage />} /> */}
