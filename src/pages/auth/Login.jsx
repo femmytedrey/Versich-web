@@ -7,33 +7,34 @@ import InputText from "../../components/InputText";
 import { signupPath } from "../../assets/constants";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../actions/auth";
+import { useState } from "react";
+import CSRFTokenField from "../../components/CSRFTokenField";
 
 const Login = () => {
   const methods = useForm();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     try {
-      // Add any additional validation logic if needed
-      if (!data.email || !data.password) {
-        // Handle invalid form data
+      // Call the loginUser action to handle the authentication logic
+      const result = await dispatch(loginUser(email, password, csrfToken));
+  
+      if (result.status !== "success") {
+        // Handle unsuccessful login
         return;
       }
   
-      // Call the loginUser action to handle the authentication logic
-      await dispatch(loginUser(data.email, data.password));
-  
       // If the login is successful, reset the form
       methods.reset();
-  
-      // Scroll to the top of the page
-      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
-      // Handle any errors, e.g., display an error message to the user
-      console.error("Login failed:", error);
-  
-      // You may choose to set an error state for rendering an error message
-      // setErrorState("Login failed. Please try again.");
+      // Handle errors
+      console.error(error);
+    } finally {
+      // Reset the form or perform other actions regardless of success or failure
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
   
@@ -51,12 +52,14 @@ const Login = () => {
             {/* form */}
             <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
               <div className="space-y-4 text-start md:space-y-5  ">
+                <CSRFTokenField token={csrfToken} setToken={setCsrfToken} />
                 <InputText
                   label="Email address or username"
                   name="Email or Username"
                   inputType="text"
                   placeholder="Enter your email or username"
                   rules={{ required: "Field is required" }}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <InputText
                   label="Password"
@@ -76,6 +79,7 @@ const Login = () => {
                         "Password must have Uppercase, Number, and Special Character.",
                     },
                   }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button className="flex items-center">
                   <input type="checkbox" className="mr-2" id="remember" />
