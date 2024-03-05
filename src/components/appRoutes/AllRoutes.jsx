@@ -8,8 +8,10 @@ import Dashboard from "../../pages/dashboard/Dashboard"
 import NotAuthRoutes from "./NotAuthRoutes"
 import AuthRoutes from "./AuthRoutes"
 import { loginPath } from "../../assets/constants"
+import { useSelector } from "react-redux"
 
 const AllRoutes = () => {
+    const { isAuthenticated } = useSelector((state) => state.auth);
     return (
         <Routes>
             <Route path="/">
@@ -37,7 +39,7 @@ const AllRoutes = () => {
                 </Route>
             </Route>
             <Route path="dashboard/" element={<AuthRoutes />}>
-                <Route path="" element={<Dashboard />} />
+                <Route path="" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
             </Route>
             {/* Render a errorpage */}
             {/* <Route path="*" element={<ErrorPage />} /> */}
