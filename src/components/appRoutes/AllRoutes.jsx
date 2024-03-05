@@ -8,6 +8,7 @@ import Dashboard from "../../pages/dashboard/Dashboard"
 import NotAuthRoutes from "./NotAuthRoutes"
 import AuthRoutes from "./AuthRoutes"
 import { loginPath } from "../../assets/constants"
+import Steppers from "../../pages/Steppers"
 
 const AllRoutes = () => {
     return (
@@ -34,6 +35,7 @@ const AllRoutes = () => {
                         </Route>
                     </Route>
                     */}
+                    <Route path='/steppers' element={<Steppers />} />
                 </Route>
             </Route>
             <Route path="dashboard/" element={<AuthRoutes />}>

@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.auth);
@@ -17,6 +18,8 @@ const Dashboard = () => {
       <div className="mt-5 py-2 px-4 border border-versich-blue rounded-md">
         <p>{user.first_name + " " + user.last_name}</p>
       </div>
+      {/* Main purpose of this is for Samuel to view the steppers so that I can be able to submit the first milestone */}
+      <Link to='/steppers'>click to complete your profile registration</Link>
     </div>
   );
 }
