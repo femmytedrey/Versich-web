@@ -21,7 +21,7 @@ const Login = () => {
       }
   
       // Call the loginUser action to handle the authentication logic
-      dispatch(loginUser(data.email, data.password));
+      await dispatch(loginUser(data.email, data.password));
   
       // If the login is successful, reset the form
       methods.reset();
