@@ -16,6 +16,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
+  const [errorMsg, setErrorMsg] = useState('')
 
   const onSubmit = async (data) => {
     try {
@@ -31,31 +32,21 @@ const Login = () => {
       const result = await dispatch(loginUser(email, password, csrfToken));
   
       if (result.status !== "success") {
-        // Log the entire error object
-        console.error("Login error:", result);
-  
-        // Check for specific HTTP status codes
-        if (result.response?.status === 401) {
-          // Display a specific error message for unauthorized access
-          console.error("Invalid credentials, please check your email and password.");
-        } else {
-          // Handle other unsuccessful login scenarios
-          console.error("Login failed, please try again.");
-        }
+        // Handle unsuccessful login
         return;
       }
   
       // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
-      // Handle other errors
+      // Handle errors
       console.error(error);
+      return setErrorMsg('Invalid credentials')
     } finally {
+      setErrorMsg('')
       // Reset the form or perform other actions regardless of success or failure
     }
   };
-  
-  
   
   
 
@@ -101,6 +92,9 @@ const Login = () => {
                   }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {errorMsg && (
+                  <div className="text-red-500 text-center mb-4">{errorMsg}</div>
+                )}
                 <button className="flex items-center">
                   <input type="checkbox" className="mr-2" id="remember" />
                   <label
