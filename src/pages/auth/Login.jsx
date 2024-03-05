@@ -20,7 +20,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       // Call the loginUser action to handle the authentication logic
-      const result = await dispatch(loginUser(email, password, csrfToken));
+      const result = dispatch(loginUser(email, password, csrfToken));
   
       if (result.status !== "success") {
         // Handle unsuccessful login
