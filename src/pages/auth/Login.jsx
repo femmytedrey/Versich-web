@@ -40,7 +40,7 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      console.error("This is the error message", error);
+      console.error(error);
       return setErrorMsg("Invalid credentials");
     } finally {
       // setErrorMsg("");
