@@ -17,6 +17,7 @@ const Login = () => {
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoadnig] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -27,6 +28,8 @@ const Login = () => {
         // Handle validation errors, if any
         return;
       }
+
+      setLoadnig(true)
 
       // Call the loginUser action to handle the authentication logic
       const result = await dispatch(loginUser(email, password, csrfToken));
@@ -124,7 +127,7 @@ const Login = () => {
                 <ConfirmButton
                   clickHandler={myClickHandler}
                   type="submit"
-                  text="Log in"
+                  text={loading ? "Logging in..." : "Log In"}
                 />
                 <Link
                   to="#"
