@@ -39,7 +39,7 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         //  data.message, data.status
-        setErrorMsg("user already exist");
+        setErrorMsg("email already exist, please try again");
       })
       .finally(() => {
         // methods.reset();
