@@ -27,19 +27,25 @@ const Login = () => {
         return;
       }
   
+      // Call the loginUser action to handle the authentication logic
       const result = await dispatch(loginUser(email, password, csrfToken));
   
       if (result.status !== "success") {
-        if (result.status === "incorrectPassword") {
-          console.log("Incorrect password, please try again.");
-        } else if (result.status === 401) {
-          console.log("Unauthorized access, check your credentials.");
+        // Log the entire error object
+        console.error("Login error:", result);
+  
+        // Check for specific error message
+        if (result.message === "Incorrect password") {
+          // Display a specific error message for incorrect password
+          console.error("Incorrect password, please try again.");
         } else {
-          console.log("Login failed, please try again.");
+          // Handle other unsuccessful login scenarios
+          console.error("Login failed, please try again.");
         }
         return;
       }
   
+      // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
       // Handle errors
