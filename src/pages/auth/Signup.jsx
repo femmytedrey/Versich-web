@@ -20,6 +20,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
@@ -36,8 +37,9 @@ const Signup = () => {
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
-         const data = JSON.parse(error?.message)
-         data.message, data.status
+        //  const data = JSON.parse(error?.message)
+        //  data.message, data.status
+        setErrorMsg("user already exist");
       })
       .finally(() => {
         // methods.reset();
@@ -138,6 +140,12 @@ const Signup = () => {
                   <span className="text-sm text-red-500">
                     Passwords do not match
                   </span>
+                )}
+
+                {errorMsg && (
+                  <div className="text-sm text-red-500 text-left">
+                    {errorMsg}
+                  </div>
                 )}
 
                 <p className="text-sm text-left">
