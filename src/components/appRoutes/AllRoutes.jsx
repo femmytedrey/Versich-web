@@ -37,12 +37,16 @@ const AllRoutes = () => {
                     */}
                 </Route>
             </Route>
-            <Route path="dashboard/" element={<AuthRoutes />}>
+            <Route element={<AuthRoutes />}>
+          <Route index element={<Navigate to="dashboard" />} />
+          <Route path="dashboard/*" element={<Dashboard />}>
+            <Route index element={<Navigate to="steppers" />} />
+            <Route path="steppers" element={<Steppers />} />
+          </Route>
+        </Route>
+            {/* <Route path="dashboard/" element={<AuthRoutes />}>
                 <Route path="" element={<Dashboard />} />
-            </Route>
-            <Route path="steppers/" element={<AuthRoutes />}>
-                <Route path="" element={<Steppers />} />
-            </Route>
+            </Route> */}
             {/* Render a errorpage */}
             {/* <Route path="*" element={<ErrorPage />} /> */}
         </Routes>
