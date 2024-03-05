@@ -35,11 +35,13 @@ const AllRoutes = () => {
                         </Route>
                     </Route>
                     */}
-                    <Route path='/steppers' element={<Steppers />} />
                 </Route>
             </Route>
             <Route path="dashboard/" element={<AuthRoutes />}>
                 <Route path="" element={<Dashboard />} />
+            </Route>
+            <Route path="steppers/" element={<AuthRoutes />}>
+                <Route path="" element={<Steppers />} />
             </Route>
             {/* Render a errorpage */}
             {/* <Route path="*" element={<ErrorPage />} /> */}
