@@ -17,7 +17,7 @@ const Login = () => {
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoadnig] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -29,7 +29,7 @@ const Login = () => {
         return;
       }
 
-      setLoadnig(true)
+      setLoading(true);
 
       // Call the loginUser action to handle the authentication logic
       const result = await dispatch(loginUser(email, password, csrfToken));
@@ -47,12 +47,13 @@ const Login = () => {
       return setErrorMsg("Invalid credentials, please try again");
     } finally {
       // setErrorMsg("");
+      setLoading(false);
       // Reset the form or perform other actions regardless of success or failure
     }
   };
 
   const myClickHandler = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

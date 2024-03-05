@@ -21,12 +21,14 @@ const Signup = () => {
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setEqual(true);
       return;
     }
+    setLoading(true)
     dispatch(signupUser(firstName, lastName, email, password, csrfToken))
       .then((data) => {
         if (data.status !== "success") {
@@ -43,6 +45,7 @@ const Signup = () => {
       })
       .finally(() => {
         // methods.reset();
+        setLoading(false)
       });
   };
 
@@ -52,7 +55,7 @@ const Signup = () => {
   };
 
   const myClickHandler = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -167,8 +170,9 @@ const Signup = () => {
                 </p>
                 <ConfirmButton
                   type="submit"
-                  text="Create an account"
+                  text={loading ? "Creating an account..." : "Create an account"}
                   clickHandler={myClickHandler}
+                  loading={loading}
                 />
                 <p className="text-sm ">
                   Already have an account?{" "}
