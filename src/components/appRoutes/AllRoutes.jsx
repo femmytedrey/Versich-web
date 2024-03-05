@@ -15,13 +15,13 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
+        <Route path="steppers/" element={<Steppers />} />
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
           <Route path="" element={<Navigate to={loginPath} replace />} />
           <Route path="login/" element={<Login />} />
           <Route path="signup/" element={<Signup />} />
-          <Route path="steppers/" element={<Steppers />} />
         </Route>
         <Route element={<AuthRoutes />}>
           {/*
