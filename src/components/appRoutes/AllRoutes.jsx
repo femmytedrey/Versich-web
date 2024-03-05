@@ -15,6 +15,7 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
+        {/* Temporary preview for sam to see */}
         <Route path="steppers/" element={<Steppers />} />
       </Route>
       <Route path="/auth/">
