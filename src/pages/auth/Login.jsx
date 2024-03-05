@@ -16,39 +16,38 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onSubmit = async (data) => {
     try {
       // Manually check form validity
       const isValid = await methods.trigger();
-  
+
       if (!isValid) {
         // Handle validation errors, if any
         return;
       }
-  
+
       // Call the loginUser action to handle the authentication logic
       const result = await dispatch(loginUser(email, password, csrfToken));
-  
+
       if (result.status !== "success") {
         // Handle unsuccessful login
         return;
       }
-  
+
       // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
       // Handle errors
-      console.error(error);
-      return setErrorMsg('Invalid credentials')
+      console.error("This is the error message", error);
+      return setErrorMsg("Invalid credentials");
     } finally {
-      setErrorMsg('')
+      setErrorMsg("");
+      console.log('finally block executed')
       // Reset the form or perform other actions regardless of success or failure
     }
   };
-  
-  
 
   const myClickHandler = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -93,7 +92,9 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 {errorMsg && (
-                  <div className="text-red-500 text-center mb-4">{errorMsg}</div>
+                  <div className="text-red-500 text-center mb-4">
+                    {errorMsg}
+                  </div>
                 )}
                 <button className="flex items-center">
                   <input type="checkbox" className="mr-2" id="remember" />
