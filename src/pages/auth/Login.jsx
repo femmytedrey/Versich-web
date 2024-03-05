@@ -44,7 +44,6 @@ const Login = () => {
       return setErrorMsg("Invalid credentials");
     } finally {
       // setErrorMsg("");
-      console.log('finally block executed')
       // Reset the form or perform other actions regardless of success or failure
     }
   };
@@ -92,7 +91,7 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 {errorMsg && (
-                  <div className="text-red-500 text-center mb-4">
+                  <div className="text-sm text-red-500 text-left">
                     {errorMsg}
                   </div>
                 )}
