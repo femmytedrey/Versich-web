@@ -36,11 +36,8 @@ const Signup = () => {
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
-        /**
-         * Handle error
-         * const data = JSON.parse(error?.message)
-         * data.message, data.status
-         */
+         const data = JSON.parse(error?.message)
+         data.message, data.status
       })
       .finally(() => {
         // methods.reset();

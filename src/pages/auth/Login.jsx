@@ -41,7 +41,7 @@ const Login = () => {
     } catch (error) {
       // Handle errors
       console.error(error);
-      return setErrorMsg("Invalid credentials");
+      return setErrorMsg("Invalid credentials, please try again");
     } finally {
       // setErrorMsg("");
       // Reset the form or perform other actions regardless of success or failure
