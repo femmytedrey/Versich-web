@@ -19,7 +19,15 @@ const Dashboard = () => {
         <p>{user.first_name + " " + user.last_name}</p>
       </div>
       {/* Main purpose of this is for Samuel to view the steppers so that I can be able to submit the first milestone */}
-      <Link to='/steppers'>click to complete your profile registration</Link>
+      <p className="pt-12">
+        Click{' '}
+        <span>
+          <Link to="/steppers" className="bg-versich-blue underline">
+            here
+          </Link>
+        </span>{' '}
+        to complete your registration.
+      </p>
     </div>
   );
 }
