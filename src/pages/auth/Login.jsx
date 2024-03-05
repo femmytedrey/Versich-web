@@ -19,22 +19,33 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
+      // Manually check form validity
+      const isValid = await methods.trigger();
+  
+      if (!isValid) {
+        // Handle validation errors, if any
+        return;
+      }
+  
       // Call the loginUser action to handle the authentication logic
-      const result = dispatch(loginUser(email, password, csrfToken));
+      const result = await dispatch(loginUser(email, password, csrfToken));
   
       if (result.status !== "success") {
         // Handle unsuccessful login
         return;
       }
   
+      // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
       // Handle errors
       console.error(error);
     } finally {
+      // Reset the form or perform other actions regardless of success or failure
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+  
   
 
   const myClickHandler = () => {
