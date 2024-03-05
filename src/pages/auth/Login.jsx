@@ -128,6 +128,7 @@ const Login = () => {
                   clickHandler={myClickHandler}
                   type="submit"
                   text={loading ? "Logging in..." : "Log In"}
+                  loading={loading}
                 />
                 <Link
                   to="#"
