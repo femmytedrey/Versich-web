@@ -1,31 +1,30 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
-  const [showCountdown, setShowCountdown] = useState(false);
   const [disableResend, setDisableResend] = useState(false);
 
   const emailResend = () => {
+    // Simulate email resend (replace with actual logic)
     alert('Email resent');
-    setShowCountdown(true);
+    // Disable the button and start the countdown again
     setDisableResend(true);
+    setCountdown(30);
   };
 
   useEffect(() => {
-    let timer;
-    if (showCountdown && countdown > 0) {
-      timer = setInterval(() => {
+    let interval;
+
+    if (countdown > 0 && disableResend) {
+      interval = setInterval(() => {
         setCountdown((prevCountdown) => prevCountdown - 1);
       }, 1000);
     }
-    return () => clearInterval(timer);
-  }, [countdown, showCountdown]);
 
-  useEffect(() => {
-    if (countdown === 0) {
-      setDisableResend(false);
-    }
-  }, [countdown]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [countdown, disableResend]);
 
   return (
     <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center bg-versich-primary-bg items-center">
@@ -35,24 +34,35 @@ const EmailVerification = () => {
           Kindly check your email inbox or spam folder to verify your email address.
         </p>
         <p className="text-center">
-          Click{' '}
-          <button
-            className="text-versich-blue underline"
-            onClick={emailResend}
-            disabled={disableResend}
-          >
-            here
-          </button>{' '}
-          to resend.
+          {countdown > 1 ? (
+            <>
+              Resend in {countdown} seconds.{' '}
+              <button
+                className="text-versich-blue underline"
+                onClick={emailResend}
+                disabled={disableResend}
+              >
+                Click here
+              </button>{' '}
+              to resend.
+            </>
+          ) : (
+            <>
+              Resend in 1 second.{' '}
+              <button
+                className="text-versich-blue underline"
+                onClick={emailResend}
+                disabled={disableResend}
+              >
+                Click here
+              </button>{' '}
+              to resend.
+            </>
+          )}
         </p>
-        {showCountdown && (
-          <p className="text-center">
-            Resend email in {countdown}s.
-          </p>
-        )}
       </div>
     </div>
   );
-}
+};
 
 export default EmailVerification;
