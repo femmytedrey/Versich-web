@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
   const [showCountdown, setShowCountdown] = useState(false);
+  const [disableResend, setDisableResend] = useState(false);
 
   const emailResend = () => {
     alert('Email resent');
     setShowCountdown(true);
+    setDisableResend(true);
   };
 
   useEffect(() => {
@@ -20,6 +21,12 @@ const EmailVerification = () => {
     return () => clearInterval(timer);
   }, [countdown, showCountdown]);
 
+  useEffect(() => {
+    if (countdown === 0) {
+      setDisableResend(false);
+    }
+  }, [countdown]);
+
   return (
     <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center bg-versich-primary-bg items-center">
       <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
@@ -29,7 +36,11 @@ const EmailVerification = () => {
         </p>
         <p className="text-center">
           Click{' '}
-          <button className="text-versich-blue underline" onClick={emailResend}>
+          <button
+            className="text-versich-blue underline"
+            onClick={emailResend}
+            disabled={disableResend}
+          >
             here
           </button>{' '}
           to resend.
