@@ -21,14 +21,14 @@ const Signup = () => {
   const [csrfToken, setCsrfToken] = useState("");
   const dispatch = useDispatch();
   const [errorMsg, setErrorMsg] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setEqual(true);
       return;
     }
-    setLoading(true)
+    setLoading(true);
     dispatch(signupUser(firstName, lastName, email, password, csrfToken))
       .then((data) => {
         if (data.status !== "success") {
@@ -45,7 +45,7 @@ const Signup = () => {
       })
       .finally(() => {
         // methods.reset();
-        setLoading(false)
+        setLoading(false);
       });
   };
 
@@ -131,10 +131,8 @@ const Signup = () => {
                       message: "Password must be at least 6 characters",
                     },
                     pattern: {
-                      value:
-                        /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/,
-                      message:
-                        "Password must have Uppercase,  Number, and Special Character.",
+                      value: /^(?=.*[!@#$%^&*()_+])[!@#$%^&*()_+]+$/,
+                      message: "Atleast one special character required",
                     },
                   }}
                 />
@@ -170,7 +168,9 @@ const Signup = () => {
                 </p>
                 <ConfirmButton
                   type="submit"
-                  text={loading ? "Creating an account..." : "Create an account"}
+                  text={
+                    loading ? "Creating an account..." : "Create an account"
+                  }
                   clickHandler={myClickHandler}
                   loading={loading}
                 />

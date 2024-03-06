@@ -80,17 +80,7 @@ const Login = () => {
                   placeholder="************"
                   name="password"
                   rules={{
-                    required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Password must be at least 8 characters",
-                    },
-                    pattern: {
-                      value:
-                        /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/,
-                      message:
-                        "Password must have Uppercase, Number, and Special Character.",
-                    },
+                    required: "Password is required"
                   }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
