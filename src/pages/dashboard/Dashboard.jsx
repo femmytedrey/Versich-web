@@ -24,7 +24,7 @@ const Dashboard = () => {
     console.log("Testing Edit btn");
   };
 
-  const progress = 25;
+  const progress = 25
 
   return (
     <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
