@@ -8,7 +8,7 @@ const CircularProgressBar = () => {
   const calculateDashOffset = () => {
     const circumference = 2 * Math.PI * radius;
     const progressPercentage = progress / 100;
-    return circumference * (1 - progressPercentage);
+    return circumference * (1 - progressPercentage) - circumference / 2;
   };
 
   const calculateSVGDimensions = () => {
@@ -29,19 +29,17 @@ const CircularProgressBar = () => {
         </div>
         <div className="absolute top-0 left-0">
           <svg height={height} width={width} xmlns="http://www.w3.org/2000/svg">
-            <g transform={`rotate(-90 ${width / 2} ${height / 2})`}>
-              <circle
-                cx={width / 2}
-                cy={height / 2}
-                r={radius}
-                fill="transparent"
-                style={{ stroke: "#1D88ED" }}
-                strokeWidth={strokeWidth}
-                strokeDasharray={2 * Math.PI * radius}
-                strokeDashoffset={calculateDashOffset()}
-                strokeLinecap="round"
-              />
-            </g>
+            <circle
+              cx={width / 2}
+              cy={height / 2}
+              r={radius}
+              fill="transparent"
+              style={{ stroke: "#1D88ED" }}
+              strokeWidth={strokeWidth}
+              strokeDasharray={2 * Math.PI * radius}
+              strokeDashoffset={calculateDashOffset()}
+              strokeLinecap="round"
+            />
           </svg>
         </div>
       </div>
