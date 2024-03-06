@@ -1,40 +1,38 @@
-const calculateDashOffset = () => {
-  const circumference = 2 * Math.PI * radius;
-  const progressPercentage = progress / 100;
-  return circumference * (1 - progressPercentage);
-};
+const CircularProgressBar = () => {
+  const progress = 50;
+  const radius = 36;
+  const strokeWidth = 8;
 
-const calculateSVGDimensions = () => {
-  const diameter = radius * 2;
-  const svgWidth = diameter + strokeWidth;
-  const svgHeight = diameter + strokeWidth;
-  return { width: svgWidth, height: svgHeight };
-};
+  const calculateArcCoordinates = () => {
+    const progressPercentage = progress / 100;
+    const angle = 360 * progressPercentage;
+    const x = radius * Math.sin((angle * Math.PI) / 180);
+    const y = -radius * Math.cos((angle * Math.PI) / 180);
+    return { x, y };
+  };
 
-const { width, height } = calculateSVGDimensions();
-
-return (
-  <div className="relative">
-    <div className="h-20 w-20 rounded-full bg-white relative flex justify-center items-center">
-      <div className="h-16 w-16 rounded-full bg-[#D9EBFC]"></div>
-      <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
-        <span className="text-versich-dark-blue text-lg font-semibold">{`${progress}%`}</span>
-      </div>
-      <div className="absolute top-0 left-0">
-        <svg height={height} width={width} xmlns="http://www.w3.org/2000/svg">
-          <circle
-            cx={width / 2}
-            cy={height / 2}
-            r={radius}
-            fill="transparent"
-            style={{ stroke: "#1D88ED" }}
-            strokeWidth={strokeWidth}
-            strokeDasharray={`0 ${2 * Math.PI * radius}`}
-            strokeDashoffset={calculateDashOffset()}
-            strokeLinecap="round"
-          />
-        </svg>
+  return (
+    <div className="relative">
+      <div className="h-20 w-20 rounded-full bg-white relative flex justify-center items-center">
+        <div className="h-16 w-16 rounded-full bg-[#D9EBFC]"></div>
+        <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
+          <span className="text-versich-dark-blue text-lg font-semibold">{`${progress}%`}</span>
+        </div>
+        <div className="absolute top-0 left-0">
+          <svg height={radius * 2 + strokeWidth} width={radius * 2 + strokeWidth} xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="transparent"
+              stroke="#1D88ED"
+              strokeWidth={strokeWidth}
+              d={`M${radius + strokeWidth / 2},${radius + strokeWidth / 2} L${radius + strokeWidth / 2},${strokeWidth / 2} A${radius},${radius} 0 ${
+                progress > 50 ? 1 : 0
+              } 1 ${radius + calculateArcCoordinates().x + strokeWidth / 2},${radius + calculateArcCoordinates().y + strokeWidth / 2} Z`}
+            />
+          </svg>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
+
+export default CircularProgressBar;
