@@ -52,6 +52,14 @@ const Dashboard = () => {
             </div>
             <div>
               <p>Your profile is complete. Please complete your profile.</p>
+              <p>
+               Complete your profile
+                 <span>
+                   <Link to="/steppers" className="text-versich-blue underline">
+                     here
+                   </Link>
+                 </span>
+              </p>
             </div>
           </div>
           <div>
