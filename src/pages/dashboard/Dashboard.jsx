@@ -40,6 +40,18 @@ const Dashboard = () => {
         </span>{' '}
         to verify your email
       </p>
+      <p>
+          Click{" "}
+          <span>
+            <Link
+              to="/auth/verification/email/"
+              className="text-versich-blue underline"
+            >
+              here
+            </Link>
+          </span>{" "}
+          to view Email Verified Page
+        </p>
     </div>
   );
 }
