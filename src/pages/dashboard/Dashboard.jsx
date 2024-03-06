@@ -18,6 +18,8 @@ const Dashboard = () => {
     console.log("Testing Edit btn");
   };
 
+  const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
+
   return (
     <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl">
@@ -27,7 +29,7 @@ const Dashboard = () => {
         <div className="bg-white shadow-lg px-4 py-4 rounded-xl">
           <div className="flex gap-x-3 items-center ">
             <div className="rounded-full text-white text-2xl px-6 font-semibold py-5 bg-versich-light-blue">
-              JJ
+              {initials}
             </div>
             <div className="flex-1 text-start text-versich-dark-blue font-semibold text-lg">
               <p>{user.first_name + " " + user.last_name}</p>
