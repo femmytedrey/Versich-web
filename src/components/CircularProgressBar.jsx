@@ -8,9 +8,9 @@ const CircularProgressBar = () => {
   const calculateDashOffset = () => {
     const circumference = 2 * Math.PI * radius;
     const progressPercentage = progress / 100;
-    const initialOffset = circumference / 2;
-    return initialOffset - circumference * progressPercentage;
+    return circumference * (1 - progressPercentage) - circumference / 4;
   };
+  
 
   const calculateSVGDimensions = () => {
     const diameter = radius * 2;
