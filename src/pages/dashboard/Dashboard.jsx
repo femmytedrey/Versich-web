@@ -28,7 +28,7 @@ const Dashboard = () => {
       <div>
         <div className="bg-white shadow-lg px-4 py-4 rounded-xl">
           <div className="flex gap-x-3 items-center ">
-            <div className="rounded-full text-white text-2xl font-semibold bg-versich-light-blue h-20 w-20">
+            <div className="rounded-full text-white text-2xl font-semibold bg-versich-light-blue h-16 w-16 flex justify-center items-center">
               {initials}
             </div>
             <div className="flex-1 text-start text-versich-dark-blue font-semibold text-lg">
