@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   const { user } = useSelector(state => state.auth);
 
-  if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
-    return (
-      <div className="flex flex-col items-center justify-center my-10 min-h-80">
-        <h2 className="font-bold">Loading...</h2>
-      </div>
-    );
-  }
+  // if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
+  //   return (
+  //     <div className="flex flex-col items-center justify-center my-10 min-h-80">
+  //       <h2 className="font-bold">Loading...</h2>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="flex flex-col items-center justify-center my-10 min-h-80">
