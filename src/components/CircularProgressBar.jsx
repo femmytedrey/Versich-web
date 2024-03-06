@@ -1,7 +1,7 @@
 import React from "react";
 
 const CircularProgressBar = () => {
-  const progress = 80;
+  const progress = 25;
   const radius = 36;
   const strokeWidth = 8;
 
@@ -34,7 +34,7 @@ const CircularProgressBar = () => {
               cy={height / 2}
               r={radius}
               fill="transparent"
-              stroke="black"
+              style={{ stroke: "#1D88ED" }}
               strokeWidth={strokeWidth}
               strokeDasharray={2 * Math.PI * radius}
               strokeDashoffset={calculateDashOffset()}
