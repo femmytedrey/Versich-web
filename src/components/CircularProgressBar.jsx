@@ -1,7 +1,7 @@
 import React from "react";
 
 const CircularProgressBar = () => {
-  const progress = 50;
+  const progress = 60;
   const radius = 36;
   const strokeWidth = 8;
 
@@ -32,7 +32,7 @@ const CircularProgressBar = () => {
             height={height}
             width={width}
             xmlns="http://www.w3.org/2000/svg"
-            style={{ transform: "rotate(-90deg) translate(-100%) scaleY(-1)" }}
+            style = {{ transform: "rotate(-90deg) translate(-100%) scaleY(-1)" }}
           >
             <circle
               cx={width / 2}
