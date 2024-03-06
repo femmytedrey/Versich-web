@@ -9,6 +9,7 @@ const EmailVerification = () => {
     alert('Email resent');
     setShowCountdown(true);
     setDisableResend(true);
+    setCountdown(30); // Reset countdown to its initial value
   };
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const EmailVerification = () => {
   useEffect(() => {
     if (countdown === 0) {
       setDisableResend(false);
-      setShowCountdown(false); 
+      setShowCountdown(false);
     }
   }, [countdown]);
 
