@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { initials } from "../../assets/constants";
+import { useState } from "react";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
-  const [progress, setProgress] = useState(45);
+  const [progress, setProgress] = useState(100);
 
   if (
     !user ||
