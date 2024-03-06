@@ -26,7 +26,7 @@ const Dashboard = () => {
         <p>Good Afternoon, {user.first_name}!</p>
         <Link
          to="/auth/verification/YOUR_TOKEN/email/"
-         className="text-versich-blue underline pt-12"
+         className="text-versich-blue underline hover:text-versich-blue-hover"
        >
          Verify Email
        </Link>
@@ -34,7 +34,7 @@ const Dashboard = () => {
       <div>
         <div className="bg-white shadow-lg px-4 py-4 rounded-xl">
           <div className="flex gap-x-3 items-center ">
-            <div className="rounded-full text-white text-2xl font-semibold bg-versich-light-blue h-16 w-16 flex justify-center items-center">
+            <div className="rounded-full text-white text-xl font-semibold bg-versich-light-blue h-16 w-16 flex justify-center items-center">
               {initials}
             </div>
             <div className="flex-1 text-start text-versich-dark-blue font-semibold text-lg">
