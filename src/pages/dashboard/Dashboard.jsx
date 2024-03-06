@@ -4,9 +4,14 @@ import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 
 const Dashboard = () => {
-  const { user } = useSelector(state => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
-  if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
+  if (
+    !user ||
+    typeof user !== "object" ||
+    !user.first_name ||
+    !user.last_name
+  ) {
     return (
       <div className="flex flex-col items-center justify-center my-10 min-h-80">
         <h2 className="font-bold">Loading...</h2>
@@ -23,13 +28,13 @@ const Dashboard = () => {
   return (
     <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
-        <p className="mb-0 sm:mb-2">Good Afternoon, {user.first_name}!</p>
+        <p className="pb-0 sm:pb-2">Good Afternoon, {user.first_name}!</p>
         <Link
-         to="/auth/verification/YOUR_TOKEN/email/"
-         className="text-versich-blue underline hover:text-versich-blue-hover"
-       >
-         Verify Email
-       </Link>
+          to="/auth/verification/YOUR_TOKEN/email/"
+          className="text-versich-blue underline hover:text-versich-blue-hover"
+        >
+          Verify Email
+        </Link>
       </div>
       <div>
         <div className="bg-white shadow-lg px-4 py-4 rounded-xl">
@@ -63,9 +68,6 @@ const Dashboard = () => {
       </div>
     </div>
 
-
-
-
     // <div className="flex flex-col items-center justify-center my-10 min-h-80">
     //   <h2 className="font-bold">Welcome to your dashboard</h2>
     //   <div className="mt-5 py-2 px-4 border border-versich-blue rounded-md">
@@ -87,7 +89,7 @@ const Dashboard = () => {
     //   >
     //     Verify Email
     //   </Link>
-      
+
     //   <p>
     //       Click{" "}
     //       <span>
@@ -102,6 +104,6 @@ const Dashboard = () => {
     //     </p>
     // </div>
   );
-}
+};
 
 export default Dashboard;
