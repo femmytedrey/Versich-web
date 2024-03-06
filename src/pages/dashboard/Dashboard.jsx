@@ -24,6 +24,7 @@ const Dashboard = () => {
   };
 
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
+  const progress = 25;
 
   return (
     <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
@@ -48,7 +49,7 @@ const Dashboard = () => {
           </div>
           <div className="flex flex-col items-center gap-y-3 py-4 bg-[#D9EBFC] my-4 rounded-lg">
             <div>
-              <CircularProgressBar />
+              <CircularProgressBar progress={progress} />
             </div>
             <div>
               <p>Your profile is complete. Please complete your profile.</p>
