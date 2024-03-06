@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
@@ -61,7 +62,7 @@ const EmailVerification = () => {
               here
             </Link>
           </span>{" "}
-          to for email verification
+          to view Email Verified Page
         </p>
       </div>
     </div>
