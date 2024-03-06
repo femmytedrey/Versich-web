@@ -2,9 +2,11 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
+import { initials } from "../../assets/constants";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
+  const [progress, setProgress] = useState(45);
 
   if (
     !user ||
@@ -23,8 +25,7 @@ const Dashboard = () => {
     console.log("Testing Edit btn");
   };
 
-  const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
-  const progress = 25;
+  
 
   return (
     <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
@@ -52,14 +53,21 @@ const Dashboard = () => {
               <CircularProgressBar progress={progress} />
             </div>
             <div>
-              <p>
-               Complete your profile {' '}
-                 <span>
-                   <Link to="/steppers" className="text-versich-blue underline">
-                     here
-                   </Link>
-                 </span>
-              </p>
+              {progress < 100 ? (
+                <p>
+                  Complete your profile{" "}
+                  <span>
+                    <Link
+                      to="/steppers"
+                      className="text-versich-blue underline"
+                    >
+                      here
+                    </Link>
+                  </span>
+                </p>
+              ) : (
+                <p>Your profile is completed.</p>
+              )}
             </div>
           </div>
           <div>
