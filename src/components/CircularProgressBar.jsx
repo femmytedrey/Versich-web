@@ -8,7 +8,7 @@ const CircularProgressBar = () => {
   const calculateDashOffset = () => {
     const circumference = 2 * Math.PI * radius;
     const progressPercentage = progress / 100;
-    const initialOffset = circumference / 4;
+    const initialOffset = circumference / 2;
     return initialOffset - circumference * progressPercentage;
   };
 
