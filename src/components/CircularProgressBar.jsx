@@ -1,14 +1,14 @@
 import React from "react";
 
 const CircularProgressBar = () => {
-  const progress = 60;
+  const progress = 50;
   const radius = 36;
   const strokeWidth = 8;
 
   const calculateDashOffset = () => {
     const circumference = 2 * Math.PI * radius;
     const progressPercentage = progress / 100;
-    return circumference * (1 - progressPercentage) - circumference / 2;
+    return circumference * (1 - progressPercentage);
   };
 
   const calculateSVGDimensions = () => {
@@ -27,7 +27,7 @@ const CircularProgressBar = () => {
         <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
           <span className="text-versich-dark-blue text-lg font-semibold">{`${progress}%`}</span>
         </div>
-        <div className="absolute top-0 left-0">
+        <div className="absolute top-0 left-0 transform -rotate-90">
           <svg height={height} width={width} xmlns="http://www.w3.org/2000/svg">
             <circle
               cx={width / 2}
