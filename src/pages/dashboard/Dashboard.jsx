@@ -1,58 +1,94 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CircularProgressBar from "../../components/CircularProgressBar";
+import ConfirmButton from "../../components/Buttons/ConfirmButton";
 
 const Dashboard = () => {
   const { user } = useSelector(state => state.auth);
 
-  // if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
-  //   return (
-  //     <div className="flex flex-col items-center justify-center my-10 min-h-80">
-  //       <h2 className="font-bold">Loading...</h2>
-  //     </div>
-  //   );
-  // }
+  if (!user || typeof user !== 'object' || !user.first_name || !user.last_name) {
+    return (
+      <div className="flex flex-col items-center justify-center my-10 min-h-80">
+        <h2 className="font-bold">Loading...</h2>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center my-10 min-h-80">
-      <h2 className="font-bold">Welcome to your dashboard</h2>
-      <div className="mt-5 py-2 px-4 border border-versich-blue rounded-md">
-        <p>{user.first_name + " " + user.last_name}</p>
+    <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
+      <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl">
+        <p>Good Afternoon, {user.first_name}!</p>
       </div>
-      {/* Main purpose of this is for Samuel to view the steppers so that I can be able to submit the first milestone */}
-      <p className="pt-12">
-        Click{' '}
-        <span>
-          <Link to="/steppers" className="text-versich-blue underline">
-            here
-          </Link>
-        </span>{' '}
-        to complete your registration.
-      </p>
-      <p className="pt-12">
-        Click{' '}
-        <span>
-          <Link
-            to="/auth/verification/YOUR_TOKEN/email/"
-            className="text-versich-blue underline"
-          >
-            here
-          </Link>
-        </span>{' '}
-        to verify your email
-      </p>
-      <p>
-          Click{" "}
-          <span>
-            <Link
-              to="/auth/verification/email/"
-              className="text-versich-blue underline"
-            >
-              here
-            </Link>
-          </span>{" "}
-          to view Email Verified Page
-        </p>
+      <div>
+        <div className="bg-white shadow-lg px-4 py-4 rounded-xl">
+          <div className="flex gap-x-3 items-center ">
+            <div className="rounded-full text-white text-2xl px-6 font-semibold py-5 bg-versich-light-blue">
+              JJ
+            </div>
+            <div className="flex-1 text-start text-versich-dark-blue font-semibold text-lg">
+              <p>{user.first_name + " " + user.last_name}</p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-y-3 py-4 bg-[#D9EBFC] my-4 rounded-lg">
+            <div>
+              <CircularProgressBar />
+            </div>
+            <div>
+              <p>Your profile is complete. Please complete your profile.</p>
+            </div>
+          </div>
+          <div>
+            <ConfirmButton
+              type="submit"
+              text="Edit profile"
+              clickHandler={editBtn}
+            />
+          </div>
+        </div>
+
+        <div>{/* For the leads settings */}</div>
+        <div>{/* For Leads | Responses | Help */}</div>
+      </div>
     </div>
+
+
+
+
+    // <div className="flex flex-col items-center justify-center my-10 min-h-80">
+    //   <h2 className="font-bold">Welcome to your dashboard</h2>
+    //   <div className="mt-5 py-2 px-4 border border-versich-blue rounded-md">
+    //     <p>{user.first_name + " " + user.last_name}</p>
+    //   </div>
+    //   <p className="pt-12">
+    //     Click{' '}
+    //     <span>
+    //       <Link to="/steppers" className="text-versich-blue underline">
+    //         here
+    //       </Link>
+    //     </span>{' '}
+    //     to complete your registration.
+    //   </p>
+
+    //   <Link
+    //     to="/auth/verification/YOUR_TOKEN/email/"
+    //     className="text-versich-blue underline pt-12"
+    //   >
+    //     Verify Email
+    //   </Link>
+      
+    //   <p>
+    //       Click{" "}
+    //       <span>
+    //         <Link
+    //           to="/auth/verification/email/"
+    //           className="text-versich-blue underline"
+    //         >
+    //           here
+    //         </Link>
+    //       </span>{" "}
+    //       to view Email Verified Page
+    //     </p>
+    // </div>
   );
 }
 
