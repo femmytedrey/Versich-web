@@ -28,6 +28,18 @@ const Dashboard = () => {
         </span>{' '}
         to complete your registration.
       </p>
+      <p className="pt-12">
+        Click{' '}
+        <span>
+          <Link
+            to="/auth/verification/YOUR_TOKEN/email/"
+            className="text-versich-blue underline"
+          >
+            here
+          </Link>
+        </span>{' '}
+        to for email verification
+      </p>
     </div>
   );
 }
