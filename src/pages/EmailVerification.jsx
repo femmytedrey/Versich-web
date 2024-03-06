@@ -12,11 +12,11 @@ const EmailVerification = () => {
                 Kindly check your email inbox or spam folder to verify your email address.
             </p>
             <p className="text-center">
-                If you didn't receive any email, you can click{' '}
-                <Link to="/auth/resend-verification" className="text-versich-blue underline" onClick={emailResend}>
+                Click{' '}
+                <button className="text-versich-blue underline" onClick={emailResend}>
                 here
-                </Link>{' '}
-                to resend the verification email.
+                </button>{' '}
+                to resend.
             </p>
         </div>
     </div>
