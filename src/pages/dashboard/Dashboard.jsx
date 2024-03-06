@@ -38,7 +38,7 @@ const Dashboard = () => {
             here
           </Link>
         </span>{' '}
-        to for email verification
+        to verify your email
       </p>
     </div>
   );

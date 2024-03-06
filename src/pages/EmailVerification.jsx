@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { MdMarkEmailUnread } from "react-icons/md";
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
@@ -34,6 +35,9 @@ const EmailVerification = () => {
     <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center bg-versich-primary-bg items-center">
       <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
         <h2 className="font-bold text-2xl mb-5">Email Verification</h2>
+        <div className="text-3xl py-3 flex justify-center text-versich-blue">
+            <MdMarkEmailUnread />
+        </div>
         <p className="text-center mb-5">
           Kindly check your email inbox or spam folder to verify your email
           address.
@@ -47,7 +51,7 @@ const EmailVerification = () => {
           >
             here
           </button>{" "}
-          to resend.
+          to resend Verification Link.
         </p>
         {showCountdown && (
           <p className="text-center">Resend email in {countdown}s.</p>
