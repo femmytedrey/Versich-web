@@ -22,10 +22,10 @@ const CircularProgressBar = () => {
 
   return (
     <div className="relative">
-      <div className="h-20 w-20 rounded-full bg-red-600 relative flex justify-center items-center">
-        <div className="h-16 w-16 rounded-full bg-blue-600"></div>
+      <div className="h-20 w-20 rounded-full bg-white relative flex justify-center items-center">
+        <div className="h-16 w-16 rounded-full bg-[#D9EBFC]"></div>
         <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center">
-          <span className="text-white text-lg font-semibold">{`${progress}%`}</span>
+          <span className="text-versich-dark-blue text-lg font-semibold">{`${progress}%`}</span>
         </div>
         <div className="absolute top-0 left-0">
           <svg height={height} width={width} xmlns="http://www.w3.org/2000/svg">
