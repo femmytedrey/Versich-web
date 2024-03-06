@@ -13,6 +13,7 @@ import Steppers from "../../pages/Steppers";
 // import ProfileForm from "../../pages/ProfileForm";
 // import LeadsForm from "../../pages/LeadsForm";
 import EmailVerification from "../../pages/EmailVerification";
+import EmailVerified from "../../pages/EmailVerified";
 
 const AllRoutes = () => {
   return (
@@ -32,6 +33,10 @@ const AllRoutes = () => {
           <Route
             path="verification/:token/email/"
             element={<EmailVerification />}
+          />
+          <Route
+            path="verification/email/"
+            element={<EmailVerified />}
           />
           {/* <Route path="su/">
             <Route path="" element={<AccountSelection />} />

@@ -6,10 +6,10 @@ const EmailVerification = () => {
   const [disableResend, setDisableResend] = useState(false);
 
   const emailResend = () => {
-    alert('Email resent');
+    alert("Email resent");
     setShowCountdown(true);
     setDisableResend(true);
-    setCountdown(30); // Reset countdown to its initial value
+    setCountdown(30);
   };
 
   useEffect(() => {
@@ -34,27 +34,38 @@ const EmailVerification = () => {
       <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
         <h2 className="font-bold text-2xl mb-5">Email Verification</h2>
         <p className="text-center mb-5">
-          Kindly check your email inbox or spam folder to verify your email address.
+          Kindly check your email inbox or spam folder to verify your email
+          address.
         </p>
         <p className="text-center">
-          Click{' '}
+          Click{" "}
           <button
             className="text-versich-blue underline"
             onClick={emailResend}
             disabled={disableResend}
           >
             here
-          </button>{' '}
+          </button>{" "}
           to resend.
         </p>
         {showCountdown && (
-          <p className="text-center">
-            Resend email in {countdown}s.
-          </p>
+          <p className="text-center">Resend email in {countdown}s.</p>
         )}
+        <p className="pt-8">
+          Click{" "}
+          <span>
+            <Link
+              to="/auth/verification/email/"
+              className="text-versich-blue underline"
+            >
+              here
+            </Link>
+          </span>{" "}
+          to for email verification
+        </p>
       </div>
     </div>
   );
-}
+};
 
 export default EmailVerification;
