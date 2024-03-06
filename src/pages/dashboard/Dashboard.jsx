@@ -22,7 +22,7 @@ const Dashboard = () => {
       <p className="pt-12">
         Click{' '}
         <span>
-          <Link to="/leads" className="text-versich-blue underline">
+          <Link to="/steppers" className="text-versich-blue underline">
             here
           </Link>
         </span>{' '}
