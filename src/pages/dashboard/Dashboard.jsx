@@ -52,9 +52,8 @@ const Dashboard = () => {
               <CircularProgressBar progress={progress} />
             </div>
             <div>
-              <p>Your profile is complete. Please complete your profile.</p>
               <p>
-               Complete your profile
+               Complete your profile {' '}
                  <span>
                    <Link to="/steppers" className="text-versich-blue underline">
                      here
