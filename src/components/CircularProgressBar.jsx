@@ -1,7 +1,7 @@
 import React from "react";
 
 const CircularProgressBar = () => {
-  const progress = 25;
+  const progress = 50;
   const radius = 36;
   const strokeWidth = 8;
 
