@@ -10,7 +10,7 @@ const ConfirmButton = ({ text, type, clickHandler, loading }) => {
       <button
         type={type}
         onClick={handleClick}
-        className="bg-versich-blue hover:bg-versich-blue-hover w-full text-white rounded-lg py-4 font-medium "
+        className="bg-versich-blue hover:bg-versich-blue-hover w-full text-white rounded-lg py-3 font-medium "
       >
         {text ? text : null}
       </button>

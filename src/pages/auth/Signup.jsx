@@ -111,7 +111,7 @@ const Signup = () => {
                       message: "Password must be at least 6 characters",
                     },
                     pattern: {
-                      value: /^(?=.*[!@#$%^&*()_+])[!@#$%^&*()_+]+$/,
+                      value: /^(?=.*[!@#$%^&*()_+]).+$/,
                       message: "Atleast one special character required",
                     },
                   }}
@@ -124,14 +124,14 @@ const Signup = () => {
                   placeholder="*************"
                   rules={{
                     required: "Password is required",
-                    minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters",
-                    },
-                    pattern: {
-                      value: /^(?=.*[!@#$%^&*()_+])[!@#$%^&*()_+]+$/,
-                      message: "Atleast one special character required",
-                    },
+                    // minLength: {
+                    //   value: 6,
+                    //   message: "Password must be at least 6 characters",
+                    // },
+                    // pattern: {
+                    //   value: /^(?=.*[!@#$%^&*()_+])[!@#$%^&*()_+]+$/,
+                    //   message: "Atleast one special character required",
+                    // },
                   }}
                 />
 

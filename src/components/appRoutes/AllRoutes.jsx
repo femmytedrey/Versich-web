@@ -14,6 +14,7 @@ import Steppers from "../../pages/Steppers";
 // import LeadsForm from "../../pages/LeadsForm";
 import EmailVerification from "../../pages/EmailVerification";
 import EmailVerified from "../../pages/EmailVerified";
+import TempDashboard from "../../pages/TempDashboard";
 
 const AllRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AllRoutes = () => {
         <Route path="" element={<Home />} />
         {/* Temporary preview for sam to see */}
         <Route path="steppers/" element={<Steppers />} />
+        <Route path="tempdashboard/" element={<TempDashboard />} />
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
