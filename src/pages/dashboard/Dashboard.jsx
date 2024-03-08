@@ -100,10 +100,10 @@ const Dashboard = () => {
               </p>
             </div>
             <div className="flex gap-x-3">
-              <button className="border-[1px] border-versich-border text-sm text-versich-border rounded-xl px-2 py-2">
+              <button className="border-[1px] border-versich-border text-xs md:text-sm text-versich-border rounded-xl px-2 py-2">
                 Mobile app
               </button>
-              <button className="border-[1px] border-versich-border text-sm text-versich-border rounded-xl px-2 py-2">
+              <button className="border-[1px] border-versich-border text-xs md:text-sm text-versich-border rounded-xl px-2 py-2">
                 Software development
               </button>
             </div>
