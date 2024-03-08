@@ -1,3 +1,5 @@
+// LeadsForm.jsx
+
 import { useState } from "react";
 import RadioSelection from "../components/RadioSelection";
 import { IoIosAlert } from "react-icons/io";
@@ -9,90 +11,67 @@ import { useNavigate } from "react-router-dom";
 const LeadsForm = () => {
   const methods = useForm();
   const { formState, handleSubmit } = methods;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [regionError, setRegionError] = useState(false);
 
   const regionCoverage = [
     { value: "value1", label: "I serve customers worldwide" },
     { value: "value2", label: "I serve customers within" },
   ];
 
-  const milesCoverage = [
-    { value: "value1", label: "3 miles" },
-    { value: "value2", label: "20 miles" },
-  ];
-
-  const postcodes = [
-    { value: "value1", label: "option 1" },
-    { value: "value2", label: "option 2" },
-  ];
-
-  const Country = [
-    { value: "value1", label: "Nigeria" },
-    { value: "value2", label: "Ghana" },
-  ];
-
-  const State = [
-    { value: "value1", label: "Abuja" },
-    { value: "value2", label: "Accra" },
-  ];
-
   const handleRadioChange = (value) => {
     setIsFirstOptionSelected(value === "value1");
-    // console.log(
-    //   "Is first option selected?",
-    //   value === "value2",
-    //   isFirstOptionSelected
-    // );
   };
 
   const handleButtonClick = async () => {
     try {
       const isValid = await methods.trigger();
-  
+
       if (!isValid) {
         console.log("Form validation failed");
         return;
-      } else {
-        navigate('/profile')
       }
-  
-      handleSubmit((data) => {
-        if (isFirstOptionSelected) {
-          const selectedCountryLabel = Country.find(
-            (option) => option.value === data.selectedCountry
-          )?.label;
-  
-          const selectedStateLabel = State.find(
-            (option) => option.value === data.selectedState
-          )?.label;
-  
-          console.log("Form submitted successfully:");
-          console.log("Selected Country:", selectedCountryLabel);
-          console.log("Selected State:", selectedStateLabel);
-  
-          console.log("Navigating to StepTwo");
-          navigate("/steptwo");
-        } else {
-          const selectedMilesCoverageLabel = milesCoverage.find(
-            (option) => option.value === data.milesCoverage
-          )?.label;
-  
-          const selectedPostcodesLabel = postcodes.find(
-            (option) => option.value === data.postcodes
-          )?.label;
-  
-          console.log("Form submitted successfully:");
-          console.log("Selected Miles Coverage:", selectedMilesCoverageLabel);
-          console.log("Selected Postcodes:", selectedPostcodesLabel);
+
+      const selectedOptionLabel = regionCoverage.find(
+        (option) => option.value === (isFirstOptionSelected ? "value1" : "value2")
+      )?.label;
+
+      if (isFirstOptionSelected) {
+        const formData = {
+          selectedOption: selectedOptionLabel,
+        };
+
+        console.log("Form submitted successfully:", formData);
+
+      } else {
+        if (!selectedCountry || !selectedState) {
+          setRegionError(true);
+          return;
         }
-      })();
+
+        const formData = {
+          selectedOption: selectedOptionLabel,
+          selectedCountry,
+          selectedState,
+        };
+
+        console.log("Form submitted successfully:", formData);
+        setRegionError(false)
+      }
+      navigate("/steptwo");
     } catch (error) {
       console.error("Form submission error:", error);
     }
   };
-  
+
+  const handleLocationChange = (country, state) => {
+    setSelectedCountry(country);
+    setSelectedState(state);
+  };
 
   return (
     <FormProvider {...methods}>
@@ -112,13 +91,10 @@ const LeadsForm = () => {
             onChange={handleRadioChange}
           />
 
-          {/* Dropdown rendered dynamically */}
           <LocationSelection
             isFirstOptionSelected={isFirstOptionSelected}
-            Country={Country}
-            State={State}
-            milesCoverage={milesCoverage}
-            postcodes={postcodes}
+            onLocationChange={handleLocationChange}
+            regionError={regionError}
           />
 
           <div className="flex gap-x-3 items-start text-start">

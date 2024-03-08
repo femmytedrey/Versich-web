@@ -84,11 +84,11 @@ const TempDashboard = () => {
                 You’ll receive leads in these categories
               </p>
             </div>
-            <div className="flex gap-x-3">
-              <button className="border-[1px] border-versich-border text-xs md:text-sm text-versich-border rounded-xl px-3 py-2">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button className="border-[1px] border-versich-border text-xs md:text-sm text-versich-border rounded-xl px-3 py-2 hover:bg-versich-blue hover:text-white">
                 Mobile app
               </button>
-              <button className="border-[1px] border-versich-border text-xs md:text-sm text-versich-border rounded-xl px-3 py-2">
+              <button className="border-[1px] border-versich-border text-xs md:text-sm text-versich-border rounded-xl px-3 py-2 hover:bg-versich-blue hover:text-white">
                 Software development
               </button>
             </div>
