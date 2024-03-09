@@ -12,11 +12,7 @@ const ProfileForm = () => {
   const { user } = useSelector((state) => state.auth);
   const fullName = user ? `${user.first_name} ${user.last_name}` : "";
 
-  const methods = useForm({
-    defaultValues: {
-      yourName: fullName,
-    },
-  });
+  const methods = useForm();
   const navigate = useNavigate();
 
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -163,7 +159,7 @@ const ProfileForm = () => {
               inputType="text"
               name="yourName"
               rules={{ required: "Field is required" }}
-              defaultValues={fullName}
+              defaultValue={fullName}
             />
             <InputText
               label="Company Name"
