@@ -9,6 +9,7 @@ const InputText = ({
   name,
   rules,
   onChange,
+  defaultValue,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { register, formState, setValue, getValues } = useFormContext();
@@ -73,6 +74,7 @@ const InputText = ({
         name={name}
         {...register(name, rules)}
         onChange={handleChange}
+        value={defaultValue}
       />
       {errors[name] && (
         <div className="text-sm text-red-500 text-left">
