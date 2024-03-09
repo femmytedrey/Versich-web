@@ -62,7 +62,7 @@ const LeadsForm = () => {
         console.log("Form submitted successfully:", formData);
         setRegionError(false)
       }
-      navigate("/steptwo");
+    //   navigate("/steptwo");
     } catch (error) {
       console.error("Form submission error:", error);
     }

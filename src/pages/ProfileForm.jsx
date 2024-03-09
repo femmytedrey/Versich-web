@@ -13,10 +13,11 @@ const ProfileForm = () => {
 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [phoneNumberValid, setPhoneNumberValid] = useState(true);
+  const [isWebsite, setIsWebsite] = useState(false);
 
   const [choiceButton, setChoiceButton] = useState([
-    { text: "Yes", isSelected: true },
-    { text: "No", isSelected: false },
+    { text: "Yes", isSelected: false },
+    { text: "No", isSelected: true },
   ]);
 
   const [choiceButton1, setChoiceButton1] = useState([
@@ -35,6 +36,7 @@ const ProfileForm = () => {
       isSelected: i === index,
     }));
     setChoiceButton(updatedButtons);
+    setIsWebsite(index === 0);
   };
 
   const handleToggle1 = (index) => {
@@ -99,29 +101,35 @@ const ProfileForm = () => {
     const selectedCompanySizeLabel = employeeNumbers.find(
       (option) => option.value === data.companySize
     )?.label;
-
-    const WebOption = choiceButton.find((button) => button.isSelected)?.text;
-
+  
+    const webOption = choiceButton.find((button) => button.isSelected)?.text;
+  
     const selectedSalesTeamLabel = choiceButton1.find(
       (button) => button.isSelected
     )?.text;
-
+  
     const selectedSocialMediaLabel = choiceButton2.find(
       (button) => button.isSelected
     )?.text;
-
-    console.log("Form submitted successfully:");
-    console.log("Your Name:", data.yourName);
-    console.log("Company Name:", data.companyName);
-    console.log("Address:", data.address);
-    console.log("Phone Number:", phoneNumber);
-    console.log("Website ?", WebOption);
-    console.log("Your Website:", data.website);
-    console.log("Company Size:", selectedCompanySizeLabel);
-    console.log("Sales Team:", selectedSalesTeamLabel);
-    console.log("Social Media:", selectedSocialMediaLabel);
+  
+    const formData = {
+      "Your Name": data.yourName,
+      "Company Name": data.companyName,
+      Address: data.address,
+      "Phone Number": phoneNumber,
+      "Does your company have a website?": webOption,
+      ...(isWebsite && { "Your Website": webOption === "Yes" ? data.website : null }),
+      "Company Size": selectedCompanySizeLabel,
+      "Does your company have a sales team?": selectedSalesTeamLabel,
+      "Does your company use social media?": selectedSocialMediaLabel,
+    };
+    
+  
+    console.log("Form submitted successfully:", formData);
+  
     methods.reset();
   };
+  
 
   return (
     <FormProvider {...methods}>
@@ -181,12 +189,16 @@ const ProfileForm = () => {
               </div>
             </div>
 
-            <InputText
-              label="Your Website"
-              placeholder="Website address (optional)"
-              inputType="text"
-              name="website"
-            />
+            {isWebsite && (
+              <InputText
+                label="Your Website"
+                placeholder="Website address"
+                inputType="text"
+                name="website"
+                rules={{ required: "Field is required" }}
+                methods={methods}
+              />
+            )}
 
             <DropdownField
               label="Company size, employees"

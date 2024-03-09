@@ -16,6 +16,9 @@ import EmailVerification from "../../pages/EmailVerification";
 import EmailVerified from "../../pages/EmailVerified";
 import TempDashboard from "../../pages/TempDashboard";
 import LeadsForm from "../../pages/LeadsForm";
+import Response from "../../pages/dashboard/Response";
+import MoreLeadsForm from "../../pages/MoreLeadsForm";
+import ProfileForm from "../../pages/ProfileForm";
 
 const AllRoutes = () => {
   return (
@@ -23,9 +26,13 @@ const AllRoutes = () => {
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary preview for sam to see */}
+        {/* Temporary routes */}
         <Route path="steppers/" element={<Steppers />} />
         <Route path="tempdashboard/" element={<TempDashboard />} />
         <Route path="leadsform" element={<LeadsForm />} />
+        <Route path="profileform" element={<ProfileForm />} />
+        <Route path="moreleadsform" element={<MoreLeadsForm />} />
+        <Route path='response' element={<Response />} />
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
