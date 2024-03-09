@@ -6,9 +6,17 @@ import DropdownField from "../components/DropdownField";
 import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PhoneNumber from "./SteptwoComponents/PhoneNumber";
+import { useSelector } from "react-redux";
 
 const ProfileForm = () => {
-  const methods = useForm();
+  const { user } = useSelector((state) => state.auth);
+  const fullName = user ? `${user.first_name} ${user.last_name}` : "";
+
+  const methods = useForm({
+    defaultValues: {
+      yourName: fullName,
+    },
+  });
   const navigate = useNavigate();
 
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -91,7 +99,7 @@ const ProfileForm = () => {
 
       await methods.handleSubmit(onSubmit)();
       console.log("Form submitted successfully");
-      navigate("/more-leads");
+      // navigate("/more-leads");
     } catch (error) {
       console.error("Form submission error:", error);
     }
@@ -101,35 +109,35 @@ const ProfileForm = () => {
     const selectedCompanySizeLabel = employeeNumbers.find(
       (option) => option.value === data.companySize
     )?.label;
-  
+
     const webOption = choiceButton.find((button) => button.isSelected)?.text;
-  
+
     const selectedSalesTeamLabel = choiceButton1.find(
       (button) => button.isSelected
     )?.text;
-  
+
     const selectedSocialMediaLabel = choiceButton2.find(
       (button) => button.isSelected
     )?.text;
-  
+
     const formData = {
       "Your Name": data.yourName,
       "Company Name": data.companyName,
       Address: data.address,
       "Phone Number": phoneNumber,
       "Does your company have a website?": webOption,
-      ...(isWebsite && { "Your Website": webOption === "Yes" ? data.website : null }),
+      ...(isWebsite && {
+        "Your Website": webOption === "Yes" ? data.website : null,
+      }),
       "Company Size": selectedCompanySizeLabel,
       "Does your company have a sales team?": selectedSalesTeamLabel,
       "Does your company use social media?": selectedSocialMediaLabel,
     };
-    
-  
+
     console.log("Form submitted successfully:", formData);
-  
+
     methods.reset();
   };
-  
 
   return (
     <FormProvider {...methods}>
@@ -155,6 +163,7 @@ const ProfileForm = () => {
               inputType="text"
               name="yourName"
               rules={{ required: "Field is required" }}
+              defaultValues={fullName}
             />
             <InputText
               label="Company Name"
