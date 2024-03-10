@@ -41,7 +41,7 @@ const Dashboard = () => {
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
 
   return (
-    <div className="bg-versich-primary-bg mx-10 md:mx-16 lg:mx-28 space-y-4 py-10">
+    <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
         <p>Good Afternoon, {user.first_name}!</p>
         <Link
