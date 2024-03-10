@@ -9,10 +9,21 @@ import { GoUnread } from "react-icons/go";
 
 const TempDashboard = () => {
   const { user } = useSelector((state) => state.auth);
-  const [progress, setProgress] = useState(25);
+  // const [progress, setProgress] = useState(75);
+  const progress = useSelector((state) => state.progress.value);
 
   const editBtn = () => {
     console.log("Testing Edit btn");
+  };
+
+  const getProfileLink = () => {
+    if (progress < 50) {
+      return "/leads";
+    } else if (progress < 75) {
+      return "/profile";
+    } else {
+      return "/more-leads";
+    }
   };
 
   return (
@@ -46,7 +57,7 @@ const TempDashboard = () => {
                   Complete your profile {""}
                   <span>
                     <Link
-                      to="/steppers"
+                      to={getProfileLink()}
                       className="text-versich-blue underline"
                     >
                       here

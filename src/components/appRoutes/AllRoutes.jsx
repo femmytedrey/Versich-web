@@ -29,9 +29,9 @@ const AllRoutes = () => {
         {/* Temporary routes */}
         <Route path="steppers/" element={<Steppers />} />
         <Route path="tempdashboard/" element={<TempDashboard />} />
-        <Route path="leadsform" element={<LeadsForm />} />
-        <Route path="profileform" element={<ProfileForm />} />
-        <Route path="moreleadsform" element={<MoreLeadsForm />} />
+        <Route path="leads" element={<LeadsForm />} />
+        <Route path="profile" element={<ProfileForm />} />
+        <Route path="more-leads" element={<MoreLeadsForm />} />
         <Route path='response' element={<Response />} />
       </Route>
       <Route path="/auth/">

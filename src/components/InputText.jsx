@@ -75,6 +75,7 @@ const InputText = ({
         {...register(name, rules)}
         onChange={handleChange}
         value={defaultValue}
+        readOnly={defaultValue ? true : false}
       />
       {errors[name] && (
         <div className="text-sm text-red-500 text-left">

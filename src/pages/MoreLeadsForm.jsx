@@ -1,20 +1,28 @@
 import { useState } from "react";
 import ComboInput from "./StepthreeComponents/ComboInput";
+import { useDispatch } from "react-redux";
+import { setProgress } from "../reducers/ProgressSlice";
+import { useNavigate } from "react-router-dom";
 
 const MoreLeadsForm = () => {
   const [selectedService, setSelectedService] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleOptionSelect = (option) => {
     setSelectedService(option);
   };
 
   const handleSubmit = () => {
-    // You can perform submission logic here
     if (selectedService) {
       console.log(`Submission successful for: ${selectedService}`);
     } else {
       console.log("Submission successful");
     }
+    dispatch(setProgress(100));
+    const updatedProgress = 100;
+    console.log("Profile completion progress", updatedProgress);
+    navigate('/dashboard')
   };
 
   return (

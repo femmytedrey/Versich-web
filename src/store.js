@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit";
 
-import authReducer from "./reducers/auth"
+import authReducer from "./reducers/auth";
+import progressReducer from "./reducers/ProgressSlice";
 
 const store = configureStore({
-    reducer: {
-        auth: authReducer,
-    },
-    devTools: process.env.NODE_ENV !== "production",
-})
-export default store 
+  reducer: {
+    auth: authReducer,
+    progress: progressReducer,
+  },
+  devTools: process.env.NODE_ENV !== "production",
+});
+export default store;

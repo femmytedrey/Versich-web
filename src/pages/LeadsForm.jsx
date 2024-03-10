@@ -7,11 +7,14 @@ import StepButton from "../components/Buttons/StepButton";
 import { useForm, FormProvider } from "react-hook-form";
 import LocationSelection from "./SteponeComponents/LocationSelection";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setProgress } from "../reducers/ProgressSlice";
 
 const LeadsForm = () => {
   const methods = useForm();
   const { formState, handleSubmit } = methods;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -30,43 +33,50 @@ const LeadsForm = () => {
   const handleButtonClick = async () => {
     try {
       const isValid = await methods.trigger();
-
+  
       if (!isValid) {
         console.log("Form validation failed");
         return;
       }
-
+  
       const selectedOptionLabel = regionCoverage.find(
         (option) => option.value === (isFirstOptionSelected ? "value1" : "value2")
       )?.label;
-
+  
       if (isFirstOptionSelected) {
         const formData = {
           selectedOption: selectedOptionLabel,
         };
-
+  
         console.log("Form submitted successfully:", formData);
-
       } else {
         if (!selectedCountry || !selectedState) {
           setRegionError(true);
           return;
         }
-
+  
         const formData = {
           selectedOption: selectedOptionLabel,
           selectedCountry,
           selectedState,
         };
-
+  
         console.log("Form submitted successfully:", formData);
-        setRegionError(false)
+        setRegionError(false);
+  
+        // Dispatch the action to update progress to 50%
       }
-    //   navigate("/steptwo");
+  
+      // Navigate to the next step if needed
+      dispatch(setProgress(50));
+      const updatedProgress = 50; // Capture the updated progress
+      console.log("Profile completion progress", updatedProgress);
+      navigate("/profile");
     } catch (error) {
       console.error("Form submission error:", error);
     }
   };
+  
 
   const handleLocationChange = (country, state) => {
     setSelectedCountry(country);

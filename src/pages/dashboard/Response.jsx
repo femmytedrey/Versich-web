@@ -35,6 +35,7 @@ const Response = () => {
       </div>
       <div>
         <div className="text-versich-dark-blue font-bold text-xl md:text-2xl">Services</div>
+        {/* This is where the selected services from the drop down menu will be showing, but this time around, we are not just taking name, we are mapping through everything from the serviceImages component, you got it? */}
         <div></div>
       </div>
     </div>

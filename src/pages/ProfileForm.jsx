@@ -6,11 +6,13 @@ import DropdownField from "../components/DropdownField";
 import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import PhoneNumber from "./SteptwoComponents/PhoneNumber";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProgress } from "../reducers/ProgressSlice";
 
 const ProfileForm = () => {
   const { user } = useSelector((state) => state.auth);
-  const fullName = user ? `${user.first_name} ${user.last_name}` : "";
+  const fullName = user ? `${user.first_name} ${user.last_name}` : "adeyemo";
+  const dispatch = useDispatch();
 
   const methods = useForm();
   const navigate = useNavigate();
@@ -84,7 +86,7 @@ const ProfileForm = () => {
     navigate("/leads");
   };
 
-  const handleButtonClickNext = async () => {
+  const onSubmit = async (data) => {
     try {
       const isValid = await methods.trigger();
 
@@ -93,46 +95,44 @@ const ProfileForm = () => {
         return;
       }
 
-      await methods.handleSubmit(onSubmit)();
-      console.log("Form submitted successfully");
-      // navigate("/more-leads");
+      const selectedCompanySizeLabel = employeeNumbers.find(
+        (option) => option.value === data.companySize
+      )?.label;
+
+      const webOption = choiceButton.find((button) => button.isSelected)?.text;
+
+      const selectedSalesTeamLabel = choiceButton1.find(
+        (button) => button.isSelected
+      )?.text;
+
+      const selectedSocialMediaLabel = choiceButton2.find(
+        (button) => button.isSelected
+      )?.text;
+
+      const formData = {
+        "Your Name": data.yourName,
+        "Company Name": data.companyName,
+        Address: data.address,
+        "Phone Number": `+${phoneNumber}`,
+        "Does your company have a website?": webOption,
+        ...(isWebsite && {
+          "Your Website": webOption === "Yes" ? data.website : null,
+        }),
+        "Company Size": selectedCompanySizeLabel,
+        "Does your company have a sales team?": selectedSalesTeamLabel,
+        "Does your company use social media?": selectedSocialMediaLabel,
+      };
+
+      console.log("Form submitted successfully:", formData);
+
+      dispatch(setProgress(75));
+      const updatedProgress = 75;
+      console.log("Profile completion progress", updatedProgress);
+
+      navigate("/more-leads");
     } catch (error) {
       console.error("Form submission error:", error);
     }
-  };
-
-  const onSubmit = (data) => {
-    const selectedCompanySizeLabel = employeeNumbers.find(
-      (option) => option.value === data.companySize
-    )?.label;
-
-    const webOption = choiceButton.find((button) => button.isSelected)?.text;
-
-    const selectedSalesTeamLabel = choiceButton1.find(
-      (button) => button.isSelected
-    )?.text;
-
-    const selectedSocialMediaLabel = choiceButton2.find(
-      (button) => button.isSelected
-    )?.text;
-
-    const formData = {
-      "Your Name": data.yourName,
-      "Company Name": data.companyName,
-      Address: data.address,
-      "Phone Number": phoneNumber,
-      "Does your company have a website?": webOption,
-      ...(isWebsite && {
-        "Your Website": webOption === "Yes" ? data.website : null,
-      }),
-      "Company Size": selectedCompanySizeLabel,
-      "Does your company have a sales team?": selectedSalesTeamLabel,
-      "Does your company use social media?": selectedSocialMediaLabel,
-    };
-
-    console.log("Form submitted successfully:", formData);
-
-    methods.reset();
   };
 
   return (
@@ -148,11 +148,7 @@ const ProfileForm = () => {
               location
             </p>
           </div>
-          <form
-            noValidate
-            onSubmit={methods.handleSubmit(onSubmit)}
-            className="space-y-5"
-          >
+          <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-5">
             {/* InputText components */}
             <InputText
               label="Your Name"
@@ -253,10 +249,7 @@ const ProfileForm = () => {
                 text="Back"
                 handleButtonClick={handleButtonClickBack}
               />
-              <StepButton
-                text="Next"
-                handleButtonClick={handleButtonClickNext}
-              />
+              <StepButton text="Next" />
             </div>
           </form>
         </div>

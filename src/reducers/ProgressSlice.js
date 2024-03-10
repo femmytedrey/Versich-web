@@ -1,0 +1,14 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const progressSlice = createSlice({
+  name: "progress",
+  initialState: { value: 25 },
+  reducers: {
+    setProgress: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
+
+export const { setProgress } = progressSlice.actions;
+export default progressSlice.reducer;

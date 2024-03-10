@@ -9,7 +9,7 @@ import { GoUnread } from "react-icons/go";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
-  const [progress, setProgress] = useState(100);
+  const progress = useSelector((state) => state.progress.value);
 
   if (
     !user ||
@@ -26,6 +26,16 @@ const Dashboard = () => {
 
   const editBtn = () => {
     console.log("Testing Edit btn");
+  };
+
+  const getProfileLink = () => {
+    if (progress < 50) {
+      return "/leads";
+    } else if (progress < 75) {
+      return "/profile";
+    } else {
+      return "/more-leads";
+    }
   };
 
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
@@ -61,7 +71,7 @@ const Dashboard = () => {
                   Complete your profile {""}
                   <span>
                     <Link
-                      to="/steppers"
+                      to={getProfileLink()}
                       className="text-versich-blue underline"
                     >
                       here

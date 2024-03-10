@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { MdClose } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
+import ServiceImages from "../../assets/ServiceImages";
 
 const ComboInput = ({ onSelect }) => {
   const [search, setSearch] = useState("");
@@ -8,16 +9,8 @@ const ComboInput = ({ onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const comboInputRef = useRef(null);
 
-  const defaultOptions = [
-    "Logo Design",
-    "Web Design",
-    "U/X Design",
-    "Mobile App Design",
-    "Illustration",
-    "Branding",
-    "Backend Development",
-    "Frontend Development",
-  ];
+  const defaultOptions = ServiceImages.map((service) => service.name);
+
   const [filteredOptions, setFilteredOptions] = useState(defaultOptions);
 
   const handleSearch = (event) => {
