@@ -11,7 +11,7 @@ import { setProgress } from "../reducers/ProgressSlice";
 
 const ProfileForm = () => {
   const { user } = useSelector((state) => state.auth);
-  const fullName = user ? `${user.first_name} ${user.last_name}` : "adeyemo";
+  const fullName = user ? `${user.first_name} ${user.last_name}` : "";
   const dispatch = useDispatch();
 
   const methods = useForm();
