@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
 
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import InputText from "../../components/InputText";
+import SocialAccounts from "./socialAccounts/SocialAccounts"
 import { signupPath } from "../../assets/constants";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../actions/auth";
@@ -137,20 +137,7 @@ const Login = () => {
                   </Link>
                 </p>
 
-                {/* divider */}
-                <div className="flex items-center gap-5 justify-between">
-                  <div className="bg-gray-500 h-[2px] w-full rounded-md" />
-                  <p>Or</p>
-                  <div className="bg-gray-500 h-[2px] w-full" />
-                </div>
-
-                <button
-                  type="button"
-                  className="flex items-center gap-5 w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-gray-100"
-                >
-                  <FcGoogle />
-                  Continue with Google
-                </button>
+                <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
               </div>
             </form>
           </div>

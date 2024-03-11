@@ -18,3 +18,6 @@ export const register = (data) => API.post("/auth/register/", data, getReqConfig
 export const login = (data) => API.post("/auth/login/", data, getReqConfig(data))
 export const getUser = () => API.get("/auth/me/")
 export const logout = () => API.get("/auth/logout/")
+
+// Social Auth
+export const authenticateGoogleUser = (searchQuery) => API.get(`/auth/social-accounts/google/callback/${searchQuery}`)
