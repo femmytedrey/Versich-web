@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
-import { useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
@@ -14,8 +13,9 @@ const Dashboard = () => {
   if (
     !user ||
     typeof user !== "object" ||
-    !user.first_name ||
-    !user.last_name
+    !user.first_name
+    // ||
+    // !user.last_name
   ) {
     return (
       <div className="flex flex-col items-center justify-center my-10 min-h-80">
@@ -148,7 +148,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="Edit setting"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -178,7 +178,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View leads"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -205,7 +205,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View responses"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
