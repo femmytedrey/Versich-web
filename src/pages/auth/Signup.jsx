@@ -40,7 +40,11 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         //  data.message, data.status
-        
+        if (error.status) {
+          setErrorMsg(error.message);
+        } else {
+          setErrorMsg("An unexpected error occurred during signup. Please try again.");
+        }
       })
       .finally(() => {
         // methods.reset();
