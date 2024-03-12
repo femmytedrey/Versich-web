@@ -23,6 +23,28 @@ const Signup = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const handleSignupError = (status) => {
+    let errorMessage = "An unexpected error occurred. Please try again.";
+  
+    if (status === 409) {
+      errorMessage = "User already exists. Please use a different email address.";
+    } else {
+      errorMessage = `An unexpected error occurred. Status Code: ${status}`;
+    }
+  
+    setErrorMsg(errorMessage);
+  };
+  
+  const handleGenericError = (error) => {
+    let errorMessage = "An unexpected error occurred. Please try again.";
+  
+    if (error.response && error.response.data) {
+      errorMessage = error.response.data.message || errorMessage;
+    }
+  
+    setErrorMsg(errorMessage);
+  };
+
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setEqual(true);
@@ -33,6 +55,7 @@ const Signup = () => {
       .then((data) => {
         if (data.status !== "success") {
           // Render error to user
+          handleSignupError(result.status);
           return;
         }
         methods.reset();
@@ -40,12 +63,7 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         //  data.message, data.status
-        let errorMessage = "An unexpected error occurred. Please try again.";
-
-        if (error.response && error.response.data) {
-          errorMessage = error.response.data.message || errorMessage;
-        }
-        setErrorMsg(errorMessage);
+        handleGenericError(error);
       })
       .finally(() => {
         // methods.reset();
