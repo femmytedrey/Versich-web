@@ -43,8 +43,13 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      console.error(error);
-      return setErrorMsg("Invalid credentials, please try again");
+      let errorMessage = "An unexpected error occurred. Please try again.";
+
+      if (error.response && error.response.data) {
+        errorMessage = error.response.data.message || errorMessage;
+      }
+
+      setErrorMsg(errorMessage);
     } finally {
       // setErrorMsg("");
       setLoading(false);
@@ -80,7 +85,7 @@ const Login = () => {
                   placeholder="************"
                   name="password"
                   rules={{
-                    required: "Password is required"
+                    required: "Password is required",
                   }}
                   onChange={(e) => setPassword(e.target.value)}
                 />

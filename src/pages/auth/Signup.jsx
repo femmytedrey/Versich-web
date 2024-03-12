@@ -36,12 +36,16 @@ const Signup = () => {
           return;
         }
         methods.reset();
-        // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         //  data.message, data.status
-        setErrorMsg("email already exist, please try again");
+        let errorMessage = "An unexpected error occurred. Please try again.";
+
+        if (error.response && error.response.data) {
+          errorMessage = error.response.data.message || errorMessage;
+        }
+        setErrorMsg(errorMessage);
       })
       .finally(() => {
         // methods.reset();

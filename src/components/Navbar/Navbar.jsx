@@ -6,10 +6,12 @@ import { Link, useLocation } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import {
-  homePath, loginPath, signupPath,
-  dashboardPath
+  homePath,
+  loginPath,
+  signupPath,
+  dashboardPath,
 } from "../../assets/constants";
-import ExploreDropDown from "./ExploreDropDown";
+// import ExploreDropDown from "./ExploreDropDown";
 import { logoutUser } from "../../actions/auth";
 
 // import {PiListBold} from 'react-icons/pi'
@@ -24,12 +26,12 @@ import { logoutUser } from "../../actions/auth";
  * Includes navigation links, dropdown menu, and auth buttons.
  */
 const Navbar = () => {
-  const { isAuthenticated, user } = useSelector(state => state.auth)
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    dispatch(logoutUser())
-  } // To logout user
+    dispatch(logoutUser());
+  }; // To logout user
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -59,11 +61,11 @@ const Navbar = () => {
     };
   }, []);
 
-  const menuOptions = [
-    { id: 0, label: "Option 1", href: "#" },
-    { id: 1, label: "Option 2", href: "#" },
-    { id: 2, label: "Option 3", href: "#" },
-  ];
+  // const menuOptions = [
+  //   { id: 0, label: "Option 1", href: "#" },
+  //   { id: 1, label: "Option 2", href: "#" },
+  //   { id: 2, label: "Option 3", href: "#" },
+  // ];
 
   const handleClick = () => {
     // Close the mobile menu when the "Login" button is clicked
@@ -72,16 +74,18 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${isHome ? "bg-transparent" : "bg-white shadow"
-        } `}
+      className={`flex justify-between items-center py-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${
+        isHome ? "bg-transparent" : "bg-white shadow"
+      } `}
     >
       <div>
         <Link to={homePath} className="flex items-center justify-center">
           <img src={logo} alt="logo" className="w-[48px] md:w-[52px]" />
           &nbsp;
           <span
-            className={`font-semibold text-xl  ${isHome ? "text-white" : "text-black"
-              }`}
+            className={`font-semibold text-xl  ${
+              isHome ? "text-white" : "text-black"
+            }`}
           >
             VersiMarket
           </span>
@@ -90,10 +94,11 @@ const Navbar = () => {
       <div>
         <div
           className={`md:flex md:gap-x-7 flex-col md:flex-row shadow-lg md:shadow-none absolute md:relative bg-white bg-opacity-80 backdrop-filter backdrop-blur-md md:bg-transparent md:mt-0 w-full left-0 px-10 md:px-0 py-4 md:py-0  md:visible
-          ${mobileMenu
+          ${
+            mobileMenu
               ? "top-[100%] visible  duration-500 transition-all ease-in"
               : "hidden  top-[-100%] duration-500 transition-all ease-in"
-            }`}
+          }`}
         >
           <div
             className="relative inline-block text-left w-full md:w-auto"
@@ -102,19 +107,21 @@ const Navbar = () => {
             <div>
               <button
                 type="button"
-                className={`flex md:inline-flex w-full bg-transparent justify-center items-center gap-x-2.5 transition-all duration-3000 ease-in px-3 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome
-                  ? "text-versich-darktext-color md:text-white"
-                  : "text-versich-darktext-color md:text-versich-darktext-color"
-                  }`}
+                className={`flex md:inline-flex w-full bg-transparent justify-center items-center gap-x-2.5 transition-all duration-3000 ease-in px-3 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${
+                  isHome
+                    ? "text-versich-darktext-color md:text-white"
+                    : "text-versich-darktext-color md:text-versich-darktext-color"
+                }`}
                 id="menu-button"
                 onClick={toggleMenu}
               >
                 Explore
                 <svg
-                  className={`-mr-1 h-5 w-5 ${isHome
-                    ? "text-versich-darktext-color md:text-white"
-                    : "text-versich-darktext-color md:text-versich-darktext-color"
-                    }`}
+                  className={`-mr-1 h-5 w-5 ${
+                    isHome
+                      ? "text-versich-darktext-color md:text-white"
+                      : "text-versich-darktext-color md:text-versich-darktext-color"
+                  }`}
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -127,42 +134,48 @@ const Navbar = () => {
               </button>
             </div>
 
-            <ExploreDropDown
+            {/* <ExploreDropDown
               isMenuOpen={isMenuOpen}
               menuOptions={menuOptions}
-            />
+            /> */}
           </div>
 
-          {isAuthenticated && user != null
-            ? <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
+          {isAuthenticated && user != null ? (
+            <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
               <Link
                 to={dashboardPath}
                 type="button"
                 onClick={handleClick}
-                className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome
-                  ? "text-versich-darktext-color md:text-white"
-                  : "text-versich-darktext-color md:text-versich-darktext-color"
-                  }`}
+                className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${
+                  isHome
+                    ? "text-versich-darktext-color md:text-white"
+                    : "text-versich-darktext-color md:text-versich-darktext-color"
+                }`}
               >
                 Dashboard
               </Link>
               <button
                 type="button"
-                onClick={e => { handleClick(); handleLogout() }}
+                onClick={(e) => {
+                  handleClick();
+                  handleLogout();
+                }}
                 className="bg-versich-blue hover:bg-[#0A6ECD] text-white text-lg px-4 py-3 md:py-2 rounded-lg font-regular"
               >
                 Logout
               </button>
             </div>
-            : <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
+          ) : (
+            <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
               <Link
                 to={loginPath}
                 type="button"
                 onClick={handleClick}
-                className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${isHome
-                  ? "text-versich-darktext-color md:text-white"
-                  : "text-versich-darktext-color md:text-versich-darktext-color"
-                  }`}
+                className={`px-4 md:px-0 py-3 md:py-2 text-lg font-regular hover:text-versich-blue ${
+                  isHome
+                    ? "text-versich-darktext-color md:text-white"
+                    : "text-versich-darktext-color md:text-versich-darktext-color"
+                }`}
               >
                 Login
               </Link>
@@ -175,23 +188,25 @@ const Navbar = () => {
                 Sign up
               </Link>
             </div>
-          }
+          )}
         </div>
       </div>
 
       {/* {mobileMenu ? 'open' : 'close'} */}
       {mobileMenu ? (
         <div
-          className={`cursor-pointer md:hidden ${isHome ? "text-white" : "text-versich-darktext-color"
-            }`}
+          className={`cursor-pointer md:hidden ${
+            isHome ? "text-white" : "text-versich-darktext-color"
+          }`}
           onClick={menu}
         >
           <MdClose className="text-3xl" />
         </div>
       ) : (
         <div
-          className={`cursor-pointer md:hidden ${isHome ? "text-white" : "text-versich-darktext-color"
-            }`}
+          className={`cursor-pointer md:hidden ${
+            isHome ? "text-white" : "text-versich-darktext-color"
+          }`}
           onClick={menu}
         >
           <RxHamburgerMenu className="text-3xl" />

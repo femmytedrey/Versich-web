@@ -44,7 +44,6 @@ export const loginUser = (email, password, token) => async (dispatch) => {
       data: { user: data.user, token: data.token },
     });
 
-    localStorage.setItem("token", data.token);
 
     await dispatch(getUser());
 
