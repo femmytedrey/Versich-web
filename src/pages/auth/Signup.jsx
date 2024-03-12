@@ -40,13 +40,7 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         //  data.message, data.status
-        if (error.message) {
-          const errorObj = JSON.parse(error.message);
-          const errorMessage = getSignupErrorMessage(errorObj.status) || "An unexpected error occurred. Please try again.";
-          setErrorMsg(errorMessage);
-        } else {
-          setErrorMsg("An unexpected error occurred. Please try again.");
-        }
+        
       })
       .finally(() => {
         // methods.reset();

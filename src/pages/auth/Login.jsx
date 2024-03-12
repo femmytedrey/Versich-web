@@ -42,13 +42,7 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      if (error.message) {
-        const errorObj = JSON.parse(error.message);
-        const errorMessage = getLoginErrorMessage(errorObj.status) || "An unexpected error occurred. Please try again.";
-        setErrorMsg(errorMessage);
-      } else {
-        setErrorMsg("An unexpected error occurred. Please try again.");
-      }
+      
       
     } finally {
       // setErrorMsg("");
