@@ -19,30 +19,6 @@ const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleLoginError = (status) => {
-    let errorMessage = "An unexpected error occurred. Please try again.";
-  
-    if (status === 404) {
-      errorMessage = "User not found. Please check your credentials.";
-    } else if (status === 401) {
-      errorMessage = "Invalid credentials. Please double-check your email and password.";
-    } else {
-      errorMessage = `An unexpected error occurred. Status Code: ${status}`;
-    }
-  
-    setErrorMsg(errorMessage);
-  };
-  
-  const handleGenericError = (error) => {
-    let errorMessage = "An unexpected error occurred. Please try again.";
-  
-    if (error.response && error.response.data) {
-      errorMessage = error.response.data.message || errorMessage;
-    }
-  
-    setErrorMsg(errorMessage);
-  };
-
   const onSubmit = async (data) => {
     try {
       // Manually check form validity
@@ -59,7 +35,6 @@ const Login = () => {
       const result = await dispatch(loginUser(email, password, csrfToken));
 
       if (result.status !== "success") {
-        handleLoginError(result.status);
         return;
       }
 
@@ -67,7 +42,14 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      handleGenericError(error);
+      if (error.message) {
+        const errorObj = JSON.parse(error.message);
+        const errorMessage = getLoginErrorMessage(errorObj.status) || "An unexpected error occurred. Please try again.";
+        setErrorMsg(errorMessage);
+      } else {
+        setErrorMsg("An unexpected error occurred. Please try again.");
+      }
+      
     } finally {
       // setErrorMsg("");
       setLoading(false);

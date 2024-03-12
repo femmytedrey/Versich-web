@@ -24,7 +24,33 @@ export const signupUser =
        * sample => `Error({"status": "server.returned.status", "message": "Error message"})
        * You are free to use your own error handling from here, if you that easy for you.
        */
-      throw Error();
+      if (error.message) {
+        const errorObj = JSON.parse(error.message);
+
+        if (
+          errorObj.status === "403" &&
+          error.response &&
+          error.response.data
+        ) {
+          throw new Error(
+            `Error({"status": "invalid_or_no_csrftoken", "message": "Invalid or missing CSRF token."})`
+          );
+        } else if (
+          errorObj.status === "409" &&
+          error.response &&
+          error.response.data
+        ) {
+          throw new Error(
+            `Error({"status": "user_exists", "message": "This email is already registered. Please log in or use a different email."})`
+          );
+        }
+
+        throw new Error(`Error(${JSON.stringify(errorObj)})`);
+      } else {
+        throw new Error(
+          `Error({"status": "unexpected_error", "message": "An unexpected error occurred during signup. Please try again."})`
+        );
+      }
     }
   };
 
@@ -44,13 +70,26 @@ export const loginUser = (email, password, token) => async (dispatch) => {
       data: { user: data.user, token: data.token },
     });
 
-
     await dispatch(getUser());
 
     return data;
   } catch (error) {
-    console.error("Unexpected error during login:", error);
-    throw Error();
+    console.log(error);
+    if (error.message) {
+      const errorObj = JSON.parse(error.message);
+
+      if (errorObj.status === "403" && error.response && error.response.data) {
+        throw new Error(
+          `Error({"status": "invalid_or_no_csrftoken", "message": "Invalid or missing CSRF token."})`
+        );
+      }
+
+      throw new Error(`Error(${JSON.stringify(errorObj)})`);
+    } else {
+      throw new Error(
+        `Error({"status": "unexpected_error", "message": "An unexpected error occurred during login. Please try again."})`
+      );
+    }
   }
 };
 

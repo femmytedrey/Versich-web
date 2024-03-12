@@ -6,7 +6,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import CSRFTokenField from "../../components/CSRFTokenField";
 import InputText from "../../components/InputText";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
-import SocialAccounts from "./socialAccounts/SocialAccounts"
+import SocialAccounts from "./socialAccounts/SocialAccounts";
 import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
 
@@ -23,28 +23,6 @@ const Signup = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSignupError = (status) => {
-    let errorMessage = "An unexpected error occurred. Please try again.";
-  
-    if (status === 409) {
-      errorMessage = "User already exists. Please use a different email address.";
-    } else {
-      errorMessage = `An unexpected error occurred. Status Code: ${status}`;
-    }
-  
-    setErrorMsg(errorMessage);
-  };
-  
-  const handleGenericError = (error) => {
-    let errorMessage = "An unexpected error occurred. Please try again.";
-  
-    if (error.response && error.response.data) {
-      errorMessage = error.response.data.message || errorMessage;
-    }
-  
-    setErrorMsg(errorMessage);
-  };
-
   const onSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       setEqual(true);
@@ -55,7 +33,6 @@ const Signup = () => {
       .then((data) => {
         if (data.status !== "success") {
           // Render error to user
-          handleSignupError(result.status);
           return;
         }
         methods.reset();
@@ -63,7 +40,13 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         //  data.message, data.status
-        handleGenericError(error);
+        if (error.message) {
+          const errorObj = JSON.parse(error.message);
+          const errorMessage = getSignupErrorMessage(errorObj.status) || "An unexpected error occurred. Please try again.";
+          setErrorMsg(errorMessage);
+        } else {
+          setErrorMsg("An unexpected error occurred. Please try again.");
+        }
       })
       .finally(() => {
         // methods.reset();
@@ -205,7 +188,12 @@ const Signup = () => {
                   </Link>
                 </p>
 
-                <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
+                <SocialAccounts
+                  google={{
+                    url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL,
+                    text: "Continue with Google",
+                  }}
+                />
               </div>
             </form>
           </div>
