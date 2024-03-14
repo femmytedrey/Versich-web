@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
 
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import InputText from "../../components/InputText";
-import SocialAccounts from "./socialAccounts/SocialAccounts";
 import { signupPath } from "../../assets/constants";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../actions/auth";
@@ -35,6 +35,7 @@ const Login = () => {
       const result = await dispatch(loginUser(email, password, csrfToken));
 
       if (result.status !== "success") {
+        // Handle unsuccessful login
         return;
       }
 
@@ -42,9 +43,13 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      console.log("Login onSubmit error:", error);
-      setErrorMsg("Login onSubmit error:", error);
-      
+      console.log("Error occurred:", error?.message);
+      const errorMessage = error.message;
+      if(errorMessage){
+        setErrorMsg(JSON.parse(errorMessage).message);
+      } else {
+        setErrorMsg("Something went wrong, refresh and try again!")
+      }
     } finally {
       // setErrorMsg("");
       setLoading(false);
@@ -80,7 +85,7 @@ const Login = () => {
                   placeholder="************"
                   name="password"
                   rules={{
-                    required: "Password is required",
+                    required: "Password is required"
                   }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -137,12 +142,20 @@ const Login = () => {
                   </Link>
                 </p>
 
-                <SocialAccounts
-                  google={{
-                    url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL,
-                    text: "Continue with Google",
-                  }}
-                />
+                {/* divider */}
+                <div className="flex items-center gap-5 justify-between">
+                  <div className="bg-gray-500 h-[2px] w-full rounded-md" />
+                  <p>Or</p>
+                  <div className="bg-gray-500 h-[2px] w-full" />
+                </div>
+
+                <button
+                  type="button"
+                  className="flex items-center gap-5 w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-gray-100"
+                >
+                  <FcGoogle />
+                  Continue with Google
+                </button>
               </div>
             </form>
           </div>
