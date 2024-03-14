@@ -18,13 +18,14 @@ export const signupUser =
       return data;
     } catch (error) {
       console.log(error);
+
       /**
        * Handle the server returned error obj
        * throw a new error object with structured json
        * sample => `Error({"status": "server.returned.status", "message": "Error message"})
        * You are free to use your own error handling from here, if you that easy for you.
        */
-      if (error.message) {
+      try {
         const errorObj = JSON.parse(error.message);
 
         if (
@@ -32,23 +33,37 @@ export const signupUser =
           error.response &&
           error.response.data
         ) {
+          const errorMessage = "Invalid or missing CSRF token.";
+          alert(errorMessage);
           throw new Error(
-            `Error({"status": "invalid_or_no_csrftoken", "message": "Invalid or missing CSRF token."})`
+            `Error({"status": "invalid_or_no_csrftoken", "message": "${errorMessage}"})`
           );
         } else if (
           errorObj.status === "409" &&
           error.response &&
           error.response.data
         ) {
+          const errorMessage =
+            "This email is already registered. Please log in or use a different email.";
+          alert(errorMessage);
           throw new Error(
-            `Error({"status": "user_exists", "message": "This email is already registered. Please log in or use a different email."})`
+            `Error({"status": "user_exists", "message": "${errorMessage}"})`
           );
         }
 
-        throw new Error(`Error(${JSON.stringify(errorObj)})`);
-      } else {
+        const errorMessage =
+          "An unexpected error occurred during signup. Please try again.";
+        alert(errorMessage);
         throw new Error(
-          `Error({"status": "unexpected_error", "message": "An unexpected error occurred during signup. Please try again."})`
+          `Error({"status": "unexpected_error", "message": "${errorMessage}"})`
+        );
+      } catch (parseError) {
+        console.error("Error parsing JSON:", parseError);
+        const errorMessage =
+          "From catch block An unexpected error occurred during signup. Please try again.";
+        alert(errorMessage);
+        throw new Error(
+          `Error({"status": "unexpected_error", "message": "${errorMessage}"})`
         );
       }
     }
@@ -75,18 +90,21 @@ export const loginUser = (email, password, token) => async (dispatch) => {
     return data;
   } catch (error) {
     console.log(error);
-    if (error.message) {
+    try {
       const errorObj = JSON.parse(error.message);
 
       if (errorObj.status === "403" && error.response && error.response.data) {
-        throw new Error(
-          `Error({"status": "invalid_or_no_csrftoken", "message": "Invalid or missing CSRF token."})`
-        );
+        const errorMessage = "Invalid or missing CSRF token.";
+        throw Error(`Error({"status": "invalid_or_no_csrftoken", "message": "${errorMessage}"})`);
+      } else if (error.response && error.response.status === 401) {
+        const errorMessage = "Incorrect email or password. Please try again.";
+        throw Error(`Error({"status": "invalid_credentials", "message": "${errorMessage}"})`);
       }
 
-      throw new Error(`Error(${JSON.stringify(errorObj)})`);
-    } else {
-      throw new Error(
+      throw Error(`Error(${JSON.stringify(errorObj)})`);
+    } catch (parseError) {
+      console.error("Error parsing JSON:", parseError);
+      throw Error(
         `Error({"status": "unexpected_error", "message": "An unexpected error occurred during login. Please try again."})`
       );
     }

@@ -42,7 +42,8 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      
+      console.log("Login onSubmit error:", error);
+      setErrorMsg("Login onSubmit error:", error);
       
     } finally {
       // setErrorMsg("");
