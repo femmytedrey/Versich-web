@@ -43,14 +43,14 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         console.log(error, 'error to the user')
-        //const errorMessage = JSON.stringify(error.message);
-        if (error.response && error.response.status === 409) {
-          setErrorMsg(error.response.data.message);
-        } else {
-          setErrorMsg('An unexpected error occurred. Please try again.');
-        }
+        const errorMessage = JSON.stringify(error);
+        // if (error.response && error.response.status === 409) {
+        //   setErrorMsg(error.response.data.message);
+        // } else {
+        //   setErrorMsg(error);
+        // }
       
-        console.log(error, 'error to the user');      
+        setErrorMsg(errorMessage);      
       })
       .finally(() => {
         // methods.reset();
