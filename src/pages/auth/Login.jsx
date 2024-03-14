@@ -36,6 +36,7 @@ const Login = () => {
 
       if (result.status !== "success") {
         // Handle unsuccessful login
+        
         return;
       }
 
@@ -43,13 +44,10 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      console.log("Error occurred:", error?.message);
-      const errorMessage = error.message;
-      if(errorMessage){
-        setErrorMsg(JSON.parse(errorMessage).message);
-      } else {
-        setErrorMsg("Something went wrong, refresh and try again!")
-      }
+      setErrorMsg(error);
+      // console.log("Error occurred:", error?.message);
+      //console.log("Error occurred:", error.message);
+      //setErrorMsg("Something went wrong, refresh and try again!");
     } finally {
       // setErrorMsg("");
       setLoading(false);

@@ -33,7 +33,7 @@ const Signup = () => {
       .then((data) => {
         if (data.status !== "success") {
           // Render error to user
-          console.log("Found error");
+          setErrorMsg(data.message);
           // return;
         }
         methods.reset();

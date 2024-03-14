@@ -34,13 +34,12 @@ const AllRoutes = () => {
                 <Route path="profile" element={<ProfileForm />} />
                 <Route path="more-leads" element={<MoreLeadsForm />} />
                 <Route path='response' element={<Response />} />
-                <Route path="signup/" element={<Signup />} />
             </Route>
             <Route path="/auth/">
                 <Route element={<NotAuthRoutes />}>
                     <Route path="" element={<Navigate to={loginPath} replace />} />
                     <Route path="login/" element={<Login />} />
-                    {/* <Route path="signup/" element={<Signup />} /> */}
+                    <Route path="signup/" element={<Signup />} />
                     <Route path="social-accounts/verify/google-oauth2/" element={<GoogleOAuthVerification />} />
                 </Route>
                 <Route element={<AuthRoutes />}>
