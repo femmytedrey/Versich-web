@@ -34,6 +34,7 @@ const Signup = () => {
         if (data.status !== "success") {
           // Render error to user
           setErrorMsg(data.message);
+          console.log(data.message);
           // return;
         }
         methods.reset();
@@ -41,13 +42,15 @@ const Signup = () => {
       })
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
-        console.log("Error occurred:", error?.message);
-        const errorMessage = error.message;
-        if(errorMessage){
-          setErrorMsg(JSON.parse(errorMessage).message);
+        console.log(error, 'error to the user')
+        //const errorMessage = JSON.stringify(error.message);
+        if (error.response && error.response.status === 409) {
+          setErrorMsg(error.response.data.message);
         } else {
-          setErrorMsg("Something went wrong, refresh and try again!")
+          setErrorMsg('An unexpected error occurred. Please try again.');
         }
+      
+        console.log(error, 'error to the user');      
       })
       .finally(() => {
         // methods.reset();
