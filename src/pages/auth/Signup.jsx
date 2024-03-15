@@ -44,10 +44,13 @@ const Signup = () => {
         //  const data = JSON.parse(error?.message)
         console.log(error, "error to the user");
         if (error.response && error.response.status) {
-          const ErrorMessage = error.response.data?.message
-          setErrorMsg(ErrorMessage)
+          console.log(error.response)
+          console.log(error.response?.status)
+          setErrorMsg(error.response.data.message);
         }else {
           setErrorMsg(error.message);
+          console.log(error.response)
+          console.log(error.response?.status)
         }
 
       })
