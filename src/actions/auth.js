@@ -19,7 +19,7 @@ export const signupUser =
     } catch (error) {
       console.log(error)
       
-      throw Error(error);
+      throw Error(error.response);
     //  return error
 
       /**
