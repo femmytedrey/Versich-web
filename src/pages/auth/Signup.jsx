@@ -42,15 +42,14 @@ const Signup = () => {
       })
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
-        console.log(error, 'error to the user')
-        //const errorMessage = JSON.stringify(error.message);
-        // if (error.response && error.response.status === 409) {
-        //   setErrorMsg(error.response.data.message);
-        // } else {
-        //   setErrorMsg(error);
-        // }
-      
-        setErrorMsg(error);
+        console.log(error, "error to the user");
+        if (error.response && error.response.status === 409) {
+          const ErrorMessage = error.response.data?.message
+          setErrorMsg(ErrorMessage)
+        }else {
+          setErrorMsg(error.message);
+        }
+
       })
       .finally(() => {
         // methods.reset();

@@ -18,9 +18,7 @@ export const signupUser =
       return data;
     } catch (error) {
       console.log(error)
-      if (error.response && error.response.status === 409) {
-        throw Error(JSON.stringify(error.response.data?.message));
-      }
+      
       throw Error(error.message);
     //  return error
 
