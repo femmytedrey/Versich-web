@@ -18,8 +18,15 @@ export const signupUser =
       return data;
     } catch (error) {
       console.log(error)
+        if (error.response && error.response.status) {
+          throw new Error({
+            status: error.response.status,
+            message: error.response.data.message
+          });
+        }else {
+          throw Error(error)
+        }
       
-      throw Error(error.response);
     //  return error
 
       /**
