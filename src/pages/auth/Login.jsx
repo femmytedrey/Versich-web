@@ -44,10 +44,15 @@ const Login = () => {
       methods.reset();
     } catch (error) {
       // Handle errors
-      setErrorMsg(error);
-      // console.log("Error occurred:", error?.message);
-      //console.log("Error occurred:", error.message);
-      //setErrorMsg("Something went wrong, refresh and try again!");
+      console.log(error, "User Error");
+
+      if(error.response && error.response.status) {
+        setErrorMsg(error.message)
+        return error
+      }
+
+      setErrorMsg(error.message)
+      
     } finally {
       // setErrorMsg("");
       setLoading(false);
