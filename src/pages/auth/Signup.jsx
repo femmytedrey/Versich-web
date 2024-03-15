@@ -43,7 +43,7 @@ const Signup = () => {
       .catch((error) => {
         //  const data = JSON.parse(error?.message)
         console.log(error, "error to the user");
-        if (error.response && error.response.status === 409) {
+        if (error.response && error.response.status) {
           const ErrorMessage = error.response.data?.message
           setErrorMsg(ErrorMessage)
         }else {
