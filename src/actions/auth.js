@@ -17,14 +17,11 @@ export const signupUser =
       await dispatch(getUser());
       return data;
     } catch (error) {
-      console.log(error)
+      console.error(error)
         if (error.response && error.response.status) {
-          throw new Error({
-            status: error.response.status,
-            message: error.response.data.message
-          });
-        }else {
-          throw Error(error)
+          throw new Error(error.response.data.message)
+        } else {
+          throw Error(error, 'Confirmation')
         }
       
     //  return error
