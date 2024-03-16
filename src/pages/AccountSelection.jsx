@@ -8,7 +8,7 @@ const AccountSelection = () => {
         <h2 className=" text-2xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
           Join as a buyer or seller
         </h2>
-        <div>
+        {/* <div>
           <div>
             <label>
               <input type="radio" />
@@ -19,7 +19,7 @@ const AccountSelection = () => {
               <input type="radio" />
             </label>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
