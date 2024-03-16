@@ -20,6 +20,7 @@ import LeadsForm from "../../pages/LeadsForm";
 import Response from "../../pages/dashboard/Response";
 import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
+import AccountSelection from "../../pages/AccountSelection";
 
 const AllRoutes = () => {
     return (
@@ -28,11 +29,12 @@ const AllRoutes = () => {
                 <Route path="" element={<Home />} />
                 {/* Temporary preview for sam to see */}
                 {/* Temporary routes */}
-                <Route path="steppers/" element={<Steppers />} />
+                {/* <Route path="steppers/" element={<Steppers />} /> */}
                 <Route path="tempdashboard/" element={<TempDashboard />} />
-                <Route path="leads" element={<LeadsForm />} />
+                <Route path="as" element={<AccountSelection />} />
+                {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
-                <Route path="more-leads" element={<MoreLeadsForm />} />
+                <Route path="more-leads" element={<MoreLeadsForm />} /> */}
                 <Route path='response' element={<Response />} />
             </Route>
             <Route path="/auth/">
@@ -51,15 +53,15 @@ const AllRoutes = () => {
                         path="verification/email/"
                         element={<EmailVerified />}
                     />
-                    {/* <Route path="su/">
-            <Route path="" element={<AccountSelection />} />
-            <Route path="sp/">
-              <Route path="" element={<ServiceProvider />} />
-              <Route path="leads/" element={<LeadsForm />} />
-              <Route path="profile/" element={<ProfileForm />} />
-              <Route path="more-leads/" element={<MoreLeadsForm />} />
-            </Route>
-          </Route> */}
+                    <Route path="su/">
+                        <Route path="" element={<AccountSelection />} />
+                        <Route path="sp/">
+                            {/* <Route path="" element={<ServiceProvider />} /> */}
+                            <Route path="leads/" element={<LeadsForm />} />
+                            <Route path="profile/" element={<ProfileForm />} />
+                            <Route path="more-leads/" element={<MoreLeadsForm />} />
+                        </Route>
+                    </Route>
                 </Route>
             </Route>
             <Route path="dashboard/" element={<AuthRoutes />}>

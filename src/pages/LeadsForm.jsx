@@ -9,6 +9,7 @@ import LocationSelection from "./SteponeComponents/LocationSelection";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProgress } from "../reducers/ProgressSlice";
+import Meta from "../components/Meta";
 
 const LeadsForm = () => {
   const methods = useForm();
@@ -85,6 +86,7 @@ const LeadsForm = () => {
 
   return (
     <FormProvider {...methods}>
+      <Meta title='Leads' description='Complete leads registration' />
       <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden bg-versich-primary-bg flex items center justify-center">
         <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md space-y-6">
           <div className="space-y-5">

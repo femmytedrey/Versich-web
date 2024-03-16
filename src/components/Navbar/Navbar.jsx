@@ -100,7 +100,7 @@ const Navbar = () => {
               : "hidden  top-[-100%] duration-500 transition-all ease-in"
           }`}
         >
-          <div
+          {/* <div
             className="relative inline-block text-left w-full md:w-auto"
             ref={dropdownRef}
           >
@@ -134,11 +134,11 @@ const Navbar = () => {
               </button>
             </div>
 
-            {/* <ExploreDropDown
+            <ExploreDropDown
               isMenuOpen={isMenuOpen}
               menuOptions={menuOptions}
-            /> */}
-          </div>
+            />
+          </div> */}
 
           {isAuthenticated && user != null ? (
             <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">

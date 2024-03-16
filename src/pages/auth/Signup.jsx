@@ -9,6 +9,7 @@ import InputText from "../../components/InputText";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
+import Meta from "../../components/Meta";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -46,7 +47,7 @@ const Signup = () => {
 
         if (error.response && error.response.status) {
           setErrorMsg(error.message);
-          return error
+          return error;
         }
 
         setErrorMsg(error.message);
@@ -68,6 +69,7 @@ const Signup = () => {
 
   return (
     <FormProvider {...methods}>
+      <Meta title="Signup" description="Sign up for a new account." />
       <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
         <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
           <h2 className=" text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
@@ -76,8 +78,8 @@ const Signup = () => {
           <div className="w-full">
             {/* form */}
             <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
-              <div className="space-y-4 md:space-y-5 text-start ">
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="space-y-6 md:space-y-7 text-start ">
+                <div className="grid grid-cols-1 gap-x-5 gap-6 md:grid-cols-2">
                   <CSRFTokenField token={csrfToken} setToken={setCsrfToken} />
                   <InputText
                     label="First Name"

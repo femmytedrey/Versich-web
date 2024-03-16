@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../actions/auth";
 import { useState } from "react";
 import CSRFTokenField from "../../components/CSRFTokenField";
+import Meta from "../../components/Meta";
 
 const Login = () => {
   const methods = useForm();
@@ -66,13 +67,14 @@ const Login = () => {
 
   return (
     <FormProvider {...methods}>
+      <Meta title='Login' description='Login to your account' />
       <div className="py-10 md:py-14 mb-12 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
         <div className="w-full bg-white shadow-md py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-md">
-          {/* <h2 className=' text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium '>Log in</h2> */}
+          <h2 className=' text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium '>Log in</h2>
           <div className="w-full">
             {/* form */}
             <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
-              <div className="space-y-4 text-start md:space-y-5  ">
+              <div className="space-y-6 md:space-y-7 text-start">
                 <CSRFTokenField token={csrfToken} setToken={setCsrfToken} />
                 <InputText
                   label="Email address or username"

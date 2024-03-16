@@ -5,6 +5,7 @@ import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
+import Meta from "../../components/Meta";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
@@ -42,6 +43,7 @@ const Dashboard = () => {
 
   return (
     <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
+      <Meta title='Dashboard' description='VersiMarket User dashboard' />
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
         <p>Good Afternoon, {user.first_name}!</p>
         <Link

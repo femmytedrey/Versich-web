@@ -9,6 +9,7 @@ const Response = () => {
   };
   return (
     <div className="py-10 md:py-14 px-6 md:px-16 lg:px-28 text-start mb-12 overflow-hidden bg-versich-primary-bg space-y-8">
+      <Meta title='VersiMarket | Request Page' description='Response page for requests' />
       <div className="bg-white shadow-lg rounded-lg w-full">
         <div className="border-b-2 px-3 py-3 md:py-5">
           <BackBtn />
