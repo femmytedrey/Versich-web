@@ -6,6 +6,7 @@ import ConfirmButton from "../components/Buttons/ConfirmButton";
 import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
+import Meta from "../components/Meta";
 
 const TempDashboard = () => {
   const { user } = useSelector((state) => state.auth);
