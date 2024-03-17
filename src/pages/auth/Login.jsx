@@ -37,23 +37,20 @@ const Login = () => {
 
       if (result.status !== "success") {
         // Handle unsuccessful login
-        
+
         return;
       }
 
       // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
-      // Handle errors
-      console.log(error, "User Error");
-
-      if(error.response && error.response.status) {
+      if (error.response && error.response.status) {
         setErrorMsg(error.message)
         return error
       }
 
       setErrorMsg(error.message)
-      
+
     } finally {
       // setErrorMsg("");
       setLoading(false);

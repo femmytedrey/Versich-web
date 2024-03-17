@@ -35,16 +35,12 @@ const Signup = () => {
         if (data.status !== "success") {
           // Render error to user
           setErrorMsg(data.message);
-          console.log(data.message);
           // return;
         }
         methods.reset();
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
-        //  const data = JSON.parse(error?.message)
-        console.log(error, "User Error");
-
         if (error.response && error.response.status) {
           setErrorMsg(error.message);
           return error;

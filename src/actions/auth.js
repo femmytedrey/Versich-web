@@ -17,14 +17,13 @@ export const signupUser =
       await dispatch(getUser());
       return data;
     } catch (error) {
-      console.error(error)
       if (error.response && error.response.status) {
         throw new Error(error.response.data.message)
       } else {
         throw Error(error)
       }
-      
-    //  return error
+
+      //  return error
 
       /**
        * Handle the server returned error obj
@@ -32,7 +31,7 @@ export const signupUser =
        * sample => `Error({"status": "server.returned.status", "message": "Error message"})
        * You are free to use your own error handling from here, if you that easy for you.
        */
-      
+
     }
   };
 
@@ -56,13 +55,12 @@ export const loginUser = (email, password, token) => async (dispatch) => {
 
     return data;
   } catch (error) {
-    console.error(error)
     if (error.response && error.response.status) {
       throw new Error(error.response.data.message)
     } else {
       throw Error(error)
     }
-    
+
   }
 };
 
