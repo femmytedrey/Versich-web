@@ -6,7 +6,7 @@ import Meta from '../../components/Meta';
 const Home = () => {
   return (
     <div>
-      <Meta title="VersiMarket | Home" description="Web-based Services Marketplace for Web Design, Development, Mobile Apps and Data Analytics" />
+      <Meta title="VersiMarket" description="Web-based Services Marketplace for Web Design, Development, Mobile Apps and Data Analytics" />
       <Hero />
       <Services />
       <Reviews />
