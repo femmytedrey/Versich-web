@@ -2,6 +2,7 @@ import BackBtn from "../../components/Buttons/BackBtn";
 import planet from "../../assets/planet.png";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import DashboardConfirmBtn from "../../components/Buttons/DashboardConfirmBtn";
+import Meta from "../../components/Meta";
 
 const Response = () => {
   const newRequest = () => {
