@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import CircularProgressBar from "../components/CircularProgressBar";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import { CiLocationOn } from "react-icons/ci";

@@ -12,6 +12,7 @@ module.exports = {
         "versich-light-blue": "#114B8A",
         "versich-border": "#bdbdbd",
         "versich-label": "#666666",
+        "versich-light-gray": "#9F9F9F",
       },
       spacing: {
         "negate-85": "-85px",

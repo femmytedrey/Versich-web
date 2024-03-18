@@ -31,7 +31,7 @@ const AllRoutes = () => {
                 {/* Temporary routes */}
                 {/* <Route path="steppers/" element={<Steppers />} /> */}
                 <Route path="tempdashboard/" element={<TempDashboard />} />
-                <Route path="as" element={<AccountSelection />} />
+                {/* <Route path="as" element={<AccountSelection />} /> */}
                 {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
                 <Route path="more-leads" element={<MoreLeadsForm />} /> */}
