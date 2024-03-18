@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
@@ -214,25 +214,14 @@ const Signup = () => {
                     <p>Or</p>
                     <div className="bg-gray-500 h-[2px] w-full" />
                   </div>
-                  <button
-                    type="button"
-                    className="flex items-center gap-5 w-full transition-all duration-6000 ease-in-out md:w-4/5 m-auto justify-center py-3 rounded-lg border-2 border-versich-border hover:shadow-md hover:bg-gray-100"
-                  >
-                    <FcGoogle />
-                    Continue with Google
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )}
-                <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
+                  <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
               </div>
             </form>
           </div>
         </div>
       </div>
+      )}
+                
     </FormProvider>
   );
 };
