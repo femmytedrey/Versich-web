@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import { useForm, FormProvider } from "react-hook-form";
 
 import CSRFTokenField from "../../components/CSRFTokenField";
 import InputText from "../../components/InputText";
+import SocialAccounts from "./socialAccounts/SocialAccounts"
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
@@ -44,16 +44,12 @@ const Signup = () => {
         if (data.status !== "success") {
           // Render error to user
           setErrorMsg(data.message);
-          console.log(data.message);
           // return;
         }
         methods.reset();
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
-        //  const data = JSON.parse(error?.message)
-        console.log(error, "User Error");
-
         if (error.response && error.response.status) {
           setErrorMsg(error.message);
           return error;
@@ -231,6 +227,12 @@ const Signup = () => {
           </div>
         </div>
       )}
+                <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </FormProvider>
   );
 };
