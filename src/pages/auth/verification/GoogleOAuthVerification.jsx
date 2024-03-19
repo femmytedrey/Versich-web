@@ -12,7 +12,12 @@ const GoogleOAuthVerification = () => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(authenticateGoogleUser(location.search))
+        let params = location.search
+        const accountType = sessionStorage.getItem("accountType")
+        if (accountType) {
+            params += `&accounttype=${accountType}`
+        }
+        dispatch(authenticateGoogleUser(params))
             .then(data => setStatus(data?.status))
             .catch(error => {
                 /**
