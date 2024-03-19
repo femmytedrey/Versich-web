@@ -2,9 +2,10 @@ import * as api from "../api";
 import * as actionType from "./types";
 
 export const signupUser =
-  (firstname, lastname, email, password, token) => async (dispatch) => {
+  (accounttype, firstname, lastname, email, password, token) => async (dispatch) => {
     try {
       const { data } = await api.register({
+        accounttype,
         firstname,
         lastname,
         email,

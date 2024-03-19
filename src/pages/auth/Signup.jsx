@@ -31,15 +31,13 @@ const Signup = () => {
     const formData = {
       ...data,
       accountType: sessionStorage.getItem("accountType"),
-    };
-    console.log("Form Data:", formData);
-
+    }
     if (data.password !== data.confirmPassword) {
       setEqual(true);
       return;
     }
     setLoading(true);
-    dispatch(signupUser(firstName, lastName, email, password, csrfToken))
+    dispatch(signupUser(formData.accountType, firstName, lastName, email, password, csrfToken))
       .then((data) => {
         if (data.status !== "success") {
           // Render error to user
