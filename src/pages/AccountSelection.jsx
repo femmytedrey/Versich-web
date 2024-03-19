@@ -11,9 +11,16 @@ import { loginPath } from "../assets/constants";
 
 const AccountSelection = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
-  const [selectedOption, setSelectedOption] = useState("buyer");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [validate, setValidate] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleAccountSelectionSubmit = (data) => {
+    if (selectedOption === "") {
+      setValidate(true);
+      return setErrorMsg("Please select an account type");
+    }
+    
     sessionStorage.setItem("accountType", data.selection);
     onSubmit({ ...data, accountType: data.selection });
   };
@@ -33,6 +40,7 @@ const AccountSelection = ({ onSubmit }) => {
         >
           <div className="flex flex-col md:flex-row gap-y-6 gap-x-12">
             <label
+              onClick={() => setErrorMsg("")}
               className={`relative px-12 border-[1.5px] rounded-lg  flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 ${
                 selectedOption === "buyer"
                   ? "border-versich-blue"
@@ -48,10 +56,11 @@ const AccountSelection = ({ onSubmit }) => {
               </div>
 
               <GiBriefcase
-                className={`text-5xl ${selectedOption === "buyer"
-                  ? "text-versich-dark-blue"
-                  : "text-versich-light-gray"
-                  }`}
+                className={`text-5xl ${
+                  selectedOption === "buyer"
+                    ? "text-versich-dark-blue"
+                    : "text-versich-light-gray"
+                }`}
               />
               <p
                 className={`px-6 text-sm font-medium ${
@@ -72,6 +81,7 @@ const AccountSelection = ({ onSubmit }) => {
             </label>
 
             <label
+              onClick={() => setErrorMsg("")}
               className={`relative p-4 px-12 border-[1.5px] rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 ${
                 selectedOption === "seller"
                   ? "border-versich-blue"
@@ -87,10 +97,11 @@ const AccountSelection = ({ onSubmit }) => {
               </div>
 
               <GiTie
-                className={`text-5xl ${selectedOption === "seller"
-                  ? "text-versich-dark-blue"
-                  : "text-versich-light-gray"
-                  }`}
+                className={`text-5xl ${
+                  selectedOption === "seller"
+                    ? "text-versich-dark-blue"
+                    : "text-versich-light-gray"
+                }`}
               />
               <p
                 className={`px-6 text-sm font-medium ${
@@ -110,13 +121,14 @@ const AccountSelection = ({ onSubmit }) => {
               </p>
             </label>
           </div>
-          <div className="w-full">
+          <div className="w-full space-y-2">
             <button
               className="w-full py-3 hover:bg-versich-blue-hover rounded-lg bg-versich-blue text-white"
               type="submit"
             >
               Join as a {buttonText}
             </button>
+            <p className="text-start text-red-500">{errorMsg}</p>
           </div>
           <div>
             <p className="text-sm ">
