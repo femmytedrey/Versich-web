@@ -19,26 +19,26 @@ const AccountSelection = ({ onSubmit }) => {
   const [selectedOption, setSelectedOption] = useState("buyer");
 
   const handleAccountSelectionSubmit = (data) => {
-    localStorage.setItem("accountType", data.selection);
-    onSubmit({ ...data, accountType: data.selection }); 
+    sessionStorage.setItem("accountType", data.selection);
+    onSubmit({ ...data, accountType: data.selection });
   };
 
   const buttonText = selectedOption === "seller" ? "Seller" : "Buyer";
 
   return (
-    <div className="py-10 md:py-14 mb-12 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
+    <div className="mb-6 overflow-hidden flex flex-col justify-center  bg-versich-primary-bg items-center">
       <Meta title="Account Selection" description="Account type selection" />
-      <div className="w-full bg-white shadow-md py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-md">
-        <h2 className=" text-2xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
-          Join as a buyer or seller
-        </h2>
+      <h2 className=" text-2xl leading-normal text-left text-versich-dark-blue font-medium py-6 md:py-8">
+        Join as a buyer or seller
+      </h2>
+      <div className="w-full bg-white shadow-xl py-6 md:py-12 flex justify-center">
         <form
           onSubmit={handleSubmit(handleAccountSelectionSubmit)}
-          className="space-y-6"
+          className="space-y-6 px-6 mx-0 max-w-[600px]"
         >
           <div className="flex flex-col md:flex-row gap-y-6 gap-x-12">
             <label
-              className={`relative p-4 border-[1.5px] rounded-lg  flex flex-col items-center cursor-pointer py-6 gap-y-2 ${
+              className={`relative px-12 border-[1.5px] rounded-lg  flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 ${
                 selectedOption === "buyer"
                   ? "border-versich-blue"
                   : "border-versich-light-gray border-opacity-60 shadow-lg"
@@ -46,16 +46,12 @@ const AccountSelection = ({ onSubmit }) => {
             >
               <div className="absolute top-[-8%] rounded-full bg-white">
                 {selectedOption === "buyer" ? (
-                  <FaCheckCircle className="text-versich-blue text-xl block md:hidden " />
+                  <FaCheckCircle className="text-versich-blue text-xl " />
                 ) : (
-                  <FaRegCheckCircle className=" text-versich-light-gray  text-xl block md:hidden" />
+                  <FaRegCheckCircle className=" text-versich-light-gray text-xl" />
                 )}
               </div>
-              {selectedOption === "buyer" ? (
-                <MdOutlineRadioButtonChecked className="absolute left-3 text-lg top-3 text-versich-blue hidden md:block" />
-              ) : (
-                <MdOutlineRadioButtonUnchecked className="absolute left-3 text-lg top-3 text-versich-light-gray hidden md:block" />
-              )}
+
               <GiBriefcase
                 className={`text-5xl ${
                   selectedOption === "buyer"
@@ -64,7 +60,7 @@ const AccountSelection = ({ onSubmit }) => {
                 }`}
               />
               <p
-                className={`px-12 text-sm font-medium ${
+                className={`px-6 text-sm font-medium ${
                   selectedOption === "buyer"
                     ? "text-versich-dark-blue"
                     : "text-versich-light-gray"
@@ -82,7 +78,7 @@ const AccountSelection = ({ onSubmit }) => {
             </label>
 
             <label
-              className={`relative p-4 border-[1.5px] rounded-lg flex flex-col items-center cursor-pointer py-6 gap-y-2 ${
+              className={`relative p-4 px-12 border-[1.5px] rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 ${
                 selectedOption === "seller"
                   ? "border-versich-blue"
                   : "border-versich-light-gray border-opacity-60 shadow-lg"
@@ -90,16 +86,12 @@ const AccountSelection = ({ onSubmit }) => {
             >
               <div className="absolute top-[-8%] rounded-full bg-white">
                 {selectedOption === "seller" ? (
-                  <FaCheckCircle className="text-versich-blue text-xl block md:hidden " />
+                  <FaCheckCircle className="text-versich-blue text-xl " />
                 ) : (
-                  <FaRegCheckCircle className=" text-versich-light-gray  text-xl block md:hidden" />
+                  <FaRegCheckCircle className=" text-versich-light-gray text-xl" />
                 )}
               </div>
-              {selectedOption === "seller" ? (
-                <MdOutlineRadioButtonChecked className="absolute left-3 text-lg top-3 text-versich-blue hidden md:block" />
-              ) : (
-                <MdOutlineRadioButtonUnchecked className="absolute left-3 text-lg top-3 text-versich-light-gray hidden md:block" />
-              )}
+
               <GiTie
                 className={`text-5xl ${
                   selectedOption === "seller"
@@ -108,7 +100,7 @@ const AccountSelection = ({ onSubmit }) => {
                 }`}
               />
               <p
-                className={`px-12 text-sm font-medium ${
+                className={`px-6 text-sm font-medium ${
                   selectedOption === "seller"
                     ? "text-versich-dark-blue"
                     : "text-versich-light-gray"

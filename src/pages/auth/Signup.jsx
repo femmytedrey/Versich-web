@@ -1,16 +1,17 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 
 import CSRFTokenField from "../../components/CSRFTokenField";
 import InputText from "../../components/InputText";
-import SocialAccounts from "./socialAccounts/SocialAccounts"
+import SocialAccounts from "./socialAccounts/SocialAccounts";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
 import Meta from "../../components/Meta";
 import AccountSelection from "../AccountSelection";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -29,10 +30,9 @@ const Signup = () => {
   const onSubmit = async (data) => {
     const formData = {
       ...data,
-      accountType: localStorage.getItem("accountType"),
+      accountType: sessionStorage.getItem("accountType"),
     };
     console.log("Form Data:", formData);
-    localStorage.removeItem("accountType");
 
     if (data.password !== data.confirmPassword) {
       setEqual(true);
@@ -76,6 +76,10 @@ const Signup = () => {
     setShowSignupForm(true);
   };
 
+  const editAcctType = () => {
+    setShowSignupForm(false);
+  };
+
   return (
     <FormProvider {...methods}>
       <Meta title="Signup" description="Sign up for a new account." />
@@ -90,6 +94,15 @@ const Signup = () => {
             <h2 className=" text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
               Create an account
             </h2>
+            <div className="text-start">
+              <button
+                onClick={editAcctType}
+                className="flex items-center gap-x-2 cursor-pointer font-medium text-versich-darktext-color mb-5"
+              >
+                <IoIosArrowBack className="text-xl" />
+                Change Account Type
+              </button>
+            </div>
             <div className="w-full">
               {/* form */}
               <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
@@ -209,19 +222,19 @@ const Signup = () => {
                   </p>
 
                   {/* divider */}
-                  <div className="flex items-center gap-5 justify-between">
-                    <div className="bg-gray-500 h-[2px] w-full rounded-md" />
-                    <p>Or</p>
-                    <div className="bg-gray-500 h-[2px] w-full" />
-                  </div>
-                  <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
-              </div>
-            </form>
+                  
+                  <SocialAccounts
+                    google={{
+                      url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL,
+                      text: "Continue with Google",
+                    }}
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
       )}
-                
     </FormProvider>
   );
 };
