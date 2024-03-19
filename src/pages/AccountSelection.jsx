@@ -3,19 +3,14 @@ import { useForm } from "react-hook-form";
 import Meta from "../components/Meta";
 import { GiTie } from "react-icons/gi";
 import { GiBriefcase } from "react-icons/gi";
-import { MdOutlineRadioButtonChecked } from "react-icons/md";
-import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
+
 import { FaCheckCircle } from "react-icons/fa";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { loginPath } from "../assets/constants";
 
 const AccountSelection = ({ onSubmit }) => {
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      selection: "buyer",
-    },
-  });
+  const { register, handleSubmit } = useForm();
   const [selectedOption, setSelectedOption] = useState("buyer");
 
   const handleAccountSelectionSubmit = (data) => {
@@ -26,7 +21,7 @@ const AccountSelection = ({ onSubmit }) => {
   const buttonText = selectedOption === "seller" ? "Seller" : "Buyer";
 
   return (
-    <div className="mb-6 overflow-hidden flex flex-col justify-center  bg-versich-primary-bg items-center">
+    <div className="overflow-hidden flex flex-col justify-center  bg-versich-primary-bg items-center">
       <Meta title="Account Selection" description="Account type selection" />
       <h2 className=" text-2xl leading-normal text-left text-versich-dark-blue font-medium py-6 md:py-8">
         Join as a buyer or seller
