@@ -20,15 +20,15 @@ const AccountSelection = ({ onSubmit }) => {
 
   const handleAccountSelectionSubmit = (data) => {
     localStorage.setItem("accountType", data.selection);
-    onSubmit({ ...data, accountType: data.selection }); 
+    onSubmit({ ...data, accountType: data.selection });
   };
 
   const buttonText = selectedOption === "seller" ? "Seller" : "Buyer";
 
   return (
-    <div className="py-10 md:py-14 mb-12 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
+    <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
       <Meta title="Account Selection" description="Account type selection" />
-      <div className="w-full bg-white shadow-md py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-md">
+      <div className="w-full bg-white shadow-md my-6 py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-md">
         <h2 className=" text-2xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
           Join as a buyer or seller
         </h2>
@@ -38,11 +38,10 @@ const AccountSelection = ({ onSubmit }) => {
         >
           <div className="flex flex-col md:flex-row gap-y-6 gap-x-12">
             <label
-              className={`relative p-4 border-[1.5px] rounded-lg  flex flex-col items-center cursor-pointer py-6 gap-y-2 ${
-                selectedOption === "buyer"
-                  ? "border-versich-blue"
-                  : "border-versich-light-gray border-opacity-60 shadow-lg"
-              }`}
+              className={`relative p-4 border-[1.5px] rounded-lg  flex flex-col items-center cursor-pointer py-6 gap-y-2 ${selectedOption === "buyer"
+                ? "border-versich-blue"
+                : "border-versich-light-gray border-opacity-60 shadow-lg"
+                }`}
             >
               <div className="absolute top-[-8%] rounded-full bg-white">
                 {selectedOption === "buyer" ? (
@@ -57,18 +56,16 @@ const AccountSelection = ({ onSubmit }) => {
                 <MdOutlineRadioButtonUnchecked className="absolute left-3 text-lg top-3 text-versich-light-gray hidden md:block" />
               )}
               <GiBriefcase
-                className={`text-5xl ${
-                  selectedOption === "buyer"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className={`text-5xl ${selectedOption === "buyer"
+                  ? "text-versich-dark-blue"
+                  : "text-versich-light-gray"
+                  }`}
               />
               <p
-                className={`px-12 text-sm font-medium ${
-                  selectedOption === "buyer"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className={`px-12 text-sm font-medium ${selectedOption === "buyer"
+                  ? "text-versich-dark-blue"
+                  : "text-versich-light-gray"
+                  }`}
               >
                 <input
                   type="radio"
@@ -82,11 +79,10 @@ const AccountSelection = ({ onSubmit }) => {
             </label>
 
             <label
-              className={`relative p-4 border-[1.5px] rounded-lg flex flex-col items-center cursor-pointer py-6 gap-y-2 ${
-                selectedOption === "seller"
-                  ? "border-versich-blue"
-                  : "border-versich-light-gray border-opacity-60 shadow-lg"
-              }`}
+              className={`relative p-4 border-[1.5px] rounded-lg flex flex-col items-center cursor-pointer py-6 gap-y-2 ${selectedOption === "seller"
+                ? "border-versich-blue"
+                : "border-versich-light-gray border-opacity-60 shadow-lg"
+                }`}
             >
               <div className="absolute top-[-8%] rounded-full bg-white">
                 {selectedOption === "seller" ? (
@@ -101,18 +97,16 @@ const AccountSelection = ({ onSubmit }) => {
                 <MdOutlineRadioButtonUnchecked className="absolute left-3 text-lg top-3 text-versich-light-gray hidden md:block" />
               )}
               <GiTie
-                className={`text-5xl ${
-                  selectedOption === "seller"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className={`text-5xl ${selectedOption === "seller"
+                  ? "text-versich-dark-blue"
+                  : "text-versich-light-gray"
+                  }`}
               />
               <p
-                className={`px-12 text-sm font-medium ${
-                  selectedOption === "seller"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className={`px-12 text-sm font-medium ${selectedOption === "seller"
+                  ? "text-versich-dark-blue"
+                  : "text-versich-light-gray"
+                  }`}
               >
                 <input
                   type="radio"
