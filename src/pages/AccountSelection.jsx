@@ -12,15 +12,13 @@ import { loginPath } from "../assets/constants";
 const AccountSelection = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
   const [selectedOption, setSelectedOption] = useState("");
-  const [validate, setValidate] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleAccountSelectionSubmit = (data) => {
     if (selectedOption === "") {
-      setValidate(true);
       return setErrorMsg("Please select an account type");
     }
-    
+
     sessionStorage.setItem("accountType", data.selection);
     onSubmit({ ...data, accountType: data.selection });
   };
