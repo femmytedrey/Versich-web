@@ -89,8 +89,8 @@ const Signup = () => {
       )}
 
       {showSignupForm && (
-        <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
-          <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
+        <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
+          <div className="w-full bg-white shadow-md my-6 py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
             <h2 className=" text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
               Create an account
             </h2>
@@ -221,14 +221,7 @@ const Signup = () => {
                     </Link>
                   </p>
 
-                  {/* divider */}
-                  
-                  <SocialAccounts
-                    google={{
-                      url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL,
-                      text: "Continue with Google",
-                    }}
-                  />
+                  <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
                 </div>
               </form>
             </div>

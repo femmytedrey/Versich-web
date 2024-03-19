@@ -48,11 +48,10 @@ const AccountSelection = ({ onSubmit }) => {
               </div>
 
               <GiBriefcase
-                className={`text-5xl ${
-                  selectedOption === "buyer"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className={`text-5xl ${selectedOption === "buyer"
+                  ? "text-versich-dark-blue"
+                  : "text-versich-light-gray"
+                  }`}
               />
               <p
                 className={`px-6 text-sm font-medium ${
@@ -88,11 +87,10 @@ const AccountSelection = ({ onSubmit }) => {
               </div>
 
               <GiTie
-                className={`text-5xl ${
-                  selectedOption === "seller"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className={`text-5xl ${selectedOption === "seller"
+                  ? "text-versich-dark-blue"
+                  : "text-versich-light-gray"
+                  }`}
               />
               <p
                 className={`px-6 text-sm font-medium ${
