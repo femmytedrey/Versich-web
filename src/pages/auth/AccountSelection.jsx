@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { GiTie } from "react-icons/gi";
 import { GiBriefcase } from "react-icons/gi";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { loginPath } from "../../assets/constants";
 import { PropagateLoader } from "react-spinners";
+
 import Meta from "../../components/Meta";
+import { BUYER, SELLER, loginPath } from "../../assets/constants";
 
 const AccountSelection = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
@@ -22,16 +23,16 @@ const AccountSelection = ({ onSubmit }) => {
     }
     setLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     sessionStorage.setItem("accountType", data.selection);
     onSubmit({ ...data, accountType: data.selection });
   };
 
   useEffect(() => {
-    if (selectedOption === "buyer") {
+    if (selectedOption === BUYER) {
       setButtonText("Join as a Buyer");
-    } else if (selectedOption === "seller") {
+    } else if (selectedOption === SELLER) {
       setButtonText("Join as a Seller");
     } else {
       setButtonText("Join");
@@ -41,94 +42,78 @@ const AccountSelection = ({ onSubmit }) => {
   return (
     <div className="overflow-hidden flex flex-col justify-center  bg-versich-primary-bg items-center">
       <Meta title="Account Selection" description="Account type selection" />
-      <h2 className=" text-2xl leading-normal text-left text-versich-dark-blue font-medium py-6 md:py-12">
-        Join as a buyer or seller
-      </h2>
-      <div className="w-full bg-white shadow-top py-6 md:py-12 flex justify-center">
+      <div className=" bg-gradient-to-t from-versich-blue/5 to-versich-primary-bg to-15% w-full">
+        <h2 className=" text-2xl leading-normal text-center text-versich-dark-blue font-medium px-12 max-[400px]:px-6 py-10 sm:py-12">
+          Join as a {BUYER} or {SELLER}
+        </h2>
+      </div>
+      <div className="w-full bg-white py-10 sm:py-12 flex justify-center">
         <form
           onSubmit={handleSubmit(handleAccountSelectionSubmit)}
-          className="space-y-6 px-12 mx-0 max-w-[600px]"
+          className="space-y-6 px-12 max-[400px]:px-6 mx-0 max-w-[600px]"
         >
-          <div className="flex flex-col md:flex-row gap-y-6 gap-x-12">
+          <div className="flex flex-col sm:flex-row gap-y-8 gap-x-12">
             <label
               onClick={() => setErrorMsg("")}
-              className={`relative px-12 border-[1.5px] rounded-lg  flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 hover:bg-versich-primary-bg ${
-                selectedOption === "buyer"
-                  ? "border-versich-blue bg-versich-primary-bg"
-                  : "border-versich-light-gray border-opacity-60 shadow-lg"
-              }`}
+              className={`relative min-h-40 px-12 border-2 rounded-lg flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === BUYER
+                ? "!border-versich-blue bg-versich-blue/5"
+                : "border-transparent shadow-[0px_0px_12px_6px_rgb(0,0,0,0.05)]"
+                }`}
             >
-              <div className="absolute top-[-8%] rounded-full bg-white">
-                {selectedOption === "buyer" ? (
+              <div className="absolute top-[-10px] rounded-full bg-white">
+                {selectedOption === BUYER ? (
                   <FaCheckCircle className="text-versich-blue text-xl " />
                 ) : (
-                  <FaRegCheckCircle className=" text-versich-light-gray text-xl" />
+                  <FaRegCheckCircle className="text-versich-light-gray group-hover:fill-versich-blue transition-colors text-xl" />
                 )}
               </div>
 
               <GiBriefcase
-                className={`text-5xl ${
-                  selectedOption === "buyer"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className="text-5xl text-versich-dark-blue"
               />
               <p
-                className={`px-6 text-sm font-medium ${
-                  selectedOption === "buyer"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className="px-6 text-sm font-medium text-versich-dark-blue"
               >
                 <input
                   type="radio"
-                  value="buyer"
+                  value={BUYER}
                   {...register("selection")}
                   className="appearance-none"
-                  onChange={() => setSelectedOption("buyer")}
+                  onChange={() => setSelectedOption(BUYER)}
                 />
-                I’m a buyer, looking for sellers
+                I’m a {BUYER}, looking for {SELLER}s
               </p>
             </label>
 
             <label
               onClick={() => setErrorMsg("")}
-              className={`relative p-4 px-12 border-[1.5px] rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 hover:bg-versich-primary-bg ${
-                selectedOption === "seller"
-                  ? "border-versich-blue bg-versich-primary-bg"
-                  : "border-versich-light-gray border-opacity-60 shadow-lg"
-              }`}
+              className={`relative min-h-40 p-4 px-12 border-2 rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === SELLER
+                ? "!border-versich-blue bg-versich-blue/5"
+                : "border-transparent shadow-[0px_0px_12px_6px_rgb(0,0,0,0.05)]"
+                }`}
             >
-              <div className="absolute top-[-8%] rounded-full bg-white">
-                {selectedOption === "seller" ? (
+              <div className="absolute top-[-10px] rounded-full bg-white">
+                {selectedOption === SELLER ? (
                   <FaCheckCircle className="text-versich-blue text-xl " />
                 ) : (
-                  <FaRegCheckCircle className=" text-versich-light-gray text-xl" />
+                  <FaRegCheckCircle className="text-versich-light-gray group-hover:fill-versich-blue transition-colors text-xl" />
                 )}
               </div>
 
               <GiTie
-                className={`text-5xl ${
-                  selectedOption === "seller"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className="text-5xl text-versich-dark-blue"
               />
               <p
-                className={`px-6 text-sm font-medium ${
-                  selectedOption === "seller"
-                    ? "text-versich-dark-blue"
-                    : "text-versich-light-gray"
-                }`}
+                className="px-6 text-sm font-medium text-versich-dark-blue"
               >
                 <input
                   type="radio"
-                  value="seller"
+                  value={SELLER}
                   {...register("selection")}
                   className="appearance-none"
-                  onChange={() => setSelectedOption("seller")}
+                  onChange={() => setSelectedOption(SELLER)}
                 />
-                I’m a seller, looking for buyers
+                I’m a {SELLER}, looking for {BUYER}s
               </p>
             </label>
           </div>

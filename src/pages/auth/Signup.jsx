@@ -93,10 +93,10 @@ const Signup = () => {
         <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
           <div className="w-full bg-white shadow-md my-6 py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
             <div className="text-start">
-              <IoIosArrowBack className="text-xl opacity-50 hover:opacity-100 cursor-pointer" onClick={editAcctType} />
+              <IoIosArrowBack className="text-xl hover:fill-versich-blue-hover active:fill-versich-blue-hover cursor-pointer" onClick={editAcctType} title="Back" />
             </div>
-            <h2 className=" text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
-              Create an account
+            <h2 className=" text-3xl leading-normal text-left my-5 text-versich-darktext-color font-medium ">
+              Create a {type} account
             </h2>
 
             <div className="w-full">
@@ -200,9 +200,7 @@ const Signup = () => {
                   </p>
                   <ConfirmButton
                     type="submit"
-                    text={
-                      loading ? `Creating a ${type} account` : `Create a ${type} account`
-                    }
+                    text="Create account"
                     clickHandler={myClickHandler}
                     loading={loading}
                   />
