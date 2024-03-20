@@ -39,7 +39,7 @@ const Signup = () => {
       return;
     }
     setLoading(true);
-    dispatch(signupUser(formData))
+    dispatch(signupUser(formData.accountType, firstName, lastName, email, password, csrfToken))
       .then((data) => {
         if (data.status !== "success") {
           // Render error to user
