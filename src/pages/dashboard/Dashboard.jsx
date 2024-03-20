@@ -6,7 +6,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
 import Meta from "../../components/Meta";
-import { leads, moreleads, profile } from "../../assets/constants";
+import { buyerPaths, sellerPaths } from "../../assets/constants";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
@@ -32,12 +32,7 @@ const Dashboard = () => {
   };
 
   const getProfileLink = () => {
-    let paths;
-    if (accountType === "buyer") {
-      paths = buyerPaths;
-    } else if (accountType === "seller") {
-      paths = sellerPaths;
-    }
+    let paths = accountType === "buyer" ? buyerPaths : sellerPaths;
 
     if (progress < 50) {
       return paths.leads;
