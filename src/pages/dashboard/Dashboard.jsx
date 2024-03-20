@@ -11,6 +11,7 @@ import { leads, moreleads, profile } from "../../assets/constants";
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const progress = useSelector((state) => state.progress.value);
+  const accountType = sessionStorage.getItem("accountType");
 
   if (
     !user ||
@@ -31,12 +32,19 @@ const Dashboard = () => {
   };
 
   const getProfileLink = () => {
+    let paths;
+    if (accountType === "buyer") {
+      paths = buyerPaths;
+    } else if (accountType === "seller") {
+      paths = sellerPaths;
+    }
+
     if (progress < 50) {
-      return leads;
+      return paths.leads;
     } else if (progress < 75) {
-      return profile;
+      return paths.profile;
     } else {
-      return moreleads;
+      return paths.moreleads;
     }
   };
 
