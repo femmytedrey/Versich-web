@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CircularProgressBar from "../../components/CircularProgressBar";
-import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
+
+import CircularProgressBar from "../../components/CircularProgressBar";
+import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import Meta from "../../components/Meta";
 import { buyerPaths, sellerPaths } from "../../assets/constants";
 

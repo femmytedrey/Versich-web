@@ -57,7 +57,7 @@ const AccountSelection = ({ onSubmit }) => {
               onClick={() => setErrorMsg("")}
               className={`relative min-h-40 px-12 border-2 rounded-lg flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === BUYER
                 ? "!border-versich-blue bg-versich-blue/5"
-                : "border-transparent shadow-[0px_0px_12px_6px_rgb(0,0,0,0.05)]"
+                : "border-transparent shadow-selection"
                 }`}
             >
               <div className="absolute top-[-10px] rounded-full bg-white">

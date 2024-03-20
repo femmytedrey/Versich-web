@@ -7,7 +7,7 @@ import GoogleOAuthVerification from "../../pages/auth/verification/GoogleOAuthVe
 import Dashboard from "../../pages/dashboard/Dashboard";
 import NotAuthRoutes from "./NotAuthRoutes";
 import AuthRoutes from "./AuthRoutes";
-import { loginPath } from "../../assets/constants";
+import { buyerPaths, loginPath, sellerPaths } from "../../assets/constants";
 // import MoreLeadsForm from "../../pages/MoreLeadsForm";
 // import ProfileForm from "../../pages/ProfileForm";
 // import LeadsForm from "../../pages/LeadsForm";
@@ -20,6 +20,7 @@ import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 
 const AllRoutes = () => {
+    const accountType = sessionStorage.getItem("accountType");
     return (
         <Routes>
             <Route path="/">
@@ -45,11 +46,19 @@ const AllRoutes = () => {
                     <Route path="verification/:token/email/" element={<EmailVerification />} />
                     <Route path="verification/email/" element={<EmailVerified />} />
                     <Route path="su/">
-                        <Route path="seller/">
-                            <Route path="leads/" element={<LeadsForm />} />
-                            <Route path="profile/" element={<ProfileForm />} />
-                            <Route path="more-leads/" element={<MoreLeadsForm />} />
-                        </Route>
+                        {accountType === "buyer" ? (
+                            <>
+                                <Route path={buyerPaths.leads} element={<LeadsForm />} />
+                                <Route path={buyerPaths.profile} element={<ProfileForm />} />
+                                <Route path={buyerPaths.moreleads} element={<MoreLeadsForm />} />
+                            </>
+                        ) : accountType === "seller" ? (
+                            <>
+                                <Route path={sellerPaths.leads} element={<LeadsForm />} />
+                                <Route path={sellerPaths.profile} element={<ProfileForm />} />
+                                <Route path={sellerPaths.moreleads} element={<MoreLeadsForm />} />
+                            </>
+                        ) : null}
                     </Route>
                 </Route>
             </Route>

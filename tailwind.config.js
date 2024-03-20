@@ -20,6 +20,8 @@ module.exports = {
       },
       boxShadow: {
         top: "0 -8px 12px -4px rgba(0, 0, 0, 0.04)",
+        form: "0px 0px 12px 6px rgba(0, 0, 0, 0.03)",
+        selection: "0px 0px 12px 6px rgba(0, 0, 0, 0.05)"
       },
     },
   },
