@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 
@@ -5,9 +7,7 @@ import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import InputText from "../../components/InputText";
 import SocialAccounts from "./socialAccounts/SocialAccounts"
 import { signupPath } from "../../assets/constants";
-import { useDispatch } from "react-redux";
 import { loginUser } from "../../actions/auth";
-import { useState } from "react";
 import CSRFTokenField from "../../components/CSRFTokenField";
 import Meta from "../../components/Meta";
 
@@ -66,7 +66,7 @@ const Login = () => {
     <FormProvider {...methods}>
       <Meta title='Login' description='Login to your account' />
       <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
-        <div className="w-full bg-white shadow-md my-6 py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-md">
+        <div className="w-full bg-white shadow-form my-6 py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-lg">
           <h2 className=' text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium '>Log in</h2>
           <div className="w-full">
             {/* form */}

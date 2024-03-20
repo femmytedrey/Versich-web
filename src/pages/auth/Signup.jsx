@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import { IoIosArrowBack } from "react-icons/io";
 
 import CSRFTokenField from "../../components/CSRFTokenField";
 import InputText from "../../components/InputText";
@@ -11,7 +12,6 @@ import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
 import Meta from "../../components/Meta";
 import AccountSelection from "./AccountSelection";
-import { IoIosArrowBack } from "react-icons/io";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -91,7 +91,7 @@ const Signup = () => {
 
       {showSignupForm && (
         <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
-          <div className="w-full bg-white shadow-md my-6 py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
+          <div className="w-full bg-white shadow-form my-6 py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-lg">
             <div className="text-start">
               <IoIosArrowBack className="text-xl hover:fill-versich-blue-hover active:fill-versich-blue-hover cursor-pointer" onClick={editAcctType} title="Back" />
             </div>
