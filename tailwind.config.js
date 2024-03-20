@@ -18,6 +18,9 @@ module.exports = {
         "negate-85": "-85px",
         "hero-height": "80vh",
       },
+      boxShadow: {
+        top: "0 -8px 12px -4px rgba(0, 0, 0, 0.04)",
+      },
     },
   },
   plugins: [],

@@ -29,8 +29,8 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     const formData = {
-      ...data,
       accountType: sessionStorage.getItem("accountType"),
+      ...data,
     };
     console.log("Form Data:", formData);
 
@@ -39,7 +39,7 @@ const Signup = () => {
       return;
     }
     setLoading(true);
-    dispatch(signupUser(firstName, lastName, email, password, csrfToken))
+    dispatch(signupUser(formData))
       .then((data) => {
         if (data.status !== "success") {
           // Render error to user
@@ -62,6 +62,8 @@ const Signup = () => {
         setLoading(false);
       });
   };
+
+  const type = sessionStorage.getItem("accountType");
 
   const handleConfirmPasswordChange = (e) => {
     setEqual(false);
@@ -91,18 +93,13 @@ const Signup = () => {
       {showSignupForm && (
         <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
           <div className="w-full bg-white shadow-md my-6 py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
+            <div className="text-start">
+              <IoIosArrowBack className="text-xl opacity-50 hover:opacity-100 cursor-pointer" onClick={editAcctType} />
+            </div>
             <h2 className=" text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
               Create an account
             </h2>
-            <div className="text-start">
-              <button
-                onClick={editAcctType}
-                className="flex items-center gap-x-2 cursor-pointer font-medium text-versich-darktext-color mb-5"
-              >
-                <IoIosArrowBack className="text-xl" />
-                Change Account Type
-              </button>
-            </div>
+
             <div className="w-full">
               {/* form */}
               <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
@@ -205,7 +202,7 @@ const Signup = () => {
                   <ConfirmButton
                     type="submit"
                     text={
-                      loading ? "Creating an account..." : "Create an account"
+                      loading ? `Creating a ${type} account` : `Create a ${type} account`
                     }
                     clickHandler={myClickHandler}
                     loading={loading}
@@ -221,7 +218,12 @@ const Signup = () => {
                     </Link>
                   </p>
 
-                  <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
+                  <SocialAccounts
+                    google={{
+                      url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL,
+                      text: "Continue with Google",
+                    }}
+                  />
                 </div>
               </form>
             </div>
