@@ -10,7 +10,7 @@ import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
 import Meta from "../../components/Meta";
-import AccountSelection from "../AccountSelection";
+import AccountSelection from "./AccountSelection";
 import { IoIosArrowBack } from "react-icons/io";
 
 const Signup = () => {

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Meta from "../components/Meta";
 import { GiTie } from "react-icons/gi";
 import { GiBriefcase } from "react-icons/gi";
-
 import { FaCheckCircle } from "react-icons/fa";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { loginPath } from "../assets/constants";
+import { loginPath } from "../../assets/constants";
 import { PropagateLoader } from "react-spinners";
+import Meta from "../../components/Meta";
 
 const AccountSelection = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();

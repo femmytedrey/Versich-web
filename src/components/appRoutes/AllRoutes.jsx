@@ -4,12 +4,10 @@ import Home from "../../pages/home/Home";
 import Signup from "../../pages/auth/Signup";
 import Login from "../../pages/auth/Login";
 import GoogleOAuthVerification from "../../pages/auth/verification/GoogleOAuthVerification"
-// import AccountSelection from "../../pages/auth/setup/AccountSelection"
 import Dashboard from "../../pages/dashboard/Dashboard";
 import NotAuthRoutes from "./NotAuthRoutes";
 import AuthRoutes from "./AuthRoutes";
 import { loginPath } from "../../assets/constants";
-import Steppers from "../../pages/Steppers";
 // import MoreLeadsForm from "../../pages/MoreLeadsForm";
 // import ProfileForm from "../../pages/ProfileForm";
 // import LeadsForm from "../../pages/LeadsForm";
@@ -20,7 +18,6 @@ import LeadsForm from "../../pages/LeadsForm";
 import Response from "../../pages/dashboard/Response";
 import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
-import AccountSelection from "../../pages/AccountSelection";
 
 const AllRoutes = () => {
     return (
@@ -45,18 +42,10 @@ const AllRoutes = () => {
                     <Route path="social-accounts/verify/google-oauth2/" element={<GoogleOAuthVerification />} />
                 </Route>
                 <Route element={<AuthRoutes />}>
-                    <Route
-                        path="verification/:token/email/"
-                        element={<EmailVerification />}
-                    />
-                    <Route
-                        path="verification/email/"
-                        element={<EmailVerified />}
-                    />
+                    <Route path="verification/:token/email/" element={<EmailVerification />} />
+                    <Route path="verification/email/" element={<EmailVerified />} />
                     <Route path="su/">
-                        <Route path="" element={<AccountSelection />} />
-                        <Route path="sp/">
-                            {/* <Route path="" element={<ServiceProvider />} /> */}
+                        <Route path="seller/">
                             <Route path="leads/" element={<LeadsForm />} />
                             <Route path="profile/" element={<ProfileForm />} />
                             <Route path="more-leads/" element={<MoreLeadsForm />} />
