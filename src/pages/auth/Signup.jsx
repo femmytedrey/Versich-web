@@ -32,7 +32,6 @@ const Signup = () => {
       accountType: sessionStorage.getItem("accountType"),
       ...data,
     };
-    console.log("Form Data:", formData);
 
     if (data.password !== data.confirmPassword) {
       setEqual(true);

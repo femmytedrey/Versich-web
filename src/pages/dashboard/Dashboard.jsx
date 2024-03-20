@@ -6,6 +6,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
 import Meta from "../../components/Meta";
+import { leads, moreleads, profile } from "../../assets/constants";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
@@ -31,11 +32,11 @@ const Dashboard = () => {
 
   const getProfileLink = () => {
     if (progress < 50) {
-      return "/leads";
+      return leads;
     } else if (progress < 75) {
-      return "/profile";
+      return profile;
     } else {
-      return "/more-leads";
+      return moreleads;
     }
   };
 
