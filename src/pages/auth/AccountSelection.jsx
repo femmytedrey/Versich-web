@@ -42,10 +42,12 @@ const AccountSelection = ({ onSubmit }) => {
   return (
     <div className="overflow-hidden flex flex-col justify-center  bg-versich-primary-bg items-center">
       <Meta title="Account Selection" description="Account type selection" />
-      <h2 className=" text-2xl leading-normal text-center text-versich-dark-blue font-medium px-12 max-[400px]:px-6 py-10 sm:py-12">
-        Join as a {BUYER} or {SELLER}
-      </h2>
-      <div className="w-full bg-white shadow-top py-10 sm:py-12 flex justify-center">
+      <div className=" bg-gradient-to-t from-versich-blue/5 to-versich-primary-bg to-15% w-full">
+        <h2 className=" text-2xl leading-normal text-center text-versich-dark-blue font-medium px-12 max-[400px]:px-6 py-10 sm:py-12">
+          Join as a {BUYER} or {SELLER}
+        </h2>
+      </div>
+      <div className="w-full bg-white py-10 sm:py-12 flex justify-center">
         <form
           onSubmit={handleSubmit(handleAccountSelectionSubmit)}
           className="space-y-6 px-12 max-[400px]:px-6 mx-0 max-w-[600px]"
