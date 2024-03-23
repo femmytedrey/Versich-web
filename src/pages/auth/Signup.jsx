@@ -12,7 +12,6 @@ import { loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
 import Meta from "../../components/Meta";
 import AccountSelection from "./AccountSelection";
-import { sendVerificationEmail } from "../../api";
 
 const Signup = () => {
   const [equal, setEqual] = useState(false);
@@ -33,40 +32,35 @@ const Signup = () => {
       accountType: sessionStorage.getItem("accountType"),
       ...data,
     };
-  
+
     if (data.password !== data.confirmPassword) {
       setEqual(true);
       return;
     }
     setLoading(true);
     dispatch(signupUser(formData.accountType, firstName, lastName, email, password, csrfToken))
-      .then((response) => {
-        if (response.status === "success") {
-          sendVerificationEmail(response.data.token)
-            .then(() => {
-              console.log("Verification email sent successfully");
-            })
-            .catch((error) => {
-              console.error("Error sending verification email:", error);
-            });
-        } else {
-          setErrorMsg(response.message);
+      .then((data) => {
+        if (data.status !== "success") {
+          // Render error to user
+          setErrorMsg(data.message);
+          // return;
         }
         methods.reset();
+        // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
       .catch((error) => {
         if (error.response && error.response.status) {
           setErrorMsg(error.message);
           return error;
         }
-  
+
         setErrorMsg(error.message);
       })
       .finally(() => {
+        // methods.reset();
         setLoading(false);
       });
   };
-  
 
   const type = sessionStorage.getItem("accountType");
 
