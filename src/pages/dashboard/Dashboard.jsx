@@ -8,6 +8,7 @@ import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import Meta from "../../components/Meta";
 import { buyerPaths, sellerPaths } from "../../assets/constants";
+import { resendVerificationEmail } from "../../api";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
@@ -44,6 +45,17 @@ const Dashboard = () => {
     }
   };
 
+  const handleResendVerificationEmail = async () => {
+    try {
+      await resendVerificationEmail();
+      console.log('Verification email resent successfully');
+      // Optionally, show a success message to the user
+    } catch (error) {
+      console.error('Error resending verification email:', error.message);
+      // Optionally, display an error message to the user
+    }
+  };
+
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
 
   return (
@@ -54,6 +66,7 @@ const Dashboard = () => {
         <Link
           to="/auth/verification/YOUR_TOKEN/email/"
           className="text-versich-blue underline hover:text-versich-blue-hover"
+          onClick={handleResendVerificationEmail}
         >
           Verify Email
         </Link>

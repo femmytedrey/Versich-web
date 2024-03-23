@@ -25,3 +25,7 @@ export const authenticateGoogleUser = (searchQuery) => API.get(`/auth/social-acc
 export const sendVerificationEmail = (token) => {
     return API.get(`/auth/verify/account/${token}/`);
 };
+
+export const resendVerificationEmail = () => {
+    return API.post("/auth/verify/account/resend/email/");
+  };
