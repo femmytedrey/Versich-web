@@ -22,10 +22,10 @@ export const logout = () => API.get("/auth/logout/")
 // Social Auth
 export const authenticateGoogleUser = (searchQuery) => API.get(`/auth/social-accounts/google/callback/${searchQuery}`)
 
-export const sendVerificationEmail = (token) => {
-    return API.get(`/auth/verify/account/${token}/`);
-};
+// export const sendVerificationEmail = (token) => {
+//     return API.get(`/auth/verify/account/${token}/`);
+// };
 
-export const resendVerificationEmail = () => {
-    return API.post("/auth/verify/account/resend/email/");
-  };
+// export const resendVerificationEmail = (userId) => {
+//     return API.post("/auth/verify/account/resend/email/");
+//   };
