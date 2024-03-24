@@ -1,16 +1,26 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CircularProgressBar from "../components/CircularProgressBar";
 import ConfirmButton from "../components/Buttons/ConfirmButton";
 import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
 import Meta from "../components/Meta";
+import { useEffect } from "react";
 
 const TempDashboard = () => {
   const { user } = useSelector((state) => state.auth);
   // const [progress, setProgress] = useState(75);
   const progress = useSelector((state) => state.progress.value);
+  const { status } = useParams();
+  const navigate = useNavigate();
+  const { isAuthenticated, accountType } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isAuthenticated && user && user.accountType === "seller") {
+      navigate(`/error/${status || '403'}`);
+    }
+  }, [isAuthenticated, user, navigate, status]);
 
   const editBtn = () => {
     console.log("Testing Edit btn");

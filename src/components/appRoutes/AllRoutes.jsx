@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../../pages/home/Home";
 import Signup from "../../pages/auth/Signup";
 import Login from "../../pages/auth/Login";
-import GoogleOAuthVerification from "../../pages/auth/verification/GoogleOAuthVerification"
+import GoogleOAuthVerification from "../../pages/auth/verification/GoogleOAuthVerification";
 import Dashboard from "../../pages/dashboard/Dashboard";
 import NotAuthRoutes from "./NotAuthRoutes";
 import AuthRoutes from "./AuthRoutes";
@@ -18,56 +18,74 @@ import LeadsForm from "../../pages/LeadsForm";
 import Response from "../../pages/dashboard/Response";
 import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-    const accountType = sessionStorage.getItem("accountType");
-    return (
-        <Routes>
-            <Route path="/">
-                <Route path="" element={<Home />} />
-                {/* Temporary preview for sam to see */}
-                {/* Temporary routes */}
-                {/* <Route path="steppers/" element={<Steppers />} /> */}
-                <Route path="tempdashboard/" element={<TempDashboard />} />
-                {/* <Route path="as" element={<AccountSelection />} /> */}
-                {/* <Route path="leads" element={<LeadsForm />} />
+  const { user } = useSelector((state) => state.auth);
+  return (
+    <Routes>
+      <Route path="/">
+        <Route path="" element={<Home />} />
+        {/* Temporary preview for sam to see */}
+        {/* Temporary routes */}
+        {/* <Route path="steppers/" element={<Steppers />} /> */}
+        {user && user.accountType === "seller" && (
+          <Route path="tempdashboard/" element={<TempDashboard />} />
+        )}
+        {/* <Route path="as" element={<AccountSelection />} /> */}
+        {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
                 <Route path="more-leads" element={<MoreLeadsForm />} /> */}
-                <Route path='response' element={<Response />} />
-            </Route>
-            <Route path="/auth/">
-                <Route element={<NotAuthRoutes />}>
-                    <Route path="" element={<Navigate to={loginPath} replace />} />
-                    <Route path="login/" element={<Login />} />
-                    <Route path="signup/" element={<Signup />} />
-                    <Route path="social-accounts/verify/google-oauth2/" element={<GoogleOAuthVerification />} />
-                </Route>
-                <Route element={<AuthRoutes />}>
-                    <Route path="verification/:token/email/" element={<EmailVerification />} />
-                    <Route path="verification/email/" element={<EmailVerified />} />
-                    <Route path="su/">
-                        {accountType === "buyer" ? (
-                            <>
-                                <Route path={buyerPaths.leads} element={<LeadsForm />} />
-                                <Route path={buyerPaths.profile} element={<ProfileForm />} />
-                                <Route path={buyerPaths.moreleads} element={<MoreLeadsForm />} />
-                            </>
-                        ) : accountType === "seller" ? (
-                            <>
-                                <Route path={sellerPaths.leads} element={<LeadsForm />} />
-                                <Route path={sellerPaths.profile} element={<ProfileForm />} />
-                                <Route path={sellerPaths.moreleads} element={<MoreLeadsForm />} />
-                            </>
-                        ) : null}
-                    </Route>
-                </Route>
-            </Route>
-            <Route path="dashboard/" element={<AuthRoutes />}>
-                <Route path="" element={<Dashboard />} />
-            </Route>
-            {/* Render a errorpage */}
-            {/* <Route path="*" element={<ErrorPage />} /> */}
-        </Routes>
-    );
+        <Route path="response" element={<Response />} />
+      </Route>
+      <Route path="/auth/">
+        <Route element={<NotAuthRoutes />}>
+          <Route path="" element={<Navigate to={loginPath} replace />} />
+          <Route path="login/" element={<Login />} />
+          <Route path="signup/" element={<Signup />} />
+          <Route
+            path="social-accounts/verify/google-oauth2/"
+            element={<GoogleOAuthVerification />}
+          />
+        </Route>
+        <Route element={<AuthRoutes />}>
+          <Route
+            path="verification/:token/email/"
+            element={<EmailVerification />}
+          />
+          <Route path="verification/email/" element={<EmailVerified />} />
+          <Route path="su/">
+            {user && user.accountType === "buyer" ? (
+              <>
+                <Route path={buyerPaths.leads} element={<LeadsForm />} />
+                <Route path={buyerPaths.profile} element={<ProfileForm />} />
+                <Route
+                  path={buyerPaths.moreleads}
+                  element={<MoreLeadsForm />}
+                />
+              </>
+            ) : user && user.accountType === "seller" ? (
+              <>
+                <Route path={sellerPaths.leads} element={<LeadsForm />} />
+                <Route path={sellerPaths.profile} element={<ProfileForm />} />
+                <Route
+                  path={sellerPaths.moreleads}
+                  element={<MoreLeadsForm />}
+                />
+              </>
+            ) : null}
+          </Route>
+        </Route>
+      </Route>
+      <Route path="dashboard/" element={<AuthRoutes />}>
+        <Route path="" element={<Dashboard />} />
+      </Route>
+      {/* Render a errorpage */}
+      {/* <Route path="*" element={<ErrorPage />} /> */}
+      <Route path="error/:status" element={<ErrorPage />} />
+      <Route path="*" element={<Navigate to="/error/404" />} />
+    </Routes>
+  );
 };
 export default AllRoutes;
