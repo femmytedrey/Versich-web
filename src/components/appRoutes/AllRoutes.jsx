@@ -31,6 +31,8 @@ const AllRoutes = () => {
     dispatch(checkAuth()); // Dispatch checkAuth action
     if (isAuthenticated) {
       console.log("User is authenticated"); // Log when user is authenticated
+    } else {
+      console.log("user is not authenticated");
     }
   }, [dispatch, isAuthenticated]);
   return (
@@ -38,14 +40,20 @@ const AllRoutes = () => {
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {isAuthenticated ? (<Route path="tempdashboard/" element={<TempDashboard />} />) : (<Route path="*" element={<Navigate to="/error/401" />} />)}
+        {isAuthenticated && user?.account_type === "seller" && (
+          <Route path="tempdashboard/" element={<TempDashboard />} />
+        )}
+
+        {/* Handle authenticated buyer */}
+        {isAuthenticated && user?.account_type === "buyer" && (
+          <Route path="*" element={<Navigate to="/error/403" />} />
+        )}
+
+        {/* Handle unauthenticated users */}
+        {!isAuthenticated && (
+          <Route path="*" element={<Navigate to="/error/401" />} />
+        )}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route
-          path="tempdashboard/"
-          element={
-            <TempDashboard user={user} isAuthenticated={isAuthenticated} />
-          }
-        ></Route>
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
