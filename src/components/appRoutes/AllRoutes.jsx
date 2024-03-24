@@ -40,18 +40,10 @@ const AllRoutes = () => {
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {isAuthenticated && user?.account_type === "seller" && (
+        {isAuthenticated && user.account_type ==='seller' ? (
           <Route path="tempdashboard/" element={<TempDashboard />} />
-        )}
-
-        {/* Handle authenticated buyer */}
-        {isAuthenticated && user?.account_type === "buyer" && (
+        ) : (
           <Route path="*" element={<Navigate to="/error/403" />} />
-        )}
-
-        {/* Handle unauthenticated users */}
-        {!isAuthenticated && (
-          <Route path="*" element={<Navigate to="/error/401" />} />
         )}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
         {/* <Route path="as" element={<AccountSelection />} /> */}
