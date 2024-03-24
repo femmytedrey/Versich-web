@@ -24,6 +24,7 @@ import { useEffect } from "react";
 
 const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
     const userType = user && user.account_type;
+    console.log(userType, 'This is the current userType')
   useEffect(() => {
     checkAuth();
   }, [checkAuth, user]);
