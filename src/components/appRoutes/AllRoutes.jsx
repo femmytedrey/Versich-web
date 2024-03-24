@@ -34,7 +34,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        {isAuthenticated && <Route path="tempdashboard/" element={<TempDashboard />}></Route>}
+        <Route path="tempdashboard/" element={<TempDashboard user={user} isAuthenticated={isAuthenticated} />}></Route>
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
