@@ -22,11 +22,8 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-  const accountType = useSelector((state) => state.auth.user?.account_type);
-  const accountTypePath = accountType;
-
-  console.log("Account Type:", accountType);
-  console.log("Account Type Path:", accountTypePath);
+  const user = useSelector((state) => state.auth.user);
+  const accountType = sessionStorage.getItem("accountType");
   return (
     <Routes>
       <Route path="/">
@@ -58,10 +55,42 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
-            {console.log("Account Type in Route:", accountType)}
-            {accountType === "buyer" && (
+            {/* {user && (
               <>
-                {console.log("Account Type in Route Path:", accountType)}
+                {console.log("User in su route:", user.account_type)}
+                {user.account_type === "buyer" && (
+                  <>
+                    {console.log("Rendering buyer routes", user.account_type)}
+                    <Route path={buyerPaths.leads} element={<LeadsForm />} />
+                    <Route
+                      path={buyerPaths.profile}
+                      element={<ProfileForm />}
+                    />
+                    <Route
+                      path={buyerPaths.moreleads}
+                      element={<MoreLeadsForm />}
+                    />
+                  </>
+                )}
+
+                {user.account_type === "seller" && (
+                  <>
+                    {console.log("Rendering seller routes", user.account_type)}
+                    <Route path={sellerPaths.leads} element={<LeadsForm />} />
+                    <Route
+                      path={sellerPaths.profile}
+                      element={<ProfileForm />}
+                    />
+                    <Route
+                      path={sellerPaths.moreleads}
+                      element={<MoreLeadsForm />}
+                    />
+                  </>
+                )}
+              </>
+            )} */}
+            {accountType === "buyer" ? (
+              <>
                 <Route path={buyerPaths.leads} element={<LeadsForm />} />
                 <Route path={buyerPaths.profile} element={<ProfileForm />} />
                 <Route
@@ -69,10 +98,8 @@ const AllRoutes = () => {
                   element={<MoreLeadsForm />}
                 />
               </>
-            )}
-            {accountType === "seller" && (
+            ) : accountType === "seller" ? (
               <>
-                {console.log("Account Type in Route Path:", accountType)}
                 <Route path={sellerPaths.leads} element={<LeadsForm />} />
                 <Route path={sellerPaths.profile} element={<ProfileForm />} />
                 <Route
@@ -80,7 +107,7 @@ const AllRoutes = () => {
                   element={<MoreLeadsForm />}
                 />
               </>
-            )}
+            ) : null}
           </Route>
         </Route>
       </Route>
