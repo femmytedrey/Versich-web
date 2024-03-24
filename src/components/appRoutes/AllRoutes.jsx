@@ -22,8 +22,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-  const { user } = useSelector((state) => state.auth);
-
+  const accountType = useSelector((state) => state.auth.user.account_type);
   return (
     <Routes>
       <Route path="/">
@@ -31,7 +30,7 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-
+        <Route path="tempdashboard/" element={<TempDashboard />} />
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -47,7 +46,6 @@ const AllRoutes = () => {
             path="social-accounts/verify/google-oauth2/"
             element={<GoogleOAuthVerification />}
           />
-          <Route path="tempdashboard/" element={<TempDashboard />} />
         </Route>
         <Route element={<AuthRoutes />}>
           <Route
@@ -56,38 +54,26 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
-            {user && (
+            {accountType === "buyer" && (
               <>
-              {console.log("User Account Type:", user.account_type)}
-                {user.account_type === "buyer"  && (
-                  <>
-                    <Route path={buyerPaths.leads} element={<LeadsForm />} />
-                    <Route
-                      path={buyerPaths.profile}
-                      element={<ProfileForm />}
-                    />
-                    <Route
-                      path={buyerPaths.moreleads}
-                      element={<MoreLeadsForm />}
-                    />
-                  </>
-                )}
-                {user.account_type === "seller" && (
-                  <>
-                    <Route path={sellerPaths.leads} element={<LeadsForm />} />
-                    <Route
-                      path={sellerPaths.profile}
-                      element={<ProfileForm />}
-                    />
-                    <Route
-                      path={sellerPaths.moreleads}
-                      element={<MoreLeadsForm />}
-                    />
-                  </>
-                )}
+                <Route path={buyerPaths.leads} element={<LeadsForm />} />
+                <Route path={buyerPaths.profile} element={<ProfileForm />} />
+                <Route
+                  path={buyerPaths.moreleads}
+                  element={<MoreLeadsForm />}
+                />
               </>
             )}
-            <Route path="*" element={<Navigate to="/error/401" />} />
+            {accountType === "seller" && (
+              <>
+                <Route path={sellerPaths.leads} element={<LeadsForm />} />
+                <Route path={sellerPaths.profile} element={<ProfileForm />} />
+                <Route
+                  path={sellerPaths.moreleads}
+                  element={<MoreLeadsForm />}
+                />
+              </>
+            )}
           </Route>
         </Route>
       </Route>
