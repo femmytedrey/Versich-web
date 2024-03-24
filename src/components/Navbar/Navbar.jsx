@@ -159,7 +159,6 @@ const Navbar = () => {
               >
                 Logout
               </button>
-              {console.log('isAuthenticated:', isAuthenticated)}
             </div>
           ) : (
             <div className="flex justify-center flex-col md:flex-row md:gap-x-7 text-white">
@@ -182,7 +181,6 @@ const Navbar = () => {
               >
                 Sign up
               </Link>
-              {console.log('isAuthenticated:', isAuthenticated)}
             </div>
           )}
         </div>

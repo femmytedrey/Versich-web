@@ -20,10 +20,12 @@ import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-const AllRoutes = () => {
-  //const user = useSelector((state) => state.auth.user);
-  const accountType = sessionStorage.getItem("accountType");
+const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
   return (
     <Routes>
       <Route path="/">
@@ -31,7 +33,7 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard />} />
+        <Route path="tempdashboard/" element={<TempDashboard />}></Route>
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -55,7 +57,7 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
-            {/* {user && (
+            {user && (
               <>
                 {console.log("User in su route:", user.account_type)}
                 {user.account_type === "buyer" && (
@@ -88,8 +90,8 @@ const AllRoutes = () => {
                   </>
                 )}
               </>
-            )} */}
-            {accountType === "buyer" ? (
+            )}
+            {/* {accountType === "buyer" ? (
               <>
                 <Route path={buyerPaths.leads} element={<LeadsForm />} />
                 <Route path={buyerPaths.profile} element={<ProfileForm />} />
@@ -107,7 +109,7 @@ const AllRoutes = () => {
                   element={<MoreLeadsForm />}
                 />
               </>
-            ) : null}
+            ) : null} */}
           </Route>
         </Route>
       </Route>

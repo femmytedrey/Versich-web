@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { BrowserRouter } from "react-router-dom";
 
@@ -13,11 +13,12 @@ function App() {
     dispatch(checkAuth())
     // eslint-disable-next-line
   }, [])
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   return (
     <div className="App">
       <BrowserRouter >
         <Navbar />
-        <AllRoutes />
+        <AllRoutes checkAuth={checkAuth} isAuthenticated={isAuthenticated} user={user} />
         <Footer />
       </BrowserRouter>
       {/* <Home /> */}
