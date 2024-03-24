@@ -23,6 +23,10 @@ import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
   const accountType = useSelector((state) => state.auth.user?.account_type);
+  const accountTypePath = accountType;
+
+  console.log("Account Type:", accountType);
+  console.log("Account Type Path:", accountTypePath);
   return (
     <Routes>
       <Route path="/">
@@ -54,8 +58,10 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
+            {console.log("Account Type in Route:", accountType)}
             {accountType === "buyer" && (
               <>
+                {console.log("Account Type in Route Path:", accountType)}
                 <Route path={buyerPaths.leads} element={<LeadsForm />} />
                 <Route path={buyerPaths.profile} element={<ProfileForm />} />
                 <Route
@@ -66,6 +72,7 @@ const AllRoutes = () => {
             )}
             {accountType === "seller" && (
               <>
+                {console.log("Account Type in Route Path:", accountType)}
                 <Route path={sellerPaths.leads} element={<LeadsForm />} />
                 <Route path={sellerPaths.profile} element={<ProfileForm />} />
                 <Route
