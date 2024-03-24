@@ -40,7 +40,7 @@ const AllRoutes = () => {
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {isAuthenticated && user.account_type ==='seller' ? (
+        {isAuthenticated && user?.account_type ==='seller' ? (
           <Route path="tempdashboard/" element={<TempDashboard />} />
         ) : (
           <Route path="*" element={<Navigate to="/error/403" />} />
