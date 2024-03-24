@@ -22,7 +22,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-  const user = useSelector((state) => state.auth.user);
+  //const user = useSelector((state) => state.auth.user);
   const accountType = sessionStorage.getItem("accountType");
   return (
     <Routes>
