@@ -22,7 +22,7 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-    const accountType = sessionStorage.getItem("accountType");
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   return (
     <Routes>
@@ -31,7 +31,11 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard />} />
+        {isAuthenticated ? (
+          <Route path="tempdashboard/" element={<TempDashboard />} />
+        ) : (
+          <Route path="*" element={<Navigate to="/error/401" />} />
+        )}
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -55,7 +59,7 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
-            {accountType === "buyer" ? (
+            {user && user.account_type === "buyer" ? (
               <>
                 <Route path={buyerPaths.leads} element={<LeadsForm />} />
                 <Route path={buyerPaths.profile} element={<ProfileForm />} />
@@ -64,7 +68,7 @@ const AllRoutes = () => {
                   element={<MoreLeadsForm />}
                 />
               </>
-            ) : accountType === "seller" ? (
+            ) : user && user.account_type === "seller" ? (
               <>
                 <Route path={sellerPaths.leads} element={<LeadsForm />} />
                 <Route path={sellerPaths.profile} element={<ProfileForm />} />

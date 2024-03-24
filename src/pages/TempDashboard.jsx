@@ -9,20 +9,18 @@ import Meta from "../components/Meta";
 import { useEffect } from "react";
 
 const TempDashboard = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   // const [progress, setProgress] = useState(75);
   const progress = useSelector((state) => state.progress.value);
   const { status } = useParams();
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const accountType = sessionStorage.getItem("accountType");
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate(`/error/${status || "401"}`);
-    } else if (accountType !== "seller") {
+    if (user && user.account_type !== "seller") {
       navigate(`/error/${status || "403"}`);
     }
+    console.log("User is", isAuthenticated);
   }, [isAuthenticated, accountType, navigate, status]);
 
   const editBtn = () => {

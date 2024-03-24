@@ -45,13 +45,14 @@ const Dashboard = () => {
     }
   };
 
+  
+
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
 
   return (
     <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
-      <Meta title="Dashboard" description="VersiMarket User dashboard" />
+      <Meta title='Dashboard' description='VersiMarket User dashboard' />
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
-        <p>Welcome {user.account_type}</p>
         <p>Good Afternoon, {user.first_name}!</p>
         <Link
           to="/auth/verification/YOUR_TOKEN/email/"
@@ -157,7 +158,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="Edit setting"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -187,7 +188,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View leads"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -214,7 +215,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View responses"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
