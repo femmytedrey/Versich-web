@@ -21,7 +21,7 @@ const TempDashboard = () => {
       navigate(`/error/${status || "403"}`);
     }
     console.log("User is", isAuthenticated);
-  }, [isAuthenticated, accountType, navigate, status]);
+  }, [accountType, navigate, status]);
 
   const editBtn = () => {
     console.log("Testing Edit btn");

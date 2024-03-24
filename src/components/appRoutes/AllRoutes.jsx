@@ -31,7 +31,7 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        {isAuthenticated ? (
+        {isAuthenticated && user != null ? (
           <Route path="tempdashboard/" element={<TempDashboard />} />
         ) : (
           <Route path="*" element={<Navigate to="/error/401" />} />

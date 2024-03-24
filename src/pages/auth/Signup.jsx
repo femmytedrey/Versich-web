@@ -45,6 +45,7 @@ const Signup = () => {
           setErrorMsg(data.message);
           // return;
         }
+        sessionStorage.removeItem("accountType");
         methods.reset();
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
