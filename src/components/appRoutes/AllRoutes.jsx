@@ -26,6 +26,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+  console.log('User from AllRoute is',isAuthenticated)
   return (
     <Routes>
       <Route path="/">
@@ -33,7 +34,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard />}></Route>
+        {isAuthenticated && <Route path="tempdashboard/" element={<TempDashboard />}></Route>}
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />

@@ -26,11 +26,7 @@ const TempDashboard = () => {
   // }, [isAuthenticated, accountType, navigate, status]);
 
    useEffect(() => {
-     console.log("Before Display: User is", isAuthenticated);
-     console.log("Before Display", user ? user.account_type : "User not available");
-     if (!isAuthenticated) {
-       navigate(`/error/${status || "401"}`);
-     } else if (user && user.account_type !== "seller") {
+     if (user && user.account_type !== "seller") {
        navigate(`/error/${status || "403"}`);
      }
      console.log("User is", isAuthenticated);
