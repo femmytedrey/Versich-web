@@ -19,23 +19,33 @@ import Response from "../../pages/dashboard/Response";
 import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { checkAuth } from "../../actions/auth";
 
-const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
-    const userType = user && user.account_type;
-    console.log(userType, 'This is the current userType')
+const AllRoutes = () => {
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
   useEffect(() => {
-    checkAuth();
-  }, [checkAuth, user]);
+    dispatch(checkAuth()); // Dispatch checkAuth action
+    if (isAuthenticated) {
+      console.log("User is authenticated"); // Log when user is authenticated
+    }
+  }, [dispatch, isAuthenticated]);
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
-        {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
+        {isAuthenticated ? (<Route path="tempdashboard/" element={<TempDashboard />} />) : (<Route path="*" element={<Navigate to="/error/401" />} />)}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard userType={userType} isAuthenticated={isAuthenticated} />}></Route>
+        <Route
+          path="tempdashboard/"
+          element={
+            <TempDashboard user={user} isAuthenticated={isAuthenticated} />
+          }
+        ></Route>
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -61,7 +71,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
           <Route path="su/">
             {user && (
               <>
-              {user.account_type === "seller" && (
+                {user.account_type === "seller" && (
                   <>
                     {console.log("Rendering seller routes", user.account_type)}
                     <Route path={sellerPaths.leads} element={<LeadsForm />} />
@@ -75,7 +85,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
                     />
                   </>
                 )}
-                
+
                 {console.log("User in su route:", user.account_type)}
                 {user.account_type === "buyer" && (
                   <>
@@ -91,8 +101,6 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
                     />
                   </>
                 )}
-
-                
               </>
             )}
             {/* {accountType === "buyer" ? (

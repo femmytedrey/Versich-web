@@ -8,12 +8,13 @@ import { GoUnread } from "react-icons/go";
 import Meta from "../components/Meta";
 import { useEffect } from "react";
 
-const TempDashboard = ({ userType, isAuthenticated }) => {
+const TempDashboard = () => {
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   // const [progress, setProgress] = useState(75);
   const progress = useSelector((state) => state.progress.value);
   const { status } = useParams();
   const navigate = useNavigate();
-  // const accountType = sessionStorage.getItem("accountType");
+  const accountType = sessionStorage.getItem("accountType");
 
   // useEffect(() => {
   //   if (!isAuthenticated) {
@@ -24,17 +25,17 @@ const TempDashboard = ({ userType, isAuthenticated }) => {
   //   console.log("User is", isAuthenticated);
   // }, [isAuthenticated, accountType, navigate, status]);
 
-  useEffect(() => {
-    console.log(isAuthenticated, 'from tempDashboard')
-    if (!isAuthenticated) {
-      console.log("User not authenticated", isAuthenticated);
-      navigate(`/error/${status || "401"}`);
-    } else if (userType !== "seller") {
-      console.log("User type not allowed", userType);
-      navigate(`/error/${status || "403"}`);
-    }
-    console.log("User is", isAuthenticated);
-  }, [isAuthenticated, userType, navigate, status]);
+  //  useEffect(() => {
+  //    console.log("Before Display: User is", isAuthenticated);
+  //    console.log("Before Display", user ? user.account_type : "User not available");
+  //    if (!isAuthenticated) {
+  //      navigate(`/error/${status || "401"}`);
+  //    } else if (user && user.account_type !== "seller") {
+  //      navigate(`/error/${status || "403"}`);
+  //    }
+  //    console.log("User is", isAuthenticated);
+  //    console.log("After Display", user ? user.account_type : "User not available");
+  //  }, [isAuthenticated, accountType, navigate, status]);
 
   const editBtn = () => {
     console.log("Testing Edit btn");
