@@ -22,7 +22,8 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
 
 const AllRoutes = () => {
-  const { user } = useSelector((state) => state.auth);
+    const accountType = sessionStorage.getItem("accountType");
+
   return (
     <Routes>
       <Route path="/">
@@ -30,9 +31,7 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        {user && user.accountType === "seller" && (
-          <Route path="tempdashboard/" element={<TempDashboard />} />
-        )}
+        <Route path="tempdashboard/" element={<TempDashboard />} />
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -56,7 +55,7 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
-            {user && user.accountType === "buyer" ? (
+            {accountType === "buyer" ? (
               <>
                 <Route path={buyerPaths.leads} element={<LeadsForm />} />
                 <Route path={buyerPaths.profile} element={<ProfileForm />} />
@@ -65,7 +64,7 @@ const AllRoutes = () => {
                   element={<MoreLeadsForm />}
                 />
               </>
-            ) : user && user.accountType === "seller" ? (
+            ) : accountType === "seller" ? (
               <>
                 <Route path={sellerPaths.leads} element={<LeadsForm />} />
                 <Route path={sellerPaths.profile} element={<ProfileForm />} />

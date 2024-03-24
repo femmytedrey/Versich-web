@@ -14,13 +14,16 @@ const TempDashboard = () => {
   const progress = useSelector((state) => state.progress.value);
   const { status } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated, accountType } = useSelector((state) => state.auth);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const accountType = sessionStorage.getItem("accountType");
 
   useEffect(() => {
-    if (isAuthenticated && user && user.accountType === "seller") {
-      navigate(`/error/${status || '403'}`);
+    if (!isAuthenticated) {
+      navigate(`/error/${status || "401"}`);
+    } else if (accountType !== "seller") {
+      navigate(`/error/${status || "403"}`);
     }
-  }, [isAuthenticated, user, navigate, status]);
+  }, [isAuthenticated, accountType, navigate, status]);
 
   const editBtn = () => {
     console.log("Testing Edit btn");
@@ -38,7 +41,7 @@ const TempDashboard = () => {
 
   return (
     <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
-      <Meta title='Temporary Dashboard' description='This page is temporary' />
+      <Meta title="Temporary Dashboard" description="This page is temporary" />
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
         <p>Good Afternoon, John!</p>
         <Link
