@@ -23,10 +23,10 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
+    const userType = user && user.account_type;
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
-  console.log('User from AllRoute is',isAuthenticated)
+  }, [checkAuth, user]);
   return (
     <Routes>
       <Route path="/">
@@ -34,7 +34,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard user={user} isAuthenticated={isAuthenticated} />}></Route>
+        <Route path="tempdashboard/" element={<TempDashboard userType={userType} isAuthenticated={isAuthenticated} />}></Route>
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
