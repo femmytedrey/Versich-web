@@ -87,7 +87,7 @@ const AllRoutes = () => {
                 )}
               </>
             )}
-            {!user && <Navigate to="/error/401" />}{" "}
+            <Route path="*" element={<Navigate to="/error/401" />} />
           </Route>
         </Route>
       </Route>
