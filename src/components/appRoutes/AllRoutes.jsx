@@ -31,7 +31,7 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard />} />
+
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -47,6 +47,7 @@ const AllRoutes = () => {
             path="social-accounts/verify/google-oauth2/"
             element={<GoogleOAuthVerification />}
           />
+          <Route path="tempdashboard/" element={<TempDashboard />} />
         </Route>
         <Route element={<AuthRoutes />}>
           <Route
@@ -57,7 +58,8 @@ const AllRoutes = () => {
           <Route path="su/">
             {user && (
               <>
-                {user.account_type === "buyer" && (
+              {console.log("User Account Type:", user.account_type)}
+                {user.account_type === "buyer"  && (
                   <>
                     <Route path={buyerPaths.leads} element={<LeadsForm />} />
                     <Route
@@ -85,6 +87,7 @@ const AllRoutes = () => {
                 )}
               </>
             )}
+            {!user && <Navigate to="/error/401" />}{" "}
           </Route>
         </Route>
       </Route>
