@@ -14,6 +14,7 @@ function App() {
     // eslint-disable-next-line
   }, [])
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+  console.log(isAuthenticated, 'from App.js');
   return (
     <div className="App">
       <BrowserRouter >

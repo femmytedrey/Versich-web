@@ -61,6 +61,21 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
           <Route path="su/">
             {user && (
               <>
+              {user.account_type === "seller" && (
+                  <>
+                    {console.log("Rendering seller routes", user.account_type)}
+                    <Route path={sellerPaths.leads} element={<LeadsForm />} />
+                    <Route
+                      path={sellerPaths.profile}
+                      element={<ProfileForm />}
+                    />
+                    <Route
+                      path={sellerPaths.moreleads}
+                      element={<MoreLeadsForm />}
+                    />
+                  </>
+                )}
+                
                 {console.log("User in su route:", user.account_type)}
                 {user.account_type === "buyer" && (
                   <>
@@ -77,20 +92,7 @@ const AllRoutes = ({ checkAuth, isAuthenticated, user }) => {
                   </>
                 )}
 
-                {user.account_type === "seller" && (
-                  <>
-                    {console.log("Rendering seller routes", user.account_type)}
-                    <Route path={sellerPaths.leads} element={<LeadsForm />} />
-                    <Route
-                      path={sellerPaths.profile}
-                      element={<ProfileForm />}
-                    />
-                    <Route
-                      path={sellerPaths.moreleads}
-                      element={<MoreLeadsForm />}
-                    />
-                  </>
-                )}
+                
               </>
             )}
             {/* {accountType === "buyer" ? (
