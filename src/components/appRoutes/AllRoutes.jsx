@@ -19,50 +19,19 @@ import Response from "../../pages/dashboard/Response";
 import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { checkAuth } from "../../actions/auth";
+import { useSelector } from "react-redux";
 
-const AllRoutes = () => {
-  const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(checkAuth()); // Dispatch checkAuth action
-
-    if (isAuthenticated) {
-      if (user?.account_type === "seller") {
-        console.log("User is authenticated and is a seller");
-      } else {
-        console.log(
-          "User is authenticated but is not a seller, redirecting to error page 403"
-        );
-      }
-    } else {
-      console.log("User is not authenticated, redirecting to error page 401");
-    }
-  }, [dispatch, isAuthenticated, user]);
-
+const AllRoutes = ({checkAuth}) => {
+  //const user = useSelector((state) => state.auth.user);
+  const accountType = sessionStorage.getItem("accountType");
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
+        {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
-        {isAuthenticated && user?.account_type === "seller" ? (
-          <>
-            {console.log("Rendering tempdashboard")}
-            {console.log("Account type:", user?.account_type)}
-            <Route path="tempdashboard/" element={<TempDashboard />} />
-          </>
-        ) : (
-          <>
-            {console.log("Redirecting to error 403")}
-            {console.log("Account type:", user?.account_type)}
-            <Route path="*" element={<Navigate to="/error/403" />} />
-          </>
-        )}
-
         {/* <Route path="steppers/" element={<Steppers />} /> */}
+        
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
@@ -86,23 +55,8 @@ const AllRoutes = () => {
           />
           <Route path="verification/email/" element={<EmailVerified />} />
           <Route path="su/">
-            {user && (
+            {/* {user && (
               <>
-                {user.account_type === "seller" && (
-                  <>
-                    {console.log("Rendering seller routes", user.account_type)}
-                    <Route path={sellerPaths.leads} element={<LeadsForm />} />
-                    <Route
-                      path={sellerPaths.profile}
-                      element={<ProfileForm />}
-                    />
-                    <Route
-                      path={sellerPaths.moreleads}
-                      element={<MoreLeadsForm />}
-                    />
-                  </>
-                )}
-
                 {console.log("User in su route:", user.account_type)}
                 {user.account_type === "buyer" && (
                   <>
@@ -118,9 +72,24 @@ const AllRoutes = () => {
                     />
                   </>
                 )}
+
+                {user.account_type === "seller" && (
+                  <>
+                    {console.log("Rendering seller routes", user.account_type)}
+                    <Route path={sellerPaths.leads} element={<LeadsForm />} />
+                    <Route
+                      path={sellerPaths.profile}
+                      element={<ProfileForm />}
+                    />
+                    <Route
+                      path={sellerPaths.moreleads}
+                      element={<MoreLeadsForm />}
+                    />
+                  </>
+                )}
               </>
-            )}
-            {/* {accountType === "buyer" ? (
+            )} */}
+            {accountType === "buyer" ? (
               <>
                 <Route path={buyerPaths.leads} element={<LeadsForm />} />
                 <Route path={buyerPaths.profile} element={<ProfileForm />} />
@@ -138,7 +107,7 @@ const AllRoutes = () => {
                   element={<MoreLeadsForm />}
                 />
               </>
-            ) : null} */}
+            ) : null}
           </Route>
         </Route>
       </Route>
