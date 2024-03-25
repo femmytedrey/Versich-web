@@ -1,9 +1,11 @@
 import { useState } from "react";
-import ComboInput from "./StepthreeComponents/ComboInput";
 import { useDispatch } from "react-redux";
-import { setProgress } from "../reducers/ProgressSlice";
 import { useNavigate } from "react-router-dom";
+
 import Meta from "../components/Meta";
+import ComboInput from "./StepthreeComponents/ComboInput";
+import { setProgress } from "../reducers/ProgressSlice";
+import { dashboardPath } from "../assets/constants";
 
 const MoreLeadsForm = () => {
   const [selectedService, setSelectedService] = useState("");
@@ -21,9 +23,7 @@ const MoreLeadsForm = () => {
       console.log("Submission successful");
     }
     dispatch(setProgress(100));
-    const updatedProgress = 100;
-    console.log("Profile completion progress", updatedProgress);
-    navigate('/dashboard')
+    navigate(dashboardPath)
   };
 
   return (
