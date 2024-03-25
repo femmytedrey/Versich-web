@@ -20,19 +20,26 @@ import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { checkAuth } from "../../actions/auth";
 
 const AllRoutes = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const [shouldRenderTempDashboard, setShouldRenderTempDashboard] =
-    useState(false);
 
   useEffect(() => {
     dispatch(checkAuth()); // Dispatch checkAuth action
-    if (isAuthenticated && user?.account_type === "seller") {
-      setShouldRenderTempDashboard(true);
+
+    if (isAuthenticated) {
+      if (user?.account_type === "seller") {
+        console.log("User is authenticated and is a seller");
+      } else {
+        console.log(
+          "User is authenticated but is not a seller, redirecting to error page 403"
+        );
+      }
+    } else {
+      console.log("User is not authenticated, redirecting to error page 401");
     }
   }, [dispatch, isAuthenticated, user]);
 
@@ -41,23 +48,16 @@ const AllRoutes = () => {
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {shouldRenderTempDashboard && (
+        {isAuthenticated && user?.account_type === "seller" ? (
           <>
             {console.log("Rendering tempdashboard")}
+            {console.log("Account type:", user?.account_type)}
             <Route path="tempdashboard/" element={<TempDashboard />} />
           </>
-        )}
-
-        {!isAuthenticated && (
-          <>
-            {console.log("Redirecting to error 401")}
-            <Route path="*" element={<Navigate to="/error/401" />} />
-          </>
-        )}
-
-        {isAuthenticated && user?.account_type !== "seller" && (
+        ) : (
           <>
             {console.log("Redirecting to error 403")}
+            {console.log("Account type:", user?.account_type)}
             <Route path="*" element={<Navigate to="/error/403" />} />
           </>
         )}
