@@ -35,8 +35,12 @@ const AllRoutes = () => {
   };
 
   useEffect(() => {
-    checkUserType();
-  }, []);
+    if (userType) { 
+      checkUserType();
+    } else {
+        console.log('No user type available');
+    }
+  }, [userType]);
 
   const accountType = sessionStorage.getItem("accountType");
   return (
