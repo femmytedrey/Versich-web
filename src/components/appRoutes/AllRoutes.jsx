@@ -29,22 +29,39 @@ const AllRoutes = () => {
 
   useEffect(() => {
     dispatch(checkAuth()); // Dispatch checkAuth action
+
     if (isAuthenticated) {
-      console.log("User is authenticated"); // Log when user is authenticated
+      if (user?.account_type === "seller") {
+        console.log("User is authenticated and is a seller");
+      } else {
+        console.log(
+          "User is authenticated but is not a seller, redirecting to error page 403"
+        );
+      }
     } else {
-      console.log("user is not authenticated");
+      console.log("User is not authenticated, redirecting to error page 401");
     }
-  }, [dispatch, isAuthenticated]);
+  }, [dispatch, isAuthenticated, user]);
+
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {isAuthenticated && user?.account_type ==='seller' ? (
-          <Route path="tempdashboard/" element={<TempDashboard />} />
+        {isAuthenticated && user?.account_type === "seller" ? (
+          <>
+            {console.log("Rendering tempdashboard")}
+            {console.log("Account type:", user?.account_type)}
+            <Route path="tempdashboard/" element={<TempDashboard />} />
+          </>
         ) : (
-          <Route path="*" element={<Navigate to="/error/403" />} />
+          <>
+            {console.log("Redirecting to error 403")}
+            {console.log("Account type:", user?.account_type)}
+            <Route path="*" element={<Navigate to="/error/403" />} />
+          </>
         )}
+
         {/* <Route path="steppers/" element={<Steppers />} /> */}
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
