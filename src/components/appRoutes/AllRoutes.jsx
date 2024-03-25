@@ -29,9 +29,10 @@ const AllRoutes = () => {
   const isSellerAuthenticated = isAuthenticated && userType === "seller";
   useEffect(() => {
     if (isSellerAuthenticated) {
+      console.log(isSellerAuthenticated);
       console.log("User is authenticated as seller");
     } else {
-        console.log('No authentication')
+      console.log("No authentication");
     }
   }, [isSellerAuthenticated]);
 
@@ -76,7 +77,10 @@ const AllRoutes = () => {
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
         {isSellerAuthenticated ? (
-          <Route path="tempdashboard/" element={<TempDashboard />} />
+          <>
+            {console.log(isSellerAuthenticated)}
+            <Route path="tempdashboard/" element={<TempDashboard />} />
+          </>
         ) : (
           <Route path="*" element={<Navigate to="/error/403" />} />
         )}
