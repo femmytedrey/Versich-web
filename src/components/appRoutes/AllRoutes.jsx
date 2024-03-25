@@ -23,40 +23,49 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const AllRoutes = () => {
-  const {isAuthenticated, user} = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const userType = user?.account_type;
 
-  const checkUserAuthentication = () => {
-    if (isAuthenticated){
-        console.log("User is authenticated");
-    } else {
-        console.log("User is not authenticated");
-    }
-  }
-
+  const isSellerAuthenticated = isAuthenticated && userType === "seller";
   useEffect(() => {
-    if(isAuthenticated){
-        checkUserAuthentication();
+    if (isSellerAuthenticated) {
+      console.log("User is authenticated as seller");
     } else {
-        console.log('There is no any authenticated user');
+        console.log('No authentication')
     }
-  })
+  }, [isSellerAuthenticated]);
 
-   const checkUserType = () => {
-     if (userType === "buyer") {
-       console.log("There is available buyer");
-     } else if (userType === "seller") {
-       console.log("There is available seller");
-     }
-   };
+  //   const checkUserAuthentication = () => {
+  //     if (isAuthenticated){
+  //         console.log("User is authenticated");
+  //     } else {
+  //         console.log("User is not authenticated");
+  //     }
+  //   }
 
-   useEffect(() => {
-     if (userType) { 
-       checkUserType();
-     } else {
-         console.log('No user type available');
-     }
-   }, [userType]);
+  //   useEffect(() => {
+  //     if(isAuthenticated){
+  //         checkUserAuthentication();
+  //     } else {
+  //         console.log('There is no any authenticated user');
+  //     }
+  //   })
+
+  //    const checkUserType = () => {
+  //      if (userType === "buyer") {
+  //        console.log("There is available buyer");
+  //      } else if (userType === "seller") {
+  //        console.log("There is available seller");
+  //      }
+  //    };
+
+  //    useEffect(() => {
+  //      if (userType) {
+  //        checkUserType();
+  //      } else {
+  //          console.log('No user type available');
+  //      }
+  //    }, [userType]);
 
   const accountType = sessionStorage.getItem("accountType");
   return (
@@ -66,7 +75,11 @@ const AllRoutes = () => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        <Route path="tempdashboard/" element={<TempDashboard />} />
+        {isSellerAuthenticated ? (
+          <Route path="tempdashboard/" element={<TempDashboard />} />
+        ) : (
+          <Route path="*" element={<Navigate to="/error/403" />} />
+        )}
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
