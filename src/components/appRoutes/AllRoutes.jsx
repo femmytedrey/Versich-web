@@ -26,6 +26,7 @@ import { checkAuth } from "../../actions/auth";
 const AllRoutes = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+  let shouldRenderTempDashboard = false;
 
   useEffect(() => {
     dispatch(checkAuth()); // Dispatch checkAuth action
