@@ -30,36 +30,37 @@ const AllRoutes = () => {
   useEffect(() => {
     dispatch(checkAuth()); // Dispatch checkAuth action
 
-    if (isAuthenticated) {
-      if (user?.account_type === "seller") {
-        console.log("User is authenticated and is a seller");
-      } else {
-        console.log(
-          "User is authenticated but is not a seller, redirecting to error page 403"
-        );
-      }
-    } else {
-      console.log("User is not authenticated, redirecting to error page 401");
-    }
-  }, [dispatch, isAuthenticated, user]);
+    useEffect(() => {
+        dispatch(checkAuth()); // Dispatch checkAuth action
+        if (isAuthenticated && user?.account_type === "seller") {
+          shouldRenderTempDashboard = true;
+        }
+    }, [dispatch, isAuthenticated, user]);
 
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {isAuthenticated && user?.account_type === "seller" ? (
-          <>
+        {isAuthenticated && user?.account_type === "seller" && shouldRenderTempDashboard && (
+            <>
             {console.log("Rendering tempdashboard")}
-            {console.log("Account type:", user?.account_type)}
             <Route path="tempdashboard/" element={<TempDashboard />} />
-          </>
-        ) : (
-          <>
+            </>
+        )}
+
+        {!isAuthenticated && (
+            <>
+            {console.log("Redirecting to error 401")}
+            <Route path="*" element={<Navigate to="/error/401" />} />
+            </>
+        )}
+
+        {isAuthenticated && user?.account_type !== "seller" && (
+            <>
             {console.log("Redirecting to error 403")}
-            {console.log("Account type:", user?.account_type)}
             <Route path="*" element={<Navigate to="/error/403" />} />
-          </>
+            </>
         )}
 
         {/* <Route path="steppers/" element={<Steppers />} /> */}
