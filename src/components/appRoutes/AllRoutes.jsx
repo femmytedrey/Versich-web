@@ -23,24 +23,40 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const AllRoutes = () => {
-  const user = useSelector((state) => state.auth.user);
-  const userType = user?.account_type;
+  const {isAuthenticated, user} = useSelector((state) => state.auth);
+  const userType = user?.user.account_type;
 
-  const checkUserType = () => {
-    if (userType === "buyer") {
-      console.log("There is available buyer");
-    } else if (userType === "seller") {
-      console.log("There is available seller");
+  const checkUserAuthentication = () => {
+    if (isAuthenticated){
+        console.log("User is authenticated");
+    } else {
+        console.log("User is not authenticated");
     }
-  };
+  }
 
   useEffect(() => {
-    if (userType) { 
-      checkUserType();
+    if(isAuthenticated){
+        checkUserAuthentication();
     } else {
-        console.log('No user type available');
+        console.log('There is no any authenticated user');
     }
-  }, [userType]);
+  })
+
+//   const checkUserType = () => {
+//     if (userType === "buyer") {
+//       console.log("There is available buyer");
+//     } else if (userType === "seller") {
+//       console.log("There is available seller");
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (userType) { 
+//       checkUserType();
+//     } else {
+//         console.log('No user type available');
+//     }
+//   }, [userType]);
 
   const accountType = sessionStorage.getItem("accountType");
   return (
