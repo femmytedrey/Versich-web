@@ -1,29 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
 import { BrowserRouter } from "react-router-dom";
 
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import AllRoutes from "./components/appRoutes/AllRoutes";
-import { checkAuth } from "./actions/auth";
+import { checkAuth } from "./actions/auth"
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(checkAuth());
+    dispatch(checkAuth())
     // eslint-disable-next-line
-  }, []);
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-  console.log(isAuthenticated, "from App.js");
+  }, [])
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter >
         <Navbar />
-        <AllRoutes
-          checkAuth={checkAuth}
-          isAuthenticated={isAuthenticated}
-          user={user}
-        />
+        <AllRoutes />
         <Footer />
       </BrowserRouter>
       {/* <Home /> */}

@@ -21,8 +21,22 @@ import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
 
-const AllRoutes = ({checkAuth}) => {
-  //const user = useSelector((state) => state.auth.user);
+const AllRoutes = () => {
+  const user = useSelector((state) => state.auth.user);
+  const userType = user?.user.account_type;
+  
+  const checkUserType = () => {
+    if (userType === "buyer") {
+      console.log("There is available buyer");
+    } else if (userType === "seller") {
+      console.log("There is available seller");
+    }
+  };
+
+  useEffect(() => {
+    checkUserType();
+  }, []);
+
   const accountType = sessionStorage.getItem("accountType");
   return (
     <Routes>
@@ -31,7 +45,7 @@ const AllRoutes = ({checkAuth}) => {
         {/* Temporary preview for sam to see */}
         {/* Temporary routes */}
         {/* <Route path="steppers/" element={<Steppers />} /> */}
-        
+        <Route path="tempdashboard/" element={<TempDashboard />} />
         {/* <Route path="as" element={<AccountSelection />} /> */}
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
