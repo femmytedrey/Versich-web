@@ -24,7 +24,7 @@ import { useEffect } from "react";
 
 const AllRoutes = () => {
   const {isAuthenticated, user} = useSelector((state) => state.auth);
-  const userType = user?.user.account_type;
+  const userType = user?.account_type;
 
   const checkUserAuthentication = () => {
     if (isAuthenticated){
@@ -42,21 +42,21 @@ const AllRoutes = () => {
     }
   })
 
-//   const checkUserType = () => {
-//     if (userType === "buyer") {
-//       console.log("There is available buyer");
-//     } else if (userType === "seller") {
-//       console.log("There is available seller");
-//     }
-//   };
+   const checkUserType = () => {
+     if (userType === "buyer") {
+       console.log("There is available buyer");
+     } else if (userType === "seller") {
+       console.log("There is available seller");
+     }
+   };
 
-//   useEffect(() => {
-//     if (userType) { 
-//       checkUserType();
-//     } else {
-//         console.log('No user type available');
-//     }
-//   }, [userType]);
+   useEffect(() => {
+     if (userType) { 
+       checkUserType();
+     } else {
+         console.log('No user type available');
+     }
+   }, [userType]);
 
   const accountType = sessionStorage.getItem("accountType");
   return (
