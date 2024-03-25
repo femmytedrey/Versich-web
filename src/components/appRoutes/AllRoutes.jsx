@@ -20,11 +20,12 @@ import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const AllRoutes = () => {
   const user = useSelector((state) => state.auth.user);
   const userType = user?.user.account_type;
-  
+
   const checkUserType = () => {
     if (userType === "buyer") {
       console.log("There is available buyer");
