@@ -88,7 +88,14 @@ const AllRoutes = () => {
         {/* <Route path="leads" element={<LeadsForm />} />
                 <Route path="profile" element={<ProfileForm />} />
                 <Route path="more-leads" element={<MoreLeadsForm />} /> */}
-        <Route path="response" element={<Response />} />
+        {isSellerAuthenticated ? (
+          <>
+            {console.log(isSellerAuthenticated)}{" "}
+            <Route path="response" element={<Response />} />
+          </>
+        ) : (
+          <Route path="*" element={<Navigate to="/error/403" />} />
+        )}
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
