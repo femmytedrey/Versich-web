@@ -2,18 +2,27 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMarkEmailUnread } from "react-icons/md";
 import Meta from "../components/Meta";
+import { resendVerificationEmail } from "../api";
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
   const [showCountdown, setShowCountdown] = useState(false);
   const [disableResend, setDisableResend] = useState(false);
 
-  const emailResend = () => {
-    alert("Email resent");
-    setShowCountdown(true);
-    setDisableResend(true);
-    setCountdown(30);
+  const emailResend = async () => {
+    try {
+      await resendVerificationEmail();
+  
+      alert("Email resent");
+      setShowCountdown(true);
+      setDisableResend(true);
+      setCountdown(30);
+    } catch (error) {
+      console.error("Error resending email:", error);
+      alert("Error resending email. Please try again later.");
+    }
   };
+  
 
   useEffect(() => {
     let timer;

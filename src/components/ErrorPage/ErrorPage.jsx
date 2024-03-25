@@ -27,9 +27,9 @@ const ErrorPage = ({ status }) => {
 
   return (
     <div className="flex justify-between px-10 lg:px-32 md:px-25 flex-col md:flex-row items-center gap-y-2 bg-versich-primary-bg gap-x-8 lg:gap-x-20 py-12 md:py-0">
-      <div className="w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] order-1 md:order-2">
+      <div className="w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] min-h-[330px] order-1 md:order-2">
         {/* Display error image based on the case */}
-        <img src={errorImage} alt={`Error ${status}`} className="w-full" />
+        <img src={errorImage} alt={`Error ${status}`} className="w-full " />
       </div>
       <div className="order-2 md:order-1 text-center md:text-left">
         <p className="font-bold text-3xl md:text-4xl lg:text-5xl text-versich-dark-blue pb-2 md:pb-4">
