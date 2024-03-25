@@ -20,18 +20,19 @@ import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { checkAuth } from "../../actions/auth";
 
 const AllRoutes = () => {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  let shouldRenderTempDashboard = false;
+  const [shouldRenderTempDashboard, setShouldRenderTempDashboard] =
+    useState(false);
 
   useEffect(() => {
     dispatch(checkAuth()); // Dispatch checkAuth action
     if (isAuthenticated && user?.account_type === "seller") {
-      shouldRenderTempDashboard = true;
+      setShouldRenderTempDashboard(true);
     }
   }, [dispatch, isAuthenticated, user]);
 
@@ -40,14 +41,12 @@ const AllRoutes = () => {
       <Route path="/">
         <Route path="" element={<Home />} />
         {/* Temporary routes */}
-        {isAuthenticated &&
-          user?.account_type === "seller" &&
-          shouldRenderTempDashboard && (
-            <>
-              {console.log("Rendering tempdashboard")}
-              <Route path="tempdashboard/" element={<TempDashboard />} />
-            </>
-          )}
+        {shouldRenderTempDashboard && (
+          <>
+            {console.log("Rendering tempdashboard")}
+            <Route path="tempdashboard/" element={<TempDashboard />} />
+          </>
+        )}
 
         {!isAuthenticated && (
           <>
