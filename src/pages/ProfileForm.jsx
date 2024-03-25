@@ -84,7 +84,7 @@ const ProfileForm = () => {
   };
 
   const handleButtonClickBack = () => {
-    navigate("/leads");
+    dispatch(setProgress(25));
   };
 
   const onSubmit = async (data) => {
@@ -127,10 +127,6 @@ const ProfileForm = () => {
       console.log("Form submitted successfully:", formData);
 
       dispatch(setProgress(75));
-      const updatedProgress = 75;
-      console.log("Profile completion progress", updatedProgress);
-
-      navigate("/more-leads");
     } catch (error) {
       console.error("Form submission error:", error);
     }

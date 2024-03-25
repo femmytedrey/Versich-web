@@ -1,24 +1,23 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
+
 import Error401 from "../../assets/401.png";
 import Error403 from "../../assets/403.png";
 import Error404 from "../../assets/404.png";
-import { FaHome } from "react-icons/fa";
 
-const ErrorPage = () => {
-  const { status } = useParams();
-
+const ErrorPage = ({ status }) => {
   let errorMessage, errorImage;
   switch (status) {
-    case "401":
+    case 401:
       errorMessage = "You are not authorized to view the requested resource";
       errorImage = Error401;
       break;
-    case "403":
+    case 403:
       errorMessage =
         "Access denied. You do not have permission to access the requested resource";
       errorImage = Error403;
       break;
-    case "404":
+    case 404:
       errorMessage = "The page you are attempting to navigate to is not found";
       errorImage = Error404;
       break;

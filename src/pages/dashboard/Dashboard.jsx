@@ -7,20 +7,16 @@ import { GoUnread } from "react-icons/go";
 import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import Meta from "../../components/Meta";
-import { buyerPaths, sellerPaths } from "../../assets/constants";
-// import { resendVerificationEmail } from "../../api";
+import { setupPath } from "../../assets/constants";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const progress = useSelector((state) => state.progress.value);
-  const accountType = sessionStorage.getItem("accountType");
 
   if (
     !user ||
     typeof user !== "object" ||
     !user.first_name
-    // ||
-    // !user.last_name
   ) {
     return (
       <div className="flex flex-col items-center justify-center my-10 min-h-80">
@@ -32,20 +28,6 @@ const Dashboard = () => {
   const editBtn = () => {
     console.log("Testing Edit btn");
   };
-
-  const getProfileLink = () => {
-    let paths = accountType === "buyer" ? buyerPaths : sellerPaths;
-
-    if (progress < 50) {
-      return paths.leads;
-    } else if (progress < 75) {
-      return paths.profile;
-    } else {
-      return paths.moreleads;
-    }
-  };
-
-  
 
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
 
@@ -82,7 +64,7 @@ const Dashboard = () => {
                   Complete your profile {""}
                   <span>
                     <Link
-                      to={getProfileLink()}
+                      to={setupPath}
                       className="text-versich-blue underline"
                     >
                       here
