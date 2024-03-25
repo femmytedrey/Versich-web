@@ -24,7 +24,7 @@ import { useEffect } from "react";
 
 const AllRoutes = () => {
   const user = useSelector((state) => state.auth.user);
-  const userType = user?.user.account_type;
+  const userType = user?.account_type;
 
   const checkUserType = () => {
     if (userType === "buyer") {
