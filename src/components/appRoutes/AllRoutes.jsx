@@ -36,8 +36,10 @@ const AllRoutes = () => {
         </Route>
         <Route element={<AuthRoutes />}>
           <Route path="verify-email/:token" element={<VerifyEmailPage />} />
+
+          {/* This EmailVerification is for the resend */}
           <Route
-            path="resend-email"
+            path="verification/resend-email"
             element={<EmailVerification />}
           />
           <Route path="verification/email/" element={<EmailVerified />} />
