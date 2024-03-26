@@ -19,7 +19,6 @@ const EmailVerification = () => {
       setCountdown(30);
     } catch (error) {
       console.error("Error resending email:", error);
-      alert("Error resending email. Please try again later.");
     }
   };
   
