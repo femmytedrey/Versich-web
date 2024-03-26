@@ -35,7 +35,7 @@ const AllRoutes = () => {
           />
         </Route>
         <Route element={<AuthRoutes />}>
-          <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
+          <Route path="verify-email/:token" element={<VerifyEmailPage />} />
           <Route
             path="verification/:token/email/"
             element={<EmailVerification />}
