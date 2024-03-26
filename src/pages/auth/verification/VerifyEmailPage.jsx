@@ -8,13 +8,14 @@ export default function VerifyEmailPage() {
 
   const [error, setError] = useState(null);
 
-  const { token } = useParams();
+  const { tokens } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        await verifyEmail(token);
+        await verifyEmail(tokens);
+        console.log("Token Extracted Successfully")
         navigate('verification/email/');
       } catch (error) {
         console.error(error);
@@ -25,7 +26,7 @@ export default function VerifyEmailPage() {
       }
     }
     verifyToken();
-  }, [token, navigate]);
+  }, [tokens, navigate]);
 
 
 
