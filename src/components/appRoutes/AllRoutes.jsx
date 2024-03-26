@@ -16,6 +16,7 @@ import AuthRoutes from "./AuthRoutes";
 import BuyerRoutes from "./BuyerRoutes";
 import SellerRoutes from "./SellerRoutes";
 import { loginPath } from "../../assets/constants";
+import VerifyEmailPage from "../../pages/auth/verification/VerifyEmailPage";
 
 const AllRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const AllRoutes = () => {
           />
         </Route>
         <Route element={<AuthRoutes />}>
+          <Route path="/verify-email/:token" element={<VerifyEmailPage />} />
           <Route
             path="verification/:token/email/"
             element={<EmailVerification />}

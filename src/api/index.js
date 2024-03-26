@@ -28,7 +28,7 @@ export const logout = () => API.get("/auth/logout/");
 export const authenticateGoogleUser = (searchQuery) =>
   API.get(`/auth/social-accounts/google/callback/${searchQuery}`);
 
-export const sendVerificationEmail = (token) => {
+export const verifyEmail = (token) => {
   return API.get(`/auth/verify/account/${token}/`);
 };
 
