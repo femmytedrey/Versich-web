@@ -14,7 +14,7 @@ const GoogleOAuthVerification = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     let params = location.search;
-    const accountType = sessionStorage.getItem("accountTypee");
+    const accountType = sessionStorage.getItem("accountType");
     if (accountType) {
       params += `&accounttype=${accountType}`;
     }
@@ -24,13 +24,14 @@ const GoogleOAuthVerification = () => {
         /**
          * The user must see a error message, if authentication failed
          */
-        // const data = JSON.parse(error?.message)
-        console.error(error)
-        if (error.response && error.response.data && error.response.data.message) {
-            setErrorMessage(error.response.data.message);
-        } else {
-            setErrorMessage("An error occurred while authenticating with Google.");
-        }
+        //
+        const data = JSON.parse(error?.message)
+        console.log(data)
+        // if (error.response && error.response.data && error.response.data.message) {
+        //     setErrorMessage(error.response.data.message);
+        // } else {
+        //     setErrorMessage("An error occurred while authenticating with Google.");
+        // }
         setStatus(null);
       });
     // eslint-disable-next-line
@@ -45,7 +46,8 @@ const GoogleOAuthVerification = () => {
         </h2>
         <section>
           {status === null ? (
-            <h1>{errorMessage}</h1>
+            // <h1>{errorMessage}</h1>
+            <Navigate to={loginPath} />
           ) : (
             status === "verifying" && (
               <div className="flex-grow inline-flex items-center">
