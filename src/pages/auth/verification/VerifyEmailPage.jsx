@@ -1,11 +1,40 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-const VerifyEmailPage = () => {
+import { verifyEmail } from '../../../api';
+
+
+export default function VerifyEmailPage() {
+
+  const [error, setError] = useState(null);
+
+  const { token } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        await verifyEmail(token);
+        console.log("Token Extracted Successfully")
+        navigate('verification/:token/email/');
+      } catch (error) {
+        console.error(error);
+        setError(error.message);
+        navigate('verification/email/');
+      } finally {
+        console.log('Code block is executed successfully')
+      }
+    }
+    verifyToken();
+  }, [token, navigate]);
+
+
+
   return (
     <div>
-      
+      <h1>Verify Email...</h1>
+      {error && <p>{error}</p>}
     </div>
   );
-}
 
-export default VerifyEmailPage;
+}
