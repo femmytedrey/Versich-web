@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { verifyEmail } from "../../../api";
-import { useSelector } from "react-redux";
 
 export default function VerifyEmailPage() {
   const [error, setError] = useState(null);
   const { token } = useParams();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const emailVerified = await verifyEmailOwnership(token, user?.email);
+        const loggedInEmail = sessionStorage.getItem("loggedInEmail");
+        if (!loggedInEmail) {
+          console.log("Email not found in session storage");
+          setError("Email not found. Please log in again.");
+          return;
+        }
+
+        const emailVerified = await verifyEmailOwnership(token, loggedInEmail); 
         if (!emailVerified) {
           setError("You are not authorized to verify this email address.");
           return;
@@ -31,7 +36,7 @@ export default function VerifyEmailPage() {
     };
 
     verifyToken();
-  }, [token, navigate, user]);
+  }, [token, navigate]);
 
   return (
     <div>

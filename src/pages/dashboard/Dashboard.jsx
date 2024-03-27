@@ -12,6 +12,14 @@ import { setupPath } from "../../assets/constants";
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const progress = useSelector((state) => state.progress.value);
+  const [loggedInEmail, setLoggedInEmail] = useState('');
+
+  useEffect(() => {
+    if (user && user.email) {
+      sessionStorage.setItem("loggedInEmail", user.email);
+      setLoggedInEmail(user.email);
+    }
+  }, [user]);
 
   if (
     !user ||
@@ -35,7 +43,7 @@ const Dashboard = () => {
     <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
       <Meta title='Dashboard' description='VersiMarket User dashboard' />
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
-        <div>Welcome {user.email}</div>
+        <div>Welcome {loggedInEmail}</div>
         <p>Good Afternoon, {user.first_name}!</p>
         <Link
           to="/auth/verification/resend-email/"
