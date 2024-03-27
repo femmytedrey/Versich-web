@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { verifyEmail, getUser } from "../../../api";
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 
 export default function VerifyEmailPage() {
   const [error, setError] = useState(null);
   const { token } = useParams();
   const navigate = useNavigate();
-  const userEmail = useSelector((state) => state.user.email); 
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        if (!userEmail) {
+        if (!user || !user.email) {
           await getUser();
         }
 
-        const emailVerified = await verifyEmailOwnership(token, userEmail);
+        if (!user || !user.email) {
+          // If user or user.email is still not defined after fetching, log that email is not found
+          console.log("Email not found");
+          return;
+        }
+
+        const emailVerified = await verifyEmailOwnership(token, user.email);
         if (!emailVerified) {
           setError("You are not authorized to verify this email address.");
           return;
@@ -35,7 +41,7 @@ export default function VerifyEmailPage() {
     };
 
     verifyToken();
-  }, [token, navigate, userEmail]);
+  }, [token, navigate, user]);
 
   return (
     <div>
@@ -49,6 +55,12 @@ async function verifyEmailOwnership(token, userEmail) {
   try {
     const response = await fetch(`/api/verify/${token}`);
     const data = await response.json();
+
+    if (!data || !data.email) {
+      console.log("Email not found in API response:", data);
+      return false;
+    }
+
     const tokenEmail = data.email;
 
     return tokenEmail === userEmail;
