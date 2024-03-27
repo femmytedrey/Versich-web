@@ -14,7 +14,8 @@ export const authenticateGoogleUser = (searchQuery) => async (dispatch) => {
         /**
          * error.message
          * error.status
-         */
+         */ 
+        console.error(error)
         const _err = JSON.stringify({ status: "server.returned.status", message: "Error message" })
         throw Error(_err)
     }
