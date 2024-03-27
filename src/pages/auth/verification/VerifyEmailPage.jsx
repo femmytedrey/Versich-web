@@ -22,7 +22,7 @@ export default function VerifyEmailPage() {
         setError(error.message);
         navigate('verification/:token/email/');
       } finally {
-        // finally block
+        console.log('Code block is executed successfully')
       }
     }
     verifyToken();
