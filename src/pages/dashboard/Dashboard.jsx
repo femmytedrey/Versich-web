@@ -38,7 +38,7 @@ const Dashboard = () => {
         <div>Welcome {user.account_type}</div>
         <p>Good Afternoon, {user.first_name}!</p>
         <Link
-          to="/auth/verification/resend-email"
+          to="/auth/verification/YOUR_TOKEN/email/"
           className="text-versich-blue underline hover:text-versich-blue-hover"
         >
           Verify Email
