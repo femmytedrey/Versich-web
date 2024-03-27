@@ -14,7 +14,7 @@ const GoogleOAuthVerification = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     let params = location.search;
-    const accountType = sessionStorage.getItem("accountType");
+    const accountType = sessionStorage.getItem("accountTypee");
     if (accountType) {
       params += `&accounttype=${accountType}`;
     }
