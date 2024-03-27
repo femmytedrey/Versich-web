@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { verifyEmail, getUser } from "../../../api";
+import { verifyEmail } from "../../../api";
 import { useSelector } from "react-redux";
 
 export default function VerifyEmailPage() {
@@ -12,17 +12,7 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        if (!user || !user.email) {
-          await getUser();
-        }
-
-        if (!user || !user.email) {
-          // If user or user.email is still not defined after fetching, log that email is not found
-          console.log("Email not found");
-          return;
-        }
-
-        const emailVerified = await verifyEmailOwnership(token, user.email);
+        const emailVerified = await verifyEmailOwnership(token, user?.email);
         if (!emailVerified) {
           setError("You are not authorized to verify this email address.");
           return;
@@ -36,7 +26,7 @@ export default function VerifyEmailPage() {
         setError("An error occurred while verifying the email.");
         navigate("/auth/verification/resend-email/", { replace: true });
       } finally {
-        console.log("Code block is executed successful");
+        console.log("Code block is executed successfully");
       }
     };
 
