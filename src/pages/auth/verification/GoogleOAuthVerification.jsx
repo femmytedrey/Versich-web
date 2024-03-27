@@ -25,6 +25,7 @@ const GoogleOAuthVerification = () => {
          * The user must see a error message, if authentication failed
          */
         // const data = JSON.parse(error?.message)
+        console.error(error)
         if (error.response && error.response.data && error.response.data.message) {
             setErrorMessage(error.response.data.message);
         } else {
