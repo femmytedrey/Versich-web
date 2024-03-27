@@ -8,7 +8,7 @@ import CircularProgressBar from "../../components/CircularProgressBar";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import Meta from "../../components/Meta";
 import { setupPath } from "../../assets/constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
