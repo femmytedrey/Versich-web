@@ -16,7 +16,7 @@ export default function VerifyEmailPage() {
       try {
         await verifyEmail(token);
         console.log("Token Extracted Successfully")
-        // navigate('verification/email/');
+        navigate('verification/email/');
       } catch (error) {
         console.error(error);
         setError(error.message);
