@@ -16,13 +16,13 @@ export default function VerifyEmailPage() {
       try {
         await verifyEmail(token);
         console.log("Token Extracted Successfully")
-        navigate('verification/:token/email/');
+        navigate('verification/email-verified');
       } catch (error) {
         console.error(error);
         setError(error.message);
-        navigate('verification/email/');
+        navigate('verification/resend-email/');
       } finally {
-        console.log('Code block is executed successfully')
+        console.log('Code block is executed successful')
       }
     }
     verifyToken();
