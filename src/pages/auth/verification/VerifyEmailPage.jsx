@@ -16,11 +16,11 @@ export default function VerifyEmailPage() {
       try {
         await verifyEmail(token);
         console.log("Token Extracted Successfully")
-        navigate('/verification/email-verified', { replace: true });
+        navigate('/auth/verification/email-verified', { replace: true });
       } catch (error) {
         console.error(error);
         setError(error.message);
-        navigate('/verification/resend-email/', { replace: true });
+        navigate('/auth/verification/resend-email/', { replace: true });
       } finally {
         console.log('Code block is executed successful')
       }
