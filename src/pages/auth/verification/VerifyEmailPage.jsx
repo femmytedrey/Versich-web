@@ -6,7 +6,6 @@ import { verifyEmail } from '../../../api';
 
 export default function VerifyEmailPage() {
 
-  const [error, setError] = useState(null);
 
   const { token } = useParams();
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ export default function VerifyEmailPage() {
         navigate('/auth/verification/email-verified', { replace: true });
       } catch (error) {
         console.error(error);
-        setError(error.message);
         navigate('/auth/verification/resend-email/', { replace: true });
       } finally {
         console.log('Code block is executed successful')
@@ -33,7 +31,6 @@ export default function VerifyEmailPage() {
   return (
     <div>
       <h1>Verify Email...</h1>
-      {error && <p>{error}</p>}
     </div>
   );
 

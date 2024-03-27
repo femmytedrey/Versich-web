@@ -20,7 +20,7 @@ const EmailVerification = () => {
       setCountdown(30);
     } catch (error) {
       console.error("Error resending email:", error);
-      setResendError("Error resending email. Please try again later.");
+      setResendError(`${error.response?.request?.status} : ${error.message}`);
     }
   };
 
@@ -67,7 +67,9 @@ const EmailVerification = () => {
           </button>{" "}
           to resend Verification Link.
         </p>
-        {resendError && <p className="text-center text-red-500">{resendError}</p>}
+        {resendError && (
+          <p className="text-center text-red-500">{resendError}</p>
+        )}
         {showCountdown && (
           <p className="text-center">Resend email in {countdown}s.</p>
         )}
