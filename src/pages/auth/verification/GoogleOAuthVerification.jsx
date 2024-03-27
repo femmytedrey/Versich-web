@@ -44,7 +44,7 @@ const GoogleOAuthVerification = () => {
         </h2>
         <section>
           {status === null ? (
-            <Navigate to={loginPath} />
+            <h1>{errorMessage}</h1>
           ) : (
             status === "verifying" && (
               <div className="flex-grow inline-flex items-center">
@@ -59,7 +59,7 @@ const GoogleOAuthVerification = () => {
             )
           )}
         </section>
-        <p>{errorMessage || "Verifying your request..."}</p>
+        <p>verifying your request..</p>
       </div>
     </div>
   );
