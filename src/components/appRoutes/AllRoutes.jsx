@@ -24,7 +24,7 @@ const AllRoutes = () => {
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
-        <Route path='response' element={<Response />}/>
+        <Route path="response" element={<Response />} />
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
@@ -37,14 +37,23 @@ const AllRoutes = () => {
           />
         </Route>
         <Route element={<AuthRoutes />}>
-          <Route path="/api/auth/verify/account/:token" element={<VerifyEmailPage />} />
+          <Route
+            path="verification/:token/email"
+            element={<VerifyEmailPage />}
+          />
 
           {/* This EmailVerification is for the resend */}
           <Route
             path="verification/resend-email/"
             element={<EmailVerification />}
           />
-          <Route path="verify/account/:token" element={<EmailVerified />} />
+          <Route element={<AuthRoutes />}>
+            <Route
+              path="/api/verify/account/:token"
+              element={<EmailVerified />}
+            />
+          </Route>
+
           <Route path="su/">
             <Route path="buyer/" element={<BuyerRoutes />}>
               <Route path="leads/" element={<LeadsForm />} />
