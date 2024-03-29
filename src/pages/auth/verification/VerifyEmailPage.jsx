@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { VerifyEmailAction } from "../../../actions/emailVerificationActions";
 import EmailVerified from "../../EmailVerified";
+import { VerifyEmailAction } from "../../../actions/VerifyEmailAction";
 
 export default function VerifyEmailPage() {
   const [isVerified, setIsVerified] = useState(false);
