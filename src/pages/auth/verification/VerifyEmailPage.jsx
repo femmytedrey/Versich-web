@@ -21,10 +21,11 @@ export default function VerifyEmailPage() {
         }
         console.log("Token Extracted Successfully")
         setIsVerified(true);
-        setStatusText('Your email has been verified successfully!')
+        setStatusText('Your email has been verified successfully!');
+        navigate(`/api/auth/verify/account/${token}`)
       } catch (error) {
         console.error(error);
-        // navigate('/auth/verification/resend-email/', { replace: true });
+        navigate('/auth/verification/resend-email/', { replace: true });
       } finally {
         console.log('Code block is executed successful')
       }

@@ -29,7 +29,7 @@ export const authenticateGoogleUser = (searchQuery) =>
   API.get(`/auth/social-accounts/google/callback/${searchQuery}`);
 
 export const verifyEmail = (token) => {
-  return API.get(`/auth/verify/accounts/${token}/email`);
+  return API.get(`/auth/verify/account/${token}`);
 };
 
 export const resendVerificationEmail = () => {
