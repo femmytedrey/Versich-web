@@ -8,7 +8,6 @@ import Meta from "../../../components/Meta";
 
 const GoogleOAuthVerification = () => {
   const [status, setStatus] = useState("verifying");
-  const [errorMessage, setErrorMessage] = useState(null);
   const location = useLocation();
 
   const dispatch = useDispatch();
@@ -21,17 +20,11 @@ const GoogleOAuthVerification = () => {
     dispatch(authenticateGoogleUser(params))
       .then((data) => setStatus(data?.status))
       .catch((error) => {
-        /**
-         * The user must see a error message, if authentication failed
-         */
-        //
-        const data = JSON.parse(error?.message)
-        console.log(data)
-        // if (error.response && error.response.data && error.response.data.message) {
-        //     setErrorMessage(error.response.data.message);
-        // } else {
-        //     setErrorMessage("An error occurred while authenticating with Google.");
-        // }
+        const message = error?.message
+          ? JSON.parse(error.message)?.message ||
+            "An error occurred while authenticating with Google."
+          : "An error occurred while authenticating with Google.";
+        Cookies.set("authError", message);
         setStatus(null);
       });
     // eslint-disable-next-line
@@ -46,7 +39,6 @@ const GoogleOAuthVerification = () => {
         </h2>
         <section>
           {status === null ? (
-            // <h1>{errorMessage}</h1>
             <Navigate to={loginPath} />
           ) : (
             status === "verifying" && (

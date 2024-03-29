@@ -25,7 +25,20 @@ export default function VerifyEmailPage() {
         setStatusText("Your email has been verified successfully!");
       } catch (error) {
         console.error(error);
-        // navigate("/auth/verification/resend-email/", { replace: true });
+        if (error.message === "Not authenticated") {
+          setStatusText("You are not authenticated");
+        } else if (error.message === "Email already verified") {
+          setStatusText("This email has already been verified");
+        } else if (
+          error.message === "Verification link not associated with this account"
+        ) {
+          setStatusText(
+            "This verification link is not associated with your account"
+          );
+        } else {
+          setStatusText("An error occurred while verifying your email");
+        }
+        navigate("/auth/verification/resend-email/", { replace: true });
       } finally {
         console.log("Code block is executed successful");
       }

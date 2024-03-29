@@ -20,28 +20,30 @@ const Login = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const storedError = Cookies.get("authError");
+    if (storedError) {
+      setErrorMsg(storedError);
+      Cookies.remove("authError");
+    }
+  }, []);
+
   const onSubmit = async (data) => {
     try {
-      // Manually check form validity
       const isValid = await methods.trigger();
 
       if (!isValid) {
-        // Handle validation errors, if any
         return;
       }
 
       setLoading(true);
-
-      // Call the loginUser action to handle the authentication logic
       const result = await dispatch(loginUser(email, password, csrfToken));
 
       if (result.status !== "success") {
-        // Handle unsuccessful login
 
         return;
       }
 
-      // If the login is successful, reset the form
       methods.reset();
     } catch (error) {
       if (error.response && error.response.status) {
@@ -52,9 +54,7 @@ const Login = () => {
       setErrorMsg(error.message)
 
     } finally {
-      // setErrorMsg("");
       setLoading(false);
-      // Reset the form or perform other actions regardless of success or failure
     }
   };
 
