@@ -47,12 +47,6 @@ const AllRoutes = () => {
             path="verification/resend-email/"
             element={<EmailVerification />}
           />
-          <Route element={<AuthRoutes />}>
-            <Route
-              path="/api/verify/account/:token"
-              element={<EmailVerified />}
-            />
-          </Route>
 
           <Route path="su/">
             <Route path="buyer/" element={<BuyerRoutes />}>
@@ -67,6 +61,9 @@ const AllRoutes = () => {
             </Route>
           </Route>
         </Route>
+      </Route>
+      <Route path="/api/verify/account/:token" element={<AuthRoutes />}>
+        <Route path="" element={<EmailVerified />} />
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
