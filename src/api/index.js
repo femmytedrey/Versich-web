@@ -32,6 +32,10 @@ export const verifyEmail = (token) => {
   return API.get(`/auth/verify/account/${token}/email`);
 };
 
-export const resendVerificationEmail = (data) => {
-  return API.post('/auth/verify/account/resend/email/', data, getReqConfig(data));
+export const resendVerificationEmail = (csrfmiddlewaretoken) => {
+  return API.post(
+    '/auth/verify/account/resend/email/',
+    {}, 
+    getReqConfig(csrfmiddlewaretoken)
+  );
 };

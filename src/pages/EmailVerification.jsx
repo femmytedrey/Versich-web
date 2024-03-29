@@ -12,13 +12,11 @@ const EmailVerification = () => {
   const [resendError, setResendError] = useState(null);
   const dispatch = useDispatch();
 
-  const { csrfmiddlewaretoken, email } = useSelector(
-    (state) => state.auth.user
-  );
+  const csrfToken = useSelector((state) => state.auth.csrfToken);
 
   const handleResend = async () => {
     try {
-      await dispatch(resendVerificationEmailAction(email, csrfmiddlewaretoken));
+      await dispatch(resendVerificationEmailAction(csrfToken));
       setShowCountdown(true);
       setDisableResend(true);
       setCountdown(30);

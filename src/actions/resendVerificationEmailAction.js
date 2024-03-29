@@ -1,12 +1,10 @@
 import { resendVerificationEmail } from "../api";
 
-export const resendVerificationEmailAction = (email, csrfmiddlewaretoken) => {
-  return async (dispatch) => {
+export const resendVerificationEmailAction = () => {
+  return async (dispatch, getState) => {
     try {
-      const data = { email, csrfmiddlewaretoken };
-      
-      await resendVerificationEmail(data);
-      
+      const { csrfmiddlewaretoken } = getState().auth.user;
+      await resendVerificationEmail(csrfmiddlewaretoken);
     } catch (error) {
       // Handle any errors
       throw error;
