@@ -58,7 +58,6 @@ const Signup = () => {
         setErrorMsg(error.message);
       })
       .finally(() => {
-        // methods.reset();
         setLoading(false);
       });
   };
