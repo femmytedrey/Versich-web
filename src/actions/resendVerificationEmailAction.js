@@ -1,11 +1,12 @@
-import { resendVerificationEmail } from '../api'; // Import the API functions
+import { resendVerificationEmail } from "../api";
 
 export const resendVerificationEmailAction = () => {
   return async (dispatch) => {
     try {
-      await resendVerificationEmail(); 
+      await resendVerificationEmail(email);
     } catch (error) {
-      throw error; 
+      // Handle any errors
+      throw error;
     }
   };
 };
