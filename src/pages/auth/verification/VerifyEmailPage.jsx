@@ -16,7 +16,7 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        await dispatch(VerifyEmailAction());
+        await dispatch(VerifyEmailAction('invalid-token'));
         if (!isVerified) {
           setStatusText("Error verifying this email");
         }
