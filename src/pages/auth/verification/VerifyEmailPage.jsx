@@ -16,7 +16,7 @@ export default function VerifyEmailPage() {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        await dispatch(VerifyEmailAction(token));
+        await dispatch(VerifyEmailAction());
         if (!isVerified) {
           setStatusText("Error verifying this email");
         }
@@ -25,7 +25,7 @@ export default function VerifyEmailPage() {
         setStatusText("Your email has been verified successfully!");
       } catch (error) {
         console.error(error);
-        navigate("/auth/verification/resend-email/", { replace: true });
+        // navigate("/auth/verification/resend-email/", { replace: true });
       } finally {
         console.log("Code block is executed successful");
       }
