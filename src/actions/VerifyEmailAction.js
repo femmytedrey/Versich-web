@@ -10,14 +10,14 @@ export const VerifyEmailAction = (token) => {
     } catch (error) {
       console.error(error);
       if (error.response && error.response.status === 401) {
-        throw new Error("Not authenticated");
-      } else if (error.response && error.response.status === 409) {
-        throw new Error("Email already verified");
-      } else if (error.response && error.response.status === 404) {
-        throw new Error("Verification link not associated with this account");
-      } else {
+        throw Error(JSON.stringify({ status: "not-authenticated", message: "User not authenticated" }));
+    } else if (error.response && error.response.status === 409) {
+        throw Error(JSON.stringify({ status: "email-already-verified", message: "Email already verified" }));
+    } else if (error.response && error.response.status === 404) {
+        throw Error(JSON.stringify({ status: "invalid-token", message: "Invalid or expired token" }));
+    } else {
         throw error;
-      }
+    }
     }
   };
 };
