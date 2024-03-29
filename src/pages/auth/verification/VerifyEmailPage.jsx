@@ -21,6 +21,7 @@ export default function VerifyEmailPage() {
         console.log("Token Extracted Successfully");
         setIsVerified(true);
         setStatusText("Your email has been verified successfully!");
+        navigate(`/api/auth/verify/account/${token}`);
       } catch (error) {
         console.error(error);
         const message = error?.message
