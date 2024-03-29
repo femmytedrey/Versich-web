@@ -1,15 +1,16 @@
 // actions/emailVerificationActions.js
 
-import { verifyEmail } from '../api'; // Import the API function
+import { verifyEmail } from "../api"; // Import the API function
 
 export const VerifyEmailAction = (token) => {
   return async (dispatch) => {
     try {
-      await verifyEmail(token); 
+      throw new Error("Intentional error occurred");
+      await verifyEmail(token);
       return true;
     } catch (error) {
       console.error(error);
-      throw error; 
+      throw error; // Throw error if verification fails
     }
   };
 };
