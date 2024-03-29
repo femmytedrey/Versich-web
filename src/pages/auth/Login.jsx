@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
+import Cookies from "js-cookie"; // Import Cookies
 
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import InputText from "../../components/InputText";
-import SocialAccounts from "./socialAccounts/SocialAccounts"
+import SocialAccounts from "./socialAccounts/SocialAccounts";
 import { signupPath } from "../../assets/constants";
 import { loginUser } from "../../actions/auth";
 import CSRFTokenField from "../../components/CSRFTokenField";
@@ -40,19 +41,17 @@ const Login = () => {
       const result = await dispatch(loginUser(email, password, csrfToken));
 
       if (result.status !== "success") {
-
         return;
       }
 
       methods.reset();
     } catch (error) {
       if (error.response && error.response.status) {
-        setErrorMsg(error.message)
-        return error
+        setErrorMsg(error.message);
+        return error;
       }
 
-      setErrorMsg(error.message)
-
+      setErrorMsg(error.message);
     } finally {
       setLoading(false);
     }
@@ -64,10 +63,12 @@ const Login = () => {
 
   return (
     <FormProvider {...methods}>
-      <Meta title='Login' description='Login to your account' />
+      <Meta title="Login" description="Login to your account" />
       <div className="py-10 md:py-14 px-3 overflow-hidden flex justify-center  bg-versich-primary-bg items-center">
         <div className="w-full bg-white shadow-form my-6 py-5 md:py-10 px-5 md:px-12 max-w-[580px] rounded-lg">
-          <h2 className=' text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium '>Log in</h2>
+          <h2 className=" text-3xl leading-normal text-left mb-5 text-versich-darktext-color font-medium ">
+            Log in
+          </h2>
           <div className="w-full">
             {/* form */}
             <form noValidate onSubmit={methods.handleSubmit(onSubmit)}>
@@ -87,7 +88,7 @@ const Login = () => {
                   placeholder="************"
                   name="password"
                   rules={{
-                    required: "Password is required"
+                    required: "Password is required",
                   }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -144,7 +145,12 @@ const Login = () => {
                   </Link>
                 </p>
 
-                <SocialAccounts google={{ url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL, text: "Continue with Google" }} />
+                <SocialAccounts
+                  google={{
+                    url: process.env.REACT_APP_API_GOOGLE_OAUTH2_URL,
+                    text: "Continue with Google",
+                  }}
+                />
               </div>
             </form>
           </div>

@@ -1,6 +1,7 @@
 import { useLocation, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 import { authenticateGoogleUser } from "../../../actions/socialAuth";
 import { loginPath } from "../../../assets/constants";
