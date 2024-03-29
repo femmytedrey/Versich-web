@@ -1,6 +1,6 @@
 import { resendVerificationEmail } from "../api";
 
-export const resendVerificationEmailAction = () => {
+export const resendVerificationEmailAction = (email) => {
   return async (dispatch) => {
     try {
       await resendVerificationEmail(email);

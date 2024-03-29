@@ -14,6 +14,7 @@ const EmailVerification = () => {
 
   const handleResend = async () => {
     try {
+      const email = 'femmytedrey04@gmail.com'
       await dispatch(resendVerificationEmailAction(email));
       setShowCountdown(true);
       setDisableResend(true);
