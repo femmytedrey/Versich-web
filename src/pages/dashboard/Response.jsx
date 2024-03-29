@@ -5,21 +5,44 @@ import DashboardConfirmBtn from "../../components/Buttons/DashboardConfirmBtn";
 import Meta from "../../components/Meta";
 import ServiceImages from "../../assets/ServiceImages";
 import { PiArrowRightThin } from "react-icons/pi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import NewRequest from "./NewRequest";
 
-const Response = () => {
+const Response = ({ onClose }) => {
   const [isResquestEmpty, setIsRequestEmpty] = useState(true);
+  const [openModal, setOpenModal] = useState(true);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (openModal) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      body.classList.remove("overflow-hidden");
+    };
+  }, [openModal]);
+
   const newRequest = () => {
     console.log("New request");
+    setOpenModal(true);
   };
+  const closeModal = () => {
+    setOpenModal(false);
+  };
+  const viewRequest = () => {
+    console.log("Request Viewed");
+  };
+
   return (
-    <div className="py-10 md:py-14 px-6 md:px-16 lg:px-28 text-start mb-12 overflow-hidden bg-versich-primary-bg space-y-8">
+    <div className="py-10 md:py-14 px-6 md:px-16 lg:px-28 text-start mb-12 overflow-hidden bg-versich-primary-bg space-y-8 relative">
       <Meta
         title="VersiMarket | Request Page"
         description="Response page for requests"
       />
       <div className="bg-white shadow-lg rounded-lg w-full">
-        <div className="border-b-2 px-3 py-3 md:py-5">
+        <div className="border-b-2 px-3 py-3 md:py-6">
           <BackBtn />
         </div>
         <div className="px-3 py-6 space-y-4 pb-12">
@@ -41,10 +64,55 @@ const Response = () => {
 
           {/* For non-empty request */}
           {!isResquestEmpty && (
-            <div className="px-3">
-              <p>Your Request</p>
+            <div className="px-3 space-y-5">
+              <p className="text-2xl text-versich-dark-blue font-semibold pb-3">
+                Your requests
+              </p>
+              <div className="border p-3 py-6 rounded-t-xl flex flex-col md:flex-row gap-y-3 gap-x-4 justify-between items-start md:items-center">
+                <div className="space-y-2">
+                  <p className="text-xl font-semibold text-versich-dark-blue">
+                    Mobile app
+                  </p>
+                  <p className="text-sm text-versich-light-gray">
+                    Friday. 09 Feb
+                  </p>
+                  <p className="text-sm text-versich-label">
+                    We need more details about your request in order to ensure
+                    that you receive quality responses.
+                  </p>
+                </div>
+                <div className="min-w-[140px]">
+                  <DashboardConfirmBtn
+                    text="View Request"
+                    btnAction={viewRequest}
+                  />
+                </div>
+              </div>
+
+              <div className="border p-3 py-6 rounded-t-xl flex flex-col md:flex-row gap-y-3 gap-x-4 justify-between items-start md:items-center">
+                <div className="space-y-2">
+                  <p className="text-xl font-semibold text-versich-dark-blue">
+                    Mobile app
+                  </p>
+                  <p className="text-sm text-versich-light-gray">
+                    Friday. 09 Feb
+                  </p>
+                  <p className="text-sm text-versich-label">
+                    We need more details about your request in order to ensure
+                    that you receive quality responses.
+                  </p>
+                </div>
+                <div className="min-w-[140px]">
+                  <DashboardConfirmBtn
+                    text="View Request"
+                    btnAction={viewRequest}
+                  />
+                </div>
+              </div>
             </div>
           )}
+
+          {openModal && <NewRequest onClose={closeModal} />}
 
           <div className="text-center">
             <DashboardConfirmBtn

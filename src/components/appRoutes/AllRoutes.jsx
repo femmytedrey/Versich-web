@@ -17,12 +17,14 @@ import BuyerRoutes from "./BuyerRoutes";
 import SellerRoutes from "./SellerRoutes";
 import { loginPath } from "../../assets/constants";
 import VerifyEmailPage from "../../pages/auth/verification/VerifyEmailPage";
+import Response from "../../pages/dashboard/Response";
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
+        <Route path='response' element={<Response />}/>
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>

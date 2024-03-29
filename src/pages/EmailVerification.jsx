@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMarkEmailUnread } from "react-icons/md";
 import Meta from "../components/Meta";
-import { resendVerificationEmail } from "../api";
+import { resendVerificationEmailAction } from "../actions/resendVerificationEmailAction";
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
@@ -10,11 +10,9 @@ const EmailVerification = () => {
   const [disableResend, setDisableResend] = useState(false);
   const [resendError, setResendError] = useState(null);
 
-  const emailResend = async () => {
+  const handleResend = async () => {
     try {
-      await resendVerificationEmail();
-
-      alert("Email resent");
+      await resendVerificationEmailAction();
       setShowCountdown(true);
       setDisableResend(true);
       setCountdown(30);
@@ -60,7 +58,7 @@ const EmailVerification = () => {
           Click{" "}
           <button
             className="text-versich-blue underline"
-            onClick={emailResend}
+            onClick={handleResend}
             disabled={disableResend}
           >
             here
