@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { MdMarkEmailUnread } from "react-icons/md";
 import Meta from "../components/Meta";
@@ -9,10 +10,11 @@ const EmailVerification = () => {
   const [showCountdown, setShowCountdown] = useState(false);
   const [disableResend, setDisableResend] = useState(false);
   const [resendError, setResendError] = useState(null);
+  const dispatch = useDispatch();
 
   const handleResend = async () => {
     try {
-      await resendVerificationEmailAction();
+      await dispatch(resendVerificationEmailAction());
       setShowCountdown(true);
       setDisableResend(true);
       setCountdown(30);
