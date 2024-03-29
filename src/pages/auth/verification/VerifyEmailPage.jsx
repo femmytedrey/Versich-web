@@ -1,11 +1,12 @@
-import {  useEffect } from 'react';
+import {  useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { verifyEmail } from '../../../api';
+import EmailVerified from '../../EmailVerified';
 
 
 export default function VerifyEmailPage() {
-
+    const [isVerified, setIsVerified] = useState(false)
 
   const { token } = useParams();
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function VerifyEmailPage() {
       try {
         await verifyEmail(token);
         console.log("Token Extracted Successfully")
-        navigate('/auth/verification/email-verified', { replace: true });
+        setIsVerified(true)
       } catch (error) {
         console.error(error);
         navigate('/auth/verification/resend-email/', { replace: true });
@@ -30,7 +31,11 @@ export default function VerifyEmailPage() {
 
   return (
     <div>
-      <h1>Verify Email...</h1>
+      {isVerified ? (
+        <EmailVerified />
+      ) : (
+        <p>Verifying...</p>
+      )}
     </div>
   );
 
