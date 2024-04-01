@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VerifyEmailAction } from "../../../actions/VerifyEmailAction";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
+import Meta from "../../../components/Meta";
 
 
 export default function VerifyEmailPage() {
