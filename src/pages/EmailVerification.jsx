@@ -21,7 +21,7 @@ const EmailVerification = () => {
       setCountdown(30);
     } catch (error) {
       console.error("Error resending email:", error);
-      setResendError(`${error.response?.status} : ${error.message}`);
+      setResendError(`${error.response?.request?.status} : ${error.message}`);
     }
   };
 
