@@ -15,9 +15,7 @@ const EmailVerification = () => {
 
   const handleResend = async () => {
     try {
-      const { data: { csrfmiddlewaretoken: csrfToken } } = await csrfToken();
-      await resendVerificationEmail({ csrfmiddlewaretoken: csrfToken });
-
+      await dispatch(resendVerificationEmailAction());
       setShowCountdown(true);
       setDisableResend(true);
       setCountdown(30);
