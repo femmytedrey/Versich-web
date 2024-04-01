@@ -32,9 +32,11 @@ export const verifyEmail = (token) => {
   return API.get(`/auth/verify/account/${token}`);
 };
 
-export const resendVerificationEmail = () => {
+export const resendVerificationEmail = (data = {}) => {
   return API.post(
     "/auth/verify/account/resend/email/",
-    getReqConfig()
+    data,
+    getReqConfig(data)
   );
 };
+
