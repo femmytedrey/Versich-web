@@ -33,5 +33,8 @@ export const verifyEmail = (token) => {
 };
 
 export const resendVerificationEmail = () => {
-  return API.post("/auth/verify/account/resend/email/");
+  return API.post(
+    "/auth/verify/account/resend/email/",
+    getReqConfig()
+  );
 };
