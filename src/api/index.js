@@ -9,7 +9,7 @@ const getReqConfig = (data) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "x-csrftoken": data.csrfmiddlewaretoken,
+      "X-CSRFToken": data.csrfmiddlewaretoken,
     },
   };
 };
@@ -33,8 +33,10 @@ export const verifyEmail = (token) => {
 };
 
 export const resendVerificationEmail = (data) => {
+
   return API.post('/auth/verify/account/resend/email/', 
-    null,
+    null, 
     getReqConfig(data)
   );
+
 }
