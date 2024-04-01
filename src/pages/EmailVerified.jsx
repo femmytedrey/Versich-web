@@ -2,7 +2,7 @@ import React from "react";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import Meta from "../components/Meta";
 
-const EmailVerified = ({ statusText }) => {
+const EmailVerified = () => {
   return (
     <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center bg-versich-primary-bg items-center">
       <Meta title="Email Verified" description="Verification Successful" />
@@ -11,7 +11,7 @@ const EmailVerified = ({ statusText }) => {
         <div className="text-6xl pb-5 flex justify-center text-versich-blue">
           <MdOutlineMarkEmailRead />
         </div>
-        <p className="text-center mb-5">{statusText}</p>
+        <p className="text-center mb-5">Your email has been verified successfully!</p>
       </div>
     </div>
   );

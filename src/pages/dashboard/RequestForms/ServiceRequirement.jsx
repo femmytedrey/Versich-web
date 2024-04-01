@@ -1,11 +1,77 @@
-import React from 'react';
+import React, { useState } from "react";
+import { MdOutlineWebhook, MdCreditCardOff } from "react-icons/md";
 
-const ServiceRequirement = () => {
+const ServiceRequirement = ({ register, errors, setValue }) => {
+  const [options, setOptions] = useState([
+    {
+      value: "Create a new website",
+      label: "Create a new website",
+      icon: MdOutlineWebhook,
+      selected: false,
+    },
+    {
+      value: "Make changes to my current website",
+      label: "Make changes to my current website",
+      icon: MdCreditCardOff,
+      selected: false,
+    },
+  ]);
+
+  const handleOptionSelect = (optionValue) => {
+    const updatedOptions = options.map((option) => ({
+      ...option,
+      selected: option.value === optionValue,
+    }));
+    setOptions(updatedOptions);
+    setValue("serviceOption", optionValue);
+  };
+
+  const isOptionSelected = options.some((option) => option.selected);
+
   return (
-    <div>
-      Service Requirements
+    <div className="relative ">
+      <div>
+        <p htmlFor="serviceSelect" className="text-sm">
+          What is your web design requirement?
+        </p>
+        <p className="text-xs pb-6">Once selected, please click ‘continue’</p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-x-3 pb-5">
+        {options.map((option) => (
+          <label
+            key={option.value}
+            className={`flex flex-col justify-center items-center border ${
+              option.selected
+                ? "border-versich-blue border-2 bg-versich-blue/20"
+                : "border-versich-border"
+            } cursor-pointer rounded-lg gap-y-2 py-4`}
+            onClick={() => handleOptionSelect(option.value)}
+          >
+            <input
+              type="radio"
+              name="serviceOption"
+              value={option.value}
+              className="appearance-none"
+              {...register("serviceOption", { required: true })}
+            />
+            <option.icon
+              className={`text-6xl ${
+                option.selected ? "text-versich-dark-blue" : "text-black"
+              }`}
+            />
+            <p className="text-[10px] text-center">{option.label}</p>
+          </label>
+        ))}
+      </div>
+
+      {!isOptionSelected && errors.serviceOption && (
+        <div className="pb-3">
+          <p className="text-red-500 text-sm">Please select an option</p>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default ServiceRequirement;

@@ -17,7 +17,7 @@ const SelectService = ({ register, errors, setValue }) => {
   };
 
   return (
-    <div className="relative space-y-2">
+    <div className="relative space-y-2 mb-44">
       <label htmlFor="serviceSelect" className="text-sm">
         What service do you need?
       </label>
@@ -29,7 +29,7 @@ const SelectService = ({ register, errors, setValue }) => {
           type="text"
           id="serviceSelect"
           placeholder="Select Service"
-          className="outline-none border-none cursor-pointer w-full text-xs"
+          className="outline-none border-none cursor-pointer w-full text-xs "
           value={selectedService}
           readOnly
           {...register("selectedService", { required: true })}

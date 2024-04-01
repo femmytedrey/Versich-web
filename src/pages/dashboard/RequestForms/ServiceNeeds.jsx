@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
 
 const ServiceNeeds = () => {
   return (
     <div>
-      Website Needs
+      <div>
+        <p htmlFor="serviceNeeds" className="text-sm">
+          What are your website needs?
+        </p>
+      </div>
     </div>
   );
-}
+};
 
 export default ServiceNeeds;

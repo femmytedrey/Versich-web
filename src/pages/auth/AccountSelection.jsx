@@ -55,10 +55,11 @@ const AccountSelection = ({ onSubmit }) => {
           <div className="flex flex-col sm:flex-row gap-y-8 gap-x-12">
             <label
               onClick={() => setErrorMsg("")}
-              className={`relative min-h-40 px-12 border-2 rounded-lg flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === BUYER
-                ? "!border-versich-blue bg-versich-blue/5"
-                : "border-transparent shadow-selection"
-                }`}
+              className={`relative min-h-40 px-12 border-2 rounded-lg flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${
+                selectedOption === BUYER
+                  ? "!border-versich-blue bg-versich-blue/5"
+                  : "border-transparent shadow-selection"
+              }`}
             >
               <div className="absolute top-[-10px] rounded-full bg-white">
                 {selectedOption === BUYER ? (
@@ -68,12 +69,8 @@ const AccountSelection = ({ onSubmit }) => {
                 )}
               </div>
 
-              <GiBriefcase
-                className="text-5xl text-versich-dark-blue"
-              />
-              <p
-                className="px-6 text-sm font-medium text-versich-dark-blue"
-              >
+              <GiBriefcase className="text-5xl text-versich-dark-blue" />
+              <p className="px-6 text-sm font-medium text-versich-dark-blue">
                 <input
                   type="radio"
                   value={BUYER}
@@ -87,10 +84,11 @@ const AccountSelection = ({ onSubmit }) => {
 
             <label
               onClick={() => setErrorMsg("")}
-              className={`relative min-h-40 p-4 px-12 border-2 rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === SELLER
-                ? "!border-versich-blue bg-versich-blue/5"
-                : "border-transparent shadow-[0px_0px_12px_6px_rgb(0,0,0,0.05)]"
-                }`}
+              className={`relative min-h-40 p-4 px-12 border-2 rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${
+                selectedOption === SELLER
+                  ? "!border-versich-blue bg-versich-blue/5"
+                  : "border-transparent shadow-[0px_0px_12px_6px_rgb(0,0,0,0.05)]"
+              }`}
             >
               <div className="absolute top-[-10px] rounded-full bg-white">
                 {selectedOption === SELLER ? (
@@ -100,12 +98,8 @@ const AccountSelection = ({ onSubmit }) => {
                 )}
               </div>
 
-              <GiTie
-                className="text-5xl text-versich-dark-blue"
-              />
-              <p
-                className="px-6 text-sm font-medium text-versich-dark-blue"
-              >
+              <GiTie className="text-5xl text-versich-dark-blue" />
+              <p className="px-6 text-sm font-medium text-versich-dark-blue">
                 <input
                   type="radio"
                   value={SELLER}
