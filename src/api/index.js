@@ -9,7 +9,7 @@ const getReqConfig = (data) => {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "X-CSRFToken": data.csrfmiddlewaretoken,
+      "x-csrftoken": data.csrfmiddlewaretoken,
     },
   };
 };
