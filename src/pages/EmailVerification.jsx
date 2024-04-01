@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { MdMarkEmailUnread } from "react-icons/md";
 import Meta from "../components/Meta";
@@ -12,9 +12,11 @@ const EmailVerification = () => {
   const [resendError, setResendError] = useState(null);
   const dispatch = useDispatch();
 
+  const csrfToken = useSelector((state) => state.auth.user?.csrfmiddlewaretoken);
+
   const handleResend = async () => {
     try {
-      await dispatch(resendVerificationEmailAction());
+      await dispatch(resendVerificationEmailAction(csrfToken));
       setShowCountdown(true);
       setDisableResend(true);
       setCountdown(30);
