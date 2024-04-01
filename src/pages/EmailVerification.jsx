@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { MdMarkEmailUnread } from "react-icons/md";
 import Meta from "../components/Meta";
 import { resendVerificationEmailAction } from "../actions/resendVerificationEmailAction";
+import { resendVerificationEmail } from "../api";
 
 const EmailVerification = () => {
   const [countdown, setCountdown] = useState(30);
