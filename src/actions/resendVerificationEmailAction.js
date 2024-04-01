@@ -1,14 +1,17 @@
-import { resendVerificationEmail } from "../api";
+import { csrfToken, resendVerificationEmail } from "../api";
 
-export const resendVerificationEmailAction = (token) => {
-  return async (dispatch, getState) => {
-    const csrfToken = getState().auth.csrfToken;
+export const resendVerificationEmailAction = () => {
+  return async (dispatch) => {
     try {
+      const { data } = await csrfToken();
       await resendVerificationEmail({
-        csrfmiddlewaretoken: csrfToken  
+        csrfmiddlewaretoken: data.csrf_token  
       });
     } catch (error) {
-      throw error;
+        throw error;
     }
-  };
-};
+  }
+}
+
+
+

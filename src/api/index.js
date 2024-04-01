@@ -35,7 +35,6 @@ export const verifyEmail = (token) => {
 export const resendVerificationEmail = (data) => {
   return API.post('/auth/verify/account/resend/email/', 
     null,
-    getReqConfig(data) 
+    getReqConfig(data)
   );
-
 }
