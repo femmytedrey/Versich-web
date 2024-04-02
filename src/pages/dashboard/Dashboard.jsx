@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
 import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
@@ -12,12 +12,9 @@ import { setupPath } from "../../assets/constants";
 const Dashboard = () => {
   const { user } = useSelector((state) => state.auth);
   const progress = useSelector((state) => state.progress.value);
+  const navigate = useNavigate();
 
-  if (
-    !user ||
-    typeof user !== "object" ||
-    !user.first_name
-  ) {
+  if (!user || typeof user !== "object" || !user.first_name) {
     return (
       <div className="flex flex-col items-center justify-center my-10 min-h-80">
         <h2 className="font-bold">Loading...</h2>
@@ -29,16 +26,30 @@ const Dashboard = () => {
     console.log("Testing Edit btn");
   };
 
+  const responseHandler = () => {
+    navigate('response')
+  }
+
   const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`;
 
-  
+  const currentHour = new Date().getHours();
+  let greeting = "";
+
+  if (currentHour >= 5 && currentHour < 12) {
+    greeting = "Good Morning";
+  } else if (currentHour >= 12 && currentHour < 18) {
+    greeting = "Good Afternoon";
+  } else {
+    greeting = "Good Evening";
+  }
 
   return (
     <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
-      <Meta title='Dashboard' description='VersiMarket User dashboard' />
+      <Meta title="Dashboard" description="VersiMarket User dashboard" />
       <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
-        <div>Welcome {user.account_type}</div>
-        <p>Good Afternoon, {user.first_name}!</p>
+        <p>
+          {greeting}, {user.first_name}!
+        </p>
         <Link
           to="/auth/verification/resend-email/"
           className="text-versich-blue underline hover:text-versich-blue-hover"
@@ -143,7 +154,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="Edit setting"
-              // clickHandler={editBtn}
+                // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -173,7 +184,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View leads"
-              // clickHandler={editBtn}
+                // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -200,7 +211,7 @@ const Dashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View responses"
-              // clickHandler={editBtn}
+                clickHandler={responseHandler}
               />
             </div>
           </div>

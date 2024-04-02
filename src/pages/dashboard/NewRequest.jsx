@@ -13,12 +13,16 @@ const NewRequest = ({ onClose }) => {
     setValue,
     handleSubmit,
     formState: { errors },
-    getValues
+    getValues,
   } = useForm();
 
   const formPages = [
     <SelectService register={register} errors={errors} setValue={setValue} />,
-    <ServiceRequirement register={register} errors={errors} setValue={setValue} />,
+    <ServiceRequirement
+      register={register}
+      errors={errors}
+      setValue={setValue}
+    />,
     <ServiceNeeds register={register} errors={errors} setValue={setValue} />,
   ];
 
@@ -41,15 +45,15 @@ const NewRequest = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed top-[-20px] z-30 left-0 w-full h-screen bg-black/20 flex justify-center items-center">
-      <div className="flex flex-col w-[360px] bg-white p-3 rounded-md gap-3">
+    <div className="fixed top-[-20px] z-30 left-0 w-full h-screen bg-black/20 flex justify-center items-center px-6">
+      <div className="flex flex-col w-[400px] py-6 bg-white p-3 rounded-md gap-3">
         <div className="flex justify-between">
           <p className="text-sm">Request detail</p>
           <IoIosClose className="text-2xl cursor-pointer" onClick={onClose} />
         </div>
 
         {/* Progress Bar */}
-        {page === 1 && (
+        {page > 0 && (
           <div className="w-full h-1 bg-gray-300 rounded-lg overflow-hidden my-3">
             <div className="w-[20%] h-full bg-[#114B8A]"></div>
           </div>

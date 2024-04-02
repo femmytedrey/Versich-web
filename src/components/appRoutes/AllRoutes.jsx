@@ -67,6 +67,7 @@ const AllRoutes = () => {
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
+        <Route path="response" element={<Response />} />
       </Route>
       <Route path="*" element={<ErrorPage status={404} />} />
     </Routes>
