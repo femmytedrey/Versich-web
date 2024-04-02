@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { VerifyEmailAction } from "../../../actions/VerifyEmailAction";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import Meta from "../../../components/Meta";
-import { updateVerificationStatus } from "../../../actions/checkVerification";
+
 
 export default function VerifyEmailPage() {
   const [isVerified, setIsVerified] = useState(false);
@@ -12,20 +12,17 @@ export default function VerifyEmailPage() {
   const { token } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const verificationStatus = useSelector(
-    (state) => state.userVerification.isUserVerified
-  );
 
   useEffect(() => {
-    if (verificationStatus) {
-      setStatusText("Email is already verified.");
-      return;
-    }
     const verifyToken = async () => {
       try {
         await dispatch(VerifyEmailAction(token));
+        if (!isVerified) {
+          setStatusText("Error verifying this email");
+        }
+        console.log("Token Extracted Successfully");
+        setIsVerified(true);
         setStatusText("Your email has been verified successfully!");
-        await dispatch(updateVerificationStatus());
         navigate(`/api/auth/verify/account/${token}`);
       } catch (error) {
         console.error(error);
@@ -42,11 +39,11 @@ export default function VerifyEmailPage() {
       }
     };
     verifyToken();
-  }, [token, verificationStatus, navigate, dispatch]);
+  }, [token, navigate, dispatch]);
 
   return (
     <div>
-      {verificationStatus ? (
+      {isVerified ? (
         <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center bg-versich-primary-bg items-center">
           <Meta title="Email Error" description="Verification Successful" />
           <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
