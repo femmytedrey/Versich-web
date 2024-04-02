@@ -5,7 +5,6 @@ import { VerifyEmailAction } from "../../../actions/VerifyEmailAction";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import Meta from "../../../components/Meta";
 
-
 export default function VerifyEmailPage() {
   const [isVerified, setIsVerified] = useState(false);
   const [statusText, setStatusText] = useState("");
@@ -38,7 +37,14 @@ export default function VerifyEmailPage() {
         console.log("Code block is executed successful");
       }
     };
-    verifyToken();
+
+    const storedIsVerified = sessionStorage.getItem("isVerified");
+    if (storedIsVerified && storedIsVerified === "true") {
+      setIsVerified(true);
+      setStatusText("User is already verified!");
+    } else {
+      verifyToken();
+    }
   }, [token, navigate, dispatch]);
 
   return (
