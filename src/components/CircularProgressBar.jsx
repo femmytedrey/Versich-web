@@ -1,4 +1,3 @@
-import React from "react";
 
 const CircularProgressBar = ({progress}) => {
   const radius = 36;

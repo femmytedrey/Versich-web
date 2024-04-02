@@ -1,4 +1,3 @@
-import React from "react";
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import Meta from "../components/Meta";
 

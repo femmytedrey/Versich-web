@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { MdOutlineWebhook, MdCreditCardOff } from "react-icons/md";
 
 const ServiceRequirement = ({ register, errors, setValue }) => {

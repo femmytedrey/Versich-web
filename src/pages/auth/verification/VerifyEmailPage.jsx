@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VerifyEmailAction } from "../../../actions/VerifyEmailAction";
@@ -54,11 +54,11 @@ export default function VerifyEmailPage() {
         <div className="py-10 md:py-14 px-3 mb-12 overflow-hidden flex justify-center bg-versich-primary-bg items-center">
           <Meta title="Email Error" description="Verification Successful" />
           <div className="w-full bg-white shadow-md py-5 md:py-10 px-3 md:px-10 max-w-[580px] rounded-md">
-            <h2 className="font-bold text-2xl mb-5">Email Verified</h2>
+            <h2 className="font-bold text-2xl mb-5">Email Verification</h2>
             <div className="text-6xl pb-5 flex justify-center text-versich-blue">
               <MdOutlineMarkEmailRead />
             </div>
-            <p className="text-center mb-5">{statusText}</p>
+            <p className="text-center mb-5 text-red-500">{statusText}</p>
           </div>
         </div>
       ) : (
