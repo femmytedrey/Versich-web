@@ -23,6 +23,7 @@ export default function VerifyEmailPage() {
         setIsVerified(true);
         setStatusText("Your email has been verified successfully!");
         navigate(`/api/auth/verify/account/${token}`);
+        sessionStorage.setItem("isVerified", "true");
       } catch (error) {
         console.error(error);
         const message = error?.message
