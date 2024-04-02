@@ -1,6 +1,4 @@
-// actions/emailVerificationActions.js
-
-import { verifyEmail } from "../api"; // Import the API function
+import { verifyEmail } from "../api";
 
 export const VerifyEmailAction = (token) => {
   return async (dispatch) => {
@@ -10,14 +8,14 @@ export const VerifyEmailAction = (token) => {
     } catch (error) {
       console.error(error);
       if (error.response && error.response.status === 401) {
-        throw Error(JSON.stringify({ status: "not-authenticated", message: "User not authenticated" }));
-    } else if (error.response && error.response.status === 409) {
-        throw Error(JSON.stringify({ status: "email-already-verified", message: "Email already verified" }));
-    } else if (error.response && error.response.status === 404) {
-        throw Error(JSON.stringify({ status: "invalid-token", message: "Invalid or expired token" }));
-    } else {
-        throw error;
-    }
+        throw Error(JSON.stringify({ status: "not_authenticated", message: "User not authenticated" }));
+      } else if (error.response && error.response.status === 409) {
+        throw Error(JSON.stringify({ status: "invalidtokey_or_alreadyverified_or_differentuser", message: "Email already verified" }));
+      } else if (error.response && error.response.status === 404) {
+        throw Error(JSON.stringify({ status: "expired_token", message: "Email verification link expired" }));
+      } else {
+        throw Error(JSON.stringify({ status: "unknown_error", message: "Failed to verify email" }));
+      }
     }
   };
 };
