@@ -8,7 +8,7 @@ import CSRFTokenField from "../../components/CSRFTokenField";
 import InputText from "../../components/InputText";
 import SocialAccounts from "./socialAccounts/SocialAccounts";
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
-import { loginPath } from "../../assets/constants";
+import { SS_ACCOUNT_TYPE, loginPath } from "../../assets/constants";
 import { signupUser } from "../../actions/auth";
 import Meta from "../../components/Meta";
 import AccountSelection from "./AccountSelection";
@@ -29,7 +29,7 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     const formData = {
-      accountType: sessionStorage.getItem("accountType"),
+      accountType: sessionStorage.getItem(SS_ACCOUNT_TYPE.key),
       ...data,
     };
 
@@ -45,7 +45,7 @@ const Signup = () => {
           setErrorMsg(data.message);
           // return;
         }
-        sessionStorage.removeItem("accountType");
+        sessionStorage.removeItem(SS_ACCOUNT_TYPE.key);
         methods.reset();
         // There is no need for navigate, once user is authenticated it'll take user to their "Dashboard"
       })
@@ -62,7 +62,7 @@ const Signup = () => {
       });
   };
 
-  const type = sessionStorage.getItem("accountType");
+  const type = sessionStorage.getItem(SS_ACCOUNT_TYPE.key);
 
   const handleConfirmPasswordChange = (e) => {
     setEqual(false);

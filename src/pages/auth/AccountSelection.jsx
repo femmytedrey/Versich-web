@@ -8,7 +8,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { PropagateLoader } from "react-spinners";
 
 import Meta from "../../components/Meta";
-import { BUYER, SELLER, loginPath } from "../../assets/constants";
+import { BUYER, SELLER, SS_ACCOUNT_TYPE, loginPath } from "../../assets/constants";
 
 const AccountSelection = ({ onSubmit }) => {
   const { register, handleSubmit } = useForm();
@@ -25,7 +25,7 @@ const AccountSelection = ({ onSubmit }) => {
 
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    sessionStorage.setItem("accountType", data.selection);
+    sessionStorage.setItem(SS_ACCOUNT_TYPE.key, data.selection);
     onSubmit({ ...data, accountType: data.selection });
   };
 
@@ -55,11 +55,10 @@ const AccountSelection = ({ onSubmit }) => {
           <div className="flex flex-col sm:flex-row gap-y-8 gap-x-12">
             <label
               onClick={() => setErrorMsg("")}
-              className={`relative min-h-40 px-12 border-2 rounded-lg flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${
-                selectedOption === BUYER
+              className={`relative min-h-40 px-12 border-2 rounded-lg flex flex-col items-center justify-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === BUYER
                   ? "!border-versich-blue bg-versich-blue/5"
                   : "border-transparent shadow-selection"
-              }`}
+                }`}
             >
               <div className="absolute top-[-10px] rounded-full bg-white">
                 {selectedOption === BUYER ? (
@@ -84,11 +83,10 @@ const AccountSelection = ({ onSubmit }) => {
 
             <label
               onClick={() => setErrorMsg("")}
-              className={`relative min-h-40 p-4 px-12 border-2 rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${
-                selectedOption === SELLER
+              className={`relative min-h-40 p-4 px-12 border-2 rounded-lg justify-center flex flex-col items-center cursor-pointer py-6 gap-y-2 transition-colors hover:border-versich-blue/60 group ${selectedOption === SELLER
                   ? "!border-versich-blue bg-versich-blue/5"
                   : "border-transparent shadow-[0px_0px_12px_6px_rgb(0,0,0,0.05)]"
-              }`}
+                }`}
             >
               <div className="absolute top-[-10px] rounded-full bg-white">
                 {selectedOption === SELLER ? (

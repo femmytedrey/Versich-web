@@ -9,7 +9,6 @@ const LocationSelection = ({
 }) => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
-  const [isFirstOptionSelected, setIsFirstOptionSelected] = useState(true)
 
   const handleCountryChange = (value) => {
     setSelectedCountry(value);

@@ -7,6 +7,7 @@ import { GoRead } from "react-icons/go";
 import { GoUnread } from "react-icons/go";
 import Meta from "../components/Meta";
 import { useEffect } from "react";
+import { SS_ACCOUNT_TYPE } from "../assets/constants";
 
 const TempDashboard = () => {
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -14,7 +15,7 @@ const TempDashboard = () => {
   const progress = useSelector((state) => state.progress.value);
   const { status } = useParams();
   const navigate = useNavigate();
-  const accountType = sessionStorage.getItem("accountType");
+  const accountType = sessionStorage.getItem(SS_ACCOUNT_TYPE.key);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -160,7 +161,7 @@ const TempDashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="Edit setting"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -190,7 +191,7 @@ const TempDashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View leads"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
@@ -217,7 +218,7 @@ const TempDashboard = () => {
               <ConfirmButton
                 type="submit"
                 text="View responses"
-                // clickHandler={editBtn}
+              // clickHandler={editBtn}
               />
             </div>
           </div>
