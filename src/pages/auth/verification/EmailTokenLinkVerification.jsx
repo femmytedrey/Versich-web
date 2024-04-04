@@ -28,7 +28,6 @@ const EmailTokenLinkVerification = () => {
                 }, 3500)
             })
             .catch(error => {
-                console.log(error)
                 if (error?.response?.status === 410 && error?.response?.data?.shortInfo === "token expired") {
                     setStatus(expired.code)
                 }
