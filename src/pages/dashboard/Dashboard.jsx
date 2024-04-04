@@ -12,6 +12,7 @@ import { emailVerificationPath, setupPath } from "../../assets/constants"
 const Dashboard = () => {
     const { user } = useSelector((state) => state.auth)
     const progress = useSelector((state) => state.progress.value)
+    const navigate = useNavigate()
 
     if (!user || typeof user !== "object" || !user.first_name) {
         return (
@@ -20,17 +21,14 @@ const Dashboard = () => {
             </div>
         )
     }
-
     const editBtn = () => {
         console.log("Testing Edit btn")
     }
-
     const responseHandler = () => {
         navigate("/dashboard/response")
     }
 
     const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`
-
     const currentHour = new Date().getHours()
     let greeting = ""
     if (currentHour >= 5 && currentHour < 12) {
