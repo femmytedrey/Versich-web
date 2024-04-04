@@ -24,7 +24,6 @@ const AllRoutes = () => {
         <Routes>
             <Route path="/">
                 <Route path="" element={<Home />} />
-                <Route path="response" element={<Response />} />
             </Route>
             <Route path="/auth/">
                 <Route element={<NotAuthRoutes />}>
@@ -52,11 +51,9 @@ const AllRoutes = () => {
                     </Route>
                 </Route>
             </Route>
-            {/* <Route element={<AuthRoutes />}>
-                <Route path="/api/auth/verify/account/:token" element={<EmailVerified />} />
-            </Route> */}
             <Route path="dashboard/" element={<AuthRoutes />}>
                 <Route path="" element={<Dashboard />} />
+                <Route path="response" element={<Response />} />
             </Route>
             <Route path="*" element={<ErrorPage status={404} />} />
         </Routes>

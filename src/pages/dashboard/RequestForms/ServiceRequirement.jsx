@@ -31,15 +31,13 @@ const ServiceRequirement = ({ register, errors, setValue }) => {
   return (
     <div className="relative ">
       <div>
-        <p htmlFor="serviceSelect" className="text-sm">
-          What is your web design requirement?
-        </p>
+        <p className="text-sm">What is your web design requirement?</p>
         <p className="text-xs pb-6">Once selected, please click ‘continue’</p>
       </div>
 
       <div className="grid grid-cols-2 gap-x-3 pb-5">
         {options.map((option) => (
-          <label
+          <div
             key={option.value}
             className={`flex flex-col justify-center items-center border ${
               option.selected
@@ -60,8 +58,10 @@ const ServiceRequirement = ({ register, errors, setValue }) => {
                 option.selected ? "text-versich-dark-blue" : "text-black"
               }`}
             />
-            <p className="text-[10px] text-center">{option.label}</p>
-          </label>
+            <label htmlFor="serviceSelect" className="text-[10px] text-center">
+              {option.label}
+            </label>
+          </div>
         ))}
       </div>
 

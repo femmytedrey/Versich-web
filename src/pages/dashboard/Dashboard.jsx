@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { CiLocationOn } from "react-icons/ci"
 import { GoRead } from "react-icons/go"
 import { GoUnread } from "react-icons/go"
@@ -20,16 +20,31 @@ const Dashboard = () => {
             </div>
         )
     }
+
     const editBtn = () => {
         console.log("Testing Edit btn")
     }
+
+    const responseHandler = () => {
+        navigate("/dashboard/response")
+    }
+
     const initials = `${user.first_name.charAt(0)}${user.last_name.charAt(0)}`
+
+    const currentHour = new Date().getHours()
+    let greeting = ""
+    if (currentHour >= 5 && currentHour < 12) {
+        greeting = "Good Morning"
+    } else if (currentHour >= 12 && currentHour < 18) {
+        greeting = "Good Afternoon"
+    } else {
+        greeting = "Good Evening"
+    }
     return (
         <div className="bg-versich-primary-bg px-6 md:px-16 lg:px-28 space-y-4 py-10">
             <Meta title="Dashboard" description="VersiMarket User dashboard" />
             <div className="bg-white w-full px-4 font-semibold py-6 text-start shadow-lg text-versich-dark-blue rounded-xl flex justify-between flex-col sm:flex-row">
-                <div>Welcome {user.account_type}</div>
-                <p>Good Afternoon, {user.first_name}!</p>
+                <p>{greeting}, {user.first_name}!</p>
                 {!user.verified && <Link to={emailVerificationPath} className="text-versich-blue underline hover:text-versich-blue-hover">Verify Email</Link>}
             </div>
             <div className="flex flex-col xl:flex-row gap-x-6 gap-y-5">
@@ -136,7 +151,7 @@ const Dashboard = () => {
                             <div className="text-sm">Unread message and request</div>
                         </div>
                         <div className="w-40">
-                            <ConfirmButton type="submit" text="View responses" />
+                            <ConfirmButton type="submit" text="View responses" clickHandler={responseHandler} />
                         </div>
                     </div>
                     <div className="bg-white shadow-lg px-4 py-4 rounded-xl space-y-4 text-start">

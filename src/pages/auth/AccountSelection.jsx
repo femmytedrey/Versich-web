@@ -112,7 +112,7 @@ const AccountSelection = ({ onSubmit }) => {
 
           <div className="w-full space-y-2 relative">
             {loading && (
-              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-15">
+              <div className="fixed inset-0 flex items-center justify-center bg-black/15 z-20">
                 <div className="w-full h-screen absolute flex justify-center pt-40">
                   <PropagateLoader
                     loading={loading}
