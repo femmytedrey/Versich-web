@@ -9,6 +9,7 @@ import Meta from "../../../components/Meta"
 import ResendVerificationLink from "./email/ResendVerificationLink"
 import { dashboardPath, verificationStates } from "../../../assets/constants"
 import { verifyEmail } from "../../../actions/verification"
+import { getUser } from "../../../actions/auth"
 
 const EmailTokenLinkVerification = () => {
     const { token } = useParams()
@@ -25,6 +26,7 @@ const EmailTokenLinkVerification = () => {
                 setStatus(verified.code)
                 timeout = setTimeout(() => {
                     navigate(dashboardPath)
+                    dispatch(getUser())
                 }, 3500)
             })
             .catch(error => {
