@@ -8,7 +8,7 @@ import { SS_VERIFICATION_EMAIL } from "../../../../assets/constants"
 
 const EmailVerification = () => {
     const resendTriggerStatus = window.sessionStorage.getItem(SS_VERIFICATION_EMAIL.key)
-    const triggerResend = resendTriggerStatus === "resend"
+    const triggerResend = resendTriggerStatus === SS_VERIFICATION_EMAIL.value
 
     const [showResendLink, setShowResendLink] = useState(false)
     const [countdown, setCountdown] = useState(5)

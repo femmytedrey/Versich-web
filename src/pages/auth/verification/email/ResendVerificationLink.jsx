@@ -3,7 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
 import CSRFTokenField from "../../../../components/CSRFTokenField"
-import { SS_VERIFICATION_EMAIL, dashboardPath, emailVerificationPath } from "../../../../assets/constants"
+import {
+    SS_VERIFICATION_EMAIL, SS_VERIFICATION_STATUS,
+    dashboardPath, emailVerificationPath
+} from "../../../../assets/constants"
 import { resendEmailVerificationLink } from "../../../../actions/verification"
 
 const ResendVerificationLink = ({ triggered }) => {
@@ -39,6 +42,7 @@ const ResendVerificationLink = ({ triggered }) => {
             })
     }
     useEffect(() => {
+        window.sessionStorage.setItem(SS_VERIFICATION_STATUS.key, SS_VERIFICATION_STATUS.value)
         window.sessionStorage.removeItem(SS_VERIFICATION_EMAIL.key)
         triggered
             && !csrfTokenUpdated.current

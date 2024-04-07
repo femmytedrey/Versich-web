@@ -44,4 +44,5 @@ export const verificationStates = {
 // Cookie keys
 export const SS_AUTH_ERROR = { key: "auth_error", value: "" }
 export const SS_VERIFICATION_EMAIL = { key: "verification_email", value: "resend" }
+export const SS_VERIFICATION_STATUS = { key: "verification_status", value: "pending" }
 export const SS_ACCOUNT_TYPE = { key: "account_type", value: null }

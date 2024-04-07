@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
+import { createStateSyncMiddleware, initMessageListener } from "redux-state-sync"
 
 import authReducer from "./reducers/auth"
 import authVerifyReducer from "./reducers/authverify"
@@ -10,6 +11,10 @@ const store = configureStore({
         authVerify: authVerifyReducer,
         progress: progressReducer,
     },
+    middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware().concat(createStateSyncMiddleware({}))
+    },
     devTools: process.env.NODE_ENV !== "production",
 })
+initMessageListener(store)
 export default store

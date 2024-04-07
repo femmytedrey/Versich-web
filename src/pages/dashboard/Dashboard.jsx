@@ -7,13 +7,14 @@ import { GoUnread } from "react-icons/go"
 import CircularProgressBar from "../../components/CircularProgressBar"
 import ConfirmButton from "../../components/Buttons/ConfirmButton"
 import Meta from "../../components/Meta"
-import { emailVerificationPath, setupPath } from "../../assets/constants"
+import { SS_VERIFICATION_STATUS, emailVerificationPath, setupPath } from "../../assets/constants"
 
 const Dashboard = () => {
     const { user } = useSelector((state) => state.auth)
     const progress = useSelector((state) => state.progress.value)
     const navigate = useNavigate()
 
+    window.sessionStorage.removeItem(SS_VERIFICATION_STATUS.key)
     if (!user || typeof user !== "object" || !user.first_name) {
         return (
             <div className="flex flex-col items-center justify-center my-10 min-h-80">
@@ -174,5 +175,4 @@ const Dashboard = () => {
         </div>
     )
 }
-
 export default Dashboard
