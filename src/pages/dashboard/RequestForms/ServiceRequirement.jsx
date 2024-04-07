@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineWebhook, MdCreditCardOff } from "react-icons/md";
 
-const ServiceRequirement = ({ register, errors, setValue }) => {
+const ServiceRequirement = ({ register, errors, setValue, formData, setFormData }) => {
   const [options, setOptions] = useState([
     {
       value: "Create a new website",
       label: "Create a new website",
       icon: MdOutlineWebhook,
-      selected: false,
+      selected: formData.serviceOption === "Create a new website",
     },
     {
       value: "Make changes to my current website",
       label: "Make changes to my current website",
       icon: MdCreditCardOff,
-      selected: false,
+      selected: formData.serviceOption === "Make changes to my current website",
     },
   ]);
 
@@ -24,9 +24,18 @@ const ServiceRequirement = ({ register, errors, setValue }) => {
     }));
     setOptions(updatedOptions);
     setValue("serviceOption", optionValue);
+    setFormData({ ...formData, serviceOption: optionValue })
   };
 
   const isOptionSelected = options.some((option) => option.selected);
+
+  useEffect(() => {
+    const updatedOptions = options.map((option) => ({
+      ...option,
+      selected: option.value === formData.serviceOption,
+    }));
+    setOptions(updatedOptions);
+  }, [formData]);
 
   return (
     <div className="relative ">

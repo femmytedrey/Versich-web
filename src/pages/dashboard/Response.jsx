@@ -1,6 +1,5 @@
 import BackBtn from "../../components/Buttons/BackBtn";
 import planet from "../../assets/planet.png";
-import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import DashboardConfirmBtn from "../../components/Buttons/DashboardConfirmBtn";
 import Meta from "../../components/Meta";
 import ServiceImages from "../../assets/ServiceImages";
@@ -126,11 +125,12 @@ const Response = ({ onClose }) => {
         <div className="text-versich-dark-blue font-bold text-xl md:text-2xl">
           Services
         </div>
-        <div className="flex scroll-container overflow-y-auto w-[full]">
+
+        <div className="grid grid-flow-col overflow-y-auto w-[full] scroll-container">
           {ServiceImages.map((service) => (
             <div
               key={service.id}
-              className="mx-4 my-3 w-[250px] md:w-[320px] shadow-md rounded-lg text-center"
+              className="mx-4 my-3 w-fit md:w-[320px] shadow-md rounded-lg text-center "
             >
               <div className="h-[100px] md:h-[210px] w-[220px] md:w-[320px] relative overflow-hidden rounded-tr-lg rounded-tl-2xl">
                 <img
@@ -140,7 +140,7 @@ const Response = ({ onClose }) => {
                 />
               </div>
               <div className="h-auto text-start px-4 py-2 md:py-4 flex flex-col gap-y-3 ">
-                <p className="font-bold text-sm md:text-lg text-versich-darktext-color">
+                <p className="font-bold text-xs md:text-lg text-versich-darktext-color">
                   {service.name}
                 </p>
                 <a

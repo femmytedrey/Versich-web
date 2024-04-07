@@ -1,18 +1,20 @@
 import { IoChevronDownOutline } from "react-icons/io5";
-import ServiceImages from "../../../assets/ServiceImages";
 import { useState } from "react";
+import ServiceImages from "../../../assets/ServiceImages";
 
-const SelectService = ({ register, errors, setValue }) => {
+const SelectService = ({ register, errors, setValue, formData, setFormData, setSelectedService }) => {
   const [openList, setOpenList] = useState(false);
-  const [selectedService, setSelectedService] = useState("");
+  const [selectedService, setSelectedServiceLocal] = useState(formData.selectedService || '');
 
   const toggleList = () => {
     setOpenList(!openList);
   };
 
   const handleServiceSelect = (service) => {
-    setSelectedService(service);
+    setSelectedServiceLocal(service);
     setValue("selectedService", service);
+    setFormData({ ...formData, selectedService: service });
+    setSelectedService(service); // Pass selected service back to parent component
     setOpenList(false);
   };
 
