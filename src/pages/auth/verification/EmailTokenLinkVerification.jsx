@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { MdOutlineMarkEmailRead, MdOutlineMarkEmailUnread } from "react-icons/md"
-import { AiOutlineExclamationCircle } from "react-icons/ai"
 
 import ErrorPage from "../../../components/ErrorPage/ErrorPage"
 import Meta from "../../../components/Meta"
+import EmailPendingIcon from "../../../assets/svgs/email_verifying.svg"
+import EmailExpiredIcon from "../../../assets/svgs/email_expired.svg"
+import EmailVerifiedIcon from "../../../assets/svgs/email_verified.svg"
 import ResendVerificationLink from "./email/ResendVerificationLink"
 import { dashboardPath, verificationStates } from "../../../assets/constants"
 import { verifyEmail } from "../../../actions/verification"
@@ -44,7 +45,7 @@ const EmailTokenLinkVerification = () => {
                 {status === verifying.code
                     ? <VerificationStatus
                         title="Verifying Email"
-                        icon={<MdOutlineMarkEmailUnread />}
+                        icon={<img src={EmailPendingIcon} alt="pending" width={72} />}
                         pulse={true}
                         description={
                             <p className="text-center mb-5">just a sec..</p>
@@ -54,7 +55,7 @@ const EmailTokenLinkVerification = () => {
                     : status === verified.code
                         ? <VerificationStatus
                             title="Email Verified"
-                            icon={<MdOutlineMarkEmailRead className="text-green-400/90" />}
+                            icon={<img src={EmailVerifiedIcon} alt="verified" width={72} />}
                             description={
                                 <div>
                                     <p className="text-center mb-5">To continue, return to wherever you started verification - on the VersiMarket website.</p>
@@ -65,7 +66,7 @@ const EmailTokenLinkVerification = () => {
                         />
                         : <VerificationStatus
                             title="Verification Link Expired"
-                            icon={<AiOutlineExclamationCircle className="text-yellow-300" />}
+                            icon={<img src={EmailExpiredIcon} alt="expired" width={72} />}
                             description={
                                 <div>
                                     <p className="text-center mb-5">This link has expired. Ensure you have clicked the link in the most recent email</p>
