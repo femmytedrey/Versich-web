@@ -18,13 +18,17 @@ import SellerRoutes from "./SellerRoutes";
 import { loginPath } from "../../assets/constants";
 import VerifyEmailPage from "../../pages/auth/verification/VerifyEmailPage";
 import Response from "../../pages/dashboard/Response";
+import NewRequest from "../../pages/dashboard/NewRequest";
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
-        <Route path="response" element={<Response />} />
+        <Route path="response/" >
+          <Route path="" element={<Response />} />
+          <Route path="request" element={<NewRequest />} />
+        </Route>
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
@@ -63,11 +67,16 @@ const AllRoutes = () => {
         </Route>
       </Route>
       <Route element={<AuthRoutes />}>
-        <Route path="/api/auth/verify/account/:token" element={<EmailVerified />} />
+        <Route
+          path="/api/auth/verify/account/:token"
+          element={<EmailVerified />}
+        />
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
-        <Route path="response" element={<Response />} />
+        <Route path="response/" element={<Response />}>
+          <Route path="request" element={<NewRequest />} />
+        </Route>
       </Route>
       <Route path="*" element={<ErrorPage status={404} />} />
     </Routes>

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { MdOutlineWebhook, MdCreditCardOff } from "react-icons/md";
 
-const ServiceRequirement = ({ register, errors, setValue, formData, setFormData }) => {
+const ServiceRequirement = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
   const [options, setOptions] = useState([
     {
       value: "Create a new website",
@@ -24,7 +30,7 @@ const ServiceRequirement = ({ register, errors, setValue, formData, setFormData 
     }));
     setOptions(updatedOptions);
     setValue("serviceOption", optionValue);
-    setFormData({ ...formData, serviceOption: optionValue })
+    setFormData({ ...formData, serviceOption: optionValue });
   };
 
   const isOptionSelected = options.some((option) => option.selected);
@@ -40,11 +46,13 @@ const ServiceRequirement = ({ register, errors, setValue, formData, setFormData 
   return (
     <div className="relative ">
       <div>
-        <p className="text-sm">What is your web design requirement?</p>
-        <p className="text-xs pb-6">Once selected, please click ‘continue’</p>
+        <p className=" text-versich-dark-blue font-semibold pb-2">
+          What is your web design requirement?
+        </p>
+        <p className="pb-6">Once selected, please click ‘continue’</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-3 pb-5">
+      <div className="grid grid-cols-2 gap-x-5 pb-5">
         {options.map((option) => (
           <div
             key={option.value}
@@ -67,7 +75,7 @@ const ServiceRequirement = ({ register, errors, setValue, formData, setFormData 
                 option.selected ? "text-versich-dark-blue" : "text-black"
               }`}
             />
-            <label htmlFor="serviceSelect" className="text-[10px] text-center">
+            <label htmlFor="serviceSelect" className="text-xs text-center">
               {option.label}
             </label>
           </div>

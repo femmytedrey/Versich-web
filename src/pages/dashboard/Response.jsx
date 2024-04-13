@@ -4,38 +4,25 @@ import DashboardConfirmBtn from "../../components/Buttons/DashboardConfirmBtn";
 import Meta from "../../components/Meta";
 import ServiceImages from "../../assets/ServiceImages";
 import { PiArrowRightThin } from "react-icons/pi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NewRequest from "./NewRequest";
 
 const Response = ({ onClose }) => {
   const [isResquestEmpty, setIsRequestEmpty] = useState(true);
-  const [openModal, setOpenModal] = useState(true);
-
-  useEffect(() => {
-    const body = document.querySelector("body");
-    if (openModal) {
-      body.classList.add("overflow-hidden");
-    } else {
-      body.classList.remove("overflow-hidden");
-    }
-    return () => {
-      body.classList.remove("overflow-hidden");
-    };
-  }, [openModal]);
+  const navigate = useNavigate()
 
   const newRequest = () => {
+    navigate('request')
     console.log("New request");
-    setOpenModal(true);
   };
-  const closeModal = () => {
-    setOpenModal(false);
-  };
+
   const viewRequest = () => {
     console.log("Request Viewed");
   };
 
   return (
-    <div className="py-10 md:py-14 px-6 md:px-16 lg:px-28 text-start mb-12 overflow-hidden bg-versich-primary-bg space-y-8 relative">
+    <div className="py-10 md:py-14 px-6 md:px-16 lg:px-28 text-start mb-12 overflow-hidden bg-versich-primary-bg space-y-8">
       <Meta
         title="VersiMarket | Request Page"
         description="Response page for requests"
@@ -110,8 +97,6 @@ const Response = ({ onClose }) => {
               </div>
             </div>
           )}
-
-          {openModal && <NewRequest onClose={closeModal} />}
 
           <div className="text-center">
             <DashboardConfirmBtn

@@ -1,8 +1,16 @@
-import { useState } from "react";
-import { IoMdRadioButtonOn } from "react-icons/io";
-import { IoMdRadioButtonOff } from "react-icons/io";
+import { useEffect, useState } from "react";
+import { IoMdRadioButtonOn, IoMdRadioButtonOff } from "react-icons/io";
 
-const IndustryType = ({ register, errors, setValue }) => {
+const IndustryType = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
+  const [industryOtherInputValue, setIndustryOtherInputValue] = useState(
+    sessionStorage.getItem("industryOtherInputValue") || ""
+  );
   const [industries, setIndustries] = useState({
     Business: {
       value: "Business services",
@@ -40,7 +48,7 @@ const IndustryType = ({ register, errors, setValue }) => {
       selected: false,
     },
     other: {
-      value: "",
+      value: industryOtherInputValue,
       label: "Other",
       selected: false,
     },
@@ -48,34 +56,56 @@ const IndustryType = ({ register, errors, setValue }) => {
 
   const [showOtherInput, setShowOtherInput] = useState(false);
 
-  const handleIndustrySelected = (optionKey) => {
+  const handleIndustrySelect = (optionKey) => {
     const updatedIndustry = { ...industries };
     Object.keys(updatedIndustry).forEach((key) => {
       updatedIndustry[key].selected = key === optionKey;
     });
     setIndustries(updatedIndustry);
-    setValue("industryType", updatedIndustry[optionKey].value);
+    const selectedValue = updatedIndustry[optionKey].value;
+    setValue("industryType", selectedValue);
+    setFormData({ ...formData, industryType: selectedValue });
     setShowOtherInput(optionKey === "other");
+
+    if (optionKey !== "other") {
+      sessionStorage.removeItem("industryOtherInputValue");
+      setIndustryOtherInputValue("");
+    }
   };
 
   const handleInputChange = (event) => {
     const { value } = event.target;
+    setIndustryOtherInputValue(value);
     const updatedIndustry = {
       ...industries,
       other: { ...industries.other, value },
     };
     setIndustries(updatedIndustry);
     setValue("industryType", value);
+    setFormData({ ...formData, industryType: value });
+
+    sessionStorage.setItem("industryOtherInputValue", value);
   };
+
+  useEffect(() => {
+    const updatedIndustry = { ...industries };
+    Object.keys(updatedIndustry).forEach((key) => {
+      updatedIndustry[key].selected =
+        updatedIndustry[key].value === formData.industryType;
+    });
+    if (industries.other.value !== "" && industries.other.selected) {
+      setShowOtherInput(true);
+    }
+  }, [formData.industryType, industryOtherInputValue]);
 
   const isIndustrySelected = Object.values(industries).some(
     (industry) => industry.selected
   );
-  
+
   return (
     <div>
       <div className="space-y-4 pb-12">
-        <p className="text-sm">What industry do you operate in?</p>
+        <p className=" text-versich-dark-blue font-semibold pb-2">What industry do you operate in?</p>
         <div className="space-y-3">
           {Object.keys(industries).map((key) => {
             const industry = industries[key];
@@ -83,7 +113,7 @@ const IndustryType = ({ register, errors, setValue }) => {
               <div
                 key={industry.value}
                 className="flex items-center"
-                onClick={() => handleIndustrySelected(key)}
+                onClick={() => handleIndustrySelect(key)}
               >
                 <input
                   type="radio"
@@ -124,6 +154,7 @@ const IndustryType = ({ register, errors, setValue }) => {
                 placeholder="other"
                 className="border border-versich-border py-2 px-3 flex-1 rounded-lg outline-none"
                 onChange={handleInputChange}
+                value={industryOtherInputValue}
               />
             )}
           </div>

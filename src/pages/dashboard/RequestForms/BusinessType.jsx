@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdRadioButtonOff } from "react-icons/io";
 import { IoMdRadioButtonOn } from "react-icons/io";
 
-const BusinessType = ({ register, errors, setValue }) => {
+const BusinessType = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
+  const [businessOtherInputValue, setBusinessOtherInputValue] = useState(
+    sessionStorage.getItem("businessOtherInputValue") || ""
+  );
   const [types, setTypes] = useState({
     Personal: {
       value: "Personal project",
@@ -40,20 +49,36 @@ const BusinessType = ({ register, errors, setValue }) => {
       selected: false,
     },
     other: {
-      value: "",
+      value: businessOtherInputValue,
       label: "Other",
       selected: false,
     },
   });
 
+  const [showOtherInput, setShowOtherInput] = useState(false);
+
   const handleInputChange = (event) => {
     const { value } = event.target;
-    const updatedTypes = { ...types, other: { ...types.other, value } };
+    setBusinessOtherInputValue(value);
+    const updatedTypes = { ...types, other: { ...types.other, value }, };
     setTypes(updatedTypes);
     setValue("businessType", value);
+    setFormData({ ...formData, businessType: value });
+
+    sessionStorage.setItem("businessOtherInputValue", value);
   };
 
-  const [showOtherInput, setShowOtherInput] = useState(false);
+  useEffect(() => {
+    const updatedTypes = { ...types };
+    Object.keys(updatedTypes).forEach((key) => {
+      updatedTypes[key].selected =
+        updatedTypes[key].value === formData.businessType;
+    });
+    setTypes(updatedTypes);
+    if (types.other.value !== "" && types.other.selected) {
+      setShowOtherInput(true);
+    }
+  }, [formData.businessType, businessOtherInputValue]);
 
   const handleTypeSelect = (optionKey) => {
     const updatedTypes = { ...types };
@@ -61,15 +86,22 @@ const BusinessType = ({ register, errors, setValue }) => {
       updatedTypes[key].selected = key === optionKey;
     });
     setTypes(updatedTypes);
-    setValue("businessType", updatedTypes[optionKey].value);
+    const selectedValue = updatedTypes[optionKey].value;
+    setValue("businessType", selectedValue);
+    setFormData({ ...formData, businessType: selectedValue });
     setShowOtherInput(optionKey === "other");
+
+    if(optionKey !== 'other') {
+    sessionStorage.removeItem('typeOtherInputValue');
+    setBusinessOtherInputValue('');
+    }
   };
 
   const isTypeSelected = Object.values(types).some((type) => type.selected);
   return (
     <div>
       <div className="space-y-4 pb-12">
-        <p className="text-sm">What are your website needs?</p>
+        <p className=" text-versich-dark-blue font-semibold pb-2">What type of business is this for?</p>
         <div className="space-y-3">
           {Object.keys(types).map((key) => {
             // Get the value of each key
@@ -119,6 +151,7 @@ const BusinessType = ({ register, errors, setValue }) => {
                 placeholder="other"
                 className="border border-versich-border py-2 px-3 flex-1 rounded-lg outline-none"
                 onChange={handleInputChange}
+                value={businessOtherInputValue}
               />
             )}
           </div>

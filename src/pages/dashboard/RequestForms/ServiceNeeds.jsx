@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
 import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
 
-const ServiceNeeds = ({ register, errors, setValue, formData, setFormData }) => {
-  const [otherInputValue, setOtherInputValue] = useState(sessionStorage.getItem('otherInputValue') || '');
+const ServiceNeeds = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
+  const [needOtherInputValue, setNeedOtherInputValue] = useState(
+    sessionStorage.getItem("needOtherInputValue") || ""
+  );
   const [options, setOptions] = useState({
     advertise: {
       value: "To advertise my business/services",
@@ -15,7 +23,7 @@ const ServiceNeeds = ({ register, errors, setValue, formData, setFormData }) => 
       selected: false,
     },
     other: {
-      value: otherInputValue,
+      value: needOtherInputValue,
       label: "Other",
       selected: false,
     },
@@ -36,34 +44,33 @@ const ServiceNeeds = ({ register, errors, setValue, formData, setFormData }) => 
     setShowOtherInput(optionKey === "other");
 
     if (optionKey !== "other") {
-      sessionStorage.removeItem('otherInputValue');
-      setOtherInputValue('');
+      sessionStorage.removeItem("needOtherInputValue");
+      setNeedOtherInputValue("");
     }
   };
 
   const handleInputChange = (event) => {
     const { value } = event.target;
-    setOtherInputValue(value);
+    setNeedOtherInputValue(value);
     const updatedOptions = { ...options, other: { ...options.other, value } };
     setOptions(updatedOptions);
     setValue("serviceNeeds", value);
     setFormData({ ...formData, serviceNeeds: value });
 
-    sessionStorage.setItem('otherInputValue', value)
+    sessionStorage.setItem("needOtherInputValue", value);
   };
 
   useEffect(() => {
     const updatedOptions = { ...options };
     Object.keys(updatedOptions).forEach((key) => {
-      updatedOptions[key].selected = updatedOptions[key].value === formData.serviceNeeds;
+      updatedOptions[key].selected =
+        updatedOptions[key].value === formData.serviceNeeds;
     });
     setOptions(updatedOptions);
-  
-    if (options.other.value !== '' && options.other.selected) {
+    if (options.other.value !== "" && options.other.selected) {
       setShowOtherInput(true);
-    } 
-  }, [formData.serviceNeeds, otherInputValue]);
-  
+    }
+  }, [formData.serviceNeeds, needOtherInputValue]);
 
   const isOptionSelected = Object.values(options).some(
     (option) => option.selected
@@ -72,7 +79,7 @@ const ServiceNeeds = ({ register, errors, setValue, formData, setFormData }) => 
   return (
     <div>
       <div className="space-y-4 pb-12">
-        <p className="text-sm">What are your website needs?</p>
+        <p className=" text-versich-dark-blue font-semibold pb-2">What are your website needs?</p>
         <div className="space-y-3">
           {Object.keys(options).map((key) => {
             const option = options[key];
@@ -121,7 +128,7 @@ const ServiceNeeds = ({ register, errors, setValue, formData, setFormData }) => 
                 placeholder="other"
                 className="border border-versich-border py-2 px-3 flex-1 rounded-lg outline-none"
                 onChange={handleInputChange}
-                value={otherInputValue} // Use otherInputValue as the value
+                value={needOtherInputValue}
               />
             </div>
           )}

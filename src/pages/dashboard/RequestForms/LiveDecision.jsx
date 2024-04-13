@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const LiveDecision = ({ register, errors, setValue }) => {
+const LiveDecision = ({ register, errors, setValue, formData, setFormData }) => {
   const [industries, setIndustries] = useState({
     Soon: {
       value: "As soon as possible",
@@ -36,7 +36,7 @@ const LiveDecision = ({ register, errors, setValue }) => {
   return (
     <div>
       <div className="space-y-4 pb-12">
-        <p className="text-sm">When would you like the website to go live/be updated?</p>
+        <p className=" text-versich-dark-blue font-semibold pb-2">When would you like the website to go live/be updated?</p>
         <div className="space-y-3"></div>
       </div>
     </div>

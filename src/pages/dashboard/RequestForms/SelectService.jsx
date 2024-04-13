@@ -1,10 +1,20 @@
 import { IoChevronDownOutline } from "react-icons/io5";
 import { useState } from "react";
 import ServiceImages from "../../../assets/ServiceImages";
+import icon from "../../../assets/icons/office 1.png";
 
-const SelectService = ({ register, errors, setValue, formData, setFormData, setSelectedService }) => {
+const SelectService = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+  setSelectedService,
+}) => {
   const [openList, setOpenList] = useState(false);
-  const [selectedService, setSelectedServiceLocal] = useState(formData.selectedService || '');
+  const [selectedService, setSelectedServiceLocal] = useState(
+    formData.selectedService || ""
+  );
 
   const toggleList = () => {
     setOpenList(!openList);
@@ -14,24 +24,33 @@ const SelectService = ({ register, errors, setValue, formData, setFormData, setS
     setSelectedServiceLocal(service);
     setValue("selectedService", service);
     setFormData({ ...formData, selectedService: service });
-    setSelectedService(service); // Pass selected service back to parent component
+    setSelectedService(service);
     setOpenList(false);
   };
 
   return (
     <div className="relative space-y-2 mb-44">
-      <label htmlFor="serviceSelect" className="text-sm">
+      <div className="relative hidden">
+        <div className="absolute left-[-55%] top-12 text-white flex justify-center flex-col items-center w-[150px] gap-y-8">
+          <img src={icon} alt="office" className="h-32" />
+          <p className="font-semibold">Tell us about your organisation size</p>
+        </div>
+      </div>
+      <label
+        htmlFor="serviceSelect"
+        className=" text-versich-dark-blue font-semibold pb-2"
+      >
         What service do you need?
       </label>
       <div
         onClick={toggleList}
-        className="w-full border px-5 py-2 flex justify-between items-center cursor-pointer rounded-lg"
+        className="w-full border px-5 py-3 flex justify-between items-center cursor-pointer rounded-lg"
       >
         <input
           type="text"
           id="serviceSelect"
           placeholder="Select Service"
-          className="outline-none border-none cursor-pointer w-full text-xs "
+          className="outline-none border-none cursor-pointer w-full text-sm"
           value={selectedService}
           readOnly
           {...register("selectedService", { required: true })}
@@ -53,7 +72,7 @@ const SelectService = ({ register, errors, setValue, formData, setFormData, setS
               <li
                 key={data.id}
                 onClick={() => handleServiceSelect(data.name)}
-                className="hover:bg-versich-blue/20 p-2 text-xs"
+                className="hover:bg-versich-blue/20 p-2 text-sm"
               >
                 {data.name}
               </li>
