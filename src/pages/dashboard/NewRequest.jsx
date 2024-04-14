@@ -9,7 +9,18 @@ import LiveDecision from "./RequestForms/LiveDecision";
 import Budget from "./RequestForms/Budget";
 import icon from "../../assets/icons/office 1.png";
 import icon1 from "../../assets/icons/office 2.png";
+import icon2 from "../../assets/icons/office 3.png";
+import icon3 from "../../assets/icons/office 4.png";
+import icon4 from "../../assets/icons/office 5.png";
+import icon5 from "../../assets/icons/office 6.png";
 import DashboardStepButton from "../../components/Buttons/DashboardStepButton";
+import { getCurrentFormTextAndIcon } from "./RequestForms/formUtils";
+import OrganizationSize from "./RequestForms/Data Analytics/OrganizationSize";
+import DataServiceNeeds from "./RequestForms/Data Analytics/DataServiceNeeds";
+import DataChoiceOfTool from "./RequestForms/Data Analytics/DataChoiceOfTool";
+import DataProjectCommencement from "./RequestForms/Data Analytics/DataProjectCommencement";
+import DataBudget from "./RequestForms/Data Analytics/DataBudget";
+import DataDescription from "./RequestForms/Data Analytics/DataDescription";
 
 const NewRequest = () => {
   const [page, setPage] = useState(0);
@@ -78,7 +89,56 @@ const NewRequest = () => {
       />,
     ],
     "Mobile App": [],
-    "Data and Analytics": [],
+    "Data and Analytics": [
+      <OrganizationSize
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DataServiceNeeds
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DataChoiceOfTool
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DataProjectCommencement
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DataBudget
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DataDescription
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+    ],
     "Software Development": [],
     "Finance Transformation": [],
     "Machine learning and AI": [],
@@ -121,48 +181,15 @@ const NewRequest = () => {
     setServiceSelected(true);
   };
 
-  const getCurrentFormTextAndIcon = () => {
-    switch (selectedService) {
-      case "":
-        return { icon: icon, text: "Select your service" };
-      case "Web design and development":
-        switch (page) {
-          case 0:
-            return { icon: icon, text: "Text for SelectService" };
-          case 1:
-            return { icon: icon1, text: "Text for ServiceRequirement" };
-          case 2:
-            return { icon: icon, text: "Text for ServiceNeeds" };
-          case 3:
-            return { icon: icon1, text: "Text for BusinessType" };
-          case 4:
-            return { icon: icon, text: "Text for IndustryType" };
-          case 5:
-            return { icon: icon, text: "Text for LiveDecision" };
-          case 6:
-            return { icon: icon, text: "Text for Budget" };
-          default:
-            return { icon: null, text: null };
-        }
-      case "Mobile App":
-      case "Data and Analytics":
-      case "Software Development":
-      case "Finance Transformation":
-      case "Machine learning and AI":
-        return { icon: icon, text: "Select your service" };
-      default:
-        return { icon: null, text: null };
-    }
-  };
-  
-  
-
-  const { icon: currentIcon, text: currentText } = getCurrentFormTextAndIcon();
-
+  const { icon: currentIcon, text: currentText } = getCurrentFormTextAndIcon(
+    selectedService,
+    page,
+    { icon, icon1, icon2, icon3, icon4, icon5 }
+  );
   return (
-    <div className="flex justify-center my-8 mx-16">
-      <div className="min-h-[30rem] w-[49rem] border flex rounded-lg shadow-lg overflow-hidden">
-        <div className="bg-versich-dark-blue h-full flex justify-center items-center flex-col text-white w-[300px] px-12 gap-y-3">
+    <div className="flex justify-center my-8 mx-10 md:mx-16">
+      <div className="min-h-[30rem] w-[49rem] border flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-versich-dark-blue h-full flex justify-start items-center flex-col text-white w-full md:w-[300px]  px-12 gap-y-8 py-6 md:py-20">
           <img src={currentIcon} alt="icon" className="h-32" />
           <p>{currentText}</p>
         </div>

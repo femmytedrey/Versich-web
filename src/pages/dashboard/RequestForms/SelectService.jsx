@@ -30,12 +30,6 @@ const SelectService = ({
 
   return (
     <div className="relative space-y-2 mb-44">
-      <div className="relative hidden">
-        <div className="absolute left-[-55%] top-12 text-white flex justify-center flex-col items-center w-[150px] gap-y-8">
-          <img src={icon} alt="office" className="h-32" />
-          <p className="font-semibold">Tell us about your organisation size</p>
-        </div>
-      </div>
       <label
         htmlFor="serviceSelect"
         className=" text-versich-dark-blue font-semibold pb-2"
@@ -63,7 +57,7 @@ const SelectService = ({
       </div>
       <div
         className={`absolute bg-white border w-full overflow-hidden overflow-y-scroll transition-all duration-300 ${
-          openList ? "h-auto max-h-36" : "h-0 max-h-0 border-none"
+          openList ? "h-48" : "h-0 max-h-0 border-none"
         }`}
       >
         {openList && (
