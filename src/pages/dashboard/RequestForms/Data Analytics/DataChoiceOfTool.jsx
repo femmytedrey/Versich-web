@@ -99,7 +99,7 @@ const DataChoicezOfTool = ({
         <p className=" text-versich-dark-blue font-semibold pb-2">
           Choice of Tool Select below:
         </p>
-        <div className="grid grid-cols-3 gap-x-2  gap-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2  gap-y-5">
           {Object.keys(choices).map((key) => {
             const range = choices[key];
             return (

@@ -187,7 +187,7 @@ const NewRequest = () => {
     { icon, icon1, icon2, icon3, icon4, icon5 }
   );
   return (
-    <div className="flex justify-center my-8 mx-10 md:mx-16">
+    <div className="flex justify-center my-8 mx-6 md:mx-16">
       <div className="min-h-[30rem] w-[49rem] border flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden">
         <div className="bg-versich-dark-blue h-full flex justify-start items-center flex-col text-white w-full md:w-[300px]  px-12 gap-y-8 py-6 md:py-20">
           <img src={currentIcon} alt="icon" className="h-32" />
