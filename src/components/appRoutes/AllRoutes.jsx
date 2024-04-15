@@ -18,6 +18,7 @@ import BuyerRoutes from "./BuyerRoutes";
 import SellerRoutes from "./SellerRoutes";
 import Response from "../../pages/dashboard/Response";
 import { loginPath } from "../../assets/constants";
+import NewRequest from "../../pages/dashboard/NewRequest";
 
 const AllRoutes = () => {
   return (
