@@ -95,7 +95,7 @@ const DataChoicezOfTool = ({
 
   return (
     <div>
-      <div className="space-y-4 pb-12">
+      <div className="space-y-4">
         <p className=" text-versich-dark-blue font-semibold pb-2">
           Choice of Tool Select below:
         </p>

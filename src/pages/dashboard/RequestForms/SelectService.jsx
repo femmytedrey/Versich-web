@@ -1,7 +1,5 @@
-import { IoChevronDownOutline } from "react-icons/io5";
 import { useState } from "react";
-import ServiceImages from "../../../assets/ServiceImages";
-import icon from "../../../assets/icons/office 1.png";
+import ServiceList from "../../../assets/serviceList";
 
 const SelectService = ({
   register,
@@ -11,68 +9,52 @@ const SelectService = ({
   setFormData,
   setSelectedService,
 }) => {
-  const [openList, setOpenList] = useState(false);
   const [selectedService, setSelectedServiceLocal] = useState(
     formData.selectedService || ""
   );
-
-  const toggleList = () => {
-    setOpenList(!openList);
-  };
 
   const handleServiceSelect = (service) => {
     setSelectedServiceLocal(service);
     setValue("selectedService", service);
     setFormData({ ...formData, selectedService: service });
     setSelectedService(service);
-    setOpenList(false);
   };
 
   return (
-    <div className="relative space-y-2 mb-44">
+    <div className="relative space-y-2">
       <label
         htmlFor="serviceSelect"
-        className=" text-versich-dark-blue font-semibold pb-2"
+        className="text-versich-dark-blue font-semibold pb-2 flex justify-center text-lg"
       >
         What service do you need?
       </label>
-      <div
-        onClick={toggleList}
-        className="w-full border px-5 py-3 flex justify-between items-center cursor-pointer rounded-lg"
-      >
-        <input
-          type="text"
-          id="serviceSelect"
-          placeholder="Select Service"
-          className="outline-none border-none cursor-pointer w-full text-sm"
-          value={selectedService}
-          readOnly
-          {...register("selectedService", { required: true })}
-        />
-        <IoChevronDownOutline
-          className={`transform ${
-            openList ? "rotate-180" : "rotate-0"
-          } transition-transform duration-300`}
-        />
-      </div>
-      <div
-        className={`absolute bg-white border w-full overflow-hidden overflow-y-scroll transition-all duration-300 ${
-          openList ? "h-48" : "h-0 max-h-0 border-none"
-        }`}
-      >
-        {openList && (
-          <ul className="max-h-36">
-            {ServiceImages.map((data) => (
-              <li
-                key={data.id}
-                onClick={() => handleServiceSelect(data.name)}
-                className="hover:bg-versich-blue/20 p-2 text-sm"
-              >
-                {data.name}
-              </li>
-            ))}
-          </ul>
-        )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 py-8 px-4">
+        {ServiceList.map((service) => (
+          <div
+            key={service.id}
+            className={`flex flex-col justify-center items-center border ${
+              selectedService === service.name
+                ? "border-versich-blue border-2 bg-versich-blue/20"
+                : "border-versich-border"
+            } cursor-pointer rounded-lg gap-y-2 py-4 h-44`}
+            onClick={() => handleServiceSelect(service.name)}
+          >
+            <input
+              type="radio"
+              name="selectedService"
+              value={service.name}
+              className="appearance-none"
+              {...register("selectedService", { required: true })}
+            />
+            <img src={service.img} alt={service.name} />
+            <label
+              htmlFor={service.name}
+              className="ml-2 text-sm text-versich-dark-blue text-center"
+            >
+              {service.name}
+            </label>
+          </div>
+        ))}
       </div>
       {errors.selectedService && selectedService.trim() === "" && (
         <p className="text-red-500 text-sm">Please select a service.</p>

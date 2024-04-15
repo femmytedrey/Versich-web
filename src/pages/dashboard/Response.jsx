@@ -6,7 +6,6 @@ import ServiceImages from "../../assets/ServiceImages";
 import { PiArrowRightThin } from "react-icons/pi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NewRequest from "./NewRequest";
 
 const Response = ({ onClose }) => {
   const [isResquestEmpty, setIsRequestEmpty] = useState(true);
