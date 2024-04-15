@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
-import Cookies from "js-cookie"; // Import Cookies
 
 import ConfirmButton from "../../components/Buttons/ConfirmButton";
 import InputText from "../../components/InputText";
 import SocialAccounts from "./socialAccounts/SocialAccounts";
-import { signupPath } from "../../assets/constants";
+import { SS_AUTH_ERROR, signupPath } from "../../assets/constants";
 import { loginUser } from "../../actions/auth";
 import CSRFTokenField from "../../components/CSRFTokenField";
 import Meta from "../../components/Meta";
@@ -22,10 +21,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const storedError = Cookies.get("authError");
-    if (storedError) {
-      setErrorMsg(storedError);
-      Cookies.remove("authError");
+    const authError = window.sessionStorage.getItem(SS_AUTH_ERROR.key);
+    if (authError) {
+      setErrorMsg(authError);
+      window.sessionStorage.removeItem(SS_AUTH_ERROR.key);
     }
   }, []);
 

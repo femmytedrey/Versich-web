@@ -1,28 +1,27 @@
-import * as api from "../api";
-import * as actionType from "./types";
+import * as api from "../api"
+import * as actionType from "./types"
 
-export const signupUser =
-  (accounttype, firstname, lastname, email, password, token) =>
-    async (dispatch) => {
-      try {
+export const signupUser = (accounttype, firstname, lastname, email, password, token) => async (dispatch) => {
+    try {
         const { data } = await api.register({
-          accounttype,
-          firstname,
-          lastname,
-          email,
-          password,
-          csrfmiddlewaretoken: token,
-        });
+            accounttype,
+            firstname,
+            lastname,
+            email,
+            password,
+            csrfmiddlewaretoken: token,
+        })
         if (data.status !== "success") {
-          throw Error(JSON.stringify(data));
+            throw Error(JSON.stringify(data))
         }
-        await dispatch(getUser());
-        return data;
-      } catch (error) {
+        await dispatch(getUser())
+        return data
+    }
+    catch (error) {
         if (error.response && error.response.status) {
-          throw new Error(error.response.data.message);
+            throw new Error(error.response.data.message)
         } else {
-          throw Error(error);
+            throw Error(error)
         }
         /**
          * Handle the server returned error obj
@@ -30,62 +29,66 @@ export const signupUser =
          * sample => `Error({"status": "server.returned.status", "message": "Error message"})
          * You are free to use your own error handling from here, if you that easy for you.
          */
-      }
-    };
+    }
+}
 
 export const loginUser = (email, password, token) => async (dispatch) => {
-  try {
-    const { data } = await api.login({
-      email,
-      password,
-      csrfmiddlewaretoken: token,
-    });
-    if (data.status !== "success") {
-      throw Error(JSON.stringify(data));
+    try {
+        const { data } = await api.login({
+            email,
+            password,
+            csrfmiddlewaretoken: token,
+        })
+        if (data.status !== "success") {
+            throw Error(JSON.stringify(data))
+        }
+        await dispatch(getUser())
+        return data
     }
-    await dispatch(getUser());
-    return data;
-  } catch (error) {
-    if (error.response && error.response.status) {
-      throw new Error(error.response.data.message);
-    } else {
-      throw Error(error);
+    catch (error) {
+        if (error.response && error.response.status) {
+            throw new Error(error.response.data.message)
+        } else {
+            throw Error(error)
+        }
     }
-  }
-};
+}
 
 export const getUser = () => async (dispatch) => {
-  try {
-    const { data } = await api.getUser();
-    if (data.status !== "success") {
-      throw Error(JSON.stringify(data));
+    try {
+        const { data } = await api.getUser()
+        if (data.status !== "success") {
+            throw Error(JSON.stringify(data))
+        }
+        dispatch({ type: actionType.AUTH, data })
+    } catch (error) {
+        throw Error()
     }
-    dispatch({ type: actionType.AUTH, data });
-  } catch (error) {
-    throw Error();
-  }
-};
+}
 
 export const checkAuth = () => async (dispatch) => {
-  try {
-    const { data } = await api.getUser();
-    if (data.status !== "success") {
-      throw Error(JSON.stringify(data));
+    try {
+        const { data } = await api.getUser()
+        if (data.status !== "success") {
+            throw Error(JSON.stringify(data))
+        }
+        dispatch({ type: actionType.AUTH, data })
+        dispatch({ type: actionType.AUTH_VERIFICATION_FULFILLED })
     }
-    dispatch({ type: actionType.AUTH, data });
-  } catch (error) {
-    return null;
-  }
-};
+    catch (error) {
+        dispatch({ type: actionType.AUTH_VERIFICATION_FAILED })
+        return null
+    }
+}
 
 export const logoutUser = () => async (dispatch) => {
-  try {
-    const { data } = await api.logout();
-    if (data.status !== "success") {
-      throw Error(JSON.stringify(data));
+    try {
+        const { data } = await api.logout()
+        if (data.status !== "success") {
+            throw Error(JSON.stringify(data))
+        }
+        dispatch({ type: actionType.LOGOUT })
+    } catch (error) {
+        return null
     }
-    dispatch({ type: actionType.LOGOUT });
-  } catch (error) {
-    return null;
-  }
-};
+}

@@ -4,31 +4,30 @@ import Home from "../../pages/home/Home";
 import Signup from "../../pages/auth/Signup";
 import Login from "../../pages/auth/Login";
 import GoogleOAuthVerification from "../../pages/auth/verification/GoogleOAuthVerification";
-import EmailVerification from "../../pages/EmailVerification";
+import EmailTokenLinkVerification from "../../pages/auth/verification/EmailTokenLinkVerification";
+import EmailVerification from "../../pages/auth/verification/email/EmailVerification";
 import LeadsForm from "../../pages/LeadsForm";
 import MoreLeadsForm from "../../pages/MoreLeadsForm";
 import ProfileForm from "../../pages/ProfileForm";
 import ErrorPage from "../ErrorPage/ErrorPage";
-import EmailVerified from "../../pages/EmailVerified";
 import Dashboard from "../../pages/dashboard/Dashboard";
 import NotAuthRoutes from "./NotAuthRoutes";
 import AuthRoutes from "./AuthRoutes";
+import EmailVerificationRoutes from "./EmailVerificationRoutes";
 import BuyerRoutes from "./BuyerRoutes";
 import SellerRoutes from "./SellerRoutes";
-import { loginPath } from "../../assets/constants";
-import VerifyEmailPage from "../../pages/auth/verification/VerifyEmailPage";
 import Response from "../../pages/dashboard/Response";
-import NewRequest from "../../pages/dashboard/NewRequest";
+import { loginPath } from "../../assets/constants";
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<Home />} />
-        <Route path="response/" >
-          <Route path="" element={<Response />} />
-          <Route path="request" element={<NewRequest />} />
-        </Route>
+      </Route>
+      <Route path="response/">
+        <Route path="" element={<Response />} />
+        <Route path="request" element={<NewRequest />} />
       </Route>
       <Route path="/auth/">
         <Route element={<NotAuthRoutes />}>
@@ -41,17 +40,13 @@ const AllRoutes = () => {
           />
         </Route>
         <Route element={<AuthRoutes />}>
-          <Route
-            path="verification/:token/email"
-            element={<VerifyEmailPage />}
-          />
-
-          {/* This EmailVerification is for the resend */}
-          <Route
-            path="verification/resend-email/"
-            element={<EmailVerification />}
-          />
-
+          <Route element={<EmailVerificationRoutes />}>
+            <Route
+              path="verification/:token/email"
+              element={<EmailTokenLinkVerification />}
+            />
+            <Route path="verification/email/" element={<EmailVerification />} />
+          </Route>
           <Route path="su/">
             <Route path="buyer/" element={<BuyerRoutes />}>
               <Route path="leads/" element={<LeadsForm />} />
@@ -65,12 +60,6 @@ const AllRoutes = () => {
             </Route>
           </Route>
         </Route>
-      </Route>
-      <Route element={<AuthRoutes />}>
-        <Route
-          path="/api/auth/verify/account/:token"
-          element={<EmailVerified />}
-        />
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
