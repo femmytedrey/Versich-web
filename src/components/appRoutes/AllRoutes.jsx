@@ -64,7 +64,8 @@ const AllRoutes = () => {
       </Route>
       <Route path="dashboard/" element={<AuthRoutes />}>
         <Route path="" element={<Dashboard />} />
-        <Route path="response/" element={<Response />}>
+        <Route path="response/">
+          <Route path="" element={<Response />} />
           <Route path="request" element={<NewRequest />} />
         </Route>
       </Route>
