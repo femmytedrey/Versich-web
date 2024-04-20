@@ -275,21 +275,31 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
           return { icon: null, text: null };
         case 1:
           return {
+            icon: icon2,
+            text: "Tell us your project purpose",
+          };
+          case 2:
+          return {
+            icon: icon1,
+            text: "Tell us the type of profession you need",
+          };
+        case 3:
+          return {
             icon: orgSize,
             text: "Tell us about your organisation size",
           };
-        case 2:
+        case 4:
           return { icon: icon1, text: "Data Service you need" };
-        case 3:
+        case 5:
           return {
             icon: icon2,
             text: "What’s your preferred choice of tool? Don’t worry if your preferred tool isn’t listed, you can mention that in the detail page?",
           };
-        case 4:
-          return { icon: icon3, text: "When do you need an expert?" };
-        case 5:
-          return { icon: icon4, text: "Your budget size" };
         case 6:
+          return { icon: icon3, text: "When do you need an expert?" };
+        case 7:
+          return { icon: icon4, text: "Your budget size" };
+        case 8:
           return {
             icon: icon5,
             text: "Give detail of what you need so we get you experts to meet your needs",

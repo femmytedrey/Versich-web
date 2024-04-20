@@ -66,6 +66,8 @@ import FinancialFinanceBudget from "./RequestForms/FinancialTransformation/Finan
 import FinancialFinanceProjectCommencement from "./RequestForms/FinancialTransformation/Financial Reporting/FinanceProjectCommencement";
 import FinancialFinanceDescription from "./RequestForms/FinancialTransformation/Financial Reporting/FinanceDescription";
 import ErpFinanceProjectCommencement from "./RequestForms/FinancialTransformation/ERP/FinanceProjectCommencement";
+import DataAnalyticsServiceType from "./RequestForms/Data Analytics/DataAnalyticsServiceType";
+import DataProfessionType from "./RequestForms/Data Analytics/DataProfessionType";
 
 const NewRequest = () => {
   const [page, setPage] = useState(0);
@@ -209,6 +211,22 @@ const NewRequest = () => {
       />,
     ],
     "Data & Analytics": [
+      <DataAnalyticsServiceType
+        key="DataAnalyticsServiceType"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DataProfessionType
+        key="DataProfessionType"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
       <OrganizationSize
         key="orginizationSize"
         register={register}
