@@ -1,3 +1,10 @@
+/**
+ * Renders the Response component, which displays a page for handling requests.
+ * The component checks if there are any active requests, and if not, displays a message
+ * prompting the user to create a new request. The component also includes a back button
+ * and a button to create a new request.
+ *
+ */
 import BackBtn from "../../components/Buttons/BackBtn";
 import planet from "../../assets/planet.png";
 import DashboardConfirmBtn from "../../components/Buttons/DashboardConfirmBtn";
@@ -7,7 +14,7 @@ import { PiArrowRightThin } from "react-icons/pi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Response = ({ onClose }) => {
+const Response = (Z) => {
   const [isResquestEmpty, setIsRequestEmpty] = useState(true);
   const navigate = useNavigate()
 

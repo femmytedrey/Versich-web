@@ -1,12 +1,24 @@
 import dataAnalyticsIcon from "./icons/SelectServiceIcons/DataAnalyticsIcon.png";
 import financeTransformationIcon from "./icons/SelectServiceIcons/FinanceTransformationIcon.png";
 import machineLearningIcon from "./icons/SelectServiceIcons/MachineLearningIcon.png";
+import softwareDevIcon from "./icons/SelectServiceIcons/softwareDevIcon.png";
+import webDevIcon from "./icons/SelectServiceIcons/webDevIcon.png";
+import mobileIcon from "./icons/SelectServiceIcons/mobileIcon.png";
+
+/**
+ * An array of service offerings provided by the company.
+ * Each service offering is represented as an object with the following properties:
+ * - id: a unique identifier for the service offering
+ * - img: the path to an icon image for the service offering
+ * - name: the name of the service offering
+ * - link: a URL link to more information about the service offering
+ */
 
 const ServiceList = [
   {
     id: 1,
-    img: dataAnalyticsIcon,
-    name: "Data and Analytics",
+    img: softwareDevIcon,
+    name: "Software Development",
     link: "#",
   },
   {
@@ -17,38 +29,26 @@ const ServiceList = [
   },
   {
     id: 3,
-    img: dataAnalyticsIcon,
-    name: "Finance Reporting and Advanced Analytics",
+    img: machineLearningIcon,
+    name: "Machine learning and AI",
     link: "#",
   },
   {
     id: 4,
-    img: financeTransformationIcon,
-    name: "ERM/EPM/ System",
+    img: webDevIcon,
+    name: "Web Design & Development",
     link: "#",
   },
   {
     id: 5,
-    img: dataAnalyticsIcon,
-    name: "⁠System Administration",
+    img: mobileIcon,
+    name: "Mobile App",
     link: "#",
   },
   {
     id: 6,
-    img: financeTransformationIcon,
-    name: "⁠Digital Transformation",
-    link: "#",
-  },
-  {
-    id: 7,
-    img: machineLearningIcon,
-    name: "Machine Learning and AI process flow",
-    link: "#",
-  },
-  {
-    id: 8,
     img: dataAnalyticsIcon,
-    name: "Other",
+    name: "Data & Analytics",
     link: "#",
   },
 ];

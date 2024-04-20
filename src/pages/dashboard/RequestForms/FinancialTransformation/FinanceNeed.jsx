@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 
-const FinanceNeed = ({ register, errors, setValue, formData, setFormData }) => {
+const FinanceNeed = ({ register, errors, setValue, formData, setFormData, setSelectedFinanceNeed, selectedFinanceNeed }) => {
   const [FinanceneedOtherInputValue, setFinanceNeedOtherInputValue] = useState(
     sessionStorage.getItem("FinanceneedOtherInputValue") || ""
   );
@@ -22,11 +22,6 @@ const FinanceNeed = ({ register, errors, setValue, formData, setFormData }) => {
       selected: false,
     },
     needs4: {
-      value: "Systems Administration",
-      label: "Database Design and Development",
-      selected: false,
-    },
-    needs5: {
       value: "Systems Administration",
       label: "Systems Administration",
       selected: false,
@@ -61,7 +56,17 @@ const FinanceNeed = ({ register, errors, setValue, formData, setFormData }) => {
       sessionStorage.removeItem("FinanceneedOtherInputValue");
       setFinanceNeedOtherInputValue("");
     }
+    if(optionKey === "other"){
+      setSelectedFinanceNeed("other");
+    }else{
+
+      setSelectedFinanceNeed(selectedValue);
+    }
   };
+
+  // useEffect(() => {
+  //   console.log(selectedFinanceNeed);
+  // }, [selectedFinanceNeed]);
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -72,6 +77,8 @@ const FinanceNeed = ({ register, errors, setValue, formData, setFormData }) => {
     setFormData({ ...formData, financeServiceNeeds: value });
 
     sessionStorage.setItem("FinanceneedOtherInputValue", value);
+    
+    // setSelectedFinanceNeed(value);
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
-const FinanceServiceNeed = ({
+const FinanceServiceNeeds = ({
   register,
   errors,
   setValue,
@@ -10,23 +10,23 @@ const FinanceServiceNeed = ({
 }) => {
   const [financeServiceNeed, setFinanceServiceNeed] = useState({
     option1: {
-      value: "Financial Planning & Analysis",
-      label: "Financial Planning & Analysis",
+      value: "Big Data & Analytics",
+      label: "Big Data & Analytics",
       selected: false,
     },
     option2: {
-      value: "Demand Forecasting",
-      label: "Demand Forecasting",
+      value: "Business Impact Analysis",
+      label: "Business Impact Analysis",
       selected: false,
     },
     option3: {
-      value: "Financial Modeling",
-      label: "Financial Modeling",
+      value: "Data Science & Analysis",
+      label: "Data Science & Analysis",
       selected: false,
     },
     option4: {
-      value: "Finance Project Management",
-      label: "Finance Project Management",
+      value: "Data Visualization",
+      label: "Data Visualization",
       selected: false,
     },
     option5: {
@@ -119,4 +119,4 @@ const FinanceServiceNeed = ({
   );
 };
 
-export default FinanceServiceNeed;
+export default FinanceServiceNeeds;

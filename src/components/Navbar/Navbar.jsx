@@ -72,7 +72,7 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`flex justify-between items-center py-6 z-20 max-[400px]:px-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${isHome ? "bg-transparent" : "bg-white"
+            className={`flex justify-between items-center py-6 z-20 max-[400px]:px-6 px-10 md:px-16 lg:px-28 md:px-25 relative ${isHome ? "bg-transparent" : "bg-white shadow"
                 } `}
         >
             <div>

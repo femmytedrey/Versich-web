@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
-const FinanceServiceNeed = ({
+const OtherFinanceNeedTools = ({
   register,
   errors,
   setValue,
@@ -10,36 +10,92 @@ const FinanceServiceNeed = ({
 }) => {
   const [financeServiceNeed, setFinanceServiceNeed] = useState({
     option1: {
-      value: "Financial Planning & Analysis",
-      label: "Financial Planning & Analysis",
+      value: "Digital Strategy & Transformation",
+      label: "Digital Strategy & Transformation",
       selected: false,
     },
     option2: {
-      value: "Demand Forecasting",
-      label: "Demand Forecasting",
+      value: "Digital & Mobile Strategy",
+      label: "Digital & Mobile Strategy",
       selected: false,
     },
     option3: {
-      value: "Financial Modeling",
-      label: "Financial Modeling",
+      value: "Cloud Strategy",
+      label: "Cloud Strategy",
       selected: false,
     },
     option4: {
-      value: "Finance Project Management",
-      label: "Finance Project Management",
+      value: "Digital Transformation Roadmapping",
+      label: "Digital Transformation Roadmapping",
       selected: false,
     },
     option5: {
-      value: "Value Creation Strategy",
-      label: "Value Creation Strategy",
+      value: "Product Management",
+      label: "Product Management",
       selected: false,
     },
     option6: {
-      value: "Strategic Planning",
-      label: "Strategic Planning",
+      value: "Digital Strategy Project Management",
+      label: "Digital Strategy Project Management",
       selected: false,
     },
-  });
+    option7: {
+      value: "Technology Assessment & Implementation",
+      label: "Technology Assessment & Implementation",
+      selected: false,
+    },
+    option8: {
+      value: "Software Implementation",
+      label: "Software Implementation",
+      selected: false,
+    },
+    option9: {
+      value: "Technology Assessment",
+      label: "Technology Assessment",
+      selected: false,
+    },
+    option10: {
+      value: "Technology Implementation Project Management",
+      label: "Technology Implementation Project Management",
+      selected: false,
+    },
+    option11: {
+      value: "Digital Transformation & Technology",
+      label: "Digital Transformation & Technology",
+      selected: false,
+    },
+    option12: {
+      value: "Operations & Process Improvement",
+      label: "Operations & Process Improvement",
+      selected: false,
+    },
+    option13: {
+      value: "Business Process Redesign",
+      label: "Business Process Redesign",
+      selected: false,
+    },
+    option14: {
+      value: "Commercial Operations",
+      label: "Commercial Operations",
+      selected: false,
+    },
+    option15: {
+      value: "Process Improvement",
+      label: "Process Improvement",
+      selected: false,
+    },
+    option16: {
+      value: "Operations Project Management",
+      label: "Operations Project Management",
+      selected: false,
+    },
+    option17: {
+      value: "Supply Chain Strategy & Transformation",
+      label: "Supply Chain Strategy & Transformation",
+      selected: false,
+    },
+});
+
 
   const handleCheckboxSelect = (optionKey) => {
     const updatedOptions = { ...financeServiceNeed };
@@ -50,8 +106,8 @@ const FinanceServiceNeed = ({
       .filter((key) => updatedOptions[key].selected)
       .map((key) => updatedOptions[key].value);
 
-    setValue("financeServices", selectedServices);
-    setFormData({ ...formData, financeServices: selectedServices });
+    setValue("otherFinanceTools", selectedServices);
+    setFormData({ ...formData, otherFinanceTools: selectedServices });
   };
 
   const isAnySelected = Object.values(financeServiceNeed).some(
@@ -59,9 +115,9 @@ const FinanceServiceNeed = ({
   );
 
   useEffect(() => {
-    if (formData.financeServices) {
+    if (formData.otherFinanceTools) {
       const updatedOptions = { ...financeServiceNeed };
-      formData.financeServices.forEach((selected) => {
+      formData.otherFinanceTools.forEach((selected) => {
         Object.keys(updatedOptions).forEach((key) => {
           if (updatedOptions[key].value === selected) {
             updatedOptions[key].selected = true;
@@ -70,7 +126,7 @@ const FinanceServiceNeed = ({
       });
       setFinanceServiceNeed(updatedOptions);
     }
-  }, [formData.financeServices]);
+  }, [formData.otherFinanceTools]);
 
   return (
     <div>
@@ -78,7 +134,7 @@ const FinanceServiceNeed = ({
         <p className="text-versich-dark-blue font-semibold pb-2">
           Select services you need
         </p>
-        <div className="space-y-3">
+        <div className="space-y-3 h-[290px] overflow-y-scroll">
           {Object.keys(financeServiceNeed).map((key) => {
             const option = financeServiceNeed[key];
             return (
@@ -92,7 +148,7 @@ const FinanceServiceNeed = ({
                   name={option.value}
                   checked={option.selected}
                   className="appearance-none"
-                  {...register("financeServices", { required: true })}
+                  {...register("otherFinanceTools", { required: true })}
                 />
                 {option.selected ? (
                   <MdCheckBox className="text-[#4F4F4F]" />
@@ -107,7 +163,7 @@ const FinanceServiceNeed = ({
           })}
         </div>
 
-        {!isAnySelected && errors.financeServices && (
+        {!isAnySelected && errors.otherFinanceTools && (
           <div className="pb-3">
             <p className="text-red-500 text-sm">
               Please select at least one option
@@ -119,4 +175,4 @@ const FinanceServiceNeed = ({
   );
 };
 
-export default FinanceServiceNeed;
+export default OtherFinanceNeedTools;
