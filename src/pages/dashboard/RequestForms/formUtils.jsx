@@ -13,7 +13,6 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
     financeNeedIcon,
     expertNeedIcon,
     projectCommencementIcon,
-    selectedFinanceNeed,
     selectedServiceType,
   } = icons;
   switch (selectedService) {
@@ -53,7 +52,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
           // Still be working with case 3 here
           switch (page) {
             case 3:
-              switch (selectedFinanceNeed) {
+              switch (selectedServiceType) {
                 case "FP & A Revolution":
                   return {
                     icon: icon2,
@@ -89,7 +88,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         case 4:
           switch (page) {
             case 4:
-              switch (selectedFinanceNeed) {
+              switch (selectedServiceType) {
                 case "FP & A Revolution":
                   return {
                     icon: icon1,
@@ -126,7 +125,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         case 5:
           switch (page) {
             case 5:
-              switch (selectedFinanceNeed) {
+              switch (selectedServiceType) {
                 case "FP & A Revolution":
                   return {
                     icon: icon4,
@@ -160,7 +159,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         case 6:
           switch (page) {
             case 6:
-              switch (selectedFinanceNeed) {
+              switch (selectedServiceType) {
                 case "FP & A Revolution":
                   return {
                     icon: icon3,
@@ -194,7 +193,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         case 7:
           switch (page) {
             case 7:
-              switch (selectedFinanceNeed) {
+              switch (selectedServiceType) {
                 case "FP & A Revolution":
                   return {
                     icon: icon5,
@@ -367,7 +366,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         default:
           return { icon: null, text: null };
       }
-      
+
     default:
       return { icon: null, text: null };
   }

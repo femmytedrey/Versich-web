@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 
-const FinanceNeed = ({ register, errors, setValue, formData, setFormData, setSelectedFinanceNeed, selectedFinanceNeed }) => {
+const FinanceNeed = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+  setSelectedServiceType,
+}) => {
   const [FinanceneedOtherInputValue, setFinanceNeedOtherInputValue] = useState(
     sessionStorage.getItem("FinanceneedOtherInputValue") || ""
   );
@@ -56,14 +63,12 @@ const FinanceNeed = ({ register, errors, setValue, formData, setFormData, setSel
       sessionStorage.removeItem("FinanceneedOtherInputValue");
       setFinanceNeedOtherInputValue("");
     }
-    if(optionKey === "other"){
-      setSelectedFinanceNeed("other");
-    }else{
-
-      setSelectedFinanceNeed(selectedValue);
+    if (optionKey === "other") {
+      setSelectedServiceType("other");
+    } else {
+      setSelectedServiceType(selectedValue);
     }
 
-    console.log(selectedFinanceNeed)
   };
 
   // useEffect(() => {
@@ -79,8 +84,8 @@ const FinanceNeed = ({ register, errors, setValue, formData, setFormData, setSel
     setFormData({ ...formData, financeServiceNeeds: value });
 
     sessionStorage.setItem("FinanceneedOtherInputValue", value);
-    
-    // setSelectedFinanceNeed(value);
+
+    // setSelectedServiceType(value);
   };
 
   useEffect(() => {

@@ -35,51 +35,36 @@ const IndividualDataChoicezOfTool = ({
       selected: false,
     },
     choice6: {
-      value: "Informatica",
-      label: "Informatica",
-      selected: false,
-    },
-    choice7: {
-      value: "Celligo",
-      label: "Celligo",
-      selected: false,
-    },
-    choice8: {
       value: "Collibra",
       label: "Collibra",
       selected: false,
     },
-    choice9: {
-      value: "Oracle",
-      label: "Oracle",
-      selected: false,
-    },
-    choice10: {
+    choice7: {
       value: "Snowflake",
       label: "Snowflake",
       selected: false,
     },
-    choice11: {
+    choice8: {
       value: "R",
       label: "R",
       selected: false,
     },
-    choice12: {
+    choice9: {
       value: "Excel",
       label: "Excel",
       selected: false,
     },
-    choice13: {
+    choice10: {
       value: "Power Automate",
       label: "Power Automate",
       selected: false,
     },
-    choice14: {
+    choice11: {
       value: "Azure",
       label: "Azure",
       selected: false,
     },
-    choice15: {
+    choice12: {
       value: "AWS",
       label: "AWS",
       selected: false,

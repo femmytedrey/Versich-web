@@ -78,7 +78,6 @@ const NewRequest = () => {
   const [progress, setProgress] = useState(0);
   const [formData, setFormData] = useState({});
   const [selectedService, setSelectedService] = useState("");
-  const [selectedFinanceNeed, setSelectedFinanceNeed] = useState("");
   const [selectedServiceType, setSelectedServiceType] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [serviceSelected, setServiceSelected] = useState(false);
@@ -109,8 +108,8 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-        setSelectedFinanceNeed={setSelectedFinanceNeed}
-        selectedFinanceNeed={selectedFinanceNeed}
+        setSelectedServiceType={setSelectedServiceType}
+        selectedServiceType={selectedServiceType}
       />,
       <FinanceOrganizationSize
         key="FinanceOrganizationSize"
@@ -343,7 +342,7 @@ const NewRequest = () => {
     );
   }
 
-  if (selectedFinanceNeed === "FP & A Revolution") {
+  if (selectedServiceType === "FP & A Revolution") {
     formPagesByService["Finance Transformation"].push(
       <FinanceServiceNeed
         key="FinanceServiceNeed"
@@ -395,7 +394,7 @@ const NewRequest = () => {
       />
     );
   } else if (
-    selectedFinanceNeed === "Financial reporting and Advanced Analytics"
+    selectedServiceType === "Financial reporting and Advanced Analytics"
   ) {
     formPagesByService["Finance Transformation"].push(
       <FinanceServiceNeeds
@@ -447,7 +446,7 @@ const NewRequest = () => {
         setFormData={setFormData}
       />
     );
-  } else if (selectedFinanceNeed === "ERP/EPM/ System Implementation") {
+  } else if (selectedServiceType === "ERP/EPM/ System Implementation") {
     formPagesByService["Finance Transformation"].push(
       <ErpFinanceNeededTools
         key="ErpFinanceNeededTools"
@@ -488,7 +487,7 @@ const NewRequest = () => {
         setFormData={setFormData}
       />
     );
-  } else if (selectedFinanceNeed === "Systems Administration") {
+  } else if (selectedServiceType === "Systems Administration") {
     formPagesByService["Finance Transformation"].push(
       <SystemAdministratinoFinanceNeededTools
         key="SoftwareAdministratinoFinanceNeededTools"
@@ -529,7 +528,7 @@ const NewRequest = () => {
         setFormData={setFormData}
       />
     );
-  } else if (selectedFinanceNeed === "Digital Transformation") {
+  } else if (selectedServiceType === "Digital Transformation") {
     formPagesByService["Finance Transformation"].push(
       <DigitalTransformFinanceNeededTools
         key="DigitalTransformFinanceNeededTools"
@@ -570,7 +569,7 @@ const NewRequest = () => {
         setFormData={setFormData}
       />
     );
-  } else if (selectedFinanceNeed === "other") {
+  } else if (selectedServiceType === "other") {
     formPagesByService["Finance Transformation"].push(
       <OtherFinanceNeededTools
         key="OtherFinanceNeededTools"
@@ -624,13 +623,26 @@ const NewRequest = () => {
   }
 
   useEffect(() => {
-    if (serviceSelected) {
-      const totalPages = formPagesByService[selectedService]?.length || 0;
-      setTotalPages(totalPages);
+  if (serviceSelected) {
+    const totalPages = formPagesByService[selectedService]?.length || 0;
+    setTotalPages(totalPages);
+    
+    const isFirstFormSelected = Object.entries(formPagesByService).every(
+      ([service, forms]) => {
+        return service !== selectedService || forms[0].props.selectedServiceType !== "";
+      }
+    );
+
+    if (isFirstFormSelected) {
       const calculateProgress = (page / totalPages) * 100;
       setProgress(calculateProgress);
+    } else {
+      setProgress(0);
     }
-  }, [page, selectedService, formPagesByService, serviceSelected]);
+  }
+}, [page, selectedService, selectedServiceType, formPagesByService, serviceSelected]);
+
+
 
   const handleContinue = handleSubmit((data) => {
     const updatedFormData = { ...formData, ...data };
@@ -674,7 +686,6 @@ const NewRequest = () => {
       financeNeedIcon,
       expertNeedIcon,
       projectCommencementIcon,
-      selectedFinanceNeed,
       selectedServiceType,
     }
   );
