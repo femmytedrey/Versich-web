@@ -23,6 +23,9 @@ module.exports = {
         form: "0px 0px 12px 6px rgba(0, 0, 0, 0.03)",
         selection: "0px 0px 12px 6px rgba(0, 0, 0, 0.05)"
       },
+      screens: {
+        'customxs': '425px',
+      }
     },
   },
   plugins: [],
