@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
-const DataChoicezOfTool = ({
+const IndividualDataChoicezOfTool = ({
   register,
   errors,
   setValue,
@@ -35,36 +35,51 @@ const DataChoicezOfTool = ({
       selected: false,
     },
     choice6: {
+      value: "Informatica",
+      label: "Informatica",
+      selected: false,
+    },
+    choice7: {
+      value: "Celligo",
+      label: "Celligo",
+      selected: false,
+    },
+    choice8: {
       value: "Collibra",
       label: "Collibra",
       selected: false,
     },
-    choice7: {
+    choice9: {
+      value: "Oracle",
+      label: "Oracle",
+      selected: false,
+    },
+    choice10: {
       value: "Snowflake",
       label: "Snowflake",
       selected: false,
     },
-    choice8: {
+    choice11: {
       value: "R",
       label: "R",
       selected: false,
     },
-    choice9: {
+    choice12: {
       value: "Excel",
       label: "Excel",
       selected: false,
     },
-    choice10: {
+    choice13: {
       value: "Power Automate",
       label: "Power Automate",
       selected: false,
     },
-    choice11: {
+    choice14: {
       value: "Azure",
       label: "Azure",
       selected: false,
     },
-    choice12: {
+    choice15: {
       value: "AWS",
       label: "AWS",
       selected: false,
@@ -80,8 +95,8 @@ const DataChoicezOfTool = ({
       .filter((key) => updatedChoices[key].selected)
       .map((key) => updatedChoices[key].value);
 
-    setValue("choiceType", selectedChoices);
-    setFormData({ ...formData, choiceType: selectedChoices });
+    setValue("IndividualChoiceType", selectedChoices);
+    setFormData({ ...formData, IndividualChoiceType: selectedChoices });
   };
 
   const isAnySelected = Object.values(choices).some(
@@ -89,9 +104,9 @@ const DataChoicezOfTool = ({
   );
 
   useEffect(() => {
-    if (formData.choiceType) {
+    if (formData.IndividualChoiceType) {
       const updatedChoices = { ...choices };
-      formData.choiceType.forEach((selected) => {
+      formData.IndividualChoiceType.forEach((selected) => {
         Object.keys(updatedChoices).forEach((key) => {
           if (updatedChoices[key].value === selected) {
             updatedChoices[key].selected = true;
@@ -100,7 +115,7 @@ const DataChoicezOfTool = ({
       });
       setChoices(updatedChoices);
     }
-  }, [formData.choiceType]);
+  }, [formData.IndividualChoiceType]);
 
   return (
     <div>
@@ -123,7 +138,7 @@ const DataChoicezOfTool = ({
                   name={range.value}
                   checked={range.selected}
                   className="appearance-none"
-                  {...register("choiceType", { required: true })}
+                  {...register("IndividualChoiceType", { required: true })}
                 />
                 {range.selected ? (
                   <MdCheckBox className="text-[#4F4F4F]" />
@@ -138,7 +153,7 @@ const DataChoicezOfTool = ({
           })}
         </div>
 
-        {!isAnySelected && errors.choiceType && (
+        {!isAnySelected && errors.IndividualChoiceType && (
           <div className="pb-3">
             <p className="text-red-500 text-sm">
               Please select at least one option
@@ -150,4 +165,4 @@ const DataChoicezOfTool = ({
   );
 };
 
-export default DataChoicezOfTool;
+export default IndividualDataChoicezOfTool;

@@ -8,6 +8,8 @@ const DataAnalyticsServiceType = ({
   setValue,
   formData,
   setFormData,
+  setSelectedServiceType,
+  selectedServiceType,
 }) => {
   const [options, setOptions] = useState([
     {
@@ -20,8 +22,7 @@ const DataAnalyticsServiceType = ({
       value: "Team, Business, Company",
       label: "Team, Business, Company",
       icon: icon2,
-      selected:
-        formData.DataServiceType === "Team, Business, Company",
+      selected: formData.DataServiceType === "Team, Business, Company",
     },
   ]);
 
@@ -33,7 +34,13 @@ const DataAnalyticsServiceType = ({
     setOptions(updatedOptions);
     setValue("DataServiceType", optionValue);
     setFormData({ ...formData, DataServiceType: optionValue });
+    setSelectedServiceType(optionValue)
   };
+  
+  // useEffect(() => {
+  //   console.log(selectedServiceType);
+  // }, [selectedServiceType]);
+  
 
   const isOptionSelected = options.some((option) => option.selected);
 
@@ -54,7 +61,7 @@ const DataAnalyticsServiceType = ({
         <p className="pb-6">Once selected, please click ‘continue’</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-5 pb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pb-5">
         {options.map((option) => (
           <div
             key={option.value}

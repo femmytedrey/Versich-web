@@ -8,7 +8,7 @@ const DataChoicezOfTool = ({
   formData,
   setFormData,
 }) => {
-  const initialChoices = {
+  const [choices, setChoices] = useState({
     choice1: {
       value: "Power BI",
       label: "Power BI",
@@ -35,44 +35,56 @@ const DataChoicezOfTool = ({
       selected: false,
     },
     choice6: {
+      value: "Informatica",
+      label: "Informatica",
+      selected: false,
+    },
+    choice7: {
+      value: "Celligo",
+      label: "Celligo",
+      selected: false,
+    },
+    choice8: {
       value: "Collibra",
       label: "Collibra",
       selected: false,
     },
-    choice7: {
+    choice9: {
+      value: "Oracle",
+      label: "Oracle",
+      selected: false,
+    },
+    choice10: {
       value: "Snowflake",
       label: "Snowflake",
       selected: false,
     },
-    choice8: {
+    choice11: {
       value: "R",
       label: "R",
       selected: false,
     },
-    choice9: {
+    choice12: {
       value: "Excel",
       label: "Excel",
       selected: false,
     },
-    choice10: {
+    choice13: {
       value: "Power Automate",
       label: "Power Automate",
       selected: false,
     },
-    choice11: {
+    choice14: {
       value: "Azure",
       label: "Azure",
       selected: false,
     },
-    choice12: {
+    choice15: {
       value: "AWS",
       label: "AWS",
       selected: false,
     },
-  };
-
-  const [choices, setChoices] = useState(initialChoices);
-  const [searchInput, setSearchInput] = useState("");
+  });
 
   const handleCheckboxSelect = (optionKey) => {
     const updatedChoices = { ...choices };
@@ -87,9 +99,13 @@ const DataChoicezOfTool = ({
     setFormData({ ...formData, choiceType: selectedChoices });
   };
 
+  const isAnySelected = Object.values(choices).some(
+    (choice) => choice.selected
+  );
+
   useEffect(() => {
     if (formData.choiceType) {
-      const updatedChoices = { ...initialChoices };
+      const updatedChoices = { ...choices };
       formData.choiceType.forEach((selected) => {
         Object.keys(updatedChoices).forEach((key) => {
           if (updatedChoices[key].value === selected) {
@@ -101,64 +117,47 @@ const DataChoicezOfTool = ({
     }
   }, [formData.choiceType]);
 
-  const handleInputChange = (event) => {
-    setSearchInput(event.target.value);
-  };
-
-  const filteredChoices = Object.values(choices)
-    .filter(
-      (choice) =>
-        choice.label.toLowerCase().includes(searchInput.toLowerCase()) ||
-        choice.value.toLowerCase().includes(searchInput.toLowerCase())
-    )
-    .sort((a, b) => {
-      if (a.selected === b.selected) {
-        return 0;
-      }
-      return a.selected ? -1 : 1;
-    });
-
   return (
     <div>
       <div className="space-y-4">
-        <p className="text-versich-dark-blue font-semibold pb-2">
-          Choice of Tool: Select below
+        <p className=" text-versich-dark-blue font-semibold pb-2">
+          Choice of Tool Select below:
         </p>
-        <input
-          type="text"
-          className="w-full border py-2 px-2 rounded-lg text-sm outline-none"
-          placeholder="Search for your choice of tool"
-          value={searchInput}
-          onChange={handleInputChange}
-        />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2 gap-y-5">
-          {filteredChoices.map((choice, index) => (
-            <div
-              key={index}
-              className="flex items-center"
-              onClick={() => handleCheckboxSelect(`choice${index + 1}`)}
-            >
-              <input
-                type="checkbox"
-                name={choice.value}
-                checked={choice.selected}
-                className="appearance-none"
-                {...register("choiceType", { required: true })}
-              />
-              {choice.selected ? (
-                <MdCheckBox className="text-[#4F4F4F]" />
-              ) : (
-                <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
-              )}
-              <label htmlFor={choice.value} className="text-sm ps-2">
-                {choice.label}
-              </label>
-            </div>
-          ))}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2  gap-y-5">
+          {Object.keys(choices).map((key) => {
+            const range = choices[key];
+            return (
+              <div
+                key={range.value}
+                className="flex items-center"
+                onClick={() => handleCheckboxSelect(key)}
+              >
+                <input
+                  type="checkbox"
+                  name={range.value}
+                  checked={range.selected}
+                  className="appearance-none"
+                  {...register("choiceType", { required: true })}
+                />
+                {range.selected ? (
+                  <MdCheckBox className="text-[#4F4F4F]" />
+                ) : (
+                  <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
+                )}
+                <label htmlFor="industryType" className="text-sm ps-2">
+                  {range.label}
+                </label>
+              </div>
+            );
+          })}
         </div>
-        {!filteredChoices.some((choice) => choice.selected) && errors.choiceType && (
+
+        {!isAnySelected && errors.choiceType && (
           <div className="pb-3">
-            <p className="text-red-500 text-sm">Please select at least one option</p>
+            <p className="text-red-500 text-sm">
+              Please select at least one option
+            </p>
           </div>
         )}
       </div>

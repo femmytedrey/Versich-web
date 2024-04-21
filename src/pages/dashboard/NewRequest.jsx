@@ -26,12 +26,12 @@ import expertNeedIcon from "../../assets/icons/MachineLearningIcon/expertNeedIco
 import projectCommencementIcon from "../../assets/icons/MachineLearningIcon/machineprojectCommencementIcon.png";
 import DashboardStepButton from "../../components/Buttons/DashboardStepButton";
 import { getCurrentFormTextAndIcon } from "./RequestForms/formUtils";
-import OrganizationSize from "./RequestForms/Data Analytics/OrganizationSize";
-import DataServiceNeeds from "./RequestForms/Data Analytics/DataServiceNeeds";
-import DataChoiceOfTool from "./RequestForms/Data Analytics/DataChoiceOfTool";
-import DataProjectCommencement from "./RequestForms/Data Analytics/DataProjectCommencement";
-import DataBudget from "./RequestForms/Data Analytics/DataBudget";
-import DataDescription from "./RequestForms/Data Analytics/DataDescription";
+import OrganizationSize from "./RequestForms/Data Analytics/Business/OrganizationSize";
+import DataServiceNeeds from "./RequestForms/Data Analytics/Business/DataServiceNeeds";
+import DataChoiceOfTool from "./RequestForms/Data Analytics/Business/DataChoiceOfTool";
+import DataProjectCommencement from "./RequestForms/Data Analytics/Business/DataProjectCommencement";
+import DataBudget from "./RequestForms/Data Analytics/Business/DataBudget";
+import DataDescription from "./RequestForms/Data Analytics/Business/DataDescription";
 import FinanceNeed from "./RequestForms/FinancialTransformation/FinanceNeed";
 import FinanceOrganizationSize from "./RequestForms/FinancialTransformation/FinanceOrganizationSize";
 import FinanceServiceNeed from "./RequestForms/FinancialTransformation/FinanceServiceNeed";
@@ -67,7 +67,11 @@ import FinancialFinanceProjectCommencement from "./RequestForms/FinancialTransfo
 import FinancialFinanceDescription from "./RequestForms/FinancialTransformation/Financial Reporting/FinanceDescription";
 import ErpFinanceProjectCommencement from "./RequestForms/FinancialTransformation/ERP/FinanceProjectCommencement";
 import DataAnalyticsServiceType from "./RequestForms/Data Analytics/DataAnalyticsServiceType";
-import DataProfessionType from "./RequestForms/Data Analytics/DataProfessionType";
+import DataProfessionType from "./RequestForms/Data Analytics/Individual/DataProfessionType";
+import IndividualDataChoicezOfTool from "./RequestForms/Data Analytics/Individual/IndividualDataChoiceOfTool";
+import IndividualDataProjectCommencement from "./RequestForms/Data Analytics/Individual/IndividualDataProjectCommencement";
+import IndividualDataBudget from "./RequestForms/Data Analytics/Individual/IndividualDataBudget";
+import IndividualDataDescription from "./RequestForms/Data Analytics/Individual/IndividualDataDescription";
 
 const NewRequest = () => {
   const [page, setPage] = useState(0);
@@ -75,6 +79,7 @@ const NewRequest = () => {
   const [formData, setFormData] = useState({});
   const [selectedService, setSelectedService] = useState("");
   const [selectedFinanceNeed, setSelectedFinanceNeed] = useState("");
+  const [selectedServiceType, setSelectedServiceType] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [serviceSelected, setServiceSelected] = useState(false);
 
@@ -218,7 +223,14 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
+        setSelectedServiceType={setSelectedServiceType}
+        selectedServiceType={selectedServiceType}
       />,
+    ],
+  };
+
+  if (selectedServiceType === "Myself, personal Projects") {
+    formPagesByService["Data & Analytics"].push(
       <DataProfessionType
         key="DataProfessionType"
         register={register}
@@ -226,7 +238,50 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
+      />
+    );
+    formPagesByService["Data & Analytics"].push(
+      <IndividualDataChoicezOfTool
+        key="IndividualDataChoicezOfTool"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
       />,
+    );
+    formPagesByService["Data & Analytics"].push(
+      <IndividualDataProjectCommencement
+        key="IndividualDataProjectCommencement"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+    );
+    formPagesByService["Data & Analytics"].push(
+      <IndividualDataBudget
+        key="IndividualDataBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+    );
+    formPagesByService["Data & Analytics"].push(
+      <IndividualDataDescription
+        key="IndividualDataDescription"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+    );
+  } else if (selectedServiceType === "Team, Business, Company") {
+    formPagesByService["Data & Analytics"].push(
       <OrganizationSize
         key="orginizationSize"
         register={register}
@@ -234,7 +289,9 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
+    );
+    formPagesByService["Data & Analytics"].push(
       <DataServiceNeeds
         key="DataServiceNeeds"
         register={register}
@@ -242,7 +299,9 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
+    );
+    formPagesByService["Data & Analytics"].push(
       <DataChoiceOfTool
         key="DataChoiceOfTool"
         register={register}
@@ -250,7 +309,9 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
+    );
+    formPagesByService["Data & Analytics"].push(
       <DataProjectCommencement
         key="DataProjectCommencement"
         register={register}
@@ -258,7 +319,9 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
+    );
+    formPagesByService["Data & Analytics"].push(
       <DataBudget
         key="DataBudget"
         register={register}
@@ -266,7 +329,9 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
+    );
+    formPagesByService["Data & Analytics"].push(
       <DataDescription
         key="DataDescription"
         register={register}
@@ -274,9 +339,9 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
-    ],
-  };
+      />
+    );
+  }
 
   if (selectedFinanceNeed === "FP & A Revolution") {
     formPagesByService["Finance Transformation"].push(
@@ -505,7 +570,6 @@ const NewRequest = () => {
         setFormData={setFormData}
       />
     );
-    
   } else if (selectedFinanceNeed === "other") {
     formPagesByService["Finance Transformation"].push(
       <OtherFinanceNeededTools
@@ -557,7 +621,6 @@ const NewRequest = () => {
         setFormData={setFormData}
       />
     );
-    
   }
 
   useEffect(() => {
@@ -583,8 +646,7 @@ const NewRequest = () => {
         // window.location.reload();
       }
     }
-  }); 
-  
+  });
 
   const handleBack = () => {
     if (page > 0) {
@@ -613,7 +675,8 @@ const NewRequest = () => {
       expertNeedIcon,
       projectCommencementIcon,
       selectedFinanceNeed,
-    },
+      selectedServiceType,
+    }
   );
 
   return (

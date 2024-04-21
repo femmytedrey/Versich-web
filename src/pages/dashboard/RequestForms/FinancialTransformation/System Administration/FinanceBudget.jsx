@@ -3,11 +3,22 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import { IoMdRadioButtonOn, IoMdRadioButtonOff } from "react-icons/io";
 import currencies from "../../../../../assets/currencies";
 
-const SystemAdministrationFinanceBudget = ({ register, errors, setValue, formData, setFormData }) => {
+const SystemAdministrationFinanceBudget = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
   const [budgetOtherInputValue, setBudgetOtherInputValue] = useState(
     sessionStorage.getItem("budgetOtherInputValue") || ""
   );
   const [budgets, setBudgets] = useState({
+    Budget_0_To_1k: {
+      value: "0 - 1000",
+      label: "0 - 1000",
+      selected: false,
+    },
     Budget_1k_To_10k: {
       value: "1000 - 10000",
       label: "1000 - 10000",
@@ -181,7 +192,10 @@ const SystemAdministrationFinanceBudget = ({ register, errors, setValue, formDat
                   ) : (
                     <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                   )}
-                  <label htmlFor="SystemAdminBudgetOption" className="text-sm ps-2">
+                  <label
+                    htmlFor="SystemAdminBudgetOption"
+                    className="text-sm ps-2"
+                  >
                     {budget.label}
                   </label>
                 </div>

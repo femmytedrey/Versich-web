@@ -14,6 +14,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
     expertNeedIcon,
     projectCommencementIcon,
     selectedFinanceNeed,
+    selectedServiceType,
   } = icons;
   switch (selectedService) {
     case "":
@@ -206,21 +207,7 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
                   };
               }
           }
-        // return {
-        //   icon: icon2,
-        //   text: "What specific area in FP&A are you looking for an Expert",
-        // };
-        // case 4:
-        //   return { icon: icon1, text: "What’s your preferred choice of tool? Don’t worry if your preferred tool isn’t listed, you can mention that in the detail page Choice of Tool" };
-        // case 5:
-        //   return { icon: icon4, text: "Your budget size" };
-        // case 6:
-        //   return { icon: icon3, text: "When do you need an expert?" };
-        // case 7:
-        //   return {
-        //     icon: icon5,
-        //     text: "Explain what you need so we get you experts to meet your needs",
-        //   };
+
         default:
           return { icon: null, text: null };
       }
@@ -278,35 +265,109 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
             icon: icon2,
             text: "Tell us your project purpose",
           };
-          case 2:
-          return {
-            icon: icon1,
-            text: "Tell us the type of profession you need",
-          };
+        case 2:
+          switch (page) {
+            case 2:
+              switch (selectedServiceType) {
+                case "Myself, personal Projects":
+                  return {
+                    icon: icon1,
+                    text: "Tell us the type of profession you need",
+                  };
+                case "Team, Business, Company":
+                  return {
+                    icon: orgSize,
+                    text: "Tell us about your organisation size",
+                  };
+              }
+          }
         case 3:
-          return {
-            icon: orgSize,
-            text: "Tell us about your organisation size",
-          };
+          switch (page) {
+            case 3:
+              switch (selectedServiceType) {
+                case "Myself, personal Projects":
+                  return {
+                    icon: icon2,
+                    text: "What’s your preferred choice of tool? Don’t worry if your preferred tool isn’t listed, you can mention that in the detail page",
+                  };
+                case "Team, Business, Company":
+                  return {
+                    icon: icon1,
+                    text: "Data Service you need",
+                  };
+              }
+          }
         case 4:
-          return { icon: icon1, text: "Data Service you need" };
+          switch (page) {
+            case 4:
+              switch (selectedServiceType) {
+                case "Myself, personal Projects":
+                  return {
+                    icon: icon3,
+                    text: "When do you need an expert?",
+                  };
+                case "Team, Business, Company":
+                  return {
+                    icon: icon2,
+                    text: "What’s your preferred choice of tool? Don’t worry if your preferred tool isn’t listed, you can mention that in the detail page",
+                  };
+              }
+          }
+
         case 5:
-          return {
-            icon: icon2,
-            text: "What’s your preferred choice of tool? Don’t worry if your preferred tool isn’t listed, you can mention that in the detail page?",
-          };
+          switch (page) {
+            case 5:
+              switch (selectedServiceType) {
+                case "Myself, personal Projects":
+                  return {
+                    icon: icon4,
+                    text: "Your Budget Size",
+                  };
+                case "Team, Business, Company":
+                  return {
+                    icon: icon3,
+                    text: "When do you need an expert?",
+                  };
+              }
+          }
+
         case 6:
-          return { icon: icon3, text: "When do you need an expert?" };
+          switch (page) {
+            case 6:
+              switch (selectedServiceType) {
+                case "Myself, personal Projects":
+                  return {
+                    icon: icon5,
+                    text: "Give detail of what you need so we get you experts to meet your needs",
+                  };
+                case "Team, Business, Company":
+                  return {
+                    icon: icon4,
+                    text: "Your Budget Size",
+                  };
+              }
+          }
+
         case 7:
-          return { icon: icon4, text: "Your budget size" };
-        case 8:
-          return {
-            icon: icon5,
-            text: "Give detail of what you need so we get you experts to meet your needs",
-          };
+          switch (page) {
+            case 7:
+              switch (selectedServiceType) {
+                case "Myself, personal Projects":
+                  return {
+                    icon: null,
+                    text: null,
+                  };
+                case "Team, Business, Company":
+                  return {
+                    icon: icon5,
+                    text: "Give detail of what you need so we get you experts to meet your needs",
+                  };
+              }
+          }
         default:
           return { icon: null, text: null };
       }
+      
     default:
       return { icon: null, text: null };
   }

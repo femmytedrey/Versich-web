@@ -3,7 +3,7 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import { IoMdRadioButtonOn, IoMdRadioButtonOff } from "react-icons/io";
 import currencies from "../../../../../assets/currencies";
 
-const DigitalTransformationFinanceBudget = ({
+const IndividualDataBudget = ({
   register,
   errors,
   setValue,
@@ -57,12 +57,12 @@ const DigitalTransformationFinanceBudget = ({
     const updatedBudgets = { ...budgets };
     Object.keys(updatedBudgets).forEach((key) => {
       updatedBudgets[key].selected =
-        updatedBudgets[key].value === formData.DigitalTransformBudgetOption;
+        updatedBudgets[key].value === formData.IndividaulBudgetOption;
     });
     if (budgets.other.value !== "" && budgets.other.selected) {
       setShowOtherInput(true);
     }
-  }, [formData.DigitalTransformBudgetOption, budgetOtherInputValue]);
+  }, [formData.IndividaulBudgetOption, budgetOtherInputValue]);
 
   const handleBudgetSelect = (optionKey) => {
     const updatedBudgets = { ...budgets };
@@ -72,8 +72,8 @@ const DigitalTransformationFinanceBudget = ({
     setBudgets(updatedBudgets);
 
     const selectedValue = updatedBudgets[optionKey].value;
-    setValue("DigitalTransformBudgetOption", selectedValue);
-    setFormData({ ...formData, DigitalTransformBudgetOption: selectedValue });
+    setValue("IndividaulBudgetOption", selectedValue);
+    setFormData({ ...formData, IndividaulBudgetOption: selectedValue });
 
     setShowOtherInput(optionKey === "other");
 
@@ -92,8 +92,8 @@ const DigitalTransformationFinanceBudget = ({
     };
     setBudgets(updatedBudgets);
 
-    setValue("DigitalTransformBudgetOption", value);
-    setFormData({ ...formData, DigitalTransformBudgetOption: value });
+    setValue("IndividaulBudgetOption", value);
+    setFormData({ ...formData, IndividaulBudgetOption: value });
 
     sessionStorage.setItem("budgetOtherInputValue", value);
   };
@@ -169,10 +169,10 @@ const DigitalTransformationFinanceBudget = ({
                 >
                   <input
                     type="radio"
-                    name="DigitalTransformBudgetOption"
+                    name="IndividaulBudgetOption"
                     value={budget.value}
                     className="appearance-none"
-                    {...register("DigitalTransformBudgetOption", {
+                    {...register("IndividaulBudgetOption", {
                       required: true,
                       validate: {
                         otherInput: () => {
@@ -193,7 +193,7 @@ const DigitalTransformationFinanceBudget = ({
                     <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                   )}
                   <label
-                    htmlFor="DigitalTransformBudgetOption"
+                    htmlFor="IndividaulBudgetOption"
                     className="text-sm ps-2"
                   >
                     {budget.label}
@@ -214,14 +214,14 @@ const DigitalTransformationFinanceBudget = ({
               )}
             </div>
           </div>
-          {errors.DigitalTransformBudgetOption?.type === "otherInput" && (
+          {errors.IndividaulBudgetOption?.type === "otherInput" && (
             <div className="pb-3">
               <p className="text-red-500 text-sm">
                 Please enter a value for Other
               </p>
             </div>
           )}
-          {!isBudgetSelected && errors.DigitalTransformBudgetOption && (
+          {!isBudgetSelected && errors.IndividaulBudgetOption && (
             <div className="pb-3">
               <p className="text-red-500 text-sm">Please select an option</p>
             </div>
@@ -232,4 +232,4 @@ const DigitalTransformationFinanceBudget = ({
   );
 };
 
-export default DigitalTransformationFinanceBudget;
+export default IndividualDataBudget;

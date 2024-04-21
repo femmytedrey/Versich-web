@@ -62,6 +62,8 @@ const FinanceNeed = ({ register, errors, setValue, formData, setFormData, setSel
 
       setSelectedFinanceNeed(selectedValue);
     }
+
+    console.log(selectedFinanceNeed)
   };
 
   // useEffect(() => {
