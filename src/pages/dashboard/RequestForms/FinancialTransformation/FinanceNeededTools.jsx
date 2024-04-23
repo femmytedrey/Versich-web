@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import { IoIosClose } from "react-icons/io";
 
 const FinanceNeededTools = ({
   register,
@@ -46,6 +47,17 @@ const FinanceNeededTools = ({
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    const storedOptions = formData.financeTools || [];
+    const updatedOptions = financeServiceNeed.map(option => ({
+      ...option,
+      selected: storedOptions.includes(option.value)
+    }));
+    setFinanceServiceNeed(updatedOptions);
+    setSelectedOptions(updatedOptions.filter(option => option.selected));
+  }, [formData.financeTools]);
 
   useEffect(() => {
     const results = financeServiceNeed.filter((option) =>
@@ -62,23 +74,44 @@ const FinanceNeededTools = ({
       return option;
     });
 
-    const sortedOptions = updatedOptions.sort((a, b) =>
-      a.selected === b.selected ? 0 : a.selected ? -1 : 1
-    );
+    setFinanceServiceNeed(updatedOptions);
 
-    setFinanceServiceNeed(sortedOptions);
+    const selectedOption = updatedOptions.find(option => option.label === optionKey);
 
-    const selectedServices = sortedOptions
-      .filter((option) => option.selected)
-      .map((option) => option.value);
+    const updatedSelectedOptions = selectedOption.selected
+      ? [...selectedOptions, selectedOption]
+      : selectedOptions.filter(option => option.label !== optionKey);
+
+    setSelectedOptions(updatedSelectedOptions);
+
+    const selectedServices = updatedSelectedOptions.map((option) => option.value);
 
     setValue("financeTools", selectedServices);
     setFormData({ ...formData, financeTools: selectedServices });
-
     setSearchTerm("");
   };
 
   const isAnySelected = financeServiceNeed.some((option) => option.selected);
+
+  const handleOptionDeselect = (optionKey) => {
+    const updatedOptions = financeServiceNeed.map((option) => {
+      if (option.label === optionKey) {
+        option.selected = false;
+      }
+      return option;
+    });
+
+    setFinanceServiceNeed(updatedOptions);
+
+    const updatedSelectedOptions = selectedOptions.filter(option => option.label !== optionKey);
+
+    setSelectedOptions(updatedSelectedOptions);
+
+    const selectedServices = updatedSelectedOptions.map((option) => option.value);
+
+    setValue("financeTools", selectedServices);
+    setFormData({ ...formData, financeTools: selectedServices });
+  };
 
   return (
     <div>
@@ -92,12 +125,24 @@ const FinanceNeededTools = ({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="space-y-3  h-[290px] overflow-y-scroll">
+        <div className="bg-red-300 w-full flex gap-x-2 flex-wrap gap-y-2">
+          {selectedOptions.map((option) => (
+            <div
+              key={option.value}
+              className="bg-versich-blue w-fit flex py-2 px-2 items-center gap-x-2 text-white rounded-2xl cursor-pointer hover:bg-versich-blue-hover"
+              onClick={() => handleOptionDeselect(option.label)}
+            >
+              <p>{option.label}</p>
+              <IoIosClose className="text-2xl" />
+            </div>
+          ))}
+        </div>
+        <div className="h-[290px] overflow-y-scroll">
           {searchResults.map((option) => {
             return (
               <div
                 key={option.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleCheckboxSelect(option.label)}
               >
                 <input
@@ -111,7 +156,9 @@ const FinanceNeededTools = ({
                 ) : (
                   <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
                 )}
-                <label className="text-sm ps-2">{option.label}</label>
+                <label className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300">
+                  {option.label}
+                </label>
               </div>
             );
           })}

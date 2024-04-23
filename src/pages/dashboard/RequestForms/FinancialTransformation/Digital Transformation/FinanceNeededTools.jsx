@@ -94,8 +94,7 @@ const DigitalTransformFinanceNeededTools = ({
       label: "Supply Chain Strategy & Transformation",
       selected: false,
     },
-});
-
+  });
 
   const handleCheckboxSelect = (optionKey) => {
     const updatedOptions = { ...financeServiceNeed };
@@ -107,7 +106,10 @@ const DigitalTransformFinanceNeededTools = ({
       .map((key) => updatedOptions[key].value);
 
     setValue("DigitalTransformFinanceTools", selectedServices);
-    setFormData({ ...formData, DigitalTransformFinanceTools: selectedServices });
+    setFormData({
+      ...formData,
+      DigitalTransformFinanceTools: selectedServices,
+    });
   };
 
   const isAnySelected = Object.values(financeServiceNeed).some(
@@ -140,7 +142,7 @@ const DigitalTransformFinanceNeededTools = ({
             return (
               <div
                 key={option.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleCheckboxSelect(key)}
               >
                 <input
@@ -148,14 +150,19 @@ const DigitalTransformFinanceNeededTools = ({
                   name={option.value}
                   checked={option.selected}
                   className="appearance-none"
-                  {...register("DigitalTransformFinanceTools", { required: true })}
+                  {...register("DigitalTransformFinanceTools", {
+                    required: true,
+                  })}
                 />
                 {option.selected ? (
                   <MdCheckBox className="text-[#4F4F4F]" />
                 ) : (
                   <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor={option.value} className="text-sm ps-2">
+                <label
+                  htmlFor={option.value}
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {option.label}
                 </label>
               </div>

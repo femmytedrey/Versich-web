@@ -105,14 +105,16 @@ const IndustryType = ({
   return (
     <div>
       <div className="space-y-4 pb-12">
-        <p className=" text-versich-dark-blue font-semibold pb-2">What industry do you operate in?</p>
-        <div className="space-y-3">
+        <p className=" text-versich-dark-blue font-semibold pb-2">
+          What industry do you operate in?
+        </p>
+        <div className="">
           {Object.keys(industries).map((key) => {
             const industry = industries[key];
             return (
               <div
                 key={industry.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleIndustrySelect(key)}
               >
                 <input
@@ -140,7 +142,10 @@ const IndustryType = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="industryType" className="text-sm ps-2">
+                <label
+                  htmlFor="industryType"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {industry.label}
                 </label>
               </div>

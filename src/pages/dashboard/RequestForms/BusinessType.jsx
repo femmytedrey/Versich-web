@@ -60,7 +60,7 @@ const BusinessType = ({
   const handleInputChange = (event) => {
     const { value } = event.target;
     setBusinessOtherInputValue(value);
-    const updatedTypes = { ...types, other: { ...types.other, value }, };
+    const updatedTypes = { ...types, other: { ...types.other, value } };
     setTypes(updatedTypes);
     setValue("businessType", value);
     setFormData({ ...formData, businessType: value });
@@ -91,9 +91,9 @@ const BusinessType = ({
     setFormData({ ...formData, businessType: selectedValue });
     setShowOtherInput(optionKey === "other");
 
-    if(optionKey !== 'other') {
-    sessionStorage.removeItem('typeOtherInputValue');
-    setBusinessOtherInputValue('');
+    if (optionKey !== "other") {
+      sessionStorage.removeItem("typeOtherInputValue");
+      setBusinessOtherInputValue("");
     }
   };
 
@@ -101,15 +101,17 @@ const BusinessType = ({
   return (
     <div>
       <div className="space-y-4 pb-12">
-        <p className=" text-versich-dark-blue font-semibold pb-2">What type of business is this for?</p>
-        <div className="space-y-3">
+        <p className=" text-versich-dark-blue font-semibold pb-2">
+          What type of business is this for?
+        </p>
+        <div className="">
           {Object.keys(types).map((key) => {
             // Get the value of each key
             const type = types[key];
             return (
               <div
                 key={type.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleTypeSelect(key)}
               >
                 <input
@@ -137,7 +139,10 @@ const BusinessType = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="businessType" className="text-sm ps-2">
+                <label
+                  htmlFor="businessType"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {type.label}
                 </label>
               </div>

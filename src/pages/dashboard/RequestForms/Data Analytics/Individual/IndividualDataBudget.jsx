@@ -158,7 +158,7 @@ const IndividualDataBudget = ({
               </ul>
             )}
           </div>
-          <div className="space-y-3">
+          <div className="">
             {Object.keys(budgets).map((key) => {
               const budget = budgets[key];
               return (
@@ -194,7 +194,7 @@ const IndividualDataBudget = ({
                   )}
                   <label
                     htmlFor="IndividaulBudgetOption"
-                    className="text-sm ps-2"
+                    className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
                   >
                     {budget.label}
                   </label>

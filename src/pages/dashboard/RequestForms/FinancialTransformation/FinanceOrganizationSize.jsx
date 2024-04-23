@@ -70,13 +70,13 @@ const FinanceOrganizationSize = ({
         <p className=" text-versich-dark-blue font-semibold pb-2">
           What is your business/organization size?
         </p>
-        <div className="space-y-3">
+        <div className="">
           {Object.keys(financeSizeRanges).map((key) => {
             const range = financeSizeRanges[key];
             return (
               <div
                 key={range.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleRangeSelect(key)}
               >
                 <input
@@ -91,7 +91,10 @@ const FinanceOrganizationSize = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="industryType" className="text-sm ps-2">
+                <label
+                  htmlFor="industryType"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {range.label}
                 </label>
               </div>

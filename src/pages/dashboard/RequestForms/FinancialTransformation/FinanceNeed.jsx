@@ -68,7 +68,6 @@ const FinanceNeed = ({
     } else {
       setSelectedServiceType(selectedValue);
     }
-
   };
 
   // useEffect(() => {
@@ -110,13 +109,13 @@ const FinanceNeed = ({
         <p className=" text-versich-dark-blue font-semibold pb-2">
           What finance transformation service do you need an expert for?
         </p>
-        <div className="space-y-3">
+        <div className="">
           {Object.keys(options).map((key) => {
             const option = options[key];
             return (
               <div
                 key={option.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleOptionSelect(key)}
               >
                 <input
@@ -144,7 +143,10 @@ const FinanceNeed = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="financeServiceNeeds" className="text-sm ps-2">
+                <label
+                  htmlFor="financeServiceNeeds"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {option.label}
                 </label>
               </div>

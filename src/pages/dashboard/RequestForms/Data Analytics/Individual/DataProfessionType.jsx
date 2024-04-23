@@ -50,13 +50,13 @@ const DataProfessionType = ({
         <p className=" text-versich-dark-blue font-semibold pb-2">
           What do you need?
         </p>
-        <div className="space-y-3">
+        <div className="">
           {Object.keys(types).map((key) => {
             const type = types[key];
             return (
               <div
                 key={type.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleProfessionSelect(key)}
               >
                 <input
@@ -71,7 +71,10 @@ const DataProfessionType = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="industryType" className="text-sm ps-2">
+                <label
+                  htmlFor="industryType"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {type.label}
                 </label>
               </div>

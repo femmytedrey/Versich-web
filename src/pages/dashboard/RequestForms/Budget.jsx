@@ -30,9 +30,10 @@ const Budget = ({ register, errors, setValue, formData, setFormData }) => {
       selected: false,
     },
   });
-  
+
   const [selectedCurrency, setSelectedCurrency] = useState(
-    formData.selectedCurrency || currencies.find(currency => currency.code === "USD")
+    formData.selectedCurrency ||
+      currencies.find((currency) => currency.code === "USD")
   );
   const [openList, setOpenList] = useState(false);
   const handleCurrencySelection = (currency) => {
@@ -44,7 +45,7 @@ const Budget = ({ register, errors, setValue, formData, setFormData }) => {
   const toggleList = () => {
     setOpenList(!openList);
   };
-  
+
   return (
     <div>
       <div className="space-y-4 pb-12">
@@ -90,15 +91,24 @@ const Budget = ({ register, errors, setValue, formData, setFormData }) => {
               </ul>
             )}
           </div>
-          <div className="space-y-3">
+          <div className="">
             {Object.keys(budgets).map((key) => {
               const budget = budgets[key];
               return (
                 <div key={budget.value} className="flex items-center">
-                  <input type="radio" name="budgetOption" value={budget.value} />
-                  <label htmlFor="budgetOption" className="text-sm ps-2">{budget.label}</label>
+                  <input
+                    type="radio"
+                    name="budgetOption"
+                    value={budget.value}
+                  />
+                  <label
+                    htmlFor="budgetOption"
+                    className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                  >
+                    {budget.label}
+                  </label>
                 </div>
-              )
+              );
             })}
           </div>
         </div>

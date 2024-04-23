@@ -109,7 +109,7 @@ const IndividualDataChoicezOfTool = ({
           Choice of Tool Select below:
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2  gap-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-2">
           {Object.keys(choices).map((key) => {
             const range = choices[key];
             return (
@@ -130,7 +130,10 @@ const IndividualDataChoicezOfTool = ({
                 ) : (
                   <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="industryType" className="text-sm ps-2">
+                <label
+                  htmlFor="industryType"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {range.label}
                 </label>
               </div>

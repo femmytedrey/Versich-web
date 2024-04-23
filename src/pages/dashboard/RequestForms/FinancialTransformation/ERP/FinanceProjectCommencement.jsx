@@ -67,7 +67,10 @@ const ErpFinanceProjectCommencement = ({
   const handleInputChange = (event) => {
     const { value } = event.target;
     setFinanceneedOtherInputValue(value);
-    const updatedOptions = { ...projectCommencements, other: { ...projectCommencements.other, value } };
+    const updatedOptions = {
+      ...projectCommencements,
+      other: { ...projectCommencements.other, value },
+    };
     setProjectCommencements(updatedOptions);
     setValue("erpFinanceProjectCommencement", value);
     setFormData({ ...formData, erpFinanceProjectCommencement: value });
@@ -82,14 +85,17 @@ const ErpFinanceProjectCommencement = ({
         updatedOptions[key].value === formData.erpFinanceProjectCommencement;
     });
     setProjectCommencements(updatedOptions);
-    if (projectCommencements.other.value !== "" && projectCommencements.other.selected) {
+    if (
+      projectCommencements.other.value !== "" &&
+      projectCommencements.other.selected
+    ) {
       setShowOtherInput(true);
     }
   }, [formData.erpFinanceProjectCommencement, financeneedOtherInputValue]);
 
-  const isprojectCommencementSelected = Object.values(projectCommencements).some(
-    (projectCommencement) => projectCommencement.selected
-  );
+  const isprojectCommencementSelected = Object.values(
+    projectCommencements
+  ).some((projectCommencement) => projectCommencement.selected);
 
   return (
     <div>
@@ -97,13 +103,13 @@ const ErpFinanceProjectCommencement = ({
         <p className=" text-versich-dark-blue font-semibold pb-2">
           How soon would you like the projects to begin?
         </p>
-        <div className="space-y-3">
+        <div className="">
           {Object.keys(projectCommencements).map((key) => {
             const projectCommencement = projectCommencements[key];
             return (
               <div
                 key={projectCommencement.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleOptionSelect(key)}
               >
                 <input
@@ -131,7 +137,10 @@ const ErpFinanceProjectCommencement = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="erpFinanceProjectCommencement" className="text-sm ps-2">
+                <label
+                  htmlFor="erpFinanceProjectCommencement"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {projectCommencement.label}
                 </label>
               </div>
@@ -155,11 +164,12 @@ const ErpFinanceProjectCommencement = ({
           <p className="text-red-500 text-sm">Please enter a value for Other</p>
         )}
 
-        {!isprojectCommencementSelected && errors.erpFinanceProjectCommencement && (
-          <div className="pb-3">
-            <p className="text-red-500 text-sm">Please select an option</p>
-          </div>
-        )}
+        {!isprojectCommencementSelected &&
+          errors.erpFinanceProjectCommencement && (
+            <div className="pb-3">
+              <p className="text-red-500 text-sm">Please select an option</p>
+            </div>
+          )}
       </div>
     </div>
   );

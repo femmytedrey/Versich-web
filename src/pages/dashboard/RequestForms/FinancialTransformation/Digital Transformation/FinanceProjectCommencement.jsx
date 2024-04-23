@@ -55,7 +55,10 @@ const DigitalTransformFinanceProjectCommencement = ({
     setProjectCommencements(updatedOptions);
     const selectedValue = updatedOptions[optionKey].value;
     setValue("DigitalTransformProjectCommencement", selectedValue);
-    setFormData({ ...formData, DigitalTransformProjectCommencement: selectedValue });
+    setFormData({
+      ...formData,
+      DigitalTransformProjectCommencement: selectedValue,
+    });
     setShowOtherInput(optionKey === "other");
 
     if (optionKey !== "other") {
@@ -67,7 +70,10 @@ const DigitalTransformFinanceProjectCommencement = ({
   const handleInputChange = (event) => {
     const { value } = event.target;
     setFinanceneedOtherInputValue(value);
-    const updatedOptions = { ...projectCommencements, other: { ...projectCommencements.other, value } };
+    const updatedOptions = {
+      ...projectCommencements,
+      other: { ...projectCommencements.other, value },
+    };
     setProjectCommencements(updatedOptions);
     setValue("DigitalTransformProjectCommencement", value);
     setFormData({ ...formData, DigitalTransformProjectCommencement: value });
@@ -79,17 +85,24 @@ const DigitalTransformFinanceProjectCommencement = ({
     const updatedOptions = { ...projectCommencements };
     Object.keys(updatedOptions).forEach((key) => {
       updatedOptions[key].selected =
-        updatedOptions[key].value === formData.DigitalTransformProjectCommencement;
+        updatedOptions[key].value ===
+        formData.DigitalTransformProjectCommencement;
     });
     setProjectCommencements(updatedOptions);
-    if (projectCommencements.other.value !== "" && projectCommencements.other.selected) {
+    if (
+      projectCommencements.other.value !== "" &&
+      projectCommencements.other.selected
+    ) {
       setShowOtherInput(true);
     }
-  }, [formData.DigitalTransformProjectCommencement, financeneedOtherInputValue]);
+  }, [
+    formData.DigitalTransformProjectCommencement,
+    financeneedOtherInputValue,
+  ]);
 
-  const isprojectCommencementSelected = Object.values(projectCommencements).some(
-    (projectCommencement) => projectCommencement.selected
-  );
+  const isprojectCommencementSelected = Object.values(
+    projectCommencements
+  ).some((projectCommencement) => projectCommencement.selected);
 
   return (
     <div>
@@ -97,13 +110,13 @@ const DigitalTransformFinanceProjectCommencement = ({
         <p className=" text-versich-dark-blue font-semibold pb-2">
           How soon would you like the projects to begin?
         </p>
-        <div className="space-y-3">
+        <div className="">
           {Object.keys(projectCommencements).map((key) => {
             const projectCommencement = projectCommencements[key];
             return (
               <div
                 key={projectCommencement.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleOptionSelect(key)}
               >
                 <input
@@ -131,7 +144,10 @@ const DigitalTransformFinanceProjectCommencement = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="DigitalTransformProjectCommencement" className="text-sm ps-2">
+                <label
+                  htmlFor="DigitalTransformProjectCommencement"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {projectCommencement.label}
                 </label>
               </div>
@@ -155,11 +171,12 @@ const DigitalTransformFinanceProjectCommencement = ({
           <p className="text-red-500 text-sm">Please enter a value for Other</p>
         )}
 
-        {!isprojectCommencementSelected && errors.DigitalTransformProjectCommencement && (
-          <div className="pb-3">
-            <p className="text-red-500 text-sm">Please select an option</p>
-          </div>
-        )}
+        {!isprojectCommencementSelected &&
+          errors.DigitalTransformProjectCommencement && (
+            <div className="pb-3">
+              <p className="text-red-500 text-sm">Please select an option</p>
+            </div>
+          )}
       </div>
     </div>
   );

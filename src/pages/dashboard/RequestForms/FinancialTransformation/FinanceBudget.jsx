@@ -14,11 +14,6 @@ const FinanceBudget = ({
     sessionStorage.getItem("budgetOtherInputValue") || ""
   );
   const [budgets, setBudgets] = useState({
-    Budget_0_To_1k: {
-      value: "0 - 1000",
-      label: "0 - 1000",
-      selected: false,
-    },
     Budget_1k_To_10k: {
       value: "1000 - 10000",
       label: "1000 - 10000",
@@ -158,7 +153,7 @@ const FinanceBudget = ({
               </ul>
             )}
           </div>
-          <div className="space-y-3">
+          <div className="">
             {Object.keys(budgets).map((key) => {
               const budget = budgets[key];
               return (
@@ -192,7 +187,10 @@ const FinanceBudget = ({
                   ) : (
                     <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                   )}
-                  <label htmlFor="budgetOption" className="text-sm ps-2">
+                  <label
+                    htmlFor="budgetOption"
+                    className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                  >
                     {budget.label}
                   </label>
                 </div>

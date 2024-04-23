@@ -147,7 +147,7 @@ const ErpFinanceNeededTools = ({
             return (
               <div
                 key={projectCommencement.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleOptionSelect(key)}
               >
                 <input
@@ -177,7 +177,7 @@ const ErpFinanceNeededTools = ({
                 )}
                 <label
                   htmlFor={projectCommencement.value}
-                  className="text-sm ps-2"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
                 >
                   {projectCommencement.label}
                 </label>

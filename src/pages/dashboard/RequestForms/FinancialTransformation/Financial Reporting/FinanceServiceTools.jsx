@@ -149,12 +149,12 @@ const FinanceReportingFinanceNeededTools = ({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="space-y-3  h-[290px] overflow-y-scroll">
+        <div className="h-[290px] overflow-y-scroll">
           {searchResults.map((option) => {
             return (
               <div
                 key={option.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleCheckboxSelect(option.label)}
               >
                 <input
@@ -168,7 +168,9 @@ const FinanceReportingFinanceNeededTools = ({
                 ) : (
                   <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
                 )}
-                <label className="text-sm ps-2">{option.label}</label>
+                <label className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300">
+                  {option.label}
+                </label>
               </div>
             );
           })}

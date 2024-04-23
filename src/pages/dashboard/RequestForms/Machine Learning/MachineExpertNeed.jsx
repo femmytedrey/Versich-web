@@ -58,15 +58,15 @@ const MachineExpertNeed = ({
     <div>
       <div className="space-y-4 pb-12">
         <p className=" text-versich-dark-blue font-semibold pb-2">
-          What is your business/organization size?
+          What experts do you need?
         </p>
-        <div className="space-y-3">
+        <div className="">
           {Object.keys(expertNeed).map((key) => {
             const expert = expertNeed[key];
             return (
               <div
                 key={expert.value}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
                 onClick={() => handleExpertSelect(key)}
               >
                 <input
@@ -81,7 +81,10 @@ const MachineExpertNeed = ({
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
-                <label htmlFor="expertType" className="text-sm ps-2">
+                <label
+                  htmlFor="expertType"
+                  className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
+                >
                   {expert.label}
                 </label>
               </div>

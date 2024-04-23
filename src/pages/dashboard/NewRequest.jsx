@@ -72,6 +72,7 @@ import IndividualDataChoicezOfTool from "./RequestForms/Data Analytics/Individua
 import IndividualDataProjectCommencement from "./RequestForms/Data Analytics/Individual/IndividualDataProjectCommencement";
 import IndividualDataBudget from "./RequestForms/Data Analytics/Individual/IndividualDataBudget";
 import IndividualDataDescription from "./RequestForms/Data Analytics/Individual/IndividualDataDescription";
+import { current } from "@reduxjs/toolkit";
 
 const NewRequest = () => {
   const [page, setPage] = useState(0);
@@ -247,7 +248,7 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
     );
     formPagesByService["Data & Analytics"].push(
       <IndividualDataProjectCommencement
@@ -257,7 +258,7 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
     );
     formPagesByService["Data & Analytics"].push(
       <IndividualDataBudget
@@ -267,7 +268,7 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
     );
     formPagesByService["Data & Analytics"].push(
       <IndividualDataDescription
@@ -277,7 +278,7 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
-      />,
+      />
     );
   } else if (selectedServiceType === "Team, Business, Company") {
     formPagesByService["Data & Analytics"].push(
@@ -623,40 +624,37 @@ const NewRequest = () => {
   }
 
   useEffect(() => {
-  if (serviceSelected) {
-    const totalPages = formPagesByService[selectedService]?.length || 0;
-    setTotalPages(totalPages);
-    
-    const isFirstFormSelected = Object.entries(formPagesByService).every(
-      ([service, forms]) => {
-        return service !== selectedService || forms[0].props.selectedServiceType !== "";
-      }
-    );
-
-    if (isFirstFormSelected) {
+    if (serviceSelected) {
+      const totalPages = formPagesByService[selectedService]?.length || 0;
+      setTotalPages(totalPages);
       const calculateProgress = (page / totalPages) * 100;
       setProgress(calculateProgress);
-    } else {
-      setProgress(0);
     }
-  }
-}, [page, selectedService, selectedServiceType, formPagesByService, serviceSelected]);
 
-
+    if (page === 1){
+      setProgress(20)
+    }
+  }, [page, selectedService, formPagesByService, serviceSelected]);
 
   const handleContinue = handleSubmit((data) => {
-    const updatedFormData = { ...formData, ...data };
-    setFormData(updatedFormData);
+    setFormData({ ...formData, ...data });
     if (page < totalPages) {
       setPage(page + 1);
     } else {
       const buttonText = page === totalPages ? "Submit" : "Continue";
       if (buttonText === "Submit") {
-        console.log(updatedFormData);
+        console.log(formData, "before clear");
+        setFormData({});
         sessionStorage.clear();
         alert("Successfully submitted");
+        console.log(formData, "after clear");
         // window.location.reload();
       }
+
+      setFormData({});
+    }
+    if (selectedService !== formData.selectedService) {
+      setFormData({});
     }
   });
 
