@@ -51,17 +51,17 @@ const FinanceNeededTools = ({
 
   useEffect(() => {
     const storedOptions = formData.financeTools || [];
-    const updatedOptions = financeServiceNeed.map(option => ({
+    const updatedOptions = financeServiceNeed.map((option) => ({
       ...option,
-      selected: storedOptions.includes(option.value)
+      selected: storedOptions.includes(option.value),
     }));
     setFinanceServiceNeed(updatedOptions);
-    setSelectedOptions(updatedOptions.filter(option => option.selected));
+    setSelectedOptions(updatedOptions.filter((option) => option.selected));
   }, [formData.financeTools]);
 
   useEffect(() => {
     const results = financeServiceNeed.filter((option) =>
-      option.label.toLowerCase().includes(searchTerm.toLowerCase())
+      option.label.toLocaleLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm, financeServiceNeed]);
@@ -76,15 +76,19 @@ const FinanceNeededTools = ({
 
     setFinanceServiceNeed(updatedOptions);
 
-    const selectedOption = updatedOptions.find(option => option.label === optionKey);
+    const selectedOption = updatedOptions.find(
+      (option) => option.label === optionKey
+    );
 
     const updatedSelectedOptions = selectedOption.selected
       ? [...selectedOptions, selectedOption]
-      : selectedOptions.filter(option => option.label !== optionKey);
+      : selectedOptions.filter((option) => option.label !== optionKey);
 
     setSelectedOptions(updatedSelectedOptions);
 
-    const selectedServices = updatedSelectedOptions.map((option) => option.value);
+    const selectedServices = updatedSelectedOptions.map(
+      (option) => option.value
+    );
 
     setValue("financeTools", selectedServices);
     setFormData({ ...formData, financeTools: selectedServices });
@@ -103,15 +107,23 @@ const FinanceNeededTools = ({
 
     setFinanceServiceNeed(updatedOptions);
 
-    const updatedSelectedOptions = selectedOptions.filter(option => option.label !== optionKey);
+    const updatedSelectedOptions = selectedOptions.filter(
+      (option) => option.label !== optionKey
+    );
 
     setSelectedOptions(updatedSelectedOptions);
 
-    const selectedServices = updatedSelectedOptions.map((option) => option.value);
+    const selectedServices = updatedSelectedOptions.map(
+      (option) => option.value
+    );
 
     setValue("financeTools", selectedServices);
     setFormData({ ...formData, financeTools: selectedServices });
   };
+
+  // useEffect(() => {
+  //   console.log(searchTerm)
+  // },[searchTerm])
 
   return (
     <div>
@@ -125,18 +137,7 @@ const FinanceNeededTools = ({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <div className="bg-red-300 w-full flex gap-x-2 flex-wrap gap-y-2">
-          {selectedOptions.map((option) => (
-            <div
-              key={option.value}
-              className="bg-versich-blue w-fit flex py-2 px-2 items-center gap-x-2 text-white rounded-2xl cursor-pointer hover:bg-versich-blue-hover"
-              onClick={() => handleOptionDeselect(option.label)}
-            >
-              <p>{option.label}</p>
-              <IoIosClose className="text-2xl" />
-            </div>
-          ))}
-        </div>
+
         <div className="h-[290px] overflow-y-scroll">
           {searchResults.map((option) => {
             return (
@@ -162,6 +163,20 @@ const FinanceNeededTools = ({
               </div>
             );
           })}
+        </div>
+
+        {/* Organizing users selection */}
+        <div className="w-full flex gap-x-2 flex-wrap gap-y-2">
+          {selectedOptions.map((option) => (
+            <div
+              key={option.value}
+              className="border-versich-blue bg-gray-200 border-2 w-fit flex py-1 px-2 items-center gap-x-2 rounded-3xl cursor-pointer text-versich-blue font-semibold"
+              onClick={() => handleOptionDeselect(option.label)}
+            >
+              <p className="text-xs">{option.label}</p>
+              <IoIosClose className="text-2xl" />
+            </div>
+          ))}
         </div>
         {!isAnySelected && errors.financeTools && (
           <div className="pb-3">

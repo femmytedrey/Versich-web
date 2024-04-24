@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IoIosClose } from "react-icons/io";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
 
 const FinanceReportingFinanceNeededTools = ({
@@ -103,6 +104,17 @@ const FinanceReportingFinanceNeededTools = ({
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    const storedOption = formData.financialTool || [];
+    const updatedOptions = financeServiceNeed.map((option) => ({
+      ...option,
+      selected: storedOption.includes(option.value),
+    }));
+    setFinanceServiceNeed(updatedOptions);
+    setSelectedOptions(updatedOptions.filter((option) => option.selected));
+  }, [formData.financialTool]);
 
   useEffect(() => {
     const results = financeServiceNeed.filter((option) =>
@@ -119,21 +131,46 @@ const FinanceReportingFinanceNeededTools = ({
       return option;
     });
 
-    const sortedOptions = updatedOptions.sort((a, b) =>
-      a.selected === b.selected ? 0 : a.selected ? -1 : 1
+    setFinanceServiceNeed(updatedOptions);
+
+    const selectedOption = updatedOptions.find(
+      (option) => option.label === optionKey
     );
 
-    setFinanceServiceNeed(sortedOptions);
+    const updatedSelectedOptions = selectedOption.selected
+      ? [...selectedOptions, selectedOption]
+      : selectedOptions.filter((option) => option.label !== optionKey);
 
-    const selectedServices = sortedOptions
-      .filter((option) => option.selected)
-      .map((option) => option.value);
+    setSelectedOptions(updatedSelectedOptions);
 
-    setValue("financeTools", selectedServices);
-    setFormData({ ...formData, financeTools: selectedServices });
+    const selectedServices = updatedSelectedOptions.map(
+      (option) => option.value
+    );
+
+    setValue("financialTool", selectedServices);
+    setFormData({ ...formData, financialTool: selectedServices });
 
     setSearchTerm("");
   };
+
+  const handleOptionDeselect = (optionKey) => {
+    const updatedOptions = financeServiceNeed.map((option) => {
+      if (option.label === optionKey) {
+        option.selected = !option.selected;
+      }
+      return option;
+    });
+
+    setFinanceServiceNeed(updatedOptions);
+    const updatedSelectedOptions = selectedOptions.filter((option) => option.label !== optionKey);
+
+    setSelectedOptions(updatedSelectedOptions);
+
+    const selectedServices = updatedSelectedOptions.map((option) => option.value);
+
+    setValue("financialTool", selectedServices);
+    setFormData({ ...formData, financialTool: selectedServices });
+  }
 
   const isAnySelected = financeServiceNeed.some((option) => option.selected);
 
@@ -161,7 +198,7 @@ const FinanceReportingFinanceNeededTools = ({
                   type="checkbox"
                   checked={option.selected}
                   className="appearance-none"
-                  {...register("financeTools", { required: true })}
+                  {...register("financialTool", { required: true })}
                 />
                 {option.selected ? (
                   <MdCheckBox className="text-[#4F4F4F]" />
@@ -175,7 +212,19 @@ const FinanceReportingFinanceNeededTools = ({
             );
           })}
         </div>
-        {!isAnySelected && errors.financeTools && (
+        <div className="w-full flex gap-x-2 flex-wrap gap-y-2">
+          {selectedOptions.map((option) => (
+            <div
+              key={option.value}
+              className="border-versich-blue bg-gray-200 border-2 w-fit flex py-1 px-2 items-center gap-x-2 rounded-3xl cursor-pointer text-versich-blue font-semibold"
+              onClick={() => handleOptionDeselect(option.label)}
+            >
+              <p className="text-xs">{option.label}</p>
+              <IoIosClose className="text-2xl" />
+            </div>
+          ))}
+        </div>
+        {!isAnySelected && errors.financialTool && (
           <div className="pb-3">
             <p className="text-red-500 text-sm">
               Please select at least one option

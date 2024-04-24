@@ -101,6 +101,15 @@ const SoftwareBudget = ({
     setOpenList(false);
   };
 
+  useEffect(() => {
+    if (!formData.softareSelectedCurrency) {
+      const defaultCurrency = currencies.find((currency) => currency.code === "USD");
+      const defaultCurrencyValue = defaultCurrency.code;
+      setFormData({ ...formData, softareSelectedCurrency: defaultCurrencyValue });
+    }
+  }, [formData.softareSelectedCurrency, setFormData]);
+  
+
   const toggleList = () => {
     setOpenList(!openList);
   };

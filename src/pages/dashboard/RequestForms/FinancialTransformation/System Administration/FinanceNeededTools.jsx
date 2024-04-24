@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdCheckBox, MdCheckBoxOutlineBlank } from "react-icons/md";
+import { IoIosClose } from "react-icons/io";
 
 const SystemAdministratinoFinanceNeededTools = ({
   register,
@@ -47,10 +48,21 @@ const SystemAdministratinoFinanceNeededTools = ({
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    const storedOptions = formData.SystemFinanceTools || [];
+    const updatedOptions = financeServiceNeed.map((option) => ({
+      ...option,
+      selected: storedOptions.includes(option.value),
+    }));
+    setFinanceServiceNeed(updatedOptions);
+    setSelectedOptions(updatedOptions.filter((option) => option.selected));
+  }, [formData.SystemFinanceTools]);
 
   useEffect(() => {
     const results = financeServiceNeed.filter((option) =>
-      option.label.toLowerCase().includes(searchTerm.toLowerCase())
+      option.label.toLocaleLowerCase().includes(searchTerm.toLowerCase())
     );
     setSearchResults(results);
   }, [searchTerm, financeServiceNeed]);
@@ -63,23 +75,56 @@ const SystemAdministratinoFinanceNeededTools = ({
       return option;
     });
 
-    const sortedOptions = updatedOptions.sort((a, b) =>
-      a.selected === b.selected ? 0 : a.selected ? -1 : 1
+    setFinanceServiceNeed(updatedOptions);
+
+    const selectedOption = updatedOptions.find(
+      (option) => option.label === optionKey
     );
 
-    setFinanceServiceNeed(sortedOptions);
+    const updatedSelectedOptions = selectedOption.selected
+      ? [...selectedOptions, selectedOption]
+      : selectedOptions.filter((option) => option.label !== optionKey);
 
-    const selectedServices = sortedOptions
-      .filter((option) => option.selected)
-      .map((option) => option.value);
+    setSelectedOptions(updatedSelectedOptions);
+
+    const selectedServices = updatedSelectedOptions.map(
+      (option) => option.value
+    );
 
     setValue("SystemFinanceTools", selectedServices);
     setFormData({ ...formData, SystemFinanceTools: selectedServices });
-
     setSearchTerm("");
   };
 
   const isAnySelected = financeServiceNeed.some((option) => option.selected);
+
+  const handleOptionDeselect = (optionKey) => {
+    const updatedOptions = financeServiceNeed.map((option) => {
+      if (option.label === optionKey) {
+        option.selected = false;
+      }
+      return option;
+    });
+
+    setFinanceServiceNeed(updatedOptions);
+
+    const updatedSelectedOptions = selectedOptions.filter(
+      (option) => option.label !== optionKey
+    );
+
+    setSelectedOptions(updatedSelectedOptions);
+
+    const selectedServices = updatedSelectedOptions.map(
+      (option) => option.value
+    );
+
+    setValue("SystemFinanceTools", selectedServices);
+    setFormData({ ...formData, SystemFinanceTools: selectedServices });
+  };
+
+  // useEffect(() => {
+  //   console.log(searchTerm)
+  // },[searchTerm])
 
   return (
     <div>
@@ -93,6 +138,7 @@ const SystemAdministratinoFinanceNeededTools = ({
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
+
         <div className="h-[290px] overflow-y-scroll">
           {searchResults.map((option) => {
             return (
@@ -118,6 +164,20 @@ const SystemAdministratinoFinanceNeededTools = ({
               </div>
             );
           })}
+        </div>
+
+        {/* Organizing users selection */}
+        <div className="w-full flex gap-x-2 flex-wrap gap-y-2">
+          {selectedOptions.map((option) => (
+            <div
+              key={option.value}
+              className="border-versich-blue bg-gray-200 border-2 w-fit flex py-1 px-2 items-center gap-x-2 rounded-3xl cursor-pointer text-versich-blue font-semibold"
+              onClick={() => handleOptionDeselect(option.label)}
+            >
+              <p className="text-xs">{option.label}</p>
+              <IoIosClose className="text-2xl" />
+            </div>
+          ))}
         </div>
         {!isAnySelected && errors.SystemFinanceTools && (
           <div className="pb-3">

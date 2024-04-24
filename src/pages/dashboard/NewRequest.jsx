@@ -87,6 +87,7 @@ const NewRequest = () => {
     register,
     setValue,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -631,30 +632,32 @@ const NewRequest = () => {
       setProgress(calculateProgress);
     }
 
-    if (page === 1){
-      setProgress(20)
+    if (page === 1) {
+      setProgress(20);
     }
   }, [page, selectedService, formPagesByService, serviceSelected]);
 
   const handleContinue = handleSubmit((data) => {
-    setFormData({ ...formData, ...data });
+    const filteredData = Object.fromEntries(
+      Object.entries(data).filter(([_, value]) => value !== null)
+    );
+
+    setFormData({ ...formData, ...filteredData });
     if (page < totalPages) {
       setPage(page + 1);
     } else {
       const buttonText = page === totalPages ? "Submit" : "Continue";
       if (buttonText === "Submit") {
-        console.log(formData, "before clear");
         setFormData({});
         sessionStorage.clear();
+        console.log(formData);
         alert("Successfully submitted");
-        console.log(formData, "after clear");
+        setFormData({});
+        reset();
+        setServiceSelected(false);
+
         // window.location.reload();
       }
-
-      setFormData({});
-    }
-    if (selectedService !== formData.selectedService) {
-      setFormData({});
     }
   });
 
@@ -687,6 +690,8 @@ const NewRequest = () => {
       selectedServiceType,
     }
   );
+
+  
 
   return (
     <div className="flex justify-center my-20 mx-6 md:mx-16">

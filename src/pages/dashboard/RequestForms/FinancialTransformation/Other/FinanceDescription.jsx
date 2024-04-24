@@ -1,12 +1,15 @@
-import { useEffect } from "react";
-
-const OtherFinanceDescription = ({ register, errors, setValue, formData, setFormData }) => {
-    useEffect(() => {
-        if (!formData.otherDescription) {
-          setValue("otherDescription", "");
-          setFormData({ ...formData, otherDescription: "" });
-        }
-      }, [formData.otherDescription, setValue, setFormData]);
+const OtherFinanceDescription = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
+  const handleDescriptionChange = (event) => {
+    const newValue = event.target.value;
+    setValue("otherDescription", newValue);
+    setFormData({ ...formData, otherDescription: newValue });
+  };
 
   return (
     <div>
@@ -19,6 +22,8 @@ const OtherFinanceDescription = ({ register, errors, setValue, formData, setForm
             {...register("otherDescription", { required: true })}
             placeholder="Describe what you need..."
             className="border-2 outline-none p-3 resize-none w-full h-32 rounded-lg"
+            value={formData.otherDescription || ""}
+            onChange={handleDescriptionChange}
           ></textarea>
         </div>
 

@@ -1,12 +1,10 @@
-import { useEffect } from "react";
 
 const DigitalTransformFinanceDescription = ({ register, errors, setValue, formData, setFormData }) => {
-    useEffect(() => {
-        if (!formData.digitalTransformDescription) {
-          setValue("digitalTransformDescription", "");
-          setFormData({ ...formData, digitalTransformDescription: "" });
-        }
-      }, [formData.digitalTransformDescription, setValue, setFormData]);
+      const handleDescriptionChange = (event) => {
+        const newValue = event.target.value;
+        setValue("digitalTransformDescription", newValue);
+        setFormData({ ...formData, digitalTransformDescription: newValue });
+      }
 
   return (
     <div>
@@ -19,6 +17,8 @@ const DigitalTransformFinanceDescription = ({ register, errors, setValue, formDa
             {...register("digitalTransformDescription", { required: true })}
             placeholder="Describe what you need..."
             className="border-2 outline-none p-3 resize-none w-full h-32 rounded-lg"
+            value = {formData.digitalTransformDescription || ""}
+            onChange={handleDescriptionChange}
           ></textarea>
         </div>
 

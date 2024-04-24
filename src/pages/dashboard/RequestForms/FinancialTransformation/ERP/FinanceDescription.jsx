@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 
-const ErpFinanceDescription = ({ register, errors, setValue, formData, setFormData }) => {
-    useEffect(() => {
-        if (!formData.erpDescription) {
-          setValue("erpDescription", "");
-          setFormData({ ...formData, erpDescription: "" });
-        }
-      }, [formData.erpDescription, setValue, setFormData]);
+const ErpFinanceDescription = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
+  const handleDescriptionChange = (event) => {
+    const newValue = event.target.value;
+    setValue("erpDescription", newValue);
+    setFormData({ ...formData, erpDescription: newValue });
+  };
 
   return (
     <div>
@@ -19,12 +24,16 @@ const ErpFinanceDescription = ({ register, errors, setValue, formData, setFormDa
             {...register("erpDescription", { required: true })}
             placeholder="Describe what you need..."
             className="border-2 outline-none p-3 resize-none w-full h-32 rounded-lg"
+            value={formData.erpDescription || ""}
+            onChange={handleDescriptionChange}
           ></textarea>
         </div>
 
         {errors.erpDescription && (
           <div className="pb-3">
-            <p className="text-red-500 text-sm">Please provide a erpDescription</p>
+            <p className="text-red-500 text-sm">
+              Please provide a erpDescription
+            </p>
           </div>
         )}
       </div>

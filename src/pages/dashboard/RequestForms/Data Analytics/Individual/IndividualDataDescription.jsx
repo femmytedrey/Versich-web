@@ -1,12 +1,15 @@
-import { useEffect } from "react";
-
-const IndividualDataDescription = ({ register, errors, setValue, formData, setFormData }) => {
-    useEffect(() => {
-        if (!formData.description) {
-          setValue("individualdescription", "");
-          setFormData({ ...formData, individualdescription: "" });
-        }
-      }, [formData.individualdescription, setValue, setFormData]);
+const IndividualDataDescription = ({
+  register,
+  errors,
+  setValue,
+  formData,
+  setFormData,
+}) => {
+  const handleDescriptionChange = (event) => {
+    const newValue = event.target.value;
+    setValue("individualdescription", newValue);
+    setFormData({ ...formData, individualdescription: newValue });
+  };
 
   return (
     <div>
@@ -19,6 +22,8 @@ const IndividualDataDescription = ({ register, errors, setValue, formData, setFo
             {...register("individualdescription", { required: true })}
             placeholder="Describe what you need..."
             className="border-2 outline-none p-3 resize-none w-full h-32 rounded-lg"
+            value={formData.individualdescription || ""}
+            onChange={handleDescriptionChange}
           ></textarea>
         </div>
 

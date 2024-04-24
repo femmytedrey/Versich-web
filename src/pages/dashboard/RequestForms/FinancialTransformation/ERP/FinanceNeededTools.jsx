@@ -141,7 +141,7 @@ const ErpFinanceNeededTools = ({
         <p className="text-versich-dark-blue font-semibold pb-2">
           What financial system do you want to implement?
         </p>
-        <div className="space-y-3 h-[290px] overflow-y-scroll">
+        <div className="h-[290px] overflow-y-scroll">
           {Object.keys(projectCommencements).map((key) => {
             const projectCommencement = projectCommencements[key];
             return (

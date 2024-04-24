@@ -1,12 +1,9 @@
-import { useEffect } from "react";
-
 const SystemAdminFinanceDescription = ({ register, errors, setValue, formData, setFormData }) => {
-    useEffect(() => {
-        if (!formData.systemAdminDescription) {
-          setValue("systemAdminDescription", "");
-          setFormData({ ...formData, systemAdminDescription: "" });
-        }
-      }, [formData.systemAdminDescription, setValue, setFormData]);
+  const handleDescriptionChange = (event) => {
+    const newValue = event.target.value;
+    setValue("systemAdminDescription", newValue);
+    setFormData({ ...formData, systemAdminDescription: newValue });
+  };
 
   return (
     <div>
@@ -19,12 +16,14 @@ const SystemAdminFinanceDescription = ({ register, errors, setValue, formData, s
             {...register("systemAdminDescription", { required: true })}
             placeholder="Describe what you need..."
             className="border-2 outline-none p-3 resize-none w-full h-32 rounded-lg"
+            value = {formData.systemAdminDescription || ""}
+            onChange={handleDescriptionChange}
           ></textarea>
         </div>
 
         {errors.systemAdminDescription && (
           <div className="pb-3">
-            <p className="text-red-500 text-sm">Please provide a systemAdminDescription</p>
+            <p className="text-red-500 text-sm">Please provide your description in details...</p>
           </div>
         )}
       </div>
