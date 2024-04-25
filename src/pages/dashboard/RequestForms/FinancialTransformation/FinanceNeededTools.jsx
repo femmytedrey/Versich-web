@@ -170,7 +170,7 @@ const FinanceNeededTools = ({
           {selectedOptions.map((option) => (
             <div
               key={option.value}
-              className="border-versich-blue bg-gray-200 border-2 w-fit flex py-1 px-2 items-center gap-x-2 rounded-3xl cursor-pointer text-versich-blue font-semibold"
+              className="border-versich-lighter-blue/80 bg-anti-flash-white border-2 w-fit flex py-1 px-2 items-center gap-x-2 rounded-3xl cursor-pointer text-versich-lighter-blue/80 font-semibold"
               onClick={() => handleOptionDeselect(option.label)}
             >
               <p className="text-xs">{option.label}</p>
