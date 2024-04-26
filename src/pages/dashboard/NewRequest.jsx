@@ -732,10 +732,6 @@ const NewRequest = () => {
               ) : (
                 formPagesByService[selectedService][page - 1]
               )}
-
-              {/* {additionalFinanceForms.map((form, index) => (
-                <div key={index}>{form}</div>
-              ))} */}
             </div>
 
             <hr className="pb-3" />
