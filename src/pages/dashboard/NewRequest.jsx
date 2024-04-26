@@ -658,6 +658,7 @@ const NewRequest = () => {
 
         // window.location.reload();
       }
+      reset();
     }
   });
 
@@ -690,8 +691,6 @@ const NewRequest = () => {
       selectedServiceType,
     }
   );
-
-  
 
   return (
     <div className="flex justify-center my-20 mx-6 md:mx-16">
