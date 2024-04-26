@@ -13,6 +13,8 @@ module.exports = {
         "versich-border": "#bdbdbd",
         "versich-label": "#666666",
         "versich-light-gray": "#9F9F9F",
+        "anti-flash-white": "#EFEFEF",
+        "versich-lighter-blue": "#1A73E9",
       },
       spacing: {
         "negate-85": "-85px",

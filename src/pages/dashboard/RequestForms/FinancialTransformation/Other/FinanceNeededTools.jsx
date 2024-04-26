@@ -133,7 +133,7 @@ const OtherFinanceNeedTools = ({
         <p className="text-versich-dark-blue font-semibold pb-2">
           Select services you need
         </p>
-        <div className="space-y-3 h-[290px] overflow-y-scroll">
+        <div className="h-[290px] overflow-y-scroll">
           {Object.keys(financeServiceNeed).map((key) => {
             const option = financeServiceNeed[key];
             return (
