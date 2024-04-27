@@ -1,43 +1,48 @@
 import { useState, useEffect } from "react";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 
-const LiveDecision = ({
-  register,
-  errors,
-  setValue,
-  formData,
-  setFormData,
-}) => {
-  const [liveDecisionOtherInputValue, setLiveDecisionOtherInputValue] =
-    useState(sessionStorage.getItem("liveDecisionOtherInputValue") || "");
-  const [projectCommencements, setProjectCommencements] = useState({
+const ProjectType = ({ register, errors, setValue, formData, setFormData }) => {
+  const [projectOtherInputValue, setProjectOtherInputValue] = useState(
+    sessionStorage.getItem("projectOtherInputValue") || ""
+  );
+  const [options, setOptions] = useState({
     option1: {
-      value: "ASAP",
-      label: "ASAP",
+      value: "Application - business",
+      label: "Application - business",
       selected: false,
     },
     option2: {
-      value: "Within a week",
-      label: "Within a week",
+      value: "Application - game",
+      label: "Application - game",
       selected: false,
     },
     option3: {
-      value: "Within a month",
-      label: "Within a month",
+      value: "Application - mobile commerce",
+      label: "Application - mobile commerce",
       selected: false,
     },
     option4: {
-      value: "Within 3 months",
-      label: "Within 3 months",
+      value: "Application - social media",
+      label: "Application - social media",
       selected: false,
     },
     option5: {
-      value: "I’m not sure",
-      label: "I’m not sure",
+      value: "Application - utility",
+      label: "Application - utility",
+      selected: false,
+    },
+    option6: {
+      value: "Application - other",
+      label: "Application - other",
+      selected: false,
+    },
+    option7: {
+      value: "Plug-in",
+      label: "Plug-in",
       selected: false,
     },
     other: {
-      value: liveDecisionOtherInputValue,
+      value: projectOtherInputValue,
       label: "Other",
       selected: false,
     },
@@ -46,83 +51,77 @@ const LiveDecision = ({
   const [showOtherInput, setShowOtherInput] = useState(false);
 
   const handleOptionSelect = (optionKey) => {
-    const updatedOptions = { ...projectCommencements };
+    const updatedOptions = { ...options };
     Object.keys(updatedOptions).forEach((key) => {
       updatedOptions[key].selected = key === optionKey;
     });
 
-    setProjectCommencements(updatedOptions);
+    setOptions(updatedOptions);
     const selectedValue = updatedOptions[optionKey].value;
-    setValue("liveDecision", selectedValue);
-    setFormData({ ...formData, liveDecision: selectedValue });
+    setValue("selectedProjectType", selectedValue);
+    setFormData({ ...formData, selectedProjectType: selectedValue });
     setShowOtherInput(optionKey === "other");
 
     if (optionKey !== "other") {
-      sessionStorage.removeItem("liveDecisionOtherInputValue");
-      setLiveDecisionOtherInputValue("");
+      sessionStorage.removeItem("projectOtherInputValue");
+      setProjectOtherInputValue("");
     }
   };
 
   const handleInputChange = (event) => {
     const { value } = event.target;
-    setLiveDecisionOtherInputValue(value);
-    const updatedOptions = {
-      ...projectCommencements,
-      other: { ...projectCommencements.other, value },
-    };
-    setProjectCommencements(updatedOptions);
-    setValue("liveDecision", value);
-    setFormData({ ...formData, liveDecision: value });
+    setProjectOtherInputValue(value);
+    const updatedOptions = { ...options, other: { ...options.other, value } };
+    setOptions(updatedOptions);
+    setValue("selectedProjectType", value);
+    setFormData({ ...formData, selectedProjectType: value });
 
-    sessionStorage.setItem("liveDecisionOtherInputValue", value);
+    sessionStorage.setItem("projectOtherInputValue", value);
   };
 
   useEffect(() => {
-    const updatedOptions = { ...projectCommencements };
+    const updatedOptions = { ...options };
     Object.keys(updatedOptions).forEach((key) => {
       updatedOptions[key].selected =
-        updatedOptions[key].value === formData.liveDecision;
+        updatedOptions[key].value === formData.selectedProjectType;
     });
-    setProjectCommencements(updatedOptions);
-    if (
-      projectCommencements.other.value !== "" &&
-      projectCommencements.other.selected
-    ) {
+    setOptions(updatedOptions);
+    if (options.other.value !== "" && options.other.selected) {
       setShowOtherInput(true);
     }
-  }, [formData.liveDecision, liveDecisionOtherInputValue]);
+  }, [formData.selectedProjectType, projectOtherInputValue]);
 
-  const isprojectCommencementSelected = Object.values(
-    projectCommencements
-  ).some((projectCommencement) => projectCommencement.selected);
+  const isOptionSelected = Object.values(options).some(
+    (option) => option.selected
+  );
 
   return (
     <div>
       <div className="space-y-4 pb-12">
         <p className=" text-versich-dark-blue font-semibold pb-2">
-          When would you like the website to go live/be updated?
+          What type of project is this?
         </p>
         <div className="">
-          {Object.keys(projectCommencements).map((key) => {
-            const projectCommencement = projectCommencements[key];
+          {Object.keys(options).map((key) => {
+            const option = options[key];
             return (
               <div
-                key={projectCommencement.value}
+                key={option.value}
                 className="flex items-center cursor-pointer"
                 onClick={() => handleOptionSelect(key)}
               >
                 <input
                   type="radio"
-                  name="liveDecision"
-                  value={projectCommencement.value}
+                  name="selectedProjectType"
+                  value={option.value}
                   className="appearance-none"
-                  {...register("liveDecision", {
+                  {...register("selectedProjectType", {
                     required: true,
                     validate: {
                       otherInput: () => {
                         if (
-                          projectCommencements.other.selected &&
-                          projectCommencements.other.value.trim() === ""
+                          options.other.selected &&
+                          options.other.value.trim() === ""
                         ) {
                           return false;
                         }
@@ -131,16 +130,16 @@ const LiveDecision = ({
                     },
                   })}
                 />
-                {projectCommencement.selected ? (
+                {option.selected ? (
                   <IoMdRadioButtonOn className="text-[#4F4F4F]" />
                 ) : (
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
                 <label
-                  htmlFor="liveDecision"
+                  htmlFor="selectedProjectType"
                   className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
                 >
-                  {projectCommencement.label}
+                  {option.label}
                 </label>
               </div>
             );
@@ -153,17 +152,17 @@ const LiveDecision = ({
                 placeholder="other"
                 className="border border-versich-border py-2 px-3 flex-1 rounded-lg outline-none"
                 onChange={handleInputChange}
-                value={liveDecisionOtherInputValue}
+                value={projectOtherInputValue}
               />
             </div>
           )}
         </div>
 
-        {errors.liveDecision?.type === "otherInput" && (
+        {errors.selectedProjectType?.type === "otherInput" && (
           <p className="text-red-500 text-sm">Please enter a value for Other</p>
         )}
 
-        {!isprojectCommencementSelected && errors.liveDecision && (
+        {!isOptionSelected && errors.selectedProjectType && (
           <div className="pb-3">
             <p className="text-red-500 text-sm">Please select an option</p>
           </div>
@@ -173,4 +172,4 @@ const LiveDecision = ({
   );
 };
 
-export default LiveDecision;
+export default ProjectType;

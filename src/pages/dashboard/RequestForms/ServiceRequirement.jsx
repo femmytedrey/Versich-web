@@ -7,6 +7,8 @@ const ServiceRequirement = ({
   setValue,
   formData,
   setFormData,
+  setSelectedServiceType,
+  selectedServiceType,
 }) => {
   const [options, setOptions] = useState([
     {
@@ -31,7 +33,12 @@ const ServiceRequirement = ({
     setOptions(updatedOptions);
     setValue("serviceOption", optionValue);
     setFormData({ ...formData, serviceOption: optionValue });
+    setSelectedServiceType(optionValue)
   };
+
+  // useEffect(() => {
+  //   console.log(selectedServiceType)
+  // }, [selectedServiceType])
 
   const isOptionSelected = options.some((option) => option.selected);
 
@@ -52,7 +59,7 @@ const ServiceRequirement = ({
         <p className="pb-6">Once selected, please click ‘continue’</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-5 pb-5">
+      <div className="grid grid-cols-1 customxs:grid-cols-2 gap-5 pb-5"> 
         {options.map((option) => (
           <div
             key={option.value}

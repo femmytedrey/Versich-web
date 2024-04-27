@@ -23,17 +23,31 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         case 0:
           return { icon: null, text: null };
         case 1:
-          return { icon: icon1, text: "Text for Service Requirement" };
+          return {
+            icon: icon1,
+            text: "Tell us the type of software you want to develop",
+          };
         case 2:
-          return { icon: orgSize, text: "Text for ServiceNeeds" };
+          return { icon: orgSize, text: "Tell us your software type" };
         case 3:
-          return { icon: icon1, text: "Text for BusinessType" };
+          return { icon: icon1, text: "Select Operating system type" };
         case 4:
-          return { icon: orgSize, text: "Text for IndustryType" };
+          return {
+            icon: orgSize,
+            text: "What type of industry do you operate?",
+          };
         case 5:
-          return { icon: orgSize, text: "Text for LiveDecision" };
+          return { icon: icon4, text: "Tell us your budget" };
         case 6:
-          return { icon: orgSize, text: "Text for Budget" };
+          return {
+            icon: icon2,
+            text: "Tell us about your type of service engagement",
+          };
+        case 7:
+          return {
+            icon: icon2,
+            text: "How likely are you to make a hiring decision?",
+          };
         default:
           return { icon: null, text: null };
       }
@@ -245,6 +259,11 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
           return { icon: orgSize, text: "Text for LiveDecision" };
         case 6:
           return { icon: orgSize, text: "Text for Budget" };
+        case 7:
+          return {
+            icon: icon2,
+            text: "How likely are you to make a hiring decision?",
+          };
         default:
           return { icon: null, text: null };
       }
@@ -253,7 +272,42 @@ export const getCurrentFormTextAndIcon = (selectedService, page, icons) => {
         case 0:
           return { icon: null, text: null };
         case 1:
-          return { icon: icon4, text: "Your budget size" };
+          return { icon: icon2, text: "Tell us more about your project type" };
+        case 2:
+          return {
+            icon: expertNeedIcon,
+            text: "Let us know what your development work is all about",
+          };
+        case 3:
+          return {
+            icon: icon4,
+            text: "In what way do you plan to monetize the app",
+          };
+        case 4:
+          return {
+            icon: icon2,
+            text: "Select an option to let us know what platform you plan to run on",
+          };
+        case 5:
+          return {
+            icon: icon1,
+            text: "What type of business is this for?",
+          };
+        case 6:
+          return {
+            icon: icon4,
+            text: "Tell us your budget",
+          };
+        case 7:
+          return {
+            icon: projectCommencementIcon,
+            text: "When do you need an expert?",
+          };
+        case 8:
+          return {
+            icon: icon2,
+            text: "How likely are you to make a hiring decision?",
+          };
       }
     case "Data & Analytics":
       switch (page) {

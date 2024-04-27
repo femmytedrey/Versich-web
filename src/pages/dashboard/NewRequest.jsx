@@ -72,7 +72,20 @@ import IndividualDataChoicezOfTool from "./RequestForms/Data Analytics/Individua
 import IndividualDataProjectCommencement from "./RequestForms/Data Analytics/Individual/IndividualDataProjectCommencement";
 import IndividualDataBudget from "./RequestForms/Data Analytics/Individual/IndividualDataBudget";
 import IndividualDataDescription from "./RequestForms/Data Analytics/Individual/IndividualDataDescription";
-import { current } from "@reduxjs/toolkit";
+import SoftwareType from "./RequestForms/Software Development/SoftwareType";
+import SoftwareTypeSelector from "./RequestForms/Software Development/SoftwareTypeSelector";
+import SelectedOs from "./RequestForms/Software Development/SelectedOs";
+import IndustryCategory from "./RequestForms/Software Development/IndustryCategory";
+import ServiceEngagement from "./RequestForms/Software Development/ServiceEngagement";
+import HiringDecision from "./RequestForms/Software Development/HiringDecision";
+import ProjectType from "./RequestForms/Mobile App/ProjectType";
+import DevelopmentWork from "./RequestForms/Mobile App/DevelopmentWork";
+import MonitizingPlan from "./RequestForms/Mobile App/MonetizingPlan";
+import PlatformNeeds from "./RequestForms/Mobile App/PlatformNeeds";
+import MobileBusinessType from "./RequestForms/Mobile App/MobileBusinessType";
+import MobileProjectCommencement from "./RequestForms/Mobile App/MobileProjectCommencement";
+import MobileHiringDecision from "./RequestForms/Mobile App/HiringDecision";
+import WebHiringDecision from "./RequestForms/HiringDecision";
 
 const NewRequest = () => {
   const [page, setPage] = useState(0);
@@ -93,7 +106,55 @@ const NewRequest = () => {
 
   const formPagesByService = {
     "Software Development": [
+      <SoftwareType
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <SoftwareTypeSelector
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <SelectedOs
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <IndustryCategory
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
       <SoftwareBudget
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <ServiceEngagement
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <HiringDecision
         key="budget"
         register={register}
         errors={errors}
@@ -164,6 +225,8 @@ const NewRequest = () => {
         setValue={setValue}
         formData={formData}
         setFormData={setFormData}
+        setSelectedServiceType={setSelectedServiceType}
+        selectedServiceType={selectedServiceType}
       />,
       <ServiceNeeds
         key="service-needs"
@@ -205,9 +268,73 @@ const NewRequest = () => {
         formData={formData}
         setFormData={setFormData}
       />,
+      <WebHiringDecision
+        key="budget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
     ],
     "Mobile App": [
+      <ProjectType
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <DevelopmentWork
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <MonitizingPlan
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <PlatformNeeds
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <MobileBusinessType
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
       <MobileBudget
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <MobileProjectCommencement
+        key="MobileBudget"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+      />,
+      <MobileHiringDecision
         key="MobileBudget"
         register={register}
         errors={errors}

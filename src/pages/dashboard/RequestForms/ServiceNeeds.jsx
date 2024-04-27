@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
+import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 
 const ServiceNeeds = ({
   register,
@@ -112,9 +112,9 @@ const ServiceNeeds = ({
                   })}
                 />
                 {option.selected ? (
-                  <MdCheckBox className="text-[#4F4F4F]" />
+                  <IoMdRadioButtonOn className="text-[#4F4F4F]" />
                 ) : (
-                  <MdCheckBoxOutlineBlank className="text-[#4F4F4F]" />
+                  <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
                 <label
                   htmlFor="serviceNeeds"

@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { IoMdRadioButtonOff, IoMdRadioButtonOn } from "react-icons/io";
 
-const LiveDecision = ({
+const MobileProjectCommencement = ({
   register,
   errors,
   setValue,
   formData,
   setFormData,
 }) => {
-  const [liveDecisionOtherInputValue, setLiveDecisionOtherInputValue] =
-    useState(sessionStorage.getItem("liveDecisionOtherInputValue") || "");
+  const [commencementOtherInputValue, setCommencementOtherInputValue] = useState(
+    sessionStorage.getItem("commencementOtherInputValue") || ""
+  );
   const [projectCommencements, setProjectCommencements] = useState({
     option1: {
       value: "ASAP",
@@ -37,7 +38,7 @@ const LiveDecision = ({
       selected: false,
     },
     other: {
-      value: liveDecisionOtherInputValue,
+      value: commencementOtherInputValue,
       label: "Other",
       selected: false,
     },
@@ -53,35 +54,35 @@ const LiveDecision = ({
 
     setProjectCommencements(updatedOptions);
     const selectedValue = updatedOptions[optionKey].value;
-    setValue("liveDecision", selectedValue);
-    setFormData({ ...formData, liveDecision: selectedValue });
+    setValue("mobileProjectCommencement", selectedValue);
+    setFormData({ ...formData, mobileProjectCommencement: selectedValue });
     setShowOtherInput(optionKey === "other");
 
     if (optionKey !== "other") {
-      sessionStorage.removeItem("liveDecisionOtherInputValue");
-      setLiveDecisionOtherInputValue("");
+      sessionStorage.removeItem("commencementOtherInputValue");
+      setCommencementOtherInputValue("");
     }
   };
 
   const handleInputChange = (event) => {
     const { value } = event.target;
-    setLiveDecisionOtherInputValue(value);
+    setCommencementOtherInputValue(value);
     const updatedOptions = {
       ...projectCommencements,
       other: { ...projectCommencements.other, value },
     };
     setProjectCommencements(updatedOptions);
-    setValue("liveDecision", value);
-    setFormData({ ...formData, liveDecision: value });
+    setValue("mobileProjectCommencement", value);
+    setFormData({ ...formData, mobileProjectCommencement: value });
 
-    sessionStorage.setItem("liveDecisionOtherInputValue", value);
+    sessionStorage.setItem("commencementOtherInputValue", value);
   };
 
   useEffect(() => {
     const updatedOptions = { ...projectCommencements };
     Object.keys(updatedOptions).forEach((key) => {
       updatedOptions[key].selected =
-        updatedOptions[key].value === formData.liveDecision;
+        updatedOptions[key].value === formData.mobileProjectCommencement;
     });
     setProjectCommencements(updatedOptions);
     if (
@@ -90,7 +91,7 @@ const LiveDecision = ({
     ) {
       setShowOtherInput(true);
     }
-  }, [formData.liveDecision, liveDecisionOtherInputValue]);
+  }, [formData.mobileProjectCommencement, commencementOtherInputValue]);
 
   const isprojectCommencementSelected = Object.values(
     projectCommencements
@@ -100,7 +101,7 @@ const LiveDecision = ({
     <div>
       <div className="space-y-4 pb-12">
         <p className=" text-versich-dark-blue font-semibold pb-2">
-          When would you like the website to go live/be updated?
+          How soon would you like the projects to begin?
         </p>
         <div className="">
           {Object.keys(projectCommencements).map((key) => {
@@ -113,10 +114,10 @@ const LiveDecision = ({
               >
                 <input
                   type="radio"
-                  name="liveDecision"
+                  name="mobileProjectCommencement"
                   value={projectCommencement.value}
                   className="appearance-none"
-                  {...register("liveDecision", {
+                  {...register("mobileProjectCommencement", {
                     required: true,
                     validate: {
                       otherInput: () => {
@@ -137,7 +138,7 @@ const LiveDecision = ({
                   <IoMdRadioButtonOff className="text-[#4F4F4F]" />
                 )}
                 <label
-                  htmlFor="liveDecision"
+                  htmlFor="mobileProjectCommencement"
                   className="text-sm ps-2 cursor-pointer w-full py-2 hover:text-versich-blue-hover transition-all duration-300"
                 >
                   {projectCommencement.label}
@@ -153,17 +154,17 @@ const LiveDecision = ({
                 placeholder="other"
                 className="border border-versich-border py-2 px-3 flex-1 rounded-lg outline-none"
                 onChange={handleInputChange}
-                value={liveDecisionOtherInputValue}
+                value={commencementOtherInputValue}
               />
             </div>
           )}
         </div>
 
-        {errors.liveDecision?.type === "otherInput" && (
+        {errors.mobileProjectCommencement?.type === "otherInput" && (
           <p className="text-red-500 text-sm">Please enter a value for Other</p>
         )}
 
-        {!isprojectCommencementSelected && errors.liveDecision && (
+        {!isprojectCommencementSelected && errors.mobileProjectCommencement && (
           <div className="pb-3">
             <p className="text-red-500 text-sm">Please select an option</p>
           </div>
@@ -173,4 +174,4 @@ const LiveDecision = ({
   );
 };
 
-export default LiveDecision;
+export default MobileProjectCommencement;
