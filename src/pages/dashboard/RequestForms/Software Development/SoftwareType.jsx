@@ -42,6 +42,11 @@ const SoftwareType = ({
       selected: false,
     },
     option7: {
+      value: "Retail POS software",
+      label: "Retail POS software",
+      selected: false,
+    },
+    option8: {
       value: "Sales and marketing management system",
       label: "Sales and marketing management system",
       selected: false,
